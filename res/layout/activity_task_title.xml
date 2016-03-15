@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/activity_title_height"
+    android:background="@color/button_normal" >
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:layout_width="60dp"
+        android:layout_height="@dimen/activity_title_height"
+        android:background="@drawable/relativelayout_back_bg" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/arrow_left" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_title_height"
+        android:gravity="center"
+        android:text="abs-02"
+        android:textColor="@color/color_white"
+        android:textSize="30sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_title_wifi_connecting"
+        android:layout_width="40dp"
+        android:layout_height="@dimen/activity_title_height"
+        android:layout_alignParentRight="true" >
+
+        <ImageView
+            android:id="@+id/iv_title_wifi_connecting"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/icon_wifi_disconnect"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title_speed"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/activity_title_height"
+        android:layout_toLeftOf="@id/rl_title_wifi_connecting"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/iv_title_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_title_moshi"
+        android:layout_width="50dp"
+        android:layout_height="@dimen/activity_title_height"
+        android:layout_toLeftOf="@id/rl_title_speed"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/iv_title_moshi"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

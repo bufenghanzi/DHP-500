@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_task_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+        android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+        android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+        android:background="@drawable/task_bottom_linearlayout_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/activity_glue_setting"
+            android:textSize="@dimen/activity_download_textsize_sub" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/activity_task_listview_divider" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
+
+            <TextView
+                android:id="@+id/tv_task_number"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="@string/activity_task_number"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_download_tasknumber"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toRightOf="@id/tv_task_number"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:text="1"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
+
+            <TextView
+                android:id="@+id/tv_accelerate_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="@string/activity_task_accelerate"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_download_accelerate_time"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toRightOf="@id/tv_accelerate_time"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:text="1000"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/et_download_accelerate_time"
+                android:text="@string/activity_mm_s"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <TextView
+                android:id="@+id/tv_xy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:text="@string/activity_mm_s"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_download_xy_move"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toLeftOf="@id/tv_xy"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:text="200"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/et_download_xy_move"
+                android:gravity="center"
+                android:text="@string/activity_task_xy_move_time"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
+
+            <TextView
+                android:id="@+id/tv_decelerate_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="@string/activity_task_decelerate"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_download_decelerate_time"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toRightOf="@id/tv_decelerate_time"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:text="1000"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/et_download_decelerate_time"
+                android:text="@string/activity_mm_s"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <TextView
+                android:id="@+id/tv_z"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:text="@string/activity_mm_s"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_download_z_move"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toLeftOf="@id/tv_z"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:text="200"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/et_download_z_move"
+                android:gravity="center"
+                android:text="@string/activity_task_z_move_time"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
+
+            <TextView
+                android:id="@+id/tv_inflexion_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="@string/activity_task_inflexion_time"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_download_inflexion_time"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toRightOf="@id/tv_inflexion_time"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:text="50"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/et_download_inflexion_time"
+                android:text="@string/activity_mm_s"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <TextView
+                android:id="@+id/tv_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:text="@string/activity_mm_s"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_download_max_accelerate_move"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toLeftOf="@id/tv_max"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:text="10000"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/et_download_max_accelerate_move"
+                android:gravity="center"
+                android:text="@string/activity_task_max_accelerate"
+                android:textSize="@dimen/activity_download_textsize_sub" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <RelativeLayout
+                android:id="@+id/rl_download"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:background="@drawable/task_bottom_imagebutton"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_complete"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_xiazai" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_complete"
+                    android:layout_toRightOf="@id/iv_complete"
+                    android:gravity="center"
+                    android:text="@string/activity_glue_download"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/activity_task_bottom_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <RelativeLayout
+                android:id="@+id/rl_cancel"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:background="@drawable/task_bottom_imagebutton"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_cancel"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_cancel"
+                    android:layout_toRightOf="@id/iv_cancel"
+                    android:gravity="center"
+                    android:text="@string/activity_glue_cancel"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/activity_task_bottom_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:gravity="bottom" >
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/rl_admin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:layout_weight="1"
+                android:background="@drawable/login_image_bg"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_admin"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/administrator" />
+            </RelativeLayout>
+
+            <Spinner
+                android:id="@+id/sp_admin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:layout_weight="5"
+                android:background="@drawable/login_edittext_bg"
+                android:entries="@array/adminMethods" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/rl_username"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:layout_weight="1"
+                android:background="@drawable/login_image_bg"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_username"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/user" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:layout_weight="5"
+                android:background="@drawable/login_edittext_bg"
+                android:hint="@string/login_username"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="#7A7A7A"
+                android:textSize="45sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <RelativeLayout
+                android:id="@+id/rl_password"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:layout_weight="1"
+                android:background="@drawable/login_image_bg"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_password"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/password" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+                android:layout_weight="5"
+                android:gravity="center_vertical" >
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/login_edittext_bg"
+                    android:hint="@string/login_password"
+                    android:inputType="textPassword"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="#7A7A7A"
+                    android:textSize="45sp" />
+
+                <ImageView
+                    android:id="@+id/iv_showPassword"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignBottom="@id/et_password"
+                    android:layout_alignRight="@id/et_password"
+                    android:layout_alignTop="@id/et_password"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/hide" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_login"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/login_login"
+                android:textColor="@color/color_white"
+                android:textSize="50sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

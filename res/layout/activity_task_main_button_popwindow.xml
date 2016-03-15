@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:id="@+id/lin_popwindow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp" >
+
+        <Button
+            android:id="@+id/but_jizhun"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_base"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_duli"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_alone"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_qishi"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_line_start"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_zhongjian"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_line_mid"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_yuanhu"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_line_arc"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_jieshu"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_line_end"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_mianqi"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_face_start"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_mianzhong"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_face_end"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_qingjiaodian"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_cleario"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_qingjiao"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_clear"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_inputio"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_input"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+
+        <Button
+            android:id="@+id/but_outputio"
+            android:layout_width="@dimen/activity_task_popwindow_height"
+            android:layout_height="@dimen/activity_task_popwindow_width"
+            android:layout_marginTop="@dimen/activity_task_popwindow_margintop"
+            android:background="@drawable/task_bottom_pop_button"
+            android:text="@string/activity_glue_output"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/activity_task_popwindow_text_size" />
+    </LinearLayout>
+
+</ScrollView>

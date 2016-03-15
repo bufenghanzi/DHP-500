@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/et_num"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:inputType="number" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/et_num2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:inputType="number" >
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_gravity="bottom" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/task_bottom_linearlayout_bg" >
+
+            <include layout="@layout/navigation_directional" />
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="2"
+        android:background="@drawable/task_bottom_linearlayout_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rl_sudu"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_sudu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_sudu" />
+
+            <TextView
+                android:id="@+id/tv_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_sudu"
+                android:layout_toRightOf="@id/iv_sudu"
+                android:gravity="center"
+                android:text="@string/activity_high"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dingwei"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_dingwei"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_dingwei" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_dingwei"
+                android:layout_toRightOf="@id/iv_dingwei"
+                android:gravity="center"
+                android:text="@string/activity_glue_location"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_pianyi"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_pianyi"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_pianyi" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_pianyi"
+                android:layout_toRightOf="@id/iv_pianyi"
+                android:gravity="center"
+                android:text="@string/activity_glue_pianyi"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_moni"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_moni"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_moni" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_moni"
+                android:layout_toRightOf="@id/iv_moni"
+                android:gravity="center"
+                android:text="@string/activity_glue_moni"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_shijue"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_shijue"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_shijue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_shijue"
+                android:layout_toRightOf="@id/iv_shijue"
+                android:gravity="center"
+                android:text="@string/activity_glue_shijue"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="2"
+        android:background="@drawable/task_bottom_linearlayout_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rl_moshi"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_moshi"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_moshi" />
+
+            <TextView
+                android:id="@+id/tv_moshi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_moshi"
+                android:layout_toRightOf="@id/iv_moshi"
+                android:gravity="center"
+                android:text="@string/step_serious"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_fuwei"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_fuwei"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_fuwei" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_fuwei"
+                android:layout_toRightOf="@id/iv_fuwei"
+                android:gravity="center"
+                android:text="@string/activity_glue_fuwei"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_zhenlie"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_zhenlie"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_zhenlie" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_zhenlie"
+                android:layout_toRightOf="@id/iv_zhenlie"
+                android:gravity="center"
+                android:text="@string/activity_glue_array"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_zhantie"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_zhantie"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_zhantie" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_zhantie"
+                android:layout_toRightOf="@id/iv_zhantie"
+                android:gravity="center"
+                android:text="@string/activity_glue_zhantie"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_shitu"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_shitu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_shitu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_shitu"
+                android:layout_toRightOf="@id/iv_shitu"
+                android:gravity="center"
+                android:text="@string/activity_glue_shitu"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="2"
+        android:background="@drawable/task_bottom_linearlayout_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rl_xiazai"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_xiazai"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_xiazai" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_xiazai"
+                android:layout_toRightOf="@id/iv_xiazai"
+                android:gravity="center"
+                android:text="@string/activity_glue_download"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_shanchu"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_shanchu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_shanchu" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_shanchu"
+                android:layout_toRightOf="@id/iv_shanchu"
+                android:gravity="center"
+                android:text="@string/activity_glue_delete"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_xiugai"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_xiugai"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_xiugai" />
+
+            <TextView
+                android:id="@+id/tv_selectall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_xiugai"
+                android:layout_toRightOf="@id/iv_xiugai"
+                android:gravity="center"
+                android:text="@string/activity_glue_quanxuan"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_shezhi"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_shezhi"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_shezhi" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_shezhi"
+                android:layout_toRightOf="@id/iv_shezhi"
+                android:gravity="center"
+                android:text="@string/activity_glue_task_set"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_fangan"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_fangan"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_fangan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_fangan"
+                android:layout_toRightOf="@id/iv_fangan"
+                android:gravity="center"
+                android:text="@string/activity_glue_fangan"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

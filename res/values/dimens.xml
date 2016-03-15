@@ -1,0 +1,71 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    
+     
+    <dimen name="activity_title_height">50dp</dimen>
+    
+    <dimen name="activity_task_listview_width">40dp</dimen>
+    <dimen name="activity_task_listview_text_size">20sp</dimen>
+    
+    <dimen name="activity_task_popwindow_text_size">20sp</dimen>
+    <dimen name="activity_task_popwindow_margintop">5dp</dimen>
+    <dimen name="activity_task_popwindow_width">40dp</dimen>
+    <dimen name="activity_task_popwindow_height">100dp</dimen>
+    
+    
+    
+    <dimen name="activity_task_bottom_text_size">20sp</dimen>
+    <dimen name="activity_bottom_tab_marginTop">10dp</dimen>
+    <dimen name="activity_bottom_tab_marginBottom">10dp</dimen>
+    <dimen name="activity_bottom_tab_marginLeft">5dp</dimen>
+    <dimen name="activity_bottom_tab_marginRight">5dp</dimen>
+    
+    <dimen name="activity_array_text_size">20sp</dimen>
+    <dimen name="activity_array_marginTop">30dp</dimen>
+    <dimen name="activity_array_marginBottom">30dp</dimen>
+    <dimen name="activity_array_marginLeft">25dp</dimen>
+    <dimen name="activity_array_marginRight">25dp</dimen>
+    
+    <dimen name="activity_task_list_text_size">25sp</dimen>
+    <dimen name="activity_task_list_marginTop">20dp</dimen>
+    <dimen name="activity_task_list_marginBottom">10dp</dimen>
+    <dimen name="activity_task_list_marginLeft">25dp</dimen>
+    <dimen name="activity_task_list_marginRight">25dp</dimen>
+
+    
+    <dimen name="activity_title_layout_height">80dp</dimen>
+    <dimen name="activity_title_textsize">40sp</dimen>
+    <dimen name="activity_title_textsize_sub">30sp</dimen>
+    <dimen name="activity_download_textsize_sub">25sp</dimen>
+    
+    <dimen name="item_glue_textsize">20sp</dimen>
+    <dimen name="item_glue_marginLeft">0dp</dimen>
+    <dimen name="item_glue_marginRight">20dp</dimen>
+    <dimen name="item_glue_marginTop">10dp</dimen>
+    <dimen name="item_glue_marginBottom">10dp</dimen>
+
+    <dimen name="activity_glue_numberpicker_width">100dp</dimen>
+    <dimen name="activity_glue_edittext_textsize">25sp</dimen>
+    
+    <dimen name="activity_upload_textsize">30sp</dimen>
+    
+    <dimen name="navigation_direct_marginleft">5dp</dimen>
+    <dimen name="navigation_direct_marginright">5dp</dimen>
+    <dimen name="navigation_direct_marginTop">30dp</dimen>
+    <dimen name="navigation_direct_marginBottom">30dp</dimen>
+    <dimen name="navigation_direct_textsize">35sp</dimen>
+    
+    <!--Edittext的宽和高  -->
+    <dimen name="edittext_input_width">130dp</dimen>
+    <dimen name="edittext_input_height">50dp</dimen>
+    <dimen name="edittext_paddingLeft">10dp</dimen>
+    <dimen name="edittext_paddingRight">10dp</dimen>
+    <dimen name="edittext_marginLeft">20dp</dimen>
+    
+    
+    
+
+</resources>

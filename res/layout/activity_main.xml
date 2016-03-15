@@ -1,0 +1,168 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.mingseal.dhp.MainActivity" >
+
+    <TextView
+        android:id="@+id/txt_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/socket_test" />
+
+    <Button
+        android:id="@+id/button_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_test"
+        android:text="@string/button_reset" />
+
+    <TextView
+        android:id="@+id/speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_reset"
+        android:text="Speed" />
+
+    <Button
+        android:id="@+id/get_param"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/speed"
+        android:text="获取下位机参数" />
+
+    <Button
+        android:id="@+id/locate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/get_param"
+        android:text="定位" />
+
+    <Button
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locate"
+        android:text="下载" />
+
+    <Button
+        android:id="@+id/x_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/y_backward"
+        android:layout_toStartOf="@+id/y_backward"
+        android:text="x-" />
+
+    <Button
+        android:id="@+id/x_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/x_left"
+        android:layout_alignBottom="@+id/x_left"
+        android:layout_toEndOf="@+id/y_forward"
+        android:layout_toRightOf="@+id/y_forward"
+        android:text="x+" />
+
+    <Button
+        android:id="@+id/y_backward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/x_right"
+        android:layout_toLeftOf="@+id/x_right"
+        android:layout_toStartOf="@+id/x_right"
+        android:text="y-" />
+
+    <Button
+        android:id="@+id/y_forward"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/x_right"
+        android:layout_centerHorizontal="true"
+        android:text="y+" />
+
+    <Button
+        android:id="@+id/z_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/y_backward"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/x_left"
+        android:layout_toRightOf="@+id/x_left"
+        android:text="z+" />
+
+    <Button
+        android:id="@+id/z_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/z_up"
+        android:layout_alignStart="@+id/z_up"
+        android:layout_below="@+id/z_up"
+        android:layout_marginTop="55dp"
+        android:text="z-" />
+
+    <SeekBar
+        android:id="@+id/speedBar"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/y_backward"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:rotation="-90" />
+
+    <Button
+        android:id="@+id/uploadTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/download"
+        android:layout_below="@+id/download"
+        android:text="上传" />
+
+    <TextView
+        android:id="@+id/txt_uploadInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/uploadTask"
+        android:text="上传的数据" />
+
+    <EditText
+        android:id="@+id/et_getNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button_reset"
+        android:layout_alignBottom="@+id/button_reset"
+        android:layout_alignLeft="@+id/y_forward"
+        android:ems="10"
+        android:text="100"
+        android:inputType="number" >
+
+    </EditText>
+
+    <Button
+        android:id="@+id/bt_getNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/et_getNumber"
+        android:layout_below="@+id/speed"
+        android:text="查询任务存在" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/download"
+        android:layout_alignBottom="@+id/download"
+        android:layout_alignRight="@+id/x_right"
+        android:layout_marginRight="14dp"
+        android:ems="10"
+        android:inputType="number" >
+
+        <requestFocus />
+    </EditText>
+
+</RelativeLayout>

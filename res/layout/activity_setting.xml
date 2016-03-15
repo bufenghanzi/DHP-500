@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_task_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="680dp"
+        android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+        android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+        android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+        android:background="@drawable/task_bottom_linearlayout_bg"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="@string/activity_glue_setting"
+            android:textSize="@dimen/activity_title_textsize_sub" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/activity_task_listview_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" >
+
+                    <TextView
+                        android:id="@+id/tv_xDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_x_distance"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+
+                    <NumberPicker
+                        android:id="@+id/num_xDistance"
+                        android:layout_width="@dimen/activity_glue_numberpicker_width"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv_xDistance" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" >
+
+                    <TextView
+                        android:id="@+id/tv_yDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_y_distance"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+
+                   <NumberPicker
+                        android:id="@+id/num_yDistance"
+                        android:layout_width="@dimen/activity_glue_numberpicker_width"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv_yDistance" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" >
+
+                    <TextView
+                        android:id="@+id/tv_zDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_z_distance"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+
+                    <NumberPicker
+                        android:id="@+id/num_zDistance"
+                        android:layout_width="@dimen/activity_glue_numberpicker_width"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv_zDistance" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" >
+
+                    <TextView
+                        android:id="@+id/tv_highSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_high_speed"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+                    <NumberPicker
+                        android:id="@+id/num_highSpeed"
+                        android:layout_width="@dimen/activity_glue_numberpicker_width"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv_highSpeed" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/num_highSpeed"
+                        android:gravity="center"
+                        android:text="@string/activity_mm_s"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" >
+
+                    <TextView
+                        android:id="@+id/tv_mediumSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_medium_speed"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+
+                    <NumberPicker
+                        android:id="@+id/num_mediumSpeed"
+                        android:layout_width="@dimen/activity_glue_numberpicker_width"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv_mediumSpeed" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/num_mediumSpeed"
+                        android:gravity="center"
+                        android:text="@string/activity_mm_s"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp" >
+
+                    <TextView
+                        android:id="@+id/tv_lowSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_low_speed"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+
+                   <NumberPicker
+                        android:id="@+id/num_lowSpeed"
+                        android:layout_width="@dimen/activity_glue_numberpicker_width"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@id/tv_lowSpeed" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/num_lowSpeed"
+                        android:gravity="center"
+                        android:text="@string/activity_mm_s"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/tv_trackLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_track_location"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+
+                    <Switch
+                        android:id="@+id/switch_trackLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/tv_trackLocation"
+                        android:checked="false"
+                        android:textOff="@string/activity_no"
+                        android:textOn="@string/activity_yes"
+                        android:thumbTextPadding="40dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:id="@+id/tv_trackSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="center"
+                        android:text="@string/activity_track_speed"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+
+                    <NumberPicker
+                        android:id="@+id/num_trackSpeed"
+                        android:layout_width="@dimen/activity_glue_numberpicker_width"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="0dp"
+                         android:layout_toRightOf="@id/tv_trackSpeed" />
+                    
+                    
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/num_trackSpeed"
+                        android:gravity="center"
+                        android:text="@string/activity_mm_s"
+                        android:textSize="@dimen/activity_title_textsize_sub" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center" >
+
+        <RelativeLayout
+            android:id="@+id/rl_complete"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_complete"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_complete" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_complete"
+                android:layout_toRightOf="@id/iv_complete"
+                android:gravity="center"
+                android:text="@string/activity_glue_complete"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

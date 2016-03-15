@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mingseal.dhp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="19" />
+    <!-- 允许应用程序往SD卡中写数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
+    <!-- 允许应用程序改变网络状态 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 允许应用程序改变WIFI连接状态 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 允许应用程序访问有关的网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 允许应用程序访问WIFI网卡的网络信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 允许应用程序完全使用网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 允许应用程序使用摄像头 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:name="com.mingseal.application.UserApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/icon_logo"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.mingseal.activity.LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.MainAdminSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.MainUserSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.UserAddActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.TaskListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.TaskListUserActivity"
+            android:screenOrientation="portrait" >
+        </activity>        
+        <activity
+            android:name="com.mingseal.activity.TaskActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueAloneActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueFaceStartActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueFaceEndActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueClearActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueLineStartActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueLineMidActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueLineEndActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueOutputActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueInputActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueArrayActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueViewActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueOffsetActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueTaskSettingActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueDownloadActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.mingseal.activity.GlueCameraActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+    </application>
+
+</manifest>

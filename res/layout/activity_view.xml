@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/activity_task_title" />
+
+    <com.mingseal.view.CustomView
+        android:id="@+id/customView"
+        android:layout_width="match_parent"
+        android:layout_height="600dp" >
+    </com.mingseal.view.CustomView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tv_x"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/activity_x"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_x"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_x"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tv_y"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/activity_y"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_y"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_y"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tv_z"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/activity_z"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_z"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_z"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/tv_u"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/activity_u"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_u"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/tv_u"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/activity_task_listview_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_linearlayout_bg"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <include layout="@layout/navigation_directional" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_array_marginLeft"
+            android:layout_marginRight="@dimen/activity_array_marginRight"
+            android:layout_weight="1"
+            android:background="@drawable/task_linearlayout_bg"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rl_sudu"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/activity_array_marginBottom"
+                android:layout_marginLeft="@dimen/activity_array_marginLeft"
+                android:layout_marginRight="@dimen/activity_array_marginRight"
+                android:layout_marginTop="@dimen/activity_array_marginTop"
+                android:layout_weight="1"
+                android:background="@drawable/task_bottom_imagebutton"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_sudu"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_sudu" />
+
+                <TextView
+                    android:id="@+id/tv_view_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_sudu"
+                    android:layout_toRightOf="@id/iv_sudu"
+                    android:gravity="center"
+                    android:text="@string/activity_high"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/activity_task_bottom_text_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_moshi"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/activity_array_marginBottom"
+                android:layout_marginLeft="@dimen/activity_array_marginLeft"
+                android:layout_marginRight="@dimen/activity_array_marginRight"
+                android:layout_marginTop="@dimen/activity_array_marginTop"
+                android:layout_weight="1"
+                android:background="@drawable/task_bottom_imagebutton"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_moshi"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_moshi" />
+
+                <TextView
+                    android:id="@+id/tv_view_moshi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_moshi"
+                    android:layout_toRightOf="@id/iv_moshi"
+                    android:gravity="center"
+                    android:text="@string/step_serious"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/activity_task_bottom_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_array_marginLeft"
+            android:layout_marginRight="@dimen/activity_array_marginRight"
+            android:layout_weight="1"
+            android:background="@drawable/task_linearlayout_bg"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/activity_array_marginBottom"
+                android:layout_marginLeft="@dimen/activity_array_marginLeft"
+                android:layout_marginRight="@dimen/activity_array_marginRight"
+                android:layout_marginTop="@dimen/activity_array_marginTop"
+                android:layout_weight="1" >
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_complete"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/activity_array_marginBottom"
+                android:layout_marginLeft="@dimen/activity_array_marginLeft"
+                android:layout_marginRight="@dimen/activity_array_marginRight"
+                android:layout_marginTop="@dimen/activity_array_marginTop"
+                android:layout_weight="1"
+                android:background="@drawable/task_bottom_imagebutton"
+                android:gravity="center" >
+
+                <ImageView
+                    android:id="@+id/iv_complete"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/icon_complete" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/iv_complete"
+                    android:layout_toRightOf="@id/iv_complete"
+                    android:gravity="center"
+                    android:text="@string/activity_glue_complete"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/activity_task_bottom_text_size" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

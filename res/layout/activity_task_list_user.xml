@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="600dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/picture_preview"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <ImageView
+                android:id="@+id/iv_connect_tip"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_wifi_connect"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/activity_task_listview_divider" />
+
+        <com.mingseal.view.TrackView
+            android:id="@+id/view_track"
+            android:layout_width="600dp"
+            android:layout_height="600dp"
+            android:background="#8CB6C8" >
+        </com.mingseal.view.TrackView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal"
+            android:visibility="invisible" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:text="@string/activity_running_time"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <TextView
+                android:id="@+id/tv_totaltime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="30"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="s"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/task_bottom_linearlayout_bg" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/rl_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/activity_task_list_marginBottom"
+                    android:layout_marginLeft="@dimen/activity_task_list_marginLeft"
+                    android:layout_marginRight="@dimen/activity_task_list_marginRight"
+                    android:layout_marginTop="@dimen/activity_task_list_marginTop"
+                    android:layout_weight="1"
+                    android:background="@drawable/task_bottom_imagebutton"
+                    android:gravity="center"
+                    android:visibility="invisible" >
+
+                    <ImageView
+                        android:id="@+id/iv_add"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/add" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/iv_add"
+                        android:layout_toRightOf="@id/iv_add"
+                        android:gravity="center"
+                        android:text="@string/activity_glue_new_file"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/activity_task_list_text_size" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_xiazai"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/activity_task_list_marginBottom"
+                    android:layout_marginLeft="@dimen/activity_task_list_marginLeft"
+                    android:layout_marginRight="@dimen/activity_task_list_marginRight"
+                    android:layout_marginTop="@dimen/activity_task_list_marginTop"
+                    android:layout_weight="1"
+                    android:background="@drawable/task_bottom_imagebutton"
+                    android:gravity="center" >
+
+                    <ImageView
+                        android:id="@+id/iv_xiugai"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_xiazai" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/iv_xiugai"
+                        android:layout_toRightOf="@id/iv_xiugai"
+                        android:gravity="center"
+                        android:text="@string/activity_glue_download"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/activity_task_list_text_size" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_daochu"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/activity_task_list_marginBottom"
+                    android:layout_marginLeft="@dimen/activity_task_list_marginLeft"
+                    android:layout_marginRight="@dimen/activity_task_list_marginRight"
+                    android:layout_marginTop="@dimen/activity_task_list_marginTop"
+                    android:layout_weight="1"
+                    android:background="@drawable/task_bottom_imagebutton"
+                    android:gravity="center" >
+
+                    <ImageView
+                        android:id="@+id/iv_daochu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/export" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/iv_daochu"
+                        android:layout_toRightOf="@id/iv_daochu"
+                        android:gravity="center"
+                        android:text="@string/activity_glue_export"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/activity_task_list_text_size" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:id="@+id/rl_shanchu"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/activity_task_list_marginBottom"
+                    android:layout_marginLeft="@dimen/activity_task_list_marginLeft"
+                    android:layout_marginRight="@dimen/activity_task_list_marginRight"
+                    android:layout_marginTop="@dimen/activity_task_list_marginTop"
+                    android:layout_weight="1"
+                    android:background="@drawable/task_bottom_imagebutton"
+                    android:gravity="center" >
+
+                    <ImageView
+                        android:id="@+id/iv_shanchu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_shanchu" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/iv_shanchu"
+                        android:layout_toRightOf="@id/iv_shanchu"
+                        android:gravity="center"
+                        android:text="@string/activity_glue_delete"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/activity_task_list_text_size" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_shangchuan"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/activity_task_list_marginBottom"
+                    android:layout_marginLeft="@dimen/activity_task_list_marginLeft"
+                    android:layout_marginRight="@dimen/activity_task_list_marginRight"
+                    android:layout_marginTop="@dimen/activity_task_list_marginTop"
+                    android:layout_weight="1"
+                    android:background="@drawable/task_bottom_imagebutton"
+                    android:gravity="center" >
+
+                    <ImageView
+                        android:id="@+id/iv_shangchuan"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/uploading" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/iv_shangchuan"
+                        android:layout_toRightOf="@id/iv_shangchuan"
+                        android:gravity="center"
+                        android:text="@string/activity_glue_upload"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/activity_task_list_text_size" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_shezhi"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/activity_task_list_marginBottom"
+                    android:layout_marginLeft="@dimen/activity_task_list_marginLeft"
+                    android:layout_marginRight="@dimen/activity_task_list_marginRight"
+                    android:layout_marginTop="@dimen/activity_task_list_marginTop"
+                    android:layout_weight="1"
+                    android:background="@drawable/task_bottom_imagebutton"
+                    android:gravity="center" >
+
+                    <ImageView
+                        android:id="@+id/iv_shezhi"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/icon_shezhi" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/iv_shezhi"
+                        android:layout_toRightOf="@id/iv_shezhi"
+                        android:gravity="center"
+                        android:text="@string/activity_glue_set"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/activity_task_list_text_size" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/activity_task_listview_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rlSearchFrameDelete"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="#EFEFEF"
+            android:gravity="center_vertical" >
+
+            <EditText
+                android:id="@+id/et_Search"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/textview_radius_border"
+                android:hint="@string/edittext_search"
+                android:paddingLeft="38dp"
+                android:singleLine="true"
+                android:textColor="#7A7A7A"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignBottom="@id/et_Search"
+                android:layout_alignLeft="@id/et_Search"
+                android:layout_alignTop="@id/et_Search"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/search" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/activity_task_listview_divider" />
+
+        <ListView
+            android:id="@+id/lv_task"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="#f4f4f4"
+            android:divider="@null"
+            android:dividerHeight="2dp"
+            android:scrollbars="none" >
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>

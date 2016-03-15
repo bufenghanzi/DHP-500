@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <color name="activity_task_listview_divider">#C8C9C8</color>
+     <color name="activity_task_listview_text_color">#000000</color>
+     
+     <color name="button_normal">#26A69A</color>
+     <color name="button_pressed">#166E65</color>
+     <color name="button_enabled">#9B9696</color>
+     <color name="color_white">#ffffff</color>
+     <color name="button_gray">#A4A4A4</color>
+
+     <color name="bottom_tab_green">#26A69A</color>
+     
+     <color name="activity_title_textcolor">#5370F0</color>
+     
+     <color name="dialog_loading_color">#F95555</color>
+     
+     <color name="listview_selected">#3026A69A</color>
+     
+     <!-- 导航栏x,y,z,u的字体颜色 -->
+     <color name="nav_color_text">#ffffff</color>
+     
+</resources>
