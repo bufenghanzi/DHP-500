@@ -96,6 +96,14 @@ import android.widget.TextView;
  * @author 商炎炳
  *
  */
+/**
+ * @author Administrator
+ *
+ */
+/**
+ * @author Administrator
+ *
+ */
 public class TaskActivity extends Activity implements OnClickListener {
 
 	private static final String TAG = "TaskActivity";
@@ -370,7 +378,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 	 * @Fields isChange: 判断List是否改变,true为没有变化,false表示有变化
 	 */
 	private boolean isChange = true;
-	private boolean prepareReset=false;//判断是否是按下复位按键
+	private  boolean prepareReset=false;//判断是否是按下复位按键
 
 	/**
 	 * 判断是否是第一次打开popwindow
@@ -1718,15 +1726,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 		
 		case 0:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "校验失败");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-				
-			}
+			sendResetCommand();
 			break;
 		case 1: {
 			int cmdFlag = ((revBuffer[2] & 0x00ff) << 8) | (revBuffer[3] & 0x00ff);
@@ -1741,51 +1741,23 @@ public class TaskActivity extends Activity implements OnClickListener {
 				mAdapter.notifyDataSetChanged();
 
 			} 
-//			else if (revBuffer[2] == 0x4A) {// 获取下位机参数成功
-//				ToastUtil.displayPromptInfo(TaskActivity.this, "获取参数成功!111");
-//			}
-		}
-		if(prepareReset){
-			/************************ add begin ************************/
-			buffer = new byte[ORDER_BUFFER_LENTH];
-			orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-			MessageMgr.INSTANCE.writeData(buffer, orderLength);
-			/************************ end ******************************/
-			prepareReset=false;
+			else if (revBuffer[2] == 0x4A) {// 获取下位机参数成功
+				ToastUtil.displayPromptInfo(TaskActivity.this, "获取参数成功!111");
+			}
+			sendResetCommand();
 		}
 			break;
 		case 40101:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "非法功能");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40102:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "非法数据地址");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40103:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "非法数据");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			
 			break;
 		case 40105:
@@ -1814,216 +1786,105 @@ public class TaskActivity extends Activity implements OnClickListener {
 			break;
 		case 40110:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "X轴光电报警");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			
 			break;
 		case 40111:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "Y轴光电报警");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-				Log.d(TAG, "Y轴光电报警");
-			}
+			sendResetCommand();
 			
 			break;
 		case 40112:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "Z轴光电报警");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40113:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "U轴光电报警");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40114:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "行程超限报警");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40115:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "任务上传失败");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40116:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "任务下载失败");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40117:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "任务模拟失败");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40118:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "示教指令错误");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40119:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "循迹定位失败");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40120:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "任务号不可用");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40121:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "初始化失败");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40122:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "API版本错误");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40123:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "程序升级失败");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40124:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "系统损坏");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40125:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "任务未加载");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40126:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "(Z轴)基点抬起高度过高");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		case 40127:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "等待输入超时");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
 		default:
 			ToastUtil.displayPromptInfo(TaskActivity.this, "未知错误");
-			if(prepareReset){
-				/************************ add begin ************************/
-				buffer = new byte[ORDER_BUFFER_LENTH];
-				orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
-				MessageMgr.INSTANCE.writeData(buffer, orderLength);
-				/************************ end ******************************/
-				prepareReset=false;
-			}
+			sendResetCommand();
 			break;
+		}
+	}
+
+	
+	
+	
+	/**
+	 * 发送复位命令，跟新ui
+	 */
+	private void sendResetCommand() {
+		if(prepareReset){
+			/************************ add begin ************************/
+			buffer = new byte[ORDER_BUFFER_LENTH];
+			orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_Reset);
+			MessageMgr.INSTANCE.writeData(buffer, orderLength);
+			/************************ end ******************************/
+			prepareReset=false;
+			mPointsCur.get(selectRadioIDCur).setX(0);
+			mPointsCur.get(selectRadioIDCur).setY(0);
+			mPointsCur.get(selectRadioIDCur).setZ(0);
+			mPointsCur.get(selectRadioIDCur).setU(0);
+			mAdapter.setData(mPointsCur);
+			mAdapter.notifyDataSetChanged();
 		}
 	}
 

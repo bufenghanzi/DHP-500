@@ -86,10 +86,7 @@ public enum MessageMgr {
 	private boolean upLoadRetryFlag = false;//数据包重新上传标志
 	private boolean upLoadSuccess = false;//数据上传完成标志
 	private int nNum = 0;//任务点个数
-	/************************ add begin ************************/
-	private byte[] Buffer;
-	private static boolean isWrong=false;
-	/************************ end ******************************/
+	
 
 
 	private MessageMgr() {
@@ -2159,17 +2156,7 @@ public enum MessageMgr {
 		step = 0;
 		writeData(buffer, orderLength);
 	}
-	/**
-	* @Title: resetCoord
-	* @Description: 复位按键触发复位
-	*/
-	public void resetCoordS() {
-		orderLength = isBusy(); 
-		stepCmd[0] = CmdParam.Cmd_Ask;
-//		stepCmd[1] = CmdParam.Cmd_Reset;
-		step = 0;
-		writeData(buffer, orderLength);
-	}
+	
 
 	/**
 	* @Title: setCurCoord
@@ -2584,6 +2571,9 @@ public enum MessageMgr {
 						break;
 					}
 					writeData(buffer, orderLength);
+					/*=================== begin ===================*/
+					stepCmd[1]=CmdParam.Cmd_Null;
+					/*===================  add  ===================*/
 				}
 				//-----------------------收到的长数据处理-----------------------
 				else if (cmdFlag == 0x7938) {// 若是示教停止或者复位,再发送获取坐标命令
