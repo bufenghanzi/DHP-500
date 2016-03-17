@@ -2545,7 +2545,7 @@ public enum MessageMgr {
 						orderLength = protocol.CreaterOrder(buffer, CmdParam.Cmd_PreUpLoad);
 					}
 						break;
-					case Cmd_Demo:
+					case Cmd_Demo://模拟
 						TaskDataStream task401 = new TaskDataStream();
 						size = createTask400(mPointList, mPointList.size(), task401);
 						Object[] temp1 = task401.getByteTask().toArray();

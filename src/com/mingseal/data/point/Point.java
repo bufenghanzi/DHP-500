@@ -1,5 +1,7 @@
 package com.mingseal.data.point;
 
+import java.util.HashMap;
+
 import com.mingseal.data.point.glueparam.PointGlueAloneParam;
 import com.mingseal.data.point.glueparam.PointGlueBaseParam;
 import com.mingseal.data.point.glueparam.PointGlueClearIOParam;
@@ -24,6 +26,7 @@ import com.mingseal.data.point.weldparam.PointWeldLineStartParam;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.util.SparseArrayCompat;
 
 /**
  * 点类
@@ -38,6 +41,10 @@ public class Point implements Parcelable {
 	private int u;
 
 	private PointParam pointParam; // 点参数
+	
+	/*=================== begin ===================*/
+	static HashMap<PointType,PointParam>	cachesPointParam	= new HashMap<PointType,PointParam>();
+	/*===================  add  ===================*/
 
 	/**
 	 * 只用于初始化一个Point，不能用作点类型的添加
@@ -225,6 +232,13 @@ public class Point implements Parcelable {
 	 *            点类型
 	 */
 	private void ParamFactory(PointType pointType) {
+		/*=================== begin ===================*/
+		// 如果缓存里面有对应的fragment,就直接取出返回
+		PointParam tempPointParam = cachesPointParam.get(pointType);
+		if (tempPointParam != null) {
+			this.pointParam = tempPointParam;
+		}
+		/*===================  add  ===================*/
 		switch (pointType) {
 		case POINT_GLUE_BASE:
 			this.pointParam = new PointGlueBaseParam();
@@ -297,6 +311,10 @@ public class Point implements Parcelable {
 			this.pointParam = new PointParam();
 			break;
 		}
+		/*=================== begin ===================*/
+		// 保存对应的fragment
+		cachesPointParam.put(pointType, pointParam);
+		/*===================  add  ===================*/
 	}
 
 	/**

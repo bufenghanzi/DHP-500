@@ -29,9 +29,19 @@ public class NetManager {
 		context = ctx;
 	}
 
-	public static synchronized NetManager instance() {
+	/**
+	 * @Title  instance
+	 * @Description 单例DCL
+	 * @author wj
+	 * @return
+	 */
+	public static NetManager instance() {
 		if (s_m == null) {
-			s_m = new NetManager();
+			synchronized(NetManager.class){
+				if (s_m==null) {
+					s_m = new NetManager();
+				}
+			}
 		}
 		return s_m;
 	}
@@ -95,6 +105,12 @@ public class NetManager {
 		return false;
 	}
 
+	/**
+	 * @Title  getConnectedType
+	 * @Description 获取当前网络连接的类型信息
+	 * @author wj
+	 * @return
+	 */
 	public int getConnectedType() {
 		if (context != null) {
 			ConnectivityManager mConnectivityManager = (ConnectivityManager) context

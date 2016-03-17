@@ -90,6 +90,7 @@ public class GlueTaskSettingActivity extends Activity implements OnClickListener
 		setContentView(R.layout.activity_setting);
 
 		setting = SharePreferenceUtils.readFromSharedPreference(this);
+//		System.out.println("任务设置-------->"+setting);
 		initView();
 
 	}

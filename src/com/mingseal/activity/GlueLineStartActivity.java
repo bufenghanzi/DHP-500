@@ -46,11 +46,11 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 	private TextView tv_title;
 
 	/**
-	 * @Fields et_start_outGlueTimePrev: 出胶前延时
+	 * @Fields et_start_outGlueTimePrev: 提前出胶时间
 	 */
 	private EditText et_start_outGlueTimePrev;
 	/**
-	 * @Fields et_start_outGlueTime: 出胶(后)延时
+	 * @Fields et_start_outGlueTime: 滞后出胶时间
 	 */
 	private EditText et_start_outGlueTime;
 	/**

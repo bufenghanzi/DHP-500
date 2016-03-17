@@ -60,6 +60,11 @@ public class SocketThreadManager
 		
 	}
 	
+	/**
+	 * @Title  releaseInstance
+	 * @Description 释放单例
+	 * @author wj
+	 */
 	public static void releaseInstance()
 	{
 		if (s_SocketManager != null)

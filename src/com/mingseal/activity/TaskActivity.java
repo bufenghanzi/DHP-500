@@ -66,6 +66,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -1030,24 +1031,26 @@ public class TaskActivity extends Activity implements OnClickListener {
 						if (getPointType(points.get(j)).equals(PointType.POINT_GLUE_LINE_START)) {
 							isLineStart = true;
 							break;
-						} else if (!getPointType(points.get(j)).equals(PointType.POINT_GLUE_LINE_MID)) {
-							// 不是中间点
-							ToastUtil.displayPromptInfo(this, "圆弧点前面不能跟除中间点之外其他的点");
-							selectRadioIDCur = j;
-							return false;
-						}
+						} 
+//						else if (!getPointType(points.get(j)).equals(PointType.POINT_GLUE_LINE_MID)) {
+//							// 不是中间点
+//							ToastUtil.displayPromptInfo(this, "圆弧点前面不能跟除中间点之外其他的点");
+//							selectRadioIDCur = j;
+//							return false;
+//						}
 
 					}
 					for (int j = i + 1; j < points.size(); j++) {
 						if (getPointType(points.get(j)).equals(PointType.POINT_GLUE_LINE_END)) {
 							isLineEnd = true;
 							break;
-						} else if (!getPointType(points.get(j)).equals(PointType.POINT_GLUE_LINE_MID)) {
-							// 不是中间点
-							ToastUtil.displayPromptInfo(this, "圆弧点后面不能跟除中间点之外其他的点");
-							selectRadioIDCur = j;
-							return false;
 						}
+//						else if (!getPointType(points.get(j)).equals(PointType.POINT_GLUE_LINE_MID)) {
+//							// 不是中间点
+//							ToastUtil.displayPromptInfo(this, "圆弧点后面不能跟除中间点之外其他的点");
+//							selectRadioIDCur = j;
+//							return false;
+//						}
 					}
 					if (!(isLineStart && isLineEnd)) {
 						ToastUtil.displayPromptInfo(this, "圆弧点必须在起始点和结束点之间");
@@ -1435,6 +1438,9 @@ public class TaskActivity extends Activity implements OnClickListener {
 			popMenu.setPointLists(mPointsCur, selectRadioIDCur, 0, mAdapter);
 			// mPopupWindow.setFocusable(true);
 			mPopupWindow.setOutsideTouchable(true); // 设置点击屏幕其它地方弹出框消失
+			/*=================== begin ===================*/
+			mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+			/*===================  add  ===================*/
 			if (mPopupWindow == null) {
 				return;
 			}
@@ -1865,11 +1871,10 @@ public class TaskActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	
-	
-	
 	/**
-	 * 发送复位命令，跟新ui
+	 * @Title  sendResetCommand
+	 * @Description 发送复位命令，跟新ui
+	 * @author wj
 	 */
 	private void sendResetCommand() {
 		if(prepareReset){
@@ -1879,12 +1884,12 @@ public class TaskActivity extends Activity implements OnClickListener {
 			MessageMgr.INSTANCE.writeData(buffer, orderLength);
 			/************************ end ******************************/
 			prepareReset=false;
-			mPointsCur.get(selectRadioIDCur).setX(0);
-			mPointsCur.get(selectRadioIDCur).setY(0);
-			mPointsCur.get(selectRadioIDCur).setZ(0);
-			mPointsCur.get(selectRadioIDCur).setU(0);
-			mAdapter.setData(mPointsCur);
-			mAdapter.notifyDataSetChanged();
+//			mPointsCur.get(selectRadioIDCur).setX(0);
+//			mPointsCur.get(selectRadioIDCur).setY(0);
+//			mPointsCur.get(selectRadioIDCur).setZ(0);
+//			mPointsCur.get(selectRadioIDCur).setU(0);
+//			mAdapter.setData(mPointsCur);
+//			mAdapter.notifyDataSetChanged();
 		}
 	}
 
@@ -2550,20 +2555,20 @@ public class TaskActivity extends Activity implements OnClickListener {
 	private boolean checkArcPoint(Point _pt1, Point _pt2, Point _pt3) {
 		if (_pt1.getX() == _pt2.getX() && _pt1.getY() == _pt2.getY() && _pt1.getZ() == _pt2.getZ()
 				&& _pt1.getU() == _pt2.getU()) {
-			// 起始点-圆弧点重合
-			ToastUtil.displayPromptInfo(this, "起始点-圆弧点重合！");
+			// 前一个点-圆弧点重合
+			ToastUtil.displayPromptInfo(this, _pt1,"-圆弧点重合！");
 			return false;
 		}
 		if (_pt3.getX() == _pt2.getX() && _pt3.getY() == _pt2.getY() && _pt3.getZ() == _pt2.getZ()
 				&& _pt3.getU() == _pt2.getU()) {
-			// 圆弧点-结束点重合
-			ToastUtil.displayPromptInfo(this, "结束点-圆弧点重合！");
+			// 后一个点-结束点重合
+			ToastUtil.displayPromptInfo(this, _pt3,"-圆弧点重合！");
 			return false;
 		}
 		if (_pt3.getX() == _pt1.getX() && _pt3.getY() == _pt1.getY() && _pt3.getZ() == _pt1.getZ()
 				&& _pt3.getU() == _pt1.getU()) {
-			// 起始点-结束点重合
-			ToastUtil.displayPromptInfo(this, "起始点-结束点重合！");
+			// 前一个点-后一个点重合
+			ToastUtil.displayPromptInfo(this, _pt1,_pt3,"重合！");
 			return false;
 		}
 		SMatrix1_4 m1 = new SMatrix1_4(_pt1.getX(), _pt1.getY(), _pt1.getZ());
@@ -2574,7 +2579,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 		SMatrix1_4 n = SMatrix1_4.operator_cross3(m2_1, m3_2);
 		if (n.getX() == 0 && n.getY() == 0 && n.getZ() == 0) {
 			//
-			ToastUtil.displayPromptInfo(this, "起始点-圆弧点-结束点三点共线！");
+			ToastUtil.displayPromptInfo(this, _pt1,_pt3,"-圆弧点三点共线！");
 			return false;
 		}
 		return true;

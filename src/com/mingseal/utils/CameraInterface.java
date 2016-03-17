@@ -41,9 +41,13 @@ public class CameraInterface {
 		this.context = context;
 	}
 
-	public static synchronized CameraInterface getInstance(Context context) {
+	public static  CameraInterface getInstance(Context context) {
 		if (mCameraInterface == null) {
-			mCameraInterface = new CameraInterface(context);
+			synchronized(CameraInterface.class){
+				if (mCameraInterface==null) {
+					mCameraInterface = new CameraInterface(context);
+				}
+			}
 		}
 		return mCameraInterface;
 	}

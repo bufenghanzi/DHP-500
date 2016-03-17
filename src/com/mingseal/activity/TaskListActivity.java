@@ -87,7 +87,7 @@ import android.widget.TextView;
 
 /**
  * @author 商炎炳
- *
+ * 
  */
 public class TaskListActivity extends Activity implements OnClickListener {
 
@@ -235,7 +235,7 @@ public class TaskListActivity extends Activity implements OnClickListener {
 	 */
 	private UserApplication userApplication;// 保存全局变量
 	private CustomUploadDialog progressDialog = null;
-	
+
 	/**
 	 * @Fields iv_connect_tip: 连接信息
 	 */
@@ -273,17 +273,23 @@ public class TaskListActivity extends Activity implements OnClickListener {
 
 		// MessageMgr.INSTANCE.cmdDelayFlag = CmdParam.Cmd_Null;
 
+		/* =================== begin =================== */
+		if (!TCPClient.instance().isConnect()) {// 如果没连接上，等待被链接，释放单例对象
+			SocketThreadManager.releaseInstance();
+			System.out.println("单例被释放了-----------------------------");
+		}
+		/* =================== add =================== */
 		handler = new RevHandler();
 		// 线程管理单例初始化
 		SocketThreadManager.sharedInstance().setInputThreadHandler(handler);
 		NetManager.instance().init(this);
-//		/************************ add begin ************************/
-//		if (TCPClient.instance().isConnect()) {
-//			userApplication.setWifiConnecting(true);
-//			WifiConnectTools.processWifiConnect(userApplication, iv_connect_tip);
-//		}
-//		/************************ end ******************************/
-		
+		// /************************ add begin ************************/
+		// if (TCPClient.instance().isConnect()) {
+		// userApplication.setWifiConnecting(true);
+		// WifiConnectTools.processWifiConnect(userApplication, iv_connect_tip);
+		// }
+		// /************************ end ******************************/
+
 		taskLists = taskDao.findALLTaskLists();
 		// Log.d(TAG, taskLists.toString());
 		mTaskAdapter = new TaskListBaseAdapter(this);
@@ -295,23 +301,23 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			invalidateCustomView(mTaskAdapter.getItem(pselect), pointDao);
 		}
 		// ListView的点击事件
-		/*lv_task.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				pselect = position;
-				mTaskAdapter.setSelectItem(position);
-				mTaskAdapter.notifyDataSetInvalidated();
-
-				Log.d(TAG, mTaskAdapter.getItem(position).toString());
-
-				invalidateCustomView(mTaskAdapter.getItem(position), pointDao);
-			}
-		});*/
+		/*
+		 * lv_task.setOnItemClickListener(new OnItemClickListener() {
+		 * 
+		 * @Override public void onItemClick(AdapterView<?> parent, View view,
+		 * int position, long id) { pselect = position;
+		 * mTaskAdapter.setSelectItem(position);
+		 * mTaskAdapter.notifyDataSetInvalidated();
+		 * 
+		 * Log.d(TAG, mTaskAdapter.getItem(position).toString());
+		 * 
+		 * invalidateCustomView(mTaskAdapter.getItem(position), pointDao); } });
+		 */
 		lv_task.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
 				pSelectLast = pselect;
 				pselect = position;
 				intTimeLast = intTimeCur;
@@ -324,7 +330,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 					mTaskAdapter.setSelectItem(position);
 					mTaskAdapter.notifyDataSetInvalidated();
 
-					invalidateCustomView(mTaskAdapter.getItem(position), pointDao);
+					invalidateCustomView(mTaskAdapter.getItem(position),
+							pointDao);
 				}
 			}
 		});
@@ -332,7 +339,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 		lv_task.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
 				pselect = position;
 				mTaskAdapter.setSelectItem(position);
 				mTaskAdapter.notifyDataSetInvalidated();
@@ -349,14 +357,18 @@ public class TaskListActivity extends Activity implements OnClickListener {
 		et_search.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
 				mTaskAdapter.performFiltering(s);
 				// 搜索的时候实时更新绘图界面
-				invalidateCustomView(mTaskAdapter.getItem(mTaskAdapter.getSelectItem()), pointDao);
+				invalidateCustomView(
+						mTaskAdapter.getItem(mTaskAdapter.getSelectItem()),
+						pointDao);
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
 
 			}
 
@@ -365,8 +377,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 
 			}
 		});
-		
-		Log.d(TAG, "是否连接?"+userApplication.isWifiConnecting());
+
+		Log.d(TAG, "是否连接?" + userApplication.isWifiConnecting());
 
 	}
 
@@ -377,11 +389,19 @@ public class TaskListActivity extends Activity implements OnClickListener {
 		/************************ add begin ************************/
 		if (TCPClient.instance().isConnect()) {
 			userApplication.setWifiConnecting(true);
-			WifiConnectTools.processWifiConnect(userApplication, iv_connect_tip);
+			WifiConnectTools
+					.processWifiConnect(userApplication, iv_connect_tip);
 		}
 		/************************ end ******************************/
 		Log.e(TAG, "TaskListActivity-->onResume");
 
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Log.e(TAG, "TaskListActivity-->onPause");
 	}
 
 	@Override
@@ -395,7 +415,7 @@ public class TaskListActivity extends Activity implements OnClickListener {
 		super.onDestroy();
 
 		Log.e(TAG, "TaskListActivity-->onDestroy");
-		//Activity结束需要关闭进度条对话框
+		// Activity结束需要关闭进度条对话框
 		stopProgressDialog();
 		SocketThreadManager.releaseInstance();
 	}
@@ -417,14 +437,16 @@ public class TaskListActivity extends Activity implements OnClickListener {
 
 	/**
 	 * 画图操作放到异步线程中去
-	 *
+	 * 
 	 */
-	private class InvalidateViewAsynctask extends AsyncTask<Object, Void, Boolean> {
+	private class InvalidateViewAsynctask extends
+			AsyncTask<Object, Void, Boolean> {
 
 		@Override
 		protected Boolean doInBackground(Object... params) {
 			// 设置任务点
-			view_track.setPointTask((PointTask) params[0], (PointDao) params[1]);
+			view_track
+					.setPointTask((PointTask) params[0], (PointDao) params[1]);
 			return true;
 		}
 
@@ -491,11 +513,10 @@ public class TaskListActivity extends Activity implements OnClickListener {
 
 		view_track.setCircle(50);
 		view_track.setRadius(5);
-		
+
 		iv_connect_tip = (ImageView) findViewById(R.id.iv_connect_tip);
 		iv_connect_tip.setOnClickListener(this);
-		
-		
+
 	}
 
 	/**
@@ -514,7 +535,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 	}
 
 	@Override
-	protected void onActivityResult(int _requestCode, int _resultCode, Intent _data) {
+	protected void onActivityResult(int _requestCode, int _resultCode,
+			Intent _data) {
 		if (_requestCode == TASK_RequestCode && _resultCode == TASK_ResultCode) {
 			task = _data.getParcelableExtra(TASK_KEY);
 			Log.d(TAG, "onActivityResult中的：" + task.toString());
@@ -534,7 +556,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			} else {
 				ToastUtil.displayPromptInfo(this, "没有修改任何东西！");
 			}
-		} else if (_requestCode == TASK_RequestCode && _resultCode == TaskActivity.resultDownLoadCode) {
+		} else if (_requestCode == TASK_RequestCode
+				&& _resultCode == TaskActivity.resultDownLoadCode) {
 			Log.d(TAG, "从DownloadActivity返回结果");
 		}
 	}
@@ -577,21 +600,25 @@ public class TaskListActivity extends Activity implements OnClickListener {
 	 * 新建对话框,输入任务名称之后跳转到新建点界面
 	 */
 	private void showAddDialog() {
-		AlertDialog.Builder buildAdd = new AlertDialog.Builder(TaskListActivity.this);
+		AlertDialog.Builder buildAdd = new AlertDialog.Builder(
+				TaskListActivity.this);
 		buildAdd.setTitle("新建任务");
-		customView = View.inflate(TaskListActivity.this, R.layout.custom_dialog_edittext, null);
+		customView = View.inflate(TaskListActivity.this,
+				R.layout.custom_dialog_edittext, null);
 		buildAdd.setView(customView);
 		et_title = (EditText) customView.findViewById(R.id.et_title);
 		et_title.setSelectAllOnFocus(true);
 		taskNames = taskDao.getALLTaskNames();
-//		Log.d(TAG, "任务名:"+taskNames.toString());
-//		Log.d(TAG, "任务名是否重复:"+taskNames.contains(et_title.getText().toString()));
+		// Log.d(TAG, "任务名:"+taskNames.toString());
+		// Log.d(TAG,
+		// "任务名是否重复:"+taskNames.contains(et_title.getText().toString()));
 		buildAdd.setNegativeButton("取消", new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+					field = dialog.getClass().getSuperclass()
+							.getDeclaredField("mShowing");
 					field.setAccessible(true);
 					field.set(dialog, true);// true表示要关闭
 				} catch (Exception e) {
@@ -604,13 +631,15 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+					field = dialog.getClass().getSuperclass()
+							.getDeclaredField("mShowing");
 					field.setAccessible(true);
 				} catch (NoSuchFieldException e1) {
 					e1.printStackTrace();
 				}
 				if ("".equals(et_title.getText().toString())) {
-					ToastUtil.displayPromptInfo(TaskListActivity.this, "任务名不能为空！");
+					ToastUtil.displayPromptInfo(TaskListActivity.this,
+							"任务名不能为空！");
 
 					try {
 						field.set(dialog, false);// true表示要关闭
@@ -620,8 +649,9 @@ public class TaskListActivity extends Activity implements OnClickListener {
 						e.printStackTrace();
 					}
 
-				} else if(taskNames.contains(et_title.getText().toString())){
-					ToastUtil.displayPromptInfo(TaskListActivity.this, "任务名不能重复！");
+				} else if (taskNames.contains(et_title.getText().toString())) {
+					ToastUtil.displayPromptInfo(TaskListActivity.this,
+							"任务名不能重复！");
 
 					try {
 						field.set(dialog, false);// true表示要关闭
@@ -666,78 +696,87 @@ public class TaskListActivity extends Activity implements OnClickListener {
 	 * 新建对话框,修改任务名之后跳转到新建点界面
 	 */
 	private void showModifyDialog() {
-		AlertDialog.Builder builderModify = new AlertDialog.Builder(TaskListActivity.this);
+		AlertDialog.Builder builderModify = new AlertDialog.Builder(
+				TaskListActivity.this);
 		builderModify.setTitle("修改任务名");
-		customView = View.inflate(TaskListActivity.this, R.layout.custom_dialog_edittext, null);
+		customView = View.inflate(TaskListActivity.this,
+				R.layout.custom_dialog_edittext, null);
 		builderModify.setView(customView);
 		et_title = (EditText) customView.findViewById(R.id.et_title);
 		Log.d(TAG, "showModifyDialog中的：" + taskLists.get(pselect).toString());
 		et_title.setText(taskLists.get(pselect).getTaskName());
 		et_title.setSelectAllOnFocus(true);
 		taskNames = taskDao.getALLTaskNames();
-		builderModify.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+		builderModify.setNegativeButton("取消",
+				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-					field.setAccessible(true);
-					field.set(dialog, true);// true表示要关闭
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		builderModify.setPositiveButton("修改", new DialogInterface.OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-					field.setAccessible(true);
-				} catch (NoSuchFieldException e1) {
-					e1.printStackTrace();
-				}
-				if ("".equals(et_title.getText().toString())) {
-					ToastUtil.displayPromptInfo(TaskListActivity.this, "任务名不能为空！");
-
-					try {
-						field.set(dialog, false);// true表示要关闭
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						try {
+							field = dialog.getClass().getSuperclass()
+									.getDeclaredField("mShowing");
+							field.setAccessible(true);
+							field.set(dialog, true);// true表示要关闭
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
+				});
+		builderModify.setPositiveButton("修改",
+				new DialogInterface.OnClickListener() {
 
-				} else if(taskNames.contains(et_title.getText().toString())){
-					ToastUtil.displayPromptInfo(TaskListActivity.this, "任务名不能重复！");
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						try {
+							field = dialog.getClass().getSuperclass()
+									.getDeclaredField("mShowing");
+							field.setAccessible(true);
+						} catch (NoSuchFieldException e1) {
+							e1.printStackTrace();
+						}
+						if ("".equals(et_title.getText().toString())) {
+							ToastUtil.displayPromptInfo(TaskListActivity.this,
+									"任务名不能为空！");
 
-					try {
-						field.set(dialog, false);// true表示要关闭
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
+							try {
+								field.set(dialog, false);// true表示要关闭
+							} catch (IllegalAccessException e) {
+								e.printStackTrace();
+							} catch (IllegalArgumentException e) {
+								e.printStackTrace();
+							}
+
+						} else if (taskNames.contains(et_title.getText()
+								.toString())) {
+							ToastUtil.displayPromptInfo(TaskListActivity.this,
+									"任务名不能重复！");
+
+							try {
+								field.set(dialog, false);// true表示要关闭
+							} catch (IllegalAccessException e) {
+								e.printStackTrace();
+							} catch (IllegalArgumentException e) {
+								e.printStackTrace();
+							}
+						} else {
+							try {
+								field.set(dialog, true);// true表示要关闭
+							} catch (IllegalAccessException e) {
+								e.printStackTrace();
+							} catch (IllegalArgumentException e) {
+								e.printStackTrace();
+							}
+							task = taskLists.get(pselect);
+							task.setTaskName(et_title.getText().toString());
+							taskDao.updateTask(task);
+							// gotoActivity(task);
+							taskLists = taskDao.findALLTaskLists();
+							mTaskAdapter.setTaskList(taskLists);
+							mTaskAdapter.notifyDataSetChanged();
+						}
+
 					}
-				} else {
-					try {
-						field.set(dialog, true);// true表示要关闭
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					}
-					task = taskLists.get(pselect);
-					task.setTaskName(et_title.getText().toString());
-					taskDao.updateTask(task);
-					// gotoActivity(task);
-					taskLists = taskDao.findALLTaskLists();
-					mTaskAdapter.setTaskList(taskLists);
-					mTaskAdapter.notifyDataSetChanged();
-				}
-
-			}
-		});
+				});
 		builderModify.show();
 	}
 
@@ -745,42 +784,47 @@ public class TaskListActivity extends Activity implements OnClickListener {
 	 * 新建对话框，确认是否删除
 	 */
 	private void showDeleteDialog() {
-		AlertDialog.Builder buildDelete = new AlertDialog.Builder(TaskListActivity.this);
+		AlertDialog.Builder buildDelete = new AlertDialog.Builder(
+				TaskListActivity.this);
 		buildDelete.setTitle("删除任务");
-		buildDelete.setMessage("是否删除任务：" + taskLists.get(pselect).getTaskName() + " ?");
+		buildDelete.setMessage("是否删除任务：" + taskLists.get(pselect).getTaskName()
+				+ " ?");
 		buildDelete.setNegativeButton("取消", null);
-		buildDelete.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+		buildDelete.setPositiveButton("确定",
+				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// taskLists.remove(pselect);
-				PointTask subTask = taskLists.get(pselect);
-				taskDao.deleteTask(subTask);
-				// 删除任务时,将任务点也跟着删除
-				pointDao.deletePointsByIds(subTask.getPointids());
-				taskLists = taskDao.findALLTaskLists();
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						// taskLists.remove(pselect);
+						PointTask subTask = taskLists.get(pselect);
+						taskDao.deleteTask(subTask);
+						// 删除任务时,将任务点也跟着删除
+						pointDao.deletePointsByIds(subTask.getPointids());
+						taskLists = taskDao.findALLTaskLists();
 
-				mTaskAdapter.setTaskList(taskLists);
-				Log.d(TAG, "taskLists.size():" + taskLists.size() + ",pselect:" + pselect);
-				if (taskLists.size() == 0) {
-					showAndHideLayout(false);
-				} else {
-					showAndHideLayout(true);
-				}
-				// 超过范围，要减少pselect的值
-				if (pselect >= taskLists.size()) {
-					pselect = pselect - 1;
-				}
-				mTaskAdapter.setSelectItem(pselect);
-				if (pselect < 0) {
-					invalidateCustomView(new PointTask(), pointDao);
-				} else {
-					invalidateCustomView(mTaskAdapter.getItem(pselect), pointDao);
-				}
-				mTaskAdapter.notifyDataSetChanged();
+						mTaskAdapter.setTaskList(taskLists);
+						Log.d(TAG, "taskLists.size():" + taskLists.size()
+								+ ",pselect:" + pselect);
+						if (taskLists.size() == 0) {
+							showAndHideLayout(false);
+						} else {
+							showAndHideLayout(true);
+						}
+						// 超过范围，要减少pselect的值
+						if (pselect >= taskLists.size()) {
+							pselect = pselect - 1;
+						}
+						mTaskAdapter.setSelectItem(pselect);
+						if (pselect < 0) {
+							invalidateCustomView(new PointTask(), pointDao);
+						} else {
+							invalidateCustomView(mTaskAdapter.getItem(pselect),
+									pointDao);
+						}
+						mTaskAdapter.notifyDataSetChanged();
 
-			}
-		});
+					}
+				});
 		buildDelete.show();
 	}
 
@@ -790,11 +834,13 @@ public class TaskListActivity extends Activity implements OnClickListener {
 	private void showUploadDialog() {
 		AlertDialog dialog = null;
 		AlertDialog.Builder builder = null;
-		View view = LayoutInflater.from(TaskListActivity.this).inflate(R.layout.custom_dialog_upload, null);
+		View view = LayoutInflater.from(TaskListActivity.this).inflate(
+				R.layout.custom_dialog_upload, null);
 		builder = new AlertDialog.Builder(TaskListActivity.this);
 		builder.setView(view);
 		builder.setTitle("上传任务");
-		et_upload_number = (EditText) view.findViewById(R.id.upload_task_number);
+		et_upload_number = (EditText) view
+				.findViewById(R.id.upload_task_number);
 		et_upload_name = (EditText) view.findViewById(R.id.upload_task_name);
 
 		builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -802,7 +848,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+					field = dialog.getClass().getSuperclass()
+							.getDeclaredField("mShowing");
 					field.setAccessible(true);
 					field.set(dialog, true);// true表示要关闭
 				} catch (Exception e) {
@@ -815,14 +862,16 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
+					field = dialog.getClass().getSuperclass()
+							.getDeclaredField("mShowing");
 					field.setAccessible(true);
 				} catch (NoSuchFieldException e1) {
 					e1.printStackTrace();
 				}
 				if ("".equals(et_upload_name.getText().toString())
 						|| "".equals(et_upload_number.getText().toString())) {
-					ToastUtil.displayPromptInfo(TaskListActivity.this, "任务号和任务名都不能为空！");
+					ToastUtil.displayPromptInfo(TaskListActivity.this,
+							"任务号和任务名都不能为空！");
 
 					try {
 						field.set(dialog, false);// true表示要关闭
@@ -836,7 +885,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-					int taskNum = Integer.parseInt(et_upload_number.getText().toString());
+					int taskNum = Integer.parseInt(et_upload_number.getText()
+							.toString());
 					OrderParam.INSTANCE.setAllParamToZero();
 					OrderParam.INSTANCE.setnTaskNum(taskNum);
 					pointUploads = new ArrayList<>();
@@ -844,49 +894,51 @@ public class TaskListActivity extends Activity implements OnClickListener {
 					Log.d(TAG, "上传之前:" + DateUtil.getCurrentTime());
 					startProgressDialog();
 					MessageMgr.INSTANCE.taskUpload(pointUploads);
+
 				}
 			}
 		});
 		dialog = builder.create();
 		dialog.show();
 	}
-	
+
 	/**
 	 * 打开进度条对话框
 	 */
-	private void startProgressDialog(){
-		if(progressDialog == null){
+	private void startProgressDialog() {
+		if (progressDialog == null) {
 			progressDialog = CustomUploadDialog.createDialog(this);
 			progressDialog.setMessage("正在上传中..");
 			progressDialog.setCanceledOnTouchOutside(false);
 		}
 		progressDialog.show();
 	}
-	
+
 	/**
 	 * 关闭进度条对话框
 	 */
-	private void stopProgressDialog(){
-		if(progressDialog!=null){
+	private void stopProgressDialog() {
+		if (progressDialog != null) {
 			progressDialog.dismiss();
 			progressDialog = null;
 		}
 	}
-	
+
 	/**
 	 * 解析下载成功的任务（*重写HashCode方法*）
 	 * 
 	 * @param pointUploads
 	 */
 	private void analyseTaskSuccess(List<Point> pointUploads) {
-		//上传成功里面的Point的List数组
+		// 上传成功里面的Point的List数组
 		List<Point> points = new ArrayList<>();
-		UploadTaskAnalyse uploadAnalyse =new UploadTaskAnalyse(TaskListActivity.this);
-		
+		UploadTaskAnalyse uploadAnalyse = new UploadTaskAnalyse(
+				TaskListActivity.this);
+
 		points = uploadAnalyse.analyseTaskSuccess(pointUploads);
-		Log.d(TAG, "解析之后："+DateUtil.getCurrentTime());
-		//往界面上添加（暂时先删了）
-		//先往数据库里面添加，然后再将Point的id保存出来
+		Log.d(TAG, "解析之后：" + DateUtil.getCurrentTime());
+		// 往界面上添加（暂时先删了）
+		// 先往数据库里面添加，然后再将Point的id保存出来
 		List<Integer> ids = pointDao.insertPoints(points);
 		task = new PointTask();
 		task.setPointids(ids);
@@ -903,13 +955,10 @@ public class TaskListActivity extends Activity implements OnClickListener {
 		showAndHideLayout(true);
 		mTaskAdapter.notifyDataSetChanged();
 		invalidateCustomView(taskLists.get(pselect), pointDao);
-		///////////////////////
-		//全部更新完之后关闭进度框
+		// /////////////////////
+		// 全部更新完之后关闭进度框
 		stopProgressDialog();
 	}
-	
-	
-
 
 	@Override
 	public void onClick(View v) {
@@ -935,20 +984,26 @@ public class TaskListActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.rl_shangchuan:// 上传
+			if (TCPClient.instance().isConnect()) {
 
-			showUploadDialog();
+				showUploadDialog();
+			} else {
+				ToastUtil.displayPromptInfo(TaskListActivity.this, "通信未连接！");
+			}
 
 			break;
 		case R.id.rl_shezhi:// 设置
 			intent = new Intent(this, MainAdminSettingActivity.class);
 			startActivityForResult(intent, TASK_RequestCode);
-			overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+			overridePendingTransition(R.anim.in_from_right,
+					R.anim.out_from_left);
 			break;
-		case R.id.rl_task_paste://粘贴任务
+		case R.id.rl_task_paste:// 粘贴任务
 			displayPasteDialog();
 			break;
-		case R.id.iv_connect_tip://wifi是否连接成功
-			WifiConnectTools.processWifiConnect(userApplication, iv_connect_tip);
+		case R.id.iv_connect_tip:// wifi是否连接成功
+			WifiConnectTools
+					.processWifiConnect(userApplication, iv_connect_tip);
 			break;
 		}
 	}
@@ -960,89 +1015,101 @@ public class TaskListActivity extends Activity implements OnClickListener {
 	 * @Description 显示粘贴任务的对话框，输入粘贴任务的任务名
 	 */
 	private void displayPasteDialog() {
-		AlertDialog.Builder buildPaste = new AlertDialog.Builder(TaskListActivity.this);
+		AlertDialog.Builder buildPaste = new AlertDialog.Builder(
+				TaskListActivity.this);
 		buildPaste.setTitle("粘贴任务");
-		customView = View.inflate(TaskListActivity.this, R.layout.custom_dialog_edittext, null);
+		customView = View.inflate(TaskListActivity.this,
+				R.layout.custom_dialog_edittext, null);
 		buildPaste.setView(customView);
 		et_title = (EditText) customView.findViewById(R.id.et_title);
-		et_title.setText(taskLists.get(pselect).getTaskName()+"(1)");
+		et_title.setText(taskLists.get(pselect).getTaskName() + "(1)");
 		et_title.setSelectAllOnFocus(true);
 		taskNames = taskDao.getALLTaskNames();
-		buildPaste.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+		buildPaste.setNegativeButton("取消",
+				new DialogInterface.OnClickListener() {
 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-					field.setAccessible(true);
-					field.set(dialog, true);// true表示要关闭
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		buildPaste.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				try {
-					field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
-					field.setAccessible(true);
-				} catch (NoSuchFieldException e1) {
-					e1.printStackTrace();
-				}
-				if ("".equals(et_title.getText().toString())) {
-					ToastUtil.displayPromptInfo(TaskListActivity.this, "任务名不能为空！");
-
-					try {
-						field.set(dialog, false);// true表示要关闭
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						try {
+							field = dialog.getClass().getSuperclass()
+									.getDeclaredField("mShowing");
+							field.setAccessible(true);
+							field.set(dialog, true);// true表示要关闭
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 					}
+				});
+		buildPaste.setPositiveButton("确定",
+				new DialogInterface.OnClickListener() {
 
-				}  else if(taskNames.contains(et_title.getText().toString())){
-					ToastUtil.displayPromptInfo(TaskListActivity.this, "任务名不能重复！");
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						try {
+							field = dialog.getClass().getSuperclass()
+									.getDeclaredField("mShowing");
+							field.setAccessible(true);
+						} catch (NoSuchFieldException e1) {
+							e1.printStackTrace();
+						}
+						if ("".equals(et_title.getText().toString())) {
+							ToastUtil.displayPromptInfo(TaskListActivity.this,
+									"任务名不能为空！");
 
-					try {
-						field.set(dialog, false);// true表示要关闭
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
+							try {
+								field.set(dialog, false);// true表示要关闭
+							} catch (IllegalAccessException e) {
+								e.printStackTrace();
+							} catch (IllegalArgumentException e) {
+								e.printStackTrace();
+							}
+
+						} else if (taskNames.contains(et_title.getText()
+								.toString())) {
+							ToastUtil.displayPromptInfo(TaskListActivity.this,
+									"任务名不能重复！");
+
+							try {
+								field.set(dialog, false);// true表示要关闭
+							} catch (IllegalAccessException e) {
+								e.printStackTrace();
+							} catch (IllegalArgumentException e) {
+								e.printStackTrace();
+							}
+						} else {
+							try {
+								field.set(dialog, true);// true表示要关闭
+							} catch (IllegalAccessException e) {
+								e.printStackTrace();
+							} catch (IllegalArgumentException e) {
+								e.printStackTrace();
+							}
+							// 设置新粘贴的任务
+							task = new PointTask();
+							List<Point> pointsCur = pointDao
+									.findALLPointsByIdLists(taskLists.get(
+											pselect).getPointids());
+							List<Integer> pointIDsCur = pointDao
+									.insertPoints(pointsCur);
+							task.setPointids(pointIDsCur);
+							task.setTaskName(et_title.getText().toString());
+							long rowID = taskDao.insertTask(task);
+							task.setId((int) rowID);
+							taskLists = taskDao.findALLTaskLists();
+
+							mTaskAdapter.setTaskList(taskLists);
+							// 设置刚添加的被选中
+							pselect = taskLists.size() - 1;
+							mTaskAdapter.setSelectItem(pselect);
+							mTaskAdapter.notifyDataSetChanged();
+							// 滚动到最底部
+							lv_task.smoothScrollToPosition(pselect);
+							showAndHideLayout(true);
+							invalidateCustomView(task, pointDao);
+						}
+
 					}
-				}else {
-					try {
-						field.set(dialog, true);// true表示要关闭
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						e.printStackTrace();
-					}
-					//设置新粘贴的任务
-					task = new PointTask();
-					List<Point> pointsCur = pointDao.findALLPointsByIdLists(taskLists.get(pselect).getPointids());
-					List<Integer> pointIDsCur = pointDao.insertPoints(pointsCur);
-					task.setPointids(pointIDsCur);
-					task.setTaskName(et_title.getText().toString());
-					long rowID = taskDao.insertTask(task);
-					task.setId((int)rowID);
-					taskLists = taskDao.findALLTaskLists();
-
-					mTaskAdapter.setTaskList(taskLists);
-					// 设置刚添加的被选中
-					pselect = taskLists.size() - 1;
-					mTaskAdapter.setSelectItem(pselect);
-					mTaskAdapter.notifyDataSetChanged();
-					// 滚动到最底部
-					lv_task.smoothScrollToPosition(pselect);
-					showAndHideLayout(true);
-					invalidateCustomView(task, pointDao);
-				}
-
-			}
-		});
+				});
 		buildPaste.show();
 	}
 
@@ -1060,16 +1127,18 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			ToastUtil.displayPromptInfo(TaskListActivity.this, "校验失败");
 			break;
 		case 1: {
-			int cmdFlag = ((revBuffer[2] & 0x00ff) << 8) | (revBuffer[3] & 0x00ff);
+			int cmdFlag = ((revBuffer[2] & 0x00ff) << 8)
+					| (revBuffer[3] & 0x00ff);
 			if (revBuffer[2] == 0x4A) {// 获取下位机参数成功
 				ToastUtil.displayPromptInfo(TaskListActivity.this, "获取参数成功!");
-//				userApplication.setWifiConnecting(true);
-//				WifiConnectTools.processWifiConnect(userApplication, iv_connect_tip);
-//				iv_connect_tip.setImageDrawable(getResources().getDrawable(R.drawable.icon_wifi_connect));
-				Log.d(TAG,
-						RobotParam.INSTANCE.GetXJourney() + ",分辨率：x" + RobotParam.INSTANCE.GetXDifferentiate() + ",y:"
-								+ RobotParam.INSTANCE.GetYDifferentiate() + ",z:"
-								+ RobotParam.INSTANCE.GetZDifferentiate());
+				// userApplication.setWifiConnecting(true);
+				// WifiConnectTools.processWifiConnect(userApplication,
+				// iv_connect_tip);
+				// iv_connect_tip.setImageDrawable(getResources().getDrawable(R.drawable.icon_wifi_connect));
+				Log.d(TAG, RobotParam.INSTANCE.GetXJourney() + ",分辨率：x"
+						+ RobotParam.INSTANCE.GetXDifferentiate() + ",y:"
+						+ RobotParam.INSTANCE.GetYDifferentiate() + ",z:"
+						+ RobotParam.INSTANCE.GetZDifferentiate());
 				// myConnection.disconnect();
 				// myConnection = null;
 			}
@@ -1082,7 +1151,8 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			// 下载成功
 			if ((revBuffer[3] & 0x00ff) == 0xe6) {
 				if (!pointUploads.isEmpty() && pointUploads.size() > 0) {
-					Log.d(TAG, "上传的列表长度:" + pointUploads.size() + "--" + et_upload_name.getText().toString());
+					Log.d(TAG, "上传的列表长度:" + pointUploads.size() + "--"
+							+ et_upload_name.getText().toString());
 					// for(Point point:pointUploads){
 					// Log.d(TAG, point.toString());
 					// }
@@ -1169,7 +1239,6 @@ public class TaskListActivity extends Activity implements OnClickListener {
 		}
 	}
 
-	
 	/**
 	 * <p>
 	 * Title: RevHandler
@@ -1188,25 +1257,27 @@ public class TaskListActivity extends Activity implements OnClickListener {
 			// 如果消息来自子线程
 			if (msg.what == SocketInputThread.SocketInputWhat) {
 				userApplication.setWifiConnecting(true);
-				WifiConnectTools.processWifiConnect(userApplication, iv_connect_tip);
+				WifiConnectTools.processWifiConnect(userApplication,
+						iv_connect_tip);
 				// 获取下位机上传的数据
 				ByteBuffer temp = (ByteBuffer) msg.obj;
 				byte[] buffer;
 				buffer = temp.array();
 				// byte[] revBuffer = (byte[]) msg.obj;
-				if(buffer.length!=0){
+				if (buffer.length != 0) {
 					disPlayInfoAfterGetMsg(buffer);
 				}
 			} else if (msg.what == SocketInputThread.SocketInputUPLOADWhat) {
 				userApplication.setWifiConnecting(true);
-				WifiConnectTools.processWifiConnect(userApplication, iv_connect_tip);
+				WifiConnectTools.processWifiConnect(userApplication,
+						iv_connect_tip);
 				// 获取下位机上传的数据
 				ByteBuffer temp = (ByteBuffer) msg.obj;
 				byte[] buffer;
 				buffer = temp.array();
 				disPlayInfoAfterGetMsg(buffer);
 			}
-			
+
 		}
 	}
 

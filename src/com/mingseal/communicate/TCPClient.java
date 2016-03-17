@@ -38,10 +38,19 @@ public class TCPClient {
 
 	public boolean isInitialized = false;
 
-	public static synchronized TCPClient instance() {
+	/**
+	 * @Title  instance
+	 * @Description dcl
+	 * @author wj
+	 * @return
+	 */
+	public static TCPClient instance() {
 		if (s_Tcp == null) {
-
-			s_Tcp = new TCPClient(Const.SOCKET_SERVER, Const.SOCKET_PORT);
+			synchronized(TCPClient.class){
+				if (s_Tcp==null) {
+					s_Tcp = new TCPClient(Const.SOCKET_SERVER, Const.SOCKET_PORT);
+				}
+			}
 		}
 		return s_Tcp;
 	}

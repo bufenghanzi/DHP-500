@@ -18,6 +18,7 @@ import com.mingseal.utils.FloatUtil;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -325,6 +326,9 @@ public class TaskMainBaseAdapter extends BaseAdapter {
 					activity.popMenu.setPoint(pointLists, getItem(position), 1, TaskMainBaseAdapter.this);
 					// mPopupWindow.setFocusable(true);
 					activity.mPopupWindow.setOutsideTouchable(true); // 设置点击屏幕其它地方弹出框消失
+					/*=================== begin ===================*/
+					activity.mPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+					/*===================  add  ===================*/
 					if (activity.mPopupWindow == null) {
 						return;
 					}

@@ -24,7 +24,7 @@ public class SettingParam {
 		/**
 		 * z轴步距(1-10)
 		 */
-		public static final String ZStepDistance = "xStepDistance";
+		public static final String ZStepDistance = "zStepDistance";
 		/**
 		 * 高速(mm/s)
 		 */
