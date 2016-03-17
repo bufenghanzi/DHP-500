@@ -1141,51 +1141,56 @@ public class TaskActivity extends Activity implements OnClickListener {
 	 * 点击方案选项，跳转到对应的Activity,打开相对应的任务参数
 	 */
 	private void processTaskActivity() {
-		PointType type = mPointsCur.get(selectRadioIDCur).getPointParam().getPointType();
-		Intent intent = null;
-		switch (type) {
-		case POINT_GLUE_ALONE:
-			intent = new Intent(this, GlueAloneActivity.class);
-			break;
-		case POINT_GLUE_LINE_START:
-			intent = new Intent(this, GlueLineStartActivity.class);
-			break;
-		case POINT_GLUE_LINE_MID:
-			intent = new Intent(this, GlueLineMidActivity.class);
-			break;
-		case POINT_GLUE_LINE_END:
-			intent = new Intent(this, GlueLineEndActivity.class);
-			break;
-		case POINT_GLUE_FACE_START:
-			intent = new Intent(this, GlueFaceStartActivity.class);
-			break;
-		case POINT_GLUE_FACE_END:
-			intent = new Intent(this, GlueFaceEndActivity.class);
-			break;
-		case POINT_GLUE_CLEAR:
-			intent = new Intent(this, GlueClearActivity.class);
-			break;
-		case POINT_GLUE_INPUT:
-			intent = new Intent(this, GlueInputActivity.class);
-			break;
-		case POINT_GLUE_OUTPUT:
-			intent = new Intent(this, GlueOutputActivity.class);
-			break;
-
-		default:
-			// 其他点没有参数方案
-			intent = null;
-			ToastUtil.displayPromptInfo(this, "没有参数方案");
-			break;
-		}
-		if (intent != null) {
-			Bundle extras = new Bundle();
-			extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY, mPointsCur.get(selectRadioIDCur));
-			extras.putInt(MyPopWindowClickListener.FLAG_KEY, 1);// 1代表更新数据
-			extras.putInt(MyPopWindowClickListener.TYPE_KEY, 1);// 1代表要显示方案
-			intent.putExtras(extras);
-			startActivityForResult(intent, requestCode);
-			overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+		if (mPointsCur.size()==0) {
+			ToastUtil.displayPromptInfo(this, "请先增加一个任务点");
+		}else {
+			
+			PointType type = mPointsCur.get(selectRadioIDCur).getPointParam().getPointType();
+			Intent intent = null;
+			switch (type) {
+			case POINT_GLUE_ALONE:
+				intent = new Intent(this, GlueAloneActivity.class);
+				break;
+			case POINT_GLUE_LINE_START:
+				intent = new Intent(this, GlueLineStartActivity.class);
+				break;
+			case POINT_GLUE_LINE_MID:
+				intent = new Intent(this, GlueLineMidActivity.class);
+				break;
+			case POINT_GLUE_LINE_END:
+				intent = new Intent(this, GlueLineEndActivity.class);
+				break;
+			case POINT_GLUE_FACE_START:
+				intent = new Intent(this, GlueFaceStartActivity.class);
+				break;
+			case POINT_GLUE_FACE_END:
+				intent = new Intent(this, GlueFaceEndActivity.class);
+				break;
+			case POINT_GLUE_CLEAR:
+				intent = new Intent(this, GlueClearActivity.class);
+				break;
+			case POINT_GLUE_INPUT:
+				intent = new Intent(this, GlueInputActivity.class);
+				break;
+			case POINT_GLUE_OUTPUT:
+				intent = new Intent(this, GlueOutputActivity.class);
+				break;
+				
+			default:
+				// 其他点没有参数方案
+				intent = null;
+				ToastUtil.displayPromptInfo(this, "没有参数方案");
+				break;
+			}
+			if (intent != null) {
+				Bundle extras = new Bundle();
+				extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY, mPointsCur.get(selectRadioIDCur));
+				extras.putInt(MyPopWindowClickListener.FLAG_KEY, 1);// 1代表更新数据
+				extras.putInt(MyPopWindowClickListener.TYPE_KEY, 1);// 1代表要显示方案
+				intent.putExtras(extras);
+				startActivityForResult(intent, requestCode);
+				overridePendingTransition(R.anim.in_from_right, R.anim.out_from_left);
+			}
 		}
 	}
 
