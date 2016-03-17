@@ -1957,8 +1957,8 @@ public enum MessageMgr {
 					_pointMgr.add(pt);
 					if(pLineStart != null){//将废弃
 						PointGlueLineStartParam pLineStartParam = (PointGlueLineStartParam) pLineStart.getPointParam();
-						pLineStartParam.setStopGlueTime(pParam.getStopGlueTime());
-						pLineStartParam.setUpHeight(pParam.getUpHeight());
+//						pLineStartParam.setStopGlueTime(pParam.getStopGlueTime());
+//						pLineStartParam.setUpHeight(pParam.getUpHeight());
 						pLineStartParam.setBreakGlueLen(pParam.getBreakGlueLen());
 						pLineStartParam.setDrawDistance(pParam.getDrawDistance());
 						pLineStartParam.setDrawSpeed(pParam.getDrawSpeed());

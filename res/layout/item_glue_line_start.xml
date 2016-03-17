@@ -67,7 +67,7 @@
         android:text="@string/activity_mm_s"
         android:textSize="@dimen/item_glue_textsize" />
 
-    <TextView
+   <!--  <TextView
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/item_glue_marginLeft"
@@ -91,6 +91,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/item_glue_marginTop"
         android:text="@string/activity_mm"
-        android:textSize="@dimen/item_glue_textsize" />
+        android:textSize="@dimen/item_glue_textsize" /> -->
 
 </LinearLayout>

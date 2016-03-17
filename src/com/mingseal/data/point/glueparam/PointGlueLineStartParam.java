@@ -27,12 +27,12 @@ public class PointGlueLineStartParam extends PointParam {
 	private boolean isOutGlue; // 是否出胶
 	private boolean[] gluePort; // 点胶口
 
-	private int stopGlueTime; // 停胶(后)延时
-	private int upHeight; // 抬起高度
+//	private int stopGlueTime; // 停胶(后)延时
+//	private int upHeight; // 抬起高度
 	private int breakGlueLen; //断胶长度(单位: 毫米mm)
 	private int drawDistance; // 拉丝距离(单位: 毫米mm)
 	private int drawSpeed; //拉丝速度(单位: 毫米/秒mm/s)
-	private int stopGlueTimePrev; // 停胶前延时
+//	private int stopGlueTimePrev; // 停胶前延时
 
 	/**
 	 * 点胶线起始点参数私有初始化方法(未设置停胶前延时 stopGlueTimePrev ,先前代码未使用)
@@ -54,14 +54,14 @@ public class PointGlueLineStartParam extends PointParam {
 	 *            抬起高度
 	 */
 	private void pointGlueLineStartInit(int outGlueTimePrev, int outGlueTime, boolean timeMode, int moveSpeed,
-			boolean isOutGlue, int stopGlueTime, int upHeight) {
+			boolean isOutGlue) {
 		this.outGlueTimePrev = outGlueTimePrev;
 		this.outGlueTime = outGlueTime;
 		this.timeMode = timeMode;
 		this.moveSpeed = moveSpeed;
 		this.isOutGlue = isOutGlue;
-		this.stopGlueTime = stopGlueTime;
-		this.upHeight = upHeight;
+//		this.stopGlueTime = stopGlueTime;
+//		this.upHeight = upHeight;
 	}
 
 	/**
@@ -77,7 +77,7 @@ public class PointGlueLineStartParam extends PointParam {
 	 * @upHeight 抬起高度 0
 	 */
 	public PointGlueLineStartParam() {
-		pointGlueLineStartInit(0, 0, false, 1, true, 0, 0);
+		pointGlueLineStartInit(0, 0, false, 1, true);
 		super.setPointType(PointType.POINT_GLUE_LINE_START);
 		this.gluePort = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 		this.gluePort[0] = true;
@@ -106,7 +106,7 @@ public class PointGlueLineStartParam extends PointParam {
 	 */
 	public PointGlueLineStartParam(int outGlueTimePrev, int outGlueTime, boolean timeMode, int moveSpeed,
 			boolean isOutGlue, int stopGlueTime, int upHeight, boolean[] gluePort) {
-		pointGlueLineStartInit(outGlueTimePrev, outGlueTime, timeMode, moveSpeed, isOutGlue, stopGlueTime, upHeight);
+		pointGlueLineStartInit(outGlueTimePrev, outGlueTime, timeMode, moveSpeed, isOutGlue);
 		super.setPointType(PointType.POINT_GLUE_LINE_START);
 		this.gluePort = gluePort;
 	}
@@ -219,56 +219,56 @@ public class PointGlueLineStartParam extends PointParam {
 		this.gluePort = gluePort;
 	}
 
-	/**
-	 * @return 获取停胶前延时
-	 */
-	public int getStopGlueTimePrev() {
-		return stopGlueTimePrev;
-	}
+//	/**
+//	 * @return 获取停胶前延时
+//	 */
+//	public int getStopGlueTimePrev() {
+//		return stopGlueTimePrev;
+//	}
 
-	/**
-	 * 设置停胶前延时
-	 * 
-	 * @param stopGlueTimePrev
-	 *            停胶前延时
-	 */
-	public void setStopGlueTimePrev(int stopGlueTimePrev) {
-		this.stopGlueTimePrev = stopGlueTimePrev;
-	}
+//	/**
+//	 * 设置停胶前延时
+//	 * 
+//	 * @param stopGlueTimePrev
+//	 *            停胶前延时
+//	 */
+//	public void setStopGlueTimePrev(int stopGlueTimePrev) {
+//		this.stopGlueTimePrev = stopGlueTimePrev;
+//	}
 
-	/**
-	 * @return 获取停胶(后)延时
-	 */
-	public int getStopGlueTime() {
-		return stopGlueTime;
-	}
+//	/**
+//	 * @return 获取停胶(后)延时
+//	 */
+//	public int getStopGlueTime() {
+//		return stopGlueTime;
+//	}
 
-	/**
-	 * 设置停胶后延时
-	 * 
-	 * @param stopGlueTime
-	 *            停胶后延时
-	 */
-	public void setStopGlueTime(int stopGlueTime) {
-		this.stopGlueTime = stopGlueTime;
-	}
+//	/**
+//	 * 设置停胶后延时
+//	 * 
+//	 * @param stopGlueTime
+//	 *            停胶后延时
+//	 */
+//	public void setStopGlueTime(int stopGlueTime) {
+//		this.stopGlueTime = stopGlueTime;
+//	}
 
-	/**
-	 * @return 获取抬起高度
-	 */
-	public int getUpHeight() {
-		return upHeight;
-	}
+//	/**
+//	 * @return 获取抬起高度
+//	 */
+//	public int getUpHeight() {
+//		return upHeight;
+//	}
 
-	/**
-	 * 设置抬起高度
-	 * 
-	 * @param upHeight
-	 *            抬起高度
-	 */
-	public void setUpHeight(int upHeight) {
-		this.upHeight = upHeight;
-	}
+//	/**
+//	 * 设置抬起高度
+//	 * 
+//	 * @param upHeight
+//	 *            抬起高度
+//	 */
+//	public void setUpHeight(int upHeight) {
+//		this.upHeight = upHeight;
+//	}
 	
 	/**
 	 * <p>Title: getBreakGlueLen
@@ -328,8 +328,7 @@ public class PointGlueLineStartParam extends PointParam {
 	public String toString() {
 		return "PointGlueLineStartParam [outGlueTimePrev=" + outGlueTimePrev + ", outGlueTime=" + outGlueTime
 				+ ", timeMode=" + timeMode + ", moveSpeed=" + moveSpeed + ", isOutGlue=" + isOutGlue + ", gluePort="
-				+ Arrays.toString(gluePort) + ", stopGlueTimePrev=" + stopGlueTimePrev + ", stopGlueTime="
-				+ stopGlueTime + ", upHeight=" + upHeight + ", get_id()=" + get_id() + "]";
+				+ Arrays.toString(gluePort) + ", get_id()=" + get_id() + "]";
 	}
 
 	@Override
@@ -344,10 +343,10 @@ public class PointGlueLineStartParam extends PointParam {
 		result = prime * result + moveSpeed;
 		result = prime * result + outGlueTime;
 		result = prime * result + outGlueTimePrev;
-		result = prime * result + stopGlueTime;
-		result = prime * result + stopGlueTimePrev;
+//		result = prime * result + stopGlueTime;
+//		result = prime * result + stopGlueTimePrev;
 		result = prime * result + (timeMode ? 1231 : 1237);
-		result = prime * result + upHeight;
+//		result = prime * result + upHeight;
 		return result;
 	}
 
@@ -376,14 +375,14 @@ public class PointGlueLineStartParam extends PointParam {
 			return false;
 		if (outGlueTimePrev != other.outGlueTimePrev)
 			return false;
-		if (stopGlueTime != other.stopGlueTime)
-			return false;
-		if (stopGlueTimePrev != other.stopGlueTimePrev)
-			return false;
+//		if (stopGlueTime != other.stopGlueTime)
+//			return false;
+//		if (stopGlueTimePrev != other.stopGlueTimePrev)
+//			return false;
 		if (timeMode != other.timeMode)
 			return false;
-		if (upHeight != other.upHeight)
-			return false;
+//		if (upHeight != other.upHeight)
+//			return false;
 		return true;
 	}
 
@@ -406,9 +405,9 @@ public class PointGlueLineStartParam extends PointParam {
 			val = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 			source.readBooleanArray(val);
 			point.gluePort = val;
-			point.stopGlueTimePrev = source.readInt();
-			point.stopGlueTime = source.readInt();
-			point.upHeight = source.readInt();
+//			point.stopGlueTimePrev = source.readInt();
+//			point.stopGlueTime = source.readInt();
+//			point.upHeight = source.readInt();
 			point.set_id(source.readInt());
 
 			return point;
@@ -428,9 +427,9 @@ public class PointGlueLineStartParam extends PointParam {
 		dest.writeInt(moveSpeed);
 		dest.writeInt((boolean) isOutGlue ? 1 : 0);
 		dest.writeBooleanArray(gluePort);
-		dest.writeInt(stopGlueTimePrev);
-		dest.writeInt(stopGlueTime);
-		dest.writeInt(upHeight);
+//		dest.writeInt(stopGlueTimePrev);
+//		dest.writeInt(stopGlueTime);
+//		dest.writeInt(upHeight);
 		dest.writeInt(get_id());
 	}
 

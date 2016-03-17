@@ -91,7 +91,6 @@ public class PointGlueLineStartAdapter extends BaseAdapter {
 			holder.tv_num = (TextView) convertView.findViewById(R.id.item_num);
 			holder.tv_outGlue = (TextView) convertView.findViewById(R.id.item_line_outglue);
 			holder.tv_moveSpeed = (TextView) convertView.findViewById(R.id.item_line_movespeed);
-			holder.tv_upHeight = (TextView) convertView.findViewById(R.id.item_line_upheight);
 
 			convertView.setTag(holder);
 		} else {
@@ -102,7 +101,7 @@ public class PointGlueLineStartAdapter extends BaseAdapter {
 			holder.tv_num.setText(glueStart.get_id() + "");
 			holder.tv_outGlue.setText(glueStart.getOutGlueTimePrev() + "");
 			holder.tv_moveSpeed.setText(glueStart.getMoveSpeed() + "");
-			holder.tv_upHeight.setText(glueStart.getUpHeight() + "");
+//			holder.tv_upHeight.setText(glueStart.getUpHeight() + "");
 		}
 
 		return convertView;
@@ -112,7 +111,7 @@ public class PointGlueLineStartAdapter extends BaseAdapter {
 		private TextView tv_num;// 方案号
 		private TextView tv_outGlue;// 出胶前延时
 		private TextView tv_moveSpeed;// 轨迹速度
-		private TextView tv_upHeight;// 抬起高度
+//		private TextView tv_upHeight;// 抬起高度
 	}
 
 }

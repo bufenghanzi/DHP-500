@@ -57,18 +57,18 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 	 * @Fields et_start_moveSpeed: 轨迹速度
 	 */
 	private EditText et_start_moveSpeed;
-	/**
-	 * @Fields et_start_stopGlueTimePrev: 停胶前延时
-	 */
-	private EditText et_start_stopGlueTimePrev;
-	/**
-	 * @Fields et_start_stopGlueTime: 停胶后延时
-	 */
-	private EditText et_start_stopGlueTime;
-	/**
-	 * @Fields et_start_upHeight: 抬起高度
-	 */
-	private EditText et_start_upHeight;
+//	/**
+//	 * @Fields et_start_stopGlueTimePrev: 停胶前延时
+//	 */
+//	private EditText et_start_stopGlueTimePrev;
+//	/**
+//	 * @Fields et_start_stopGlueTime: 停胶后延时
+//	 */
+//	private EditText et_start_stopGlueTime;
+//	/**
+//	 * @Fields et_start_upHeight: 抬起高度
+//	 */
+//	private EditText et_start_upHeight;
 
 	/**
 	 * 是否出胶
@@ -185,9 +185,9 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 				et_start_outGlueTimePrev.setText(point.getOutGlueTimePrev() + "");
 				et_start_outGlueTime.setText(point.getOutGlueTime() + "");
 				et_start_moveSpeed.setText(point.getMoveSpeed() + "");
-				et_start_stopGlueTimePrev.setText(point.getStopGlueTimePrev() + "");
-				et_start_stopGlueTime.setText(point.getStopGlueTime() + "");
-				et_start_upHeight.setText(point.getUpHeight() + "");
+//				et_start_stopGlueTimePrev.setText(point.getStopGlueTimePrev() + "");
+//				et_start_stopGlueTime.setText(point.getStopGlueTime() + "");
+//				et_start_upHeight.setText(point.getUpHeight() + "");
 				isOutGlueSwitch.setChecked(point.isOutGlue());
 				timeModeSwitch.setChecked(point.isTimeMode());
 
@@ -217,9 +217,9 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 		et_start_outGlueTimePrev = (EditText) findViewById(R.id.et_linestart_outGlueTimePrev);
 		et_start_outGlueTime = (EditText) findViewById(R.id.et_linestart_outGlueTime);
 		et_start_moveSpeed = (EditText) findViewById(R.id.et_linestart_moveSpeed);
-		et_start_stopGlueTimePrev = (EditText) findViewById(R.id.et_linestart_stopGlueTimePrev);
-		et_start_stopGlueTime = (EditText) findViewById(R.id.et_linestart_stopGlueTime);
-		et_start_upHeight = (EditText) findViewById(R.id.et_linestart_upHeight);
+//		et_start_stopGlueTimePrev = (EditText) findViewById(R.id.et_linestart_stopGlueTimePrev);
+//		et_start_stopGlueTime = (EditText) findViewById(R.id.et_linestart_stopGlueTime);
+//		et_start_upHeight = (EditText) findViewById(R.id.et_linestart_upHeight);
 
 		isOutGlueSwitch = (Switch) findViewById(R.id.switch_isOutGlue);
 		timeModeSwitch = (Switch) findViewById(R.id.switch_timeMode);
@@ -259,25 +259,25 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 		et_start_moveSpeed.setSelectAllOnFocus(true);
 
 		// 设置停胶前延时的默认值和最大最小值
-		et_start_stopGlueTimePrev.addTextChangedListener(new MaxMinEditWatcher(GlueLineStart.StopGlueTimePrevMax,
-				GlueLineStart.GlueLineStartMin, et_start_stopGlueTimePrev));
-		et_start_stopGlueTimePrev.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-				GlueLineStart.StopGlueTimePrevMax, GlueLineStart.GlueLineStartMin, et_start_stopGlueTimePrev));
-		et_start_stopGlueTimePrev.setSelectAllOnFocus(true);
+//		et_start_stopGlueTimePrev.addTextChangedListener(new MaxMinEditWatcher(GlueLineStart.StopGlueTimePrevMax,
+//				GlueLineStart.GlueLineStartMin, et_start_stopGlueTimePrev));
+//		et_start_stopGlueTimePrev.setOnFocusChangeListener(new MaxMinFocusChangeListener(
+//				GlueLineStart.StopGlueTimePrevMax, GlueLineStart.GlueLineStartMin, et_start_stopGlueTimePrev));
+//		et_start_stopGlueTimePrev.setSelectAllOnFocus(true);
 
 		// 设置停胶后延时的默认值和最大最小值
-		et_start_stopGlueTime.addTextChangedListener(new MaxMinEditWatcher(GlueLineStart.StopGlueTimeMax,
-				GlueLineStart.GlueLineStartMin, et_start_stopGlueTime));
-		et_start_stopGlueTime.setOnFocusChangeListener(new MaxMinFocusChangeListener(GlueLineStart.StopGlueTimeMax,
-				GlueLineStart.GlueLineStartMin, et_start_stopGlueTime));
-		et_start_stopGlueTime.setSelectAllOnFocus(true);
+//		et_start_stopGlueTime.addTextChangedListener(new MaxMinEditWatcher(GlueLineStart.StopGlueTimeMax,
+//				GlueLineStart.GlueLineStartMin, et_start_stopGlueTime));
+//		et_start_stopGlueTime.setOnFocusChangeListener(new MaxMinFocusChangeListener(GlueLineStart.StopGlueTimeMax,
+//				GlueLineStart.GlueLineStartMin, et_start_stopGlueTime));
+//		et_start_stopGlueTime.setSelectAllOnFocus(true);
 
 		// 设置抬起高度的默认值和最大最小值
-		et_start_upHeight.addTextChangedListener(
-				new MaxMinEditWatcher(GlueLineStart.UpHeightMax, GlueLineStart.GlueLineStartMin, et_start_upHeight));
-		et_start_upHeight.setOnFocusChangeListener(new MaxMinFocusChangeListener(GlueLineStart.UpHeightMax,
-				GlueLineStart.GlueLineStartMin, et_start_upHeight));
-		et_start_upHeight.setSelectAllOnFocus(true);
+//		et_start_upHeight.addTextChangedListener(
+//				new MaxMinEditWatcher(GlueLineStart.UpHeightMax, GlueLineStart.GlueLineStartMin, et_start_upHeight));
+//		et_start_upHeight.setOnFocusChangeListener(new MaxMinFocusChangeListener(GlueLineStart.UpHeightMax,
+//				GlueLineStart.GlueLineStartMin, et_start_upHeight));
+//		et_start_upHeight.setSelectAllOnFocus(true);
 
 		tv_title.setText(getResources().getString(R.string.activity_glue_line_start));
 		rl_back.setOnClickListener(this);
@@ -311,27 +311,27 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 		} catch (NumberFormatException e) {
 			moveSpeedInt = 1;
 		}
-		try {
-			stopGlueTimePrevInt = Integer.parseInt(et_start_stopGlueTimePrev.getText().toString());
-		} catch (NumberFormatException e) {
-			stopGlueTimePrevInt = 0;
-		}
-		try {
-			stopGlueTimeInt = Integer.parseInt(et_start_stopGlueTime.getText().toString());
-		} catch (NumberFormatException e) {
-			stopGlueTimeInt = 0;
-		}
-		try {
-			upHeightInt = Integer.parseInt(et_start_upHeight.getText().toString());
-		} catch (NumberFormatException e) {
-			upHeightInt = 0;
-		}
+//		try {
+//			stopGlueTimePrevInt = Integer.parseInt(et_start_stopGlueTimePrev.getText().toString());
+//		} catch (NumberFormatException e) {
+//			stopGlueTimePrevInt = 0;
+//		}
+//		try {
+//			stopGlueTimeInt = Integer.parseInt(et_start_stopGlueTime.getText().toString());
+//		} catch (NumberFormatException e) {
+//			stopGlueTimeInt = 0;
+//		}
+//		try {
+//			upHeightInt = Integer.parseInt(et_start_upHeight.getText().toString());
+//		} catch (NumberFormatException e) {
+//			upHeightInt = 0;
+//		}
 		glueStart.setOutGlueTimePrev(outGlueTimePrevInt);
 		glueStart.setOutGlueTime(outGlueTimeInt);
 		glueStart.setMoveSpeed(moveSpeedInt);
-		glueStart.setStopGlueTimePrev(stopGlueTimePrevInt);
-		glueStart.setStopGlueTime(stopGlueTimeInt);
-		glueStart.setUpHeight(upHeightInt);
+//		glueStart.setStopGlueTimePrev(stopGlueTimePrevInt);
+//		glueStart.setStopGlueTime(stopGlueTimeInt);
+//		glueStart.setUpHeight(upHeightInt);
 		glueStart.setOutGlue(isOutGlueSwitch.isChecked());
 		glueStart.setTimeMode(timeModeSwitch.isChecked());
 
@@ -358,13 +358,14 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 			return false;
 		} else if ("".equals(et_start_moveSpeed.getText().toString())) {
 			return false;
-		} else if ("".equals(et_start_stopGlueTimePrev.getText().toString())) {
-			return false;
-		} else if ("".equals(et_start_stopGlueTime.getText().toString())) {
-			return false;
-		} else if ("".equals(et_start_upHeight.getText().toString())) {
-			return false;
-		}
+		} 
+//		else if ("".equals(et_start_stopGlueTimePrev.getText().toString())) {
+//			return false;
+//		} else if ("".equals(et_start_stopGlueTime.getText().toString())) {
+//			return false;
+//		} else if ("".equals(et_start_upHeight.getText().toString())) {
+//			return false;
+//		}
 		return true;
 	}
 

@@ -27,7 +27,7 @@ public class GlueLineStartDao {
 	private ContentValues values = null;
 	String[] columns = { TableLineStart._ID, TableLineStart.OUT_GLUE_TIME_PREV, TableLineStart.OUT_GLUE_TIME,
 			TableLineStart.TIME_MODE, TableLineStart.MOVE_SPEED, TableLineStart.IS_OUT_GLUE,
-			TableLineStart.STOP_GLUE_TIME_PREV, TableLineStart.STOP_GLUE_TIME, TableLineStart.UP_HEIGHT,
+//			TableLineStart.STOP_GLUE_TIME_PREV, TableLineStart.STOP_GLUE_TIME, TableLineStart.UP_HEIGHT,
 			TableLineStart.GLUE_PORT };
 
 	public GlueLineStartDao(Context context) {
@@ -49,9 +49,9 @@ public class GlueLineStartDao {
 		values.put(TableLineStart.TIME_MODE, (boolean) pointGlueLineStartParam.isTimeMode() ? 1 : 0);
 		values.put(TableLineStart.MOVE_SPEED, pointGlueLineStartParam.getMoveSpeed());
 		values.put(TableLineStart.IS_OUT_GLUE, (boolean) pointGlueLineStartParam.isOutGlue() ? 1 : 0);
-		values.put(TableLineStart.STOP_GLUE_TIME_PREV, pointGlueLineStartParam.getStopGlueTimePrev());
-		values.put(TableLineStart.STOP_GLUE_TIME, pointGlueLineStartParam.getStopGlueTime());
-		values.put(TableLineStart.UP_HEIGHT, pointGlueLineStartParam.getUpHeight());
+//		values.put(TableLineStart.STOP_GLUE_TIME_PREV, pointGlueLineStartParam.getStopGlueTimePrev());
+//		values.put(TableLineStart.STOP_GLUE_TIME, pointGlueLineStartParam.getStopGlueTime());
+//		values.put(TableLineStart.UP_HEIGHT, pointGlueLineStartParam.getUpHeight());
 		values.put(TableLineStart.GLUE_PORT, Arrays.toString(pointGlueLineStartParam.getGluePort()));
 
 		long rowID = db.insert(TableLineStart.LINE_START_TABLE, TableLineStart._ID, values);
@@ -83,9 +83,9 @@ public class GlueLineStartDao {
 				start.setTimeMode(cursor.getInt(cursor.getColumnIndex(TableLineStart.TIME_MODE)) == 0 ? false : true);
 				start.setMoveSpeed(cursor.getInt(cursor.getColumnIndex(TableLineStart.MOVE_SPEED)));
 				start.setOutGlue(cursor.getInt(cursor.getColumnIndex(TableLineStart.IS_OUT_GLUE)) == 0 ? false : true);
-				start.setStopGlueTimePrev(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME_PREV)));
-				start.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME)));
-				start.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableLineStart.UP_HEIGHT)));
+//				start.setStopGlueTimePrev(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME_PREV)));
+//				start.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME)));
+//				start.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableLineStart.UP_HEIGHT)));
 				start.setGluePort(ArraysComprehension
 						.boooleanParse(cursor.getString(cursor.getColumnIndex(TableLineStart.GLUE_PORT))));
 
@@ -121,9 +121,9 @@ public class GlueLineStartDao {
 					param.setMoveSpeed(cursor.getInt(cursor.getColumnIndex(TableLineStart.MOVE_SPEED)));
 					param.setOutGlue(
 							cursor.getInt(cursor.getColumnIndex(TableLineStart.IS_OUT_GLUE)) == 0 ? false : true);
-					param.setStopGlueTimePrev(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME_PREV)));
-					param.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME)));
-					param.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableLineStart.UP_HEIGHT)));
+//					param.setStopGlueTimePrev(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME_PREV)));
+//					param.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME)));
+//					param.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableLineStart.UP_HEIGHT)));
 					param.setGluePort(ArraysComprehension
 							.boooleanParse(cursor.getString(cursor.getColumnIndex(TableLineStart.GLUE_PORT))));
 
@@ -167,10 +167,10 @@ public class GlueLineStartDao {
 						param.setMoveSpeed(cursor.getInt(cursor.getColumnIndex(TableLineStart.MOVE_SPEED)));
 						param.setOutGlue(
 								cursor.getInt(cursor.getColumnIndex(TableLineStart.IS_OUT_GLUE)) == 0 ? false : true);
-						param.setStopGlueTimePrev(
-								cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME_PREV)));
-						param.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME)));
-						param.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableLineStart.UP_HEIGHT)));
+//						param.setStopGlueTimePrev(
+//								cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME_PREV)));
+//						param.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableLineStart.STOP_GLUE_TIME)));
+//						param.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableLineStart.UP_HEIGHT)));
 						param.setGluePort(ArraysComprehension
 								.boooleanParse(cursor.getString(cursor.getColumnIndex(TableLineStart.GLUE_PORT))));
 						params.add(param);
@@ -208,9 +208,9 @@ public class GlueLineStartDao {
 						String.valueOf(pointGlueLineStartParam.isTimeMode() ? 1 : 0),
 						String.valueOf(pointGlueLineStartParam.getMoveSpeed()),
 						String.valueOf(pointGlueLineStartParam.isOutGlue() ? 1 : 0),
-						String.valueOf(pointGlueLineStartParam.getStopGlueTimePrev()),
+//						String.valueOf(pointGlueLineStartParam.getStopGlueTimePrev()),
 						String.valueOf(pointGlueLineStartParam.getOutGlueTime()),
-						String.valueOf(pointGlueLineStartParam.getUpHeight()),
+//						String.valueOf(pointGlueLineStartParam.getUpHeight()),
 						Arrays.toString(pointGlueLineStartParam.getGluePort()) },
 				null, null, null);
 		if (cursor != null && cursor.getCount() > 0) {

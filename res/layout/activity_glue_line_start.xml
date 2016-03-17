@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="900dp"
+        android:layout_height="700dp"
         android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
         android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
         android:background="@drawable/task_bottom_linearlayout_bg"
@@ -110,7 +110,7 @@
                 android:textSize="@dimen/activity_title_textsize_sub" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <!-- <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
@@ -178,7 +178,7 @@
                 android:layout_toLeftOf="@id/et_linestart_stopGlueTime"
                 android:text="@string/activity_glue_stopGlueTime"
                 android:textSize="@dimen/activity_title_textsize_sub" />
-        </RelativeLayout>
+        </RelativeLayout> -->
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -217,7 +217,7 @@
                 android:text="@string/activity_mm_s"
                 android:textSize="@dimen/activity_title_textsize_sub" />
 
-            <TextView
+           <!--  <TextView
                 android:id="@+id/tv_upHeight_mm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                 android:layout_centerInParent="true"
                 android:layout_toLeftOf="@id/et_linestart_upHeight"
                 android:text="@string/activity_glue_alone_upHeight"
-                android:textSize="@dimen/activity_title_textsize_sub" />
+                android:textSize="@dimen/activity_title_textsize_sub" /> -->
         </RelativeLayout>
 
         <LinearLayout
