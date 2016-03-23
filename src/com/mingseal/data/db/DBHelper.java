@@ -3,6 +3,8 @@
  */
 package com.mingseal.data.db;
 
+import com.mingseal.data.db.DBInfo.DB;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -77,5 +79,6 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(DBInfo.TablePointTask.DROP_POINT_TABLE);
 		onCreate(db);
 	}
+	
 
 }

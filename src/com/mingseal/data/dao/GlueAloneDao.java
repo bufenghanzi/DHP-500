@@ -234,4 +234,13 @@ public class GlueAloneDao {
 		return id;
 	}
 
+	/**
+	 * @Title  delsqlite_sequence
+	 * @Description 删除表的自增列,都归零
+	 * @author wj
+	 */
+	public void delsqlite_sequence() {
+		db = dbHelper.getReadableDatabase();
+		db.execSQL("DELETE FROM sqlite_sequence");
+	}
 }

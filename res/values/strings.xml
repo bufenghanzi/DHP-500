@@ -201,6 +201,6 @@
     <string name="data_not_changed">数据没有变化,直接返回</string>
     <string name="data_is_null">有数据为空,请重新填写</string>
     
-    
-    
+     <string name="top">置顶</string>
+     <string name="delete">delete</string>
 </resources>

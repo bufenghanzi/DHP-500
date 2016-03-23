@@ -1144,7 +1144,6 @@ public class TaskActivity extends Activity implements OnClickListener {
 		if (mPointsCur.size()==0) {
 			ToastUtil.displayPromptInfo(this, "请先增加一个任务点");
 		}else {
-			
 			PointType type = mPointsCur.get(selectRadioIDCur).getPointParam().getPointType();
 			Intent intent = null;
 			switch (type) {
@@ -1217,7 +1216,6 @@ public class TaskActivity extends Activity implements OnClickListener {
 		});
 		builder.setNeutralButton(getResources().getString(R.string.is_need_cancel),
 				new DialogInterface.OnClickListener() {
-
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
