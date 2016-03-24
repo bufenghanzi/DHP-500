@@ -7,6 +7,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mingseal.adapter.TestArrayAdapter;
 import com.mingseal.application.UserApplication;
 import com.mingseal.communicate.NetManager;
 import com.mingseal.communicate.SocketInputThread;
@@ -267,9 +268,11 @@ public class GlueArrayActivity extends Activity implements OnClickListener {
 
 		// 初始化
 		arrayParam = new ArrayParam();
-		// 将数组内容与ArrayAdapter连接起来
-		adapterSpinner = ArrayAdapter.createFromResource(this, R.array.arrayMethods,
-				android.R.layout.simple_spinner_item);
+		 //使用自定义的ArrayAdapter  
+		adapterSpinner = new TestArrayAdapter(GlueArrayActivity.this,getResources().getStringArray(R.array.arrayMethods));  
+//		// 将数组内容与ArrayAdapter连接起来
+//		adapterSpinner = ArrayAdapter.createFromResource(this, R.array.arrayMethods,
+//				android.R.layout.simple_spinner_item);
 		// 设置下拉列表的风格
 		adapterSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// 将adapter添加到Spinner中

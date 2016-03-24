@@ -1145,6 +1145,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 			ToastUtil.displayPromptInfo(this, "请先增加一个任务点");
 		}else {
 			PointType type = mPointsCur.get(selectRadioIDCur).getPointParam().getPointType();
+			System.out.println("TaskActivity打开的方案为："+mPointsCur.get(selectRadioIDCur).getPointParam());
 			Intent intent = null;
 			switch (type) {
 			case POINT_GLUE_ALONE:
@@ -2058,6 +2059,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 				point = params[0].get(i);
 				pointType = getPointType(point);
 				id = point.getPointParam().get_id();
+				System.out.println("主界面保存的数据point.getPointParam()："+point.getPointParam());
 				if (pointType.equals(PointType.POINT_GLUE_ALONE)) {
 					// 如果等于独立点
 					pointGlueAloneParam = aloneMaps.get(id);
