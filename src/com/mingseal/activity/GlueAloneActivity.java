@@ -13,30 +13,23 @@ import com.mingseal.dhp.R;
 import com.mingseal.listener.MaxMinEditWatcher;
 import com.mingseal.listener.MaxMinFocusChangeListener;
 import com.mingseal.listener.MyPopWindowClickListener;
-import com.mingseal.utils.DisplayUtil;
 import com.mingseal.utils.ToastUtil;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
-import android.support.v4.content.SharedPreferencesCompat.EditorCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.NumberPicker;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -53,8 +46,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 
 	private final static String TAG = "GlueAloneActivity";
 	private TextView tv_title;// 标题栏的标题
-
-	private Spinner taskSpinner;// 方案列表
 
 	// private NumberPicker dianjiaoPicker;// 点胶延时
 	// private NumberPicker tingjiaoPicker;// 停胶延时
@@ -90,7 +81,7 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 	private boolean[] gluePortBoolean;
 	private GlueAloneDao glueAloneDao;
 
-	private int param_id = 1;
+	private int param_id = 1;//
 	private int mFlag;// 0代表增加数据，1代表更新数据
 	private int mType;// 1表示要更新数据
 	private int dotGlueTime = 0;
@@ -102,7 +93,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 	private boolean isNull = false;
 	private boolean flag = false;// 可以与用户交互，初始化完成标志
 	private Handler handler;
-	private LinearLayout parent;
 	private LinearLayout plan;
 	// 下拉框依附组件宽度，也将作为下拉框的宽度
 	private int pwidth;
@@ -123,6 +113,7 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 
 		// point = (Point)
 		// intent.getSerializableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
+		//point携带的参数方案[_id=1, pointType=POINT_GLUE_FACE_START]
 		point = intent.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
 
 		mFlag = intent.getIntExtra(MyPopWindowClickListener.FLAG_KEY, 0);
@@ -142,6 +133,8 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		if (glueAloneLists == null || glueAloneLists.isEmpty()) {
 			glueAlone = new PointGlueAloneParam();
 			glueAloneDao.insertGlueAlone(glueAlone);
+			//插入主键id
+			glueAlone.set_id(param_id);
 		}
 
 		glueAloneLists = glueAloneDao.findAllGlueAloneParams();
@@ -149,14 +142,13 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		// 初始化Handler,用来处理消息
 		handler = new Handler(GlueAloneActivity.this);
 		// 初始化界面组件
-		parent = (LinearLayout) findViewById(R.id.parent);
 		plan = (LinearLayout) findViewById(R.id.tv_plan);
 		// 如果为1的话，需要设置值，准备跟新
 		if (mType == 1) {
-			System.out.println("point.getPointParam():" + point.getPointParam());
+			System.out.println("传进来的主键point.getPointParam().get_id():"+ point.getPointParam().get_id());
+			System.out.println("point.getPointParam():" +glueAloneDao.getPointGlueAloneParamById(point.getPointParam().get_id()));
 			System.out.println("point:" + point);
-			System.out.println("(PointGlueAloneParam)point.getPointParam():"+ (PointGlueAloneParam) point.getPointParam());
-			PointGlueAloneParam GlueAloneParam = (PointGlueAloneParam) point.getPointParam();
+			PointGlueAloneParam GlueAloneParam = glueAloneDao.getPointGlueAloneParamById(point.getPointParam().get_id());
 			param_id = glueAloneDao.getAloneParamIdByParam(GlueAloneParam);// 传过来的方案的参数序列主键。
 			SetDateAndRefreshUI(GlueAloneParam);
 		} else {
@@ -636,13 +628,14 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 
 			// 删除到最后一个
 			if (glueAloneLists.size() == 1 && del_position == 0) {
-				glueAlone = new PointGlueAloneParam();
+				PointGlueAloneParam lastglueAlone = new PointGlueAloneParam();
 				glueAloneDao.deleteGlueAlone(glueAloneLists.get(0));//删除当前方案
-				glueAloneDao.insertGlueAlone(glueAlone);//默认方案
+				glueAloneDao.insertGlueAlone(lastglueAlone);//默认方案
+				lastglueAlone.set_id(glueAloneLists.get(0).get_id()+1);//设置主键
 				glueAloneLists = glueAloneDao.findAllGlueAloneParams();
 				mAloneAdapter.setGlueAloneLists(glueAloneLists);
 				mAloneAdapter.notifyDataSetChanged();
-				SetDateAndRefreshUI(glueAlone);
+				SetDateAndRefreshUI(lastglueAlone);
 			} else {
 				glueAloneDao.deleteGlueAlone(glueAloneLists.get(del_position));
 				glueAloneLists.remove(del_position);
