@@ -7,8 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
+import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableClear;
+import com.mingseal.data.db.DBInfo.TableFaceEnd;
+import com.mingseal.data.db.DBInfo.TableFaceStart;
 import com.mingseal.data.point.glueparam.PointGlueClearParam;
+import com.mingseal.data.point.glueparam.PointGlueFaceEndParam;
+import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
+import com.mingseal.utils.ArraysComprehension;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -112,5 +118,76 @@ public class GlueClearDao {
 		}
 		return params;
 
+	}
+	/**
+	 * @Title  getPointGlueClearParamByID
+	 * @Description  通过id找到的参数
+	 * @author wj
+	 * @param id
+	 * @return
+	 */
+	public PointGlueClearParam getPointGlueClearParamByID(int id) {
+		PointGlueClearParam param = new PointGlueClearParam();
+		db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.query(TableClear.CLEAR_TABLE, columns, TableClear._ID + "=?",
+				new String[] { String.valueOf(id) }, null, null, null);
+
+		try {
+			db.beginTransaction();
+			if (cursor != null && cursor.getCount() > 0) {
+				while (cursor.moveToNext()) {
+					param.setClearGlueTime(cursor.getInt(cursor.getColumnIndex(TableClear.CLEAR_GLUE_TIME)));
+				}
+			}
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			cursor.close();
+			db.endTransaction();
+			db.close();
+		}
+		return param;
+	}
+	/**
+	 * @Title  getGlueClearParamIDByParam
+	 * @Description 通过参数方案寻找到当前方案的主键
+	 * @author wj
+	 * @param pointGlueClearParam
+	 * @return 当前方案的主键
+	 */
+	public int getGlueClearParamIDByParam(PointGlueClearParam pointGlueClearParam) {
+		int id = -1;
+		db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.query(TableClear.CLEAR_TABLE, columns,
+				TableClear.CLEAR_GLUE_TIME + "=?",
+				new String[] { String.valueOf(pointGlueClearParam.getClearGlueTime())},
+				null, null, null);
+		if (cursor != null && cursor.getCount() > 0) {
+			while (cursor.moveToNext()) {
+				id = cursor.getInt(cursor.getColumnIndex(TableClear._ID));
+			}
+		}
+		db.close();
+		if (-1 == id) {
+			id = (int) insertGlueClear(pointGlueClearParam);
+		}
+		return id;
+	}
+	
+	/**
+	 * @Title  deleteParam
+	 * @Description 
+	 * @author wj
+	 * @param pointGlueClearParam
+	 * @return
+	 */
+	public Integer deleteParam(PointGlueClearParam pointGlueClearParam) {
+		db = dbHelper.getWritableDatabase();
+		int rowID = db.delete(DBInfo.TableClear.CLEAR_TABLE, TableClear._ID + "=?",
+				new String[] { String.valueOf(pointGlueClearParam.get_id()) });
+
+		db.close();
+		return rowID;
 	}
 }

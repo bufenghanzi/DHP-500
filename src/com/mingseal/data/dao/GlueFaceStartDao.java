@@ -8,7 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
+import com.mingseal.data.db.DBInfo;
+import com.mingseal.data.db.DBInfo.TableAlone;
 import com.mingseal.data.db.DBInfo.TableFaceStart;
+import com.mingseal.data.point.glueparam.PointGlueAloneParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
 import com.mingseal.utils.ArraysComprehension;
 
@@ -233,6 +236,22 @@ public class GlueFaceStartDao {
 
 		}
 		return id;
+	}
+	
+	/**
+	 * @Title  deleteGlueAlone
+	 * @Description 删除某一行数据
+	 * @author wj
+	 * @param pointGlueAloneParam
+	 * @return 1为成功删除，0为未成功删除
+	 */
+	public Integer deleteParam(PointGlueFaceStartParam pointGlueFaceStartParam) {
+		db = dbHelper.getWritableDatabase();
+		int rowID = db.delete(DBInfo.TableFaceStart.FACE_START_TABLE, TableFaceStart._ID + "=?",
+				new String[] { String.valueOf(pointGlueFaceStartParam.get_id()) });
+
+		db.close();
+		return rowID;
 	}
 
 }

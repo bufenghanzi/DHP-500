@@ -113,15 +113,15 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 
 		// point = (Point)
 		// intent.getSerializableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
-		//point携带的参数方案[_id=1, pointType=POINT_GLUE_FACE_START]
-		point = intent.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
+		// point携带的参数方案[_id=1, pointType=POINT_GLUE_FACE_START]
+		point = intent
+				.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
 
 		mFlag = intent.getIntExtra(MyPopWindowClickListener.FLAG_KEY, 0);
 		mType = intent.getIntExtra(MyPopWindowClickListener.TYPE_KEY, 0);
 		Log.d(TAG, point.toString() + " FLAG:" + mFlag);
 
 		initPicker();
-
 		tv_title.setText(getResources().getString(R.string.activity_glue_alone));
 		rl_back.setOnClickListener(this);
 		rl_save.setOnClickListener(this);
@@ -133,7 +133,7 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		if (glueAloneLists == null || glueAloneLists.isEmpty()) {
 			glueAlone = new PointGlueAloneParam();
 			glueAloneDao.insertGlueAlone(glueAlone);
-			//插入主键id
+			// 插入主键id
 			glueAlone.set_id(param_id);
 		}
 
@@ -145,10 +145,14 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		plan = (LinearLayout) findViewById(R.id.tv_plan);
 		// 如果为1的话，需要设置值，准备跟新
 		if (mType == 1) {
-			System.out.println("传进来的主键point.getPointParam().get_id():"+ point.getPointParam().get_id());
-			System.out.println("point.getPointParam():" +glueAloneDao.getPointGlueAloneParamById(point.getPointParam().get_id()));
+			System.out.println("传进来的主键point.getPointParam().get_id():"
+					+ point.getPointParam().get_id());
+			System.out.println("point.getPointParam():"
+					+ glueAloneDao.getPointGlueAloneParamById(point
+							.getPointParam().get_id()));
 			System.out.println("point:" + point);
-			PointGlueAloneParam GlueAloneParam = glueAloneDao.getPointGlueAloneParamById(point.getPointParam().get_id());
+			PointGlueAloneParam GlueAloneParam = glueAloneDao
+					.getPointGlueAloneParamById(point.getPointParam().get_id());
 			param_id = glueAloneDao.getAloneParamIdByParam(GlueAloneParam);// 传过来的方案的参数序列主键。
 			SetDateAndRefreshUI(GlueAloneParam);
 		} else {
@@ -366,6 +370,8 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		item_alone_dotglue = (TextView) findViewById(R.id.item_alone_dotglue);
 		item_alone_stopglue = (TextView) findViewById(R.id.item_alone_stopglue);
 		item_alone_upheight = (TextView) findViewById(R.id.item_alone_upheight);
+		// 初始化界面组件
+		plan = (LinearLayout) findViewById(R.id.tv_plan);
 		/* =================== end =================== */
 
 		isGluePort = new Switch[GWOutPort.USER_O_NO_ALL.ordinal()];// 初始化20个点胶口
@@ -461,7 +467,7 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		// 设置数组的方法
 		glueAlone.setGluePort(gluePortBoolean);
 
-//		glueAlone.set_id(param_id);先不设id，等检查是否存在之后，获取数据库的id再赋值
+		// glueAlone.set_id(param_id);先不设id，等检查是否存在之后，获取数据库的id再赋值
 
 		return glueAlone;
 	}
@@ -512,7 +518,7 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 					// ToastUtil.displayPromptInfo(GlueAloneActivity.this,
 					// getResources()
 					// .getString(R.string.task_is_exist_yes));
-					System.out.println("完成按钮响应已经存在"+id);
+//					System.out.println("完成按钮响应已经存在" + id);
 					param_id = glueAloneDao.getAloneParamIdByParam(glueAlone);// 默认的参数序列主键。
 					glueAlone.set_id(param_id);
 				} else {
@@ -521,10 +527,10 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 					glueAlone.set_id((int) rowID);
 				}
 				point.setPointParam(glueAlone);
-				System.out
-						.println("完成按钮响应point.setPointParam(glueAlone)" + glueAlone);
+//				System.out.println("完成按钮响应point.setPointParam(glueAlone)"
+//						+ glueAlone);
 
-				Log.i(TAG, point.toString());
+//				Log.i(TAG, point.toString());
 				Bundle extras = new Bundle();
 				extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY,
 						point);
@@ -564,16 +570,18 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 			int position = data.getInt("selIndex");
 			param_id = glueAloneLists.get(position).get_id();// 参数序列id等于主键
 			System.out.println("点击的position:" + position);
-			System.out.println("点击的主键:" + glueAloneLists.get(position).get_id());
+			System.out
+					.println("点击的主键:" + glueAloneLists.get(position).get_id());
 			PointGlueAloneParam glueAlone = glueAloneLists.get(position);
-			item_num.setText(String.valueOf(glueAloneLists.indexOf(glueAlone) + 1)
-					+ "");
-			item_alone_dotglue.setText(glueAlone.getDotGlueTime() + "");
-			item_alone_stopglue.setText(glueAlone.getStopGlueTime() + "");
-			item_alone_upheight.setText(glueAlone.getUpHeight() + "");
+//			item_num.setText(String.valueOf(glueAloneLists.indexOf(glueAlone) + 1)
+//					+ "");
+//			item_alone_dotglue.setText(glueAlone.getDotGlueTime() + "");
+//			item_alone_stopglue.setText(glueAlone.getStopGlueTime() + "");
+//			item_alone_upheight.setText(glueAlone.getUpHeight() + "");
+			SetDateAndRefreshUI(glueAlone);
 			dismiss();
-			// 更新界面
-			UpdateInfos(glueAlone);
+//			// 更新界面
+//			UpdateInfos(glueAlone);
 			break;
 		case Const.POINTGLUEALONE_TOP:
 			// 置顶
@@ -622,16 +630,17 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 			int del_position = data.getInt("del_Index");
 			System.out.println("删除的主键param_id：" + param_id);
 			System.out.println("删除的位置del_position：" + del_position);
-			System.out.println("删除之前的glueAloneLists的大小：" + glueAloneLists.size());
+			System.out.println("删除之前的glueAloneLists的大小："
+					+ glueAloneLists.size());
 			System.out.println("删除之前的方案主键:"
 					+ glueAloneLists.get(del_position).get_id());
 
 			// 删除到最后一个
 			if (glueAloneLists.size() == 1 && del_position == 0) {
 				PointGlueAloneParam lastglueAlone = new PointGlueAloneParam();
-				glueAloneDao.deleteGlueAlone(glueAloneLists.get(0));//删除当前方案
-				glueAloneDao.insertGlueAlone(lastglueAlone);//默认方案
-				lastglueAlone.set_id(glueAloneLists.get(0).get_id()+1);//设置主键
+				glueAloneDao.deleteGlueAlone(glueAloneLists.get(0));// 删除当前方案
+				glueAloneDao.insertGlueAlone(lastglueAlone);// 默认方案
+				lastglueAlone.set_id(glueAloneLists.get(0).get_id() + 1);// 设置主键
 				glueAloneLists = glueAloneDao.findAllGlueAloneParams();
 				mAloneAdapter.setGlueAloneLists(glueAloneLists);
 				mAloneAdapter.notifyDataSetChanged();
@@ -661,7 +670,7 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 				// System.out.println("插入成功！");
 				// }
 			}
-			//删除后上半部分默认选中第一条方案
+			// 删除后上半部分默认选中第一条方案
 			UpdateInfos(glueAloneLists.get(0));
 			// mAloneAdapter.setGlueAloneLists(glueAloneLists);
 			break;

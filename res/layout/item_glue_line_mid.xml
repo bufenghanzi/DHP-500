@@ -1,96 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 面起始点方案里面显示的布局 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.mingseal.ui.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/item_num"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/item_glue_marginLeft"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:layout_weight="1"
-        android:text="1"
-        android:textSize="@dimen/item_glue_textsize" />
+    <com.mingseal.ui.FrontLayout
+        android:id="@+id/front"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_glue_FrontLayout"
+        android:background="#ffffff" >
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/item_glue_marginLeft"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:layout_weight="2"
-        android:text="@string/activity_glue_radius"
-        android:textSize="@dimen/item_glue_textsize" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/item_mid_radius"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:layout_weight="1"
-        android:gravity="right"
-        android:text="1000"
-        android:textSize="@dimen/item_glue_textsize" />
+            <TextView
+                android:id="@+id/item_num"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_glue_marginLeft"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:layout_weight="1"
+                android:text="1"
+                android:textSize="@dimen/item_glue_textsize" />
 
-    <TextView
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_glue_marginLeft"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:layout_weight="2"
+                android:text="@string/activity_glue_radius"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:id="@+id/item_mid_radius"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="1000"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:text="@string/activity_mm"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_glue_marginLeft"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:layout_weight="2"
+                android:text="@string/activity_glue_stopGlueDisPrev"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:id="@+id/item_mid_stopDisPrev"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="500"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:text="@string/activity_mm"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_glue_marginLeft"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:layout_weight="2"
+                android:text="@string/activity_glue_stopGlueDisNext"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:id="@+id/item_mid_stopDisNext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="1000"
+                android:textSize="@dimen/item_glue_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/item_glue_marginTop"
+                android:text="@string/activity_mm"
+                android:textSize="@dimen/item_glue_textsize" />
+        </LinearLayout>
+    </com.mingseal.ui.FrontLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:text="@string/activity_mm"
-        android:textSize="@dimen/item_glue_textsize" />
+        android:orientation="horizontal" >
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/item_glue_marginLeft"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:layout_weight="2"
-        android:text="@string/activity_glue_stopGlueDisPrev"
-        android:textSize="@dimen/item_glue_textsize" />
+        <Button
+            android:id="@+id/bt_top"
+            android:layout_width="@dimen/item_glue_btn_top"
+            android:layout_height="fill_parent"
+            android:background="#888888"
+            android:gravity="center"
+            android:text="@string/top"
+            android:textColor="@android:color/white" />
 
-    <TextView
-        android:id="@+id/item_mid_stopDisPrev"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:layout_weight="1"
-        android:gravity="right"
-        android:text="500"
-        android:textSize="@dimen/item_glue_textsize" />
+        <Button
+            android:id="@+id/bt_delete"
+            android:layout_width="@dimen/item_glue_btn_del"
+            android:layout_height="fill_parent"
+            android:background="#ff0000"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:text="@string/activity_mm"
-        android:textSize="@dimen/item_glue_textsize" />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/item_glue_marginLeft"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:layout_weight="2"
-        android:text="@string/activity_glue_stopGlueDisNext"
-        android:textSize="@dimen/item_glue_textsize" />
-
-    <TextView
-        android:id="@+id/item_mid_stopDisNext"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:layout_weight="1"
-        android:gravity="right"
-        android:text="1000"
-        android:textSize="@dimen/item_glue_textsize" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/item_glue_marginTop"
-        android:text="@string/activity_mm"
-        android:textSize="@dimen/item_glue_textsize" />
-
-</LinearLayout>
+</com.mingseal.ui.SwipeLayout>

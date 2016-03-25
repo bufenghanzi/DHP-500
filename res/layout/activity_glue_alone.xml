@@ -351,17 +351,6 @@
                     android:text="@string/activity_glue_fangan"
                     android:textSize="@dimen/activity_title_textsize_sub" />
 
-                <!--
-                     <TextView
-                    android:id="@+id/tv_plan"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:textSize="@dimen/item_glue_textsize" />
-                -->
-
                 <LinearLayout
                     android:id="@+id/tv_plan"
                     android:layout_width="match_parent"

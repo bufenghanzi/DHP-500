@@ -84,8 +84,7 @@ public class PointGlueAloneAdapter extends BaseAdapter {
 			holder.tv_stopGlue = (TextView) convertView.findViewById(R.id.item_alone_stopglue);
 			holder.tv_upHeight = (TextView) convertView.findViewById(R.id.item_alone_upheight);
 			holder.mButtonTOP = (Button) convertView.findViewById(R.id.bt_top);
-			holder.mButtonDel = (Button) convertView
-					.findViewById(R.id.bt_delete);
+			holder.mButtonDel = (Button) convertView.findViewById(R.id.bt_delete);
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
@@ -96,7 +95,7 @@ public class PointGlueAloneAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View v) {
-				ToastUtil.displayPromptInfo(context, "item click: " + position);
+//				ToastUtil.displayPromptInfo(context, "item click: " + position);
 				Message msg = new Message();
 				Bundle data = new Bundle();
 				// 设置选中索引
@@ -131,7 +130,7 @@ public class PointGlueAloneAdapter extends BaseAdapter {
 			int id = v.getId();
 			if (id == R.id.bt_top) {
 				closeAllLayout();
-				ToastUtil.displayPromptInfo(context, "position: " + position + " top");
+//				ToastUtil.displayPromptInfo(context, "position: " + position + " top");
 				Message msg = new Message();
 				Bundle data = new Bundle();
 				// 设置选中索引
@@ -142,7 +141,7 @@ public class PointGlueAloneAdapter extends BaseAdapter {
 				handler.sendMessage(msg);
 			} else if (id == R.id.bt_delete) {
 				closeAllLayout();
-				ToastUtil.displayPromptInfo(context, "position: " + position + " del");
+//				ToastUtil.displayPromptInfo(context, "position: " + position + " del");
 				Message msg = new Message();
 				Bundle data = new Bundle();
 				// 设置选中索引

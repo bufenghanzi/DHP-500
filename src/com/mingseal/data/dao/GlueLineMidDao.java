@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
+import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableLineMid;
+import com.mingseal.data.db.DBInfo.TableLineStart;
 import com.mingseal.data.point.glueparam.PointGlueLineMidParam;
 import com.mingseal.utils.ArraysComprehension;
 
@@ -224,6 +226,22 @@ public class GlueLineMidDao {
 		}
 		return id;
 
+	}
+
+	/**
+	 * @Title  deleteParam
+	 * @Description 
+	 * @author wj
+	 * @param pointGlueLineMidParam
+	 * @return
+	 */
+	public int deleteParam(PointGlueLineMidParam pointGlueLineMidParam) {
+		db = dbHelper.getWritableDatabase();
+		int rowID = db.delete(DBInfo.TableLineMid.LINE_MID_TABLE, TableLineMid._ID + "=?",
+				new String[] { String.valueOf(pointGlueLineMidParam.get_id()) });
+
+		db.close();
+		return rowID;
 	}
 
 }

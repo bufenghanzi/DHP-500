@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
+import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableFaceEnd;
+import com.mingseal.data.db.DBInfo.TableFaceStart;
 import com.mingseal.data.point.glueparam.PointGlueFaceEndParam;
+import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -180,5 +183,20 @@ public class GlueFaceEndDao {
 			id = (int) insertGlueFaceEnd(pointGlueFaceEndParam);
 		}
 		return id;
+	}
+	/**
+	 * @Title  deletepointGlueFaceEndParam
+	 * @Description 删除某一行数据
+	 * @author wj
+	 * @param pointGlueAloneParam
+	 * @return 1为成功删除，0为未成功删除
+	 */
+	public Integer deleteParam(PointGlueFaceEndParam pointGlueFaceEndParam) {
+		db = dbHelper.getWritableDatabase();
+		int rowID = db.delete(DBInfo.TableFaceEnd.FACE_END_TABLE, TableFaceEnd._ID + "=?",
+				new String[] { String.valueOf(pointGlueFaceEndParam.get_id()) });
+
+		db.close();
+		return rowID;
 	}
 }

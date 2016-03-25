@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
+import com.mingseal.data.db.DBInfo;
+import com.mingseal.data.db.DBInfo.TableFaceEnd;
 import com.mingseal.data.db.DBInfo.TableLineEnd;
 import com.mingseal.data.point.glueparam.PointGlueLineEndParam;
 
@@ -221,5 +223,14 @@ public class GlueLineEndDao {
 			}
 		}
 		return id;
+	}
+
+	public int deleteParam(PointGlueLineEndParam param) {
+		db = dbHelper.getWritableDatabase();
+		int rowID = db.delete(DBInfo.TableLineEnd.LINE_END_TABLE, TableLineEnd._ID + "=?",
+				new String[] { String.valueOf(param.get_id()) });
+
+		db.close();
+		return rowID;
 	}
 }

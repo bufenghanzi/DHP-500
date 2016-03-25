@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
+import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableLineStart;
 import com.mingseal.data.point.glueparam.PointGlueLineStartParam;
 import com.mingseal.utils.ArraysComprehension;
@@ -245,6 +246,22 @@ public class GlueLineStartDao {
 		}
 		return id;
 
+	}
+
+	/**
+	 * @Title  deleteParam
+	 * @Description 删除某一行数据
+	 * @author wj
+	 * @param pointGlueLineStartParam
+	 * @return
+	 */
+	public int deleteParam(PointGlueLineStartParam pointGlueLineStartParam) {
+		db = dbHelper.getWritableDatabase();
+		int rowID = db.delete(DBInfo.TableLineStart.LINE_START_TABLE, TableLineStart._ID + "=?",
+				new String[] { String.valueOf(pointGlueLineStartParam.get_id()) });
+
+		db.close();
+		return rowID;
 	}
 
 }

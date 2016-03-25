@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
+import com.mingseal.data.db.DBInfo;
+import com.mingseal.data.db.DBInfo.TableFaceEnd;
 import com.mingseal.data.db.DBInfo.TableOutputIO;
 import com.mingseal.data.point.glueparam.PointGlueOutputIOParam;
 import com.mingseal.utils.ArraysComprehension;
@@ -183,6 +185,15 @@ public class GlueOutputDao {
 			db.close();
 		}
 		return param;
+	}
+
+	public int deleteParam(PointGlueOutputIOParam pointGlueOutputIOParam) {
+		db = dbHelper.getWritableDatabase();
+		int rowID = db.delete(DBInfo.TableOutputIO.OUTPUT_IO_TABLE, TableOutputIO._ID + "=?",
+				new String[] { String.valueOf(pointGlueOutputIOParam.get_id()) });
+
+		db.close();
+		return rowID;
 	}
 
 }

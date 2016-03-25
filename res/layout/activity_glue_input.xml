@@ -85,7 +85,8 @@
                 android:layout_centerInParent="true"
                 android:text="@string/activity_ms"
                 android:textSize="@dimen/activity_title_textsize_sub" />
-            <EditText
+
+            <EditText
                 android:id="@+id/et_input_goTimeNext"
                 android:layout_width="@dimen/edittext_input_width"
                 android:layout_height="@dimen/edittext_input_height"
@@ -251,11 +252,91 @@
                     android:text="@string/activity_glue_fangan"
                     android:textSize="@dimen/activity_title_textsize_sub" />
 
-                <Spinner
+                <!--
+                     <Spinner
                     android:id="@+id/spinner_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical" />
+                -->
+
+                <LinearLayout
+                    android:id="@+id/tv_plan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" >
+
+                    <TextView
+                        android:id="@+id/item_num"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/item_glue_marginLeft"
+                        android:layout_marginTop="@dimen/item_glue_marginTop"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="1"
+                        android:textSize="@dimen/item_glue_textsize" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/item_glue_marginLeft"
+                        android:layout_marginTop="@dimen/item_glue_marginTop"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_glue_goTimePrev"
+                        android:textSize="@dimen/item_glue_textsize" />
+
+                    <TextView
+                        android:id="@+id/item_goTimePrev"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/item_glue_marginTop"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="500"
+                        android:textSize="@dimen/item_glue_textsize" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/item_glue_marginTop"
+                        android:text="@string/activity_ms"
+                        android:textSize="@dimen/item_glue_textsize" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/item_glue_marginLeft"
+                        android:layout_marginTop="@dimen/item_glue_marginTop"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"
+                        android:text="@string/activity_glue_goTimeNext"
+                        android:textSize="@dimen/item_glue_textsize" />
+
+                    <TextView
+                        android:id="@+id/item_goTimeNext"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/item_glue_marginTop"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="1000"
+                        android:textSize="@dimen/item_glue_textsize" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/item_glue_marginTop"
+                        android:text="@string/activity_ms"
+                        android:textSize="@dimen/item_glue_textsize" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" >
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <RelativeLayout
