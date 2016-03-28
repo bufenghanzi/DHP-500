@@ -215,7 +215,6 @@ public class GlueOutputActivity extends Activity implements OnClickListener, Cal
 		ioSwitch[9].setChecked(glueOutputIOParam.getInputPort()[9]);
 		ioSwitch[10].setChecked(glueOutputIOParam.getInputPort()[10]);
 		ioSwitch[11].setChecked(glueOutputIOParam.getInputPort()[11]);
-		ioSwitch[12].setChecked(glueOutputIOParam.getInputPort()[12]);
 		
 	}
 	/**

@@ -24,7 +24,7 @@ public class GlueAloneDao {
 	private SQLiteDatabase db = null;
 	private ContentValues values = null;
 	String[] columns = { TableAlone._ID, TableAlone.DOT_GLUE_TIME, TableAlone.STOP_GLUE_TIME, TableAlone.UP_HEIGHT,
-			TableAlone.IS_OUT_GLUE, TableAlone.IS_PAUSE, TableAlone.GLUE_PORT ,TableAlone.PLAN};
+			TableAlone.IS_OUT_GLUE, TableAlone.IS_PAUSE, TableAlone.GLUE_PORT };
 
 	public GlueAloneDao(Context context) {
 		dbHelper = new DBHelper(context);
