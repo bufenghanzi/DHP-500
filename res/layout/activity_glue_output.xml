@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="560dp"
         android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
         android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
         android:background="@drawable/task_bottom_linearlayout_bg"
@@ -183,14 +183,6 @@
                     android:textOff="@string/activity_no"
                     android:textOn="@string/activity_yes" />
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
-            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
-            android:orientation="horizontal" >
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -213,6 +205,14 @@
                     android:textOff="@string/activity_no"
                     android:textOn="@string/activity_yes" />
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+            android:orientation="horizontal" >
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -220,6 +220,20 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io5"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
             </LinearLayout>
 
             <LinearLayout
@@ -228,6 +242,160 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io6"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io7"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io8"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io9"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io10"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io11"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/activity_glue_io12"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <Switch
+                    android:id="@+id/switch_glueport12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" />
             </LinearLayout>
         </LinearLayout>
 
@@ -251,14 +419,6 @@
                     android:gravity="center_vertical"
                     android:text="@string/activity_glue_fangan"
                     android:textSize="@dimen/activity_title_textsize_sub" />
-
-                <!--
-                     <Spinner
-                    android:id="@+id/spinner_output"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical" />
-                -->
 
                 <LinearLayout
                     android:id="@+id/tv_plan"
@@ -404,4 +564,4 @@
         </RelativeLayout>
     </LinearLayout>
 
-</LinearLayout>
+  </LinearLayout>

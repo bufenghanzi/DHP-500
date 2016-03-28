@@ -126,8 +126,7 @@ public class GlueOutputActivity extends Activity implements OnClickListener, Cal
 		setContentView(R.layout.activity_glue_output);
 
 		intent = getIntent();
-		point = intent
-				.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
+		point = intent.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
 		mFlag = intent.getIntExtra(MyPopWindowClickListener.FLAG_KEY, 0);
 		mType = intent.getIntExtra(MyPopWindowClickListener.TYPE_KEY, 0);
 
@@ -208,6 +207,15 @@ public class GlueOutputActivity extends Activity implements OnClickListener, Cal
 		ioSwitch[1].setChecked(glueOutputIOParam.getInputPort()[1]);
 		ioSwitch[2].setChecked(glueOutputIOParam.getInputPort()[2]);
 		ioSwitch[3].setChecked(glueOutputIOParam.getInputPort()[3]);
+		ioSwitch[4].setChecked(glueOutputIOParam.getInputPort()[4]);
+		ioSwitch[5].setChecked(glueOutputIOParam.getInputPort()[5]);
+		ioSwitch[6].setChecked(glueOutputIOParam.getInputPort()[6]);
+		ioSwitch[7].setChecked(glueOutputIOParam.getInputPort()[7]);
+		ioSwitch[8].setChecked(glueOutputIOParam.getInputPort()[8]);
+		ioSwitch[9].setChecked(glueOutputIOParam.getInputPort()[9]);
+		ioSwitch[10].setChecked(glueOutputIOParam.getInputPort()[10]);
+		ioSwitch[11].setChecked(glueOutputIOParam.getInputPort()[11]);
+		ioSwitch[12].setChecked(glueOutputIOParam.getInputPort()[12]);
 		
 	}
 	/**
@@ -284,6 +292,14 @@ public class GlueOutputActivity extends Activity implements OnClickListener, Cal
 		ioSwitch[2] = (Switch) findViewById(R.id.switch_glueport3);
 		ioSwitch[3] = (Switch) findViewById(R.id.switch_glueport4);
 		/* =================== begin =================== */
+		ioSwitch[4] = (Switch) findViewById(R.id.switch_glueport5);
+		ioSwitch[5] = (Switch) findViewById(R.id.switch_glueport6);
+		ioSwitch[6] = (Switch) findViewById(R.id.switch_glueport7);
+		ioSwitch[7] = (Switch) findViewById(R.id.switch_glueport8);
+		ioSwitch[8] = (Switch) findViewById(R.id.switch_glueport9);
+		ioSwitch[9] = (Switch) findViewById(R.id.switch_glueport10);
+		ioSwitch[10] = (Switch) findViewById(R.id.switch_glueport11);
+		ioSwitch[11] = (Switch) findViewById(R.id.switch_glueport12);
 		tv_num = (TextView) findViewById(R.id.item_num);
 		tv_goTimePrev = (TextView) findViewById(R.id.item_goTimePrev);
 		tv_goTimeNext = (TextView) findViewById(R.id.item_goTimeNext);
@@ -361,6 +377,15 @@ public class GlueOutputActivity extends Activity implements OnClickListener, Cal
 		ioBoolean[1] = ioSwitch[1].isChecked();
 		ioBoolean[2] = ioSwitch[2].isChecked();
 		ioBoolean[3] = ioSwitch[3].isChecked();
+		ioBoolean[4] = ioSwitch[4].isChecked();
+		ioBoolean[5] = ioSwitch[5].isChecked();
+		ioBoolean[6] = ioSwitch[6].isChecked();
+		ioBoolean[7] = ioSwitch[7].isChecked();
+		ioBoolean[8] = ioSwitch[8].isChecked();
+		ioBoolean[9] = ioSwitch[9].isChecked();
+		ioBoolean[10] = ioSwitch[10].isChecked();
+		ioBoolean[11] = ioSwitch[11].isChecked();
+		ioBoolean[12] = ioSwitch[12].isChecked();
 		outputIO.setInputPort(ioBoolean);
 //		outputIO.set_id(param_id);
 

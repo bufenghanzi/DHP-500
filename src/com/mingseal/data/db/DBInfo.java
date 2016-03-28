@@ -176,17 +176,23 @@ public class DBInfo {
 		public static final String GLUE_PORT = "glueport";
 
 		/**
+		 * 方案号
+		 */
+		public static final String PLAN="plan_id";
+		
+		/**
 		 * 创建独立表语
 		 */
 		public static final String CREATE_ALONE_TABLE = "create table if not exists " + ALONE_TABLE + "(" + _ID
 				+ " integer primary key autoincrement, " + DOT_GLUE_TIME + " integer, " + STOP_GLUE_TIME + " integer, "
-				+ UP_HEIGHT + " integer, " + IS_OUT_GLUE + " integer, " + IS_PAUSE + " integer, " + GLUE_PORT + " BLOB"
+				+ UP_HEIGHT + " integer, " + IS_OUT_GLUE + " integer, " + IS_PAUSE + " integer, " + GLUE_PORT + " BLOB, "+ PLAN +" integer "
 				+ ");";
 
 		/**
 		 * 删除独立表语
 		 */
 		public static final String DROP_ALONE_TABLE = "drop table " + ALONE_TABLE;
+		
 	}
 
 	/**

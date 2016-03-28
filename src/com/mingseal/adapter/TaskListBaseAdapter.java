@@ -132,7 +132,13 @@ public class TaskListBaseAdapter extends BaseAdapter {
 					newValues.add(point);
 				}
 			}
-			mObjects = newValues;
+			/*=================== begin ===================*/
+			if (newValues.isEmpty()) {
+				mObjects=mOriginalValues;
+			}else {
+				mObjects = newValues;
+			}
+			/*===================  end  ===================*/
 		}
 		selectItem = 0;// 默认选中搜索数据的第一条数据
 		notifyDataSetChanged();

@@ -53,6 +53,14 @@
     <string name="activity_glue_io2">IO口2:</string>
     <string name="activity_glue_io3">IO口3:</string>
     <string name="activity_glue_io4">IO口4:</string>
+    <string name="activity_glue_io5">IO口5:</string>
+    <string name="activity_glue_io6">IO口6:</string>
+    <string name="activity_glue_io7">IO口7:</string>
+    <string name="activity_glue_io8">IO口8:</string>
+    <string name="activity_glue_io9">IO口9:</string>
+    <string name="activity_glue_io10">IO口10:</string>
+    <string name="activity_glue_io11">IO口11:</string>
+    <string name="activity_glue_io12">IO口12:</string>
     
     <string name="activity_glue_point_coord">点坐标设置</string>
     

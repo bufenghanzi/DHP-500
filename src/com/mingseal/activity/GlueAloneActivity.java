@@ -114,8 +114,7 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		// point = (Point)
 		// intent.getSerializableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
 		// point携带的参数方案[_id=1, pointType=POINT_GLUE_FACE_START]
-		point = intent
-				.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
+		point = intent.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
 
 		mFlag = intent.getIntExtra(MyPopWindowClickListener.FLAG_KEY, 0);
 		mType = intent.getIntExtra(MyPopWindowClickListener.TYPE_KEY, 0);
