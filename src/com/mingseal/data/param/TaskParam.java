@@ -17,10 +17,14 @@ public enum TaskParam {
 	private int nAccelerateTime; // 加速时间
 	private int nDecelerateTime; // 减速时间
 	private int nAccelerate; // 加速度
+	public static  String Accelerate; // 加速度
 	private int nDecelerate; // 减速度
+	public String Decelerate; // 减速度
 	private int nXYNullSpeed; // xy轴空走速度
+	public String XYNullSpeed; // xy轴空走速度
 	private int nYNullSpeed; // y轴空走速度
 	private int nZNullSpeed; // z轴空走速度
+	public String ZNullSpeed; // z轴空走速度
 	private int nUNullSpeed; // u轴空走速度
 	private int nBackSnSpeedFir; // 一次回锡速度
 	private int nBackSnSumFir; // 一次回锡量
@@ -34,6 +38,7 @@ public enum TaskParam {
 	private int nStartU; // 起点u轴坐标(脉冲数)
 	private int nStartSpeed; // 起点速度
 	private int nTurnSpeed; // 拐点速度
+	public static String TurnSpeed; // 拐点速度
 	private int nDemoSpeed; // 模拟速度
 	private int nSpeedCurve; // 任务速度曲线(0:梯形曲线，1:S形曲线)
 	
@@ -42,6 +47,7 @@ public enum TaskParam {
 	private int nBaseHeight; // 基点调整高度
 	private int nAutoRunTime; // 自动运行延时时间
 	private int nTurnAccelerateMax; // 拐点最大加速度
+	public static String TurnAccelerateMax; // 拐点最大加速度
 	private boolean bTaskBack; // 任务还原
 	private boolean bTaskDelete; // 任务删除
 	private int nYCheckDis; // Y轴定位校正距离

@@ -160,6 +160,8 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 			param_id = glueAloneDao.getAloneParamIdByParam(defaultAloneParam);// 默认的参数序列主键。
 			SetDateAndRefreshUI(defaultAloneParam);
 		}
+		// 初始化
+		gluePortBoolean = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 		// mAloneAdapter = new PointGlueAloneAdapter(GlueAloneActivity.this);
 		// mAloneAdapter.setGlueAloneLists(glueAloneLists);
 		// taskSpinner.setAdapter(mAloneAdapter);
@@ -180,8 +182,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener,
 		// // taskSpinner.setSelection(point.getPointParam().get_id() - 1);
 		// // mAloneAdapter.notifyDataSetChanged();
 		// }
-		// 初始化
-		gluePortBoolean = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 		// taskSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		//
 		// @Override

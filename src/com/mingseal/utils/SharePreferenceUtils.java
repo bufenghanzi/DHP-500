@@ -4,6 +4,7 @@
 package com.mingseal.utils;
 
 import com.mingseal.data.param.SettingParam;
+import com.mingseal.data.param.TaskParam;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -108,11 +109,23 @@ public class SharePreferenceUtils {
 	 * @param context
 	 * @param number
 	 *            任务号
+	 * @param max_accelerate_time 设置拐点最大加速度
+	 * @param z_move  设置Z轴空走速度
+	 * @param xy_move 设置XY轴空走速度
+	 * @param inflexion_time 拐点速度
+	 * @param decelerate_time 设置减速度
+	 * @param accelerate_time 设置加速度
 	 */
-	public static void saveTaskNumberToPref(Context context, int number) {
+	public static void saveTaskNumberAndDatesToPref(Context context, int number) {
 		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putInt(SettingParam.Task.TaskNumber, number);
+//		editor.putInt(TaskParam.INSTANCE.Accelerate, accelerate_time);
+//		editor.putInt(TaskParam.INSTANCE.Decelerate, decelerate_time);
+//		editor.putInt(TaskParam.INSTANCE.TurnSpeed, inflexion_time);
+//		editor.putInt(TaskParam.INSTANCE.XYNullSpeed, xy_move);
+//		editor.putInt(TaskParam.INSTANCE.ZNullSpeed, z_move);
+//		editor.putInt(TaskParam.INSTANCE.TurnAccelerateMax, max_accelerate_time);
 		editor.commit();
 	}
 
@@ -129,7 +142,36 @@ public class SharePreferenceUtils {
 		int number = sp.getInt(SettingParam.Task.TaskNumber, 1);
 		return number;
 	}
-
+	public static int getAccelerate (Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		int number = sp.getInt(TaskParam.INSTANCE.Accelerate, 1);
+		return number;
+	}
+	public static int getDecelerate (Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		int number = sp.getInt(TaskParam.INSTANCE.Decelerate, 1);
+		return number;
+	}
+	public static int getTurnSpeed (Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		int number = sp.getInt(TaskParam.INSTANCE.TurnSpeed, 1);
+		return number;
+	}
+	public static int getXYNullSpeed (Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		int number = sp.getInt(TaskParam.INSTANCE.XYNullSpeed, 1);
+		return number;
+	}
+	public static int getZNullSpeed (Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		int number = sp.getInt(TaskParam.INSTANCE.ZNullSpeed, 1);
+		return number;
+	}
+	public static int getTurnAccelerateMax (Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		int number = sp.getInt(TaskParam.INSTANCE.TurnAccelerateMax, 1);
+		return number;
+	}
 	/**
 	 * 保存上一次使用的参数序列号
 	 * 

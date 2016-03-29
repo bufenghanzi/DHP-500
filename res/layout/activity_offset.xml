@@ -102,7 +102,7 @@
                         android:layout_toRightOf="@id/tv_offset_x"
                         android:background="@drawable/task_edittext_bg"
                         android:gravity="right|center"
-                        android:inputType="numberDecimal"
+                        android:inputType="numberDecimal|numberSigned"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:text="0"

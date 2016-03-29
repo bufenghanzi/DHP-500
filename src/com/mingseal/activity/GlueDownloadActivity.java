@@ -219,6 +219,7 @@ public class GlueDownloadActivity extends Activity implements OnClickListener {
 		et_accelerate_time.addTextChangedListener(new MaxMinEditWatcher(10000, 100, et_accelerate_time));
 		et_accelerate_time.setOnFocusChangeListener(new MaxMinFocusChangeListener(10000, 100, et_accelerate_time));
 		et_accelerate_time.setSelectAllOnFocus(true);
+		et_accelerate_time.setText(TaskParam.INSTANCE.getnAccelerate()+"");
 
 		// num_decelerate_time.setMaxValue(10000);
 		// num_decelerate_time.setMinValue(100);
@@ -227,7 +228,7 @@ public class GlueDownloadActivity extends Activity implements OnClickListener {
 		et_decelerate_time.addTextChangedListener(new MaxMinEditWatcher(10000, 100, et_decelerate_time));
 		et_decelerate_time.setOnFocusChangeListener(new MaxMinFocusChangeListener(10000, 100, et_decelerate_time));
 		et_decelerate_time.setSelectAllOnFocus(true);
-
+		et_decelerate_time.setText(TaskParam.INSTANCE.getnDecelerate() + "");
 		// num_xy_move.setMaxValue(800);
 		// num_xy_move.setMinValue(1);
 		// num_xy_move.setValue(200);
@@ -235,6 +236,7 @@ public class GlueDownloadActivity extends Activity implements OnClickListener {
 		et_xy_move.addTextChangedListener(new MaxMinEditWatcher(800, 1, et_xy_move));
 		et_xy_move.setOnFocusChangeListener(new MaxMinFocusChangeListener(800, 1, et_xy_move));
 		et_xy_move.setSelectAllOnFocus(true);
+		et_xy_move.setText(TaskParam.INSTANCE.getnXYNullSpeed() + "");
 
 		// num_z_move.setMaxValue(400);
 		// num_z_move.setMinValue(1);
@@ -242,15 +244,18 @@ public class GlueDownloadActivity extends Activity implements OnClickListener {
 		et_z_move.addTextChangedListener(new MaxMinEditWatcher(400, 1, et_z_move));
 		et_z_move.setOnFocusChangeListener(new MaxMinFocusChangeListener(400, 1, et_z_move));
 		et_z_move.setSelectAllOnFocus(true);
+		et_z_move.setText(TaskParam.INSTANCE.getnZNullSpeed() + "");
 
 		et_inflexion_time.addTextChangedListener(new MaxMinEditWatcher(800, 1, et_inflexion_time));
 		et_inflexion_time.setOnFocusChangeListener(new MaxMinFocusChangeListener(800, 1, et_inflexion_time));
 		et_inflexion_time.setSelectAllOnFocus(true);
+		et_inflexion_time.setText(TaskParam.INSTANCE.getnTurnSpeed() + "");
 
 		et_max_accelerate_time.addTextChangedListener(new MaxMinEditWatcher(10000, 100, et_max_accelerate_time));
 		et_max_accelerate_time
 				.setOnFocusChangeListener(new MaxMinFocusChangeListener(10000, 100, et_max_accelerate_time));
 		et_max_accelerate_time.setSelectAllOnFocus(true);
+		et_max_accelerate_time.setText(TaskParam.INSTANCE.getnTurnAccelerateMax() + "");
 
 		// num_inflexion_time.setMaxValue(800);
 		// num_inflexion_time.setMinValue(1);
@@ -333,7 +338,7 @@ public class GlueDownloadActivity extends Activity implements OnClickListener {
 	 */
 	private void saveBackActivity() {
 		setResult(TaskActivity.resultDownLoadCode, intent);
-		SharePreferenceUtils.saveTaskNumberToPref(this, Integer.parseInt(et_number.getText().toString()));
+		SharePreferenceUtils.saveTaskNumberAndDatesToPref(this, Integer.parseInt(et_number.getText().toString()));
 		TaskParam.INSTANCE.setStrTaskName(taskName);
 		TaskParam.INSTANCE.setnStartX(points.get(0).getX());
 		TaskParam.INSTANCE.setnStartY(points.get(0).getY());
