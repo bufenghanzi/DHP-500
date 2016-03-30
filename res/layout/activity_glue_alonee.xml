@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <include layout="@layout/activity_task_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" >
+
+        <TextView
+            android:id="@+id/fanganliebiao"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:text="方案列表"
+            android:textSize="30dp" />
+        <TextView
+                android:id="@+id/morenfangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前默认方案(1)"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:textSize="20sp" />
+    </RelativeLayout>
+     <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#C8C9C8" />
+
+    <com.example.poplistview.PopupListView
+        android:id="@+id/popupListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" 
+        >
+    </com.example.poplistview.PopupListView>
+
+</LinearLayout>

@@ -9,7 +9,7 @@
     <string name="action_settings">Settings</string>
     <string name="number">序号</string>
     <string name="type">类型</string>
-    
+    <string name="activity_glue_default">设为默认</string>
     <string name="activity_glue_alone_title">点参数设置</string>
     <string name="activity_glue_alone_liebiao">参数列表</string>
     <string name="activity_glue_alone_dianjiaoyanshi">点胶延时:</string>
