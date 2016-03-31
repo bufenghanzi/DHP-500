@@ -212,12 +212,11 @@ public class TaskMainBaseAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 
-		/*
-		 * holder.tv_x.setSelectAllOnFocus(true);
-		 * holder.tv_y.setSelectAllOnFocus(true);
-		 * holder.tv_z.setSelectAllOnFocus(true);
-		 * holder.tv_u.setSelectAllOnFocus(true);
-		 */
+		  holder.tv_x.setSelectAllOnFocus(true);
+		  holder.tv_y.setSelectAllOnFocus(true);
+		  holder.tv_z.setSelectAllOnFocus(true);
+		  holder.tv_u.setSelectAllOnFocus(true);
+		 
 		
 		if(m_nAxisNum == 3){
 			holder.tv_u.setVisibility(View.GONE);

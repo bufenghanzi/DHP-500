@@ -29,6 +29,36 @@ public class GlueAloneDao {
 	public GlueAloneDao(Context context) {
 		dbHelper = new DBHelper(context);
 	}
+	
+	/**
+	 * @Title  upDateGlueAlone
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueAloneParam
+	 * @return 0表示错误
+	 */
+	public int upDateGlueAlone(PointGlueAloneParam pointGlueAloneParam){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableAlone.DOT_GLUE_TIME, pointGlueAloneParam.getDotGlueTime());
+			values.put(TableAlone.STOP_GLUE_TIME, pointGlueAloneParam.getStopGlueTime());
+			values.put(TableAlone.UP_HEIGHT, pointGlueAloneParam.getUpHeight());
+			values.put(TableAlone.IS_OUT_GLUE, (boolean) pointGlueAloneParam.isOutGlue() ? 1 : 0);
+			values.put(TableAlone.IS_PAUSE, (boolean) pointGlueAloneParam.isPause() ? 1 : 0);
+			values.put(TableAlone.GLUE_PORT, Arrays.toString(pointGlueAloneParam.getGluePort()));
+			rowid = db.update(DBInfo.TableAlone.ALONE_TABLE, values,TableAlone._ID +"=?", new String[]{String.valueOf(pointGlueAloneParam.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
 
 	/**
 	 * 增加一条独立点数据
@@ -37,20 +67,29 @@ public class GlueAloneDao {
 	 * @return
 	 */
 	public long insertGlueAlone(PointGlueAloneParam pointGlueAloneParam) {
-
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-		values = new ContentValues();
-		values.put(TableAlone.DOT_GLUE_TIME, pointGlueAloneParam.getDotGlueTime());
-		values.put(TableAlone.STOP_GLUE_TIME, pointGlueAloneParam.getStopGlueTime());
-		values.put(TableAlone.UP_HEIGHT, pointGlueAloneParam.getUpHeight());
-		values.put(TableAlone.IS_OUT_GLUE, (boolean) pointGlueAloneParam.isOutGlue() ? 1 : 0);
-		values.put(TableAlone.IS_PAUSE, (boolean) pointGlueAloneParam.isPause() ? 1 : 0);
-		values.put(TableAlone.GLUE_PORT, Arrays.toString(pointGlueAloneParam.getGluePort()));
-
-		long rowID = db.insert(DBInfo.TableAlone.ALONE_TABLE, DBInfo.TableAlone._ID, values);
-		// 释放资源
-		db.close();
-
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableAlone._ID, pointGlueAloneParam.get_id());
+			values.put(TableAlone.DOT_GLUE_TIME, pointGlueAloneParam.getDotGlueTime());
+			values.put(TableAlone.STOP_GLUE_TIME, pointGlueAloneParam.getStopGlueTime());
+			values.put(TableAlone.UP_HEIGHT, pointGlueAloneParam.getUpHeight());
+			values.put(TableAlone.IS_OUT_GLUE, (boolean) pointGlueAloneParam.isOutGlue() ? 1 : 0);
+			values.put(TableAlone.IS_PAUSE, (boolean) pointGlueAloneParam.isPause() ? 1 : 0);
+			values.put(TableAlone.GLUE_PORT, Arrays.toString(pointGlueAloneParam.getGluePort()));
+			
+			rowID = db.insert(DBInfo.TableAlone.ALONE_TABLE, null, values);
+			db.setTransactionSuccessful();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
 	}
 
