@@ -45,6 +45,7 @@ public class SharePreferenceUtils {
 		editor.commit();
 
 	}
+	
 
 	/**
 	 * 从SharePreference中读取数据，并保存到SettingParam中
@@ -173,19 +174,19 @@ public class SharePreferenceUtils {
 		return number;
 	}
 	/**
-	 * 保存上一次使用的参数序列号
+	 * 保存相对应的点参数的默认号
 	 * 
 	 * @Title saveParamNumberToPref
 	 * @Description 保存某个方案的参数序列号
 	 * @param context
 	 * @param key
-	 *            保存方案的参数序列号的key
+	 *            方案名
 	 * @param number
-	 *            对应某个方案的参数序列号
+	 *            默认方案号
 	 */
 	public static void saveParamNumberToPref(Context context, String key, int number) {
 
-		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.DefaultNum.PointDefaultNum, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sp.edit();
 		editor.putInt(key, number);
 		editor.commit();
@@ -193,18 +194,18 @@ public class SharePreferenceUtils {
 	}
 
 	/**
-	 * 从SharePreferences中读取上次保存的参数序列号
+	 * 从SharePreferences中读取传入的方案的默认方案号
 	 * 
 	 * @Title getParamNumberFromPref
-	 * @Description 从SharePreferences中读取上次保存的参数序列号
+	 * @Description 从SharePreferences中读取上次保存的默认方案号
 	 * @param context
 	 * @param key
-	 *            保存方案的参数序列号的key
-	 * @return 序列号
+	 *            方案名
+	 * @return 默认方案号
 	 */
 	public static int getParamNumberFromPref(Context context, String key) {
 
-		SharedPreferences sp = context.getSharedPreferences(SettingParam.Task.TaskName, Context.MODE_PRIVATE);
+		SharedPreferences sp = context.getSharedPreferences(SettingParam.DefaultNum.PointDefaultNum, Context.MODE_PRIVATE);
 		int number = sp.getInt(key, 1);
 		return number;
 

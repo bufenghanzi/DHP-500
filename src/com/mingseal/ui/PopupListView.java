@@ -45,6 +45,7 @@ public class PopupListView extends RelativeLayout {
      */
     private View mCurrentCheckedOption;
     private int position;
+	private ArrayList<Integer> list;
 
     public PopupListView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
@@ -84,7 +85,7 @@ public class PopupListView extends RelativeLayout {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				listener.getCurrentPositon(position);//+1为方案号
 				int[] p = new int[2];
 		          //获取以屏幕为原点一个控件在其整个屏幕的位置。
 		            view.getLocationOnScreen(p);
@@ -92,7 +93,6 @@ public class PopupListView extends RelativeLayout {
 		            startY = p[1] - heightSpace;
 		            moveY = startY;
 		            zoomIn(position, startY);
-		            listener.getCurrentPositon(position);//+1为方案号
 				return true;//拦截事件，只是查看方案，不是选择该方案。
 			}
 		});
@@ -103,7 +103,9 @@ public class PopupListView extends RelativeLayout {
 
 			@Override
 			public void run() {
-				mCurrentCheckedOption = listView.getChildAt(position).findViewById(R.id.iv_selected);
+				//滑动会改变孩子的positioon
+				int realPosition=position-listView.getFirstVisiblePosition();
+				mCurrentCheckedOption = listView.getChildAt(realPosition).findViewById(R.id.iv_selected);
 				mCurrentCheckedOption.setVisibility(View.VISIBLE);
 			}
 		});
@@ -120,6 +122,7 @@ public class PopupListView extends RelativeLayout {
      * @param position
      */
     public void setPosition(int position) {
+    	listView.setSelection(position);
 		this.position=position;
 	}
     
@@ -133,11 +136,14 @@ public class PopupListView extends RelativeLayout {
     private AdapterView.OnItemClickListener selectTask = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        	//滚动时列表值挥发上改变
-        	int realPosition=position-listView.getFirstVisiblePosition();
-        	mCurrentCheckedOption.setVisibility(View.GONE);
-			mCurrentCheckedOption = listView.getChildAt(realPosition).findViewById(R.id.iv_selected);
-			mCurrentCheckedOption.setVisibility(View.VISIBLE);
+        	if (list.contains(position+1)) {
+				
+        		//滚动时列表值挥发上改变
+        		int realPosition=position-listView.getFirstVisiblePosition();
+        		mCurrentCheckedOption.setVisibility(View.GONE);
+        		mCurrentCheckedOption = listView.getChildAt(realPosition).findViewById(R.id.iv_selected);
+        		mCurrentCheckedOption.setVisibility(View.VISIBLE);
+			}
             
         }
     };
@@ -161,8 +167,8 @@ public class PopupListView extends RelativeLayout {
         extendInnerView.setVisibility(GONE);
         extendView.addView(extendInnerView);
         extendView.setVisibility(VISIBLE);
-        handler.postDelayed(zoomInRunnable, 100);
         stateListener.getZoomState(true);
+        handler.postDelayed(zoomInRunnable, 100);
     }
 
     /**
@@ -171,9 +177,9 @@ public class PopupListView extends RelativeLayout {
      * @author wj
      */
     public void zoomOut() {
+    	stateListener.getZoomState(false);
         handler.removeCallbacks(zoomInRunnable);
         handler.postDelayed(zoomOutRunnable, 1);
-        stateListener.getZoomState(false);
     }
 
     /**
@@ -257,7 +263,6 @@ public class PopupListView extends RelativeLayout {
         }
     };
 
-
     /**
      * @Title  setHeightSpace
      * @Description 设置view的高度
@@ -304,7 +309,23 @@ public class PopupListView extends RelativeLayout {
     	
     	public void getZoomState(Boolean isZoomIn);
     }
+    /**
+     * @Title  setOnZoomInListener
+     * @Description 观察extendView是否放大
+     * @author wj
+     * @param onZoomInChanged
+     */
     public void setOnZoomInListener(OnZoomInChanged onZoomInChanged) {
     	stateListener = onZoomInChanged;
     }
+
+	/**
+	 * @Title  setSelectedEnable
+	 * @Description 
+	 * @author wj
+	 * @param list 存放可被点击的方案号对应列表的序号
+	 */
+	public void setSelectedEnable(ArrayList<Integer> list) {
+		this.list=list;
+	}
 }

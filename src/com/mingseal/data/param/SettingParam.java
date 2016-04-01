@@ -46,6 +46,53 @@ public class SettingParam {
 		 */
 		public static final String TrackLocation = "trackLocation";
 	}
+	/**
+	 * @author wj
+	 * 点参数默认号
+	 */
+	public static class DefaultNum{
+		/**
+		 * 保存方案的string
+		 */
+		public static final String PointDefaultNum = "pointdefaultnum";
+		/**
+		 * 独立点上次保存的编号
+		 */
+		public static final String ParamGlueAloneNumber     = "paramGlueAloneNumber";
+		/**
+		 * 清胶点上次保存的编号
+		 */
+		public static final String ParamGlueClearNumber     = "paramGlueClearNumber";
+		/**
+		 * 面结束点上次保存的编号
+		 */
+		public static final String ParamGlueFaceEndNumber   = "paramGlueFaceEndNumber";
+		/**
+		 * 面起始点上次保存的编号
+		 */
+		public static final String ParamGlueFaceStartNumber = "paramGlueFaceStartNumber";
+		/**
+		 * 输入IO上次保存的编号
+		 */
+		public static final String ParamGlueInputNumber     = "paramGlueInputNumber";
+		/**
+		 * 输出IO上次保存的编号
+		 */
+		public static final String ParamGlueOutputNumber    = "paramGlueOutputNumber";
+		/**
+		 * 线结束点上次保存的编号
+		 */
+		public static final String ParamGlueLineEndNumber   = "paramGlueLineEndNumber";
+		/**
+		 * 线中间点上次保存的编号
+		 */
+		public static final String ParamGlueLineMidNumber   = "paramGlueLineMidNumber";
+		/**
+		 * 线起始点上次保存的编号
+		 */
+		public static final String ParamGlueLineStartNumber = "paramGlueLineStartNumber";
+		
+	}
 	
 	public static class Task{
 		/**

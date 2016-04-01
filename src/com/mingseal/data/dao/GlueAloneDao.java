@@ -35,7 +35,7 @@ public class GlueAloneDao {
 	 * @Description 更新一条独立点数据
 	 * @author wj
 	 * @param pointGlueAloneParam
-	 * @return 0表示错误
+	 * @return  影响的行数，0表示错误
 	 */
 	public int upDateGlueAlone(PointGlueAloneParam pointGlueAloneParam){
 		int rowid = 0;
@@ -160,6 +160,7 @@ public class GlueAloneDao {
 			db.beginTransaction();
 			if (cursor != null && cursor.getCount() > 0) {
 				while (cursor.moveToNext()) {
+					param.set_id(cursor.getInt(cursor.getColumnIndex(TableAlone._ID)));
 					param.setDotGlueTime(cursor.getInt(cursor.getColumnIndex(TableAlone.DOT_GLUE_TIME)));
 					param.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableAlone.STOP_GLUE_TIME)));
 					param.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableAlone.UP_HEIGHT)));
