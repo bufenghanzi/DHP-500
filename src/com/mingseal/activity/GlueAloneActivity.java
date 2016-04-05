@@ -5,13 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueAloneAdapter;
-import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueAloneDao;
 import com.mingseal.data.param.SettingParam;
 import com.mingseal.data.point.GWOutPort;
 import com.mingseal.data.point.Point;
-import com.mingseal.data.point.PointParam;
 import com.mingseal.data.point.glueparam.PointGlueAloneParam;
 import com.mingseal.dhp.R;
 import com.mingseal.listener.MaxMinEditWatcher;
@@ -21,14 +18,13 @@ import com.mingseal.ui.PopupListView;
 import com.mingseal.ui.PopupListView.OnClickPositionChanged;
 import com.mingseal.ui.PopupListView.OnZoomInChanged;
 import com.mingseal.ui.PopupView;
-import com.mingseal.utils.ParcelableMap;
 import com.mingseal.utils.SharePreferenceUtils;
 import com.mingseal.utils.ToastUtil;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -124,7 +120,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 	private boolean firstExist=false;//是否存在
 	private int mIndex;//对应方案号
 	private HashMap<Integer, PointGlueAloneParam> update_id;//修改的方案号集合
-	private ParcelableMap mPMap;
 
 	// End Of Content View Elements
 
@@ -133,8 +128,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_glue_alone);
-		mPMap = new ParcelableMap();
-//		mPMap.map=new HashMap<Integer,PointGlueAloneParam>();
 		update_id=new HashMap<>();
 		intent = getIntent();
 		// point携带的参数方案[_id=1, pointType=POINT_GLUE_FACE_START]
@@ -154,22 +147,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 		}
 
 		glueAloneLists = glueAloneDao.findAllGlueAloneParams();
-//		if (mType == 1) {
-//			System.out.println("传进来的主键point.getPointParam().get_id():"
-//					+ point.getPointParam().get_id());
-//			System.out.println("point.getPointParam():"
-//					+ glueAloneDao.getPointGlueAloneParamById(point
-//							.getPointParam().get_id()));
-//			System.out.println("point:" + point);
-//			PointGlueAloneParam GlueAloneParam = glueAloneDao.getPointGlueAloneParamById(point.getPointParam().get_id());
-//			param_id=GlueAloneParam.get_id();// 传过来的方案的参数序列主键。
-//			// SetDateAndRefreshUI(GlueAloneParam);
-//		} else {
-//			// 不为1的话，需要选定默认的方案
-//			PointGlueAloneParam defaultAloneParam = glueAloneLists.get(0);
-//			param_id = glueAloneDao.getAloneParamIdByParam(defaultAloneParam);// 默认的参数序列主键。
-//			// SetDateAndRefreshUI(defaultAloneParam);
-//		}
 		// 初始化
 		gluePortBoolean = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 		popupViews = new ArrayList<>();
@@ -696,22 +673,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 	    glueAlone.set_id(currentTaskNum);//主键与列表的方案号绑定
 	    
 		return glueAlone;
-	}
-	/**
-	 * 加载一些自定义的数据
-	 */
-	private void initData() {
-		glueAloneLists = new ArrayList<PointGlueAloneParam>();
-		glueAlone = new PointGlueAloneParam();
-		glueAloneLists.add(glueAlone);
-		for (int i = 0; i < 2; i++) {
-			glueAlone = new PointGlueAloneParam();
-			glueAlone.setDotGlueTime(200 + i);
-			glueAlone.setStopGlueTime(20 + i);
-			glueAlone.setUpHeight(400 + i * 2);
-			glueAlone.setPause(false);
-			glueAloneLists.add(glueAlone);
-		}
 	}
 	/**
 	 * @Title  isEditClean

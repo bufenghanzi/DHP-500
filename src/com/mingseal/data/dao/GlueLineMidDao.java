@@ -9,8 +9,10 @@ import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
 import com.mingseal.data.db.DBInfo;
+import com.mingseal.data.db.DBInfo.TableAlone;
 import com.mingseal.data.db.DBInfo.TableLineMid;
 import com.mingseal.data.db.DBInfo.TableLineStart;
+import com.mingseal.data.point.glueparam.PointGlueAloneParam;
 import com.mingseal.data.point.glueparam.PointGlueLineMidParam;
 import com.mingseal.utils.ArraysComprehension;
 
@@ -36,28 +38,70 @@ public class GlueLineMidDao {
 	}
 
 	/**
+	 * @Title  upDateGlueAlone
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueAloneParam
+	 * @return  影响的行数，0表示错误
+	 */
+	public int upDateGlueLineMid(PointGlueLineMidParam pointGlueLineMidParam){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableLineMid.MOVE_SPEED, pointGlueLineMidParam.getMoveSpeed());
+			values.put(TableLineMid.RADIUS, pointGlueLineMidParam.getRadius());
+			values.put(TableLineMid.STOP_GLUE_DIS_PREV, pointGlueLineMidParam.getStopGlueDisPrev());
+			values.put(TableLineMid.STOP_GLUE_DIS_NEXT, pointGlueLineMidParam.getStopGLueDisNext());
+			values.put(TableLineMid.IS_OUT_GLUE, (boolean) pointGlueLineMidParam.isOutGlue() ? 1 : 0);
+			values.put(TableLineMid.GLUE_PORT, Arrays.toString(pointGlueLineMidParam.getGluePort()));
+//			values.put(TableAlone.DOT_GLUE_TIME, pointGlueAloneParam.getDotGlueTime());
+//			values.put(TableAlone.STOP_GLUE_TIME, pointGlueAloneParam.getStopGlueTime());
+//			values.put(TableAlone.UP_HEIGHT, pointGlueAloneParam.getUpHeight());
+//			values.put(TableAlone.IS_OUT_GLUE, (boolean) pointGlueAloneParam.isOutGlue() ? 1 : 0);
+//			values.put(TableAlone.IS_PAUSE, (boolean) pointGlueAloneParam.isPause() ? 1 : 0);
+//			values.put(TableAlone.GLUE_PORT, Arrays.toString(pointGlueAloneParam.getGluePort()));
+			rowid = db.update(DBInfo.TableLineMid.LINE_MID_TABLE, values,TableLineMid._ID +"=?", new String[]{String.valueOf(pointGlueLineMidParam.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
+	/**
 	 * 增加一条线中间点的数据
 	 * 
 	 * @param pointGlueLineMidParam
 	 * @return 刚增加的这条数据的主键
 	 */
 	public long insertGlueLineMid(PointGlueLineMidParam pointGlueLineMidParam) {
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-
-		values = new ContentValues();
-		values.put(TableLineMid.MOVE_SPEED, pointGlueLineMidParam.getMoveSpeed());
-		values.put(TableLineMid.RADIUS, pointGlueLineMidParam.getRadius());
-		values.put(TableLineMid.STOP_GLUE_DIS_PREV, pointGlueLineMidParam.getStopGlueDisPrev());
-		values.put(TableLineMid.STOP_GLUE_DIS_NEXT, pointGlueLineMidParam.getStopGLueDisNext());
-		values.put(TableLineMid.IS_OUT_GLUE, (boolean) pointGlueLineMidParam.isOutGlue() ? 1 : 0);
-		values.put(TableLineMid.GLUE_PORT, Arrays.toString(pointGlueLineMidParam.getGluePort()));
-
-		long rowID = db.insert(TableLineMid.LINE_MID_TABLE, TableLineMid._ID, values);
-
-		db.close();
-
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableLineMid._ID, pointGlueLineMidParam.get_id());
+			values.put(TableLineMid.MOVE_SPEED, pointGlueLineMidParam.getMoveSpeed());
+			values.put(TableLineMid.RADIUS, pointGlueLineMidParam.getRadius());
+			values.put(TableLineMid.STOP_GLUE_DIS_PREV, pointGlueLineMidParam.getStopGlueDisPrev());
+			values.put(TableLineMid.STOP_GLUE_DIS_NEXT, pointGlueLineMidParam.getStopGLueDisNext());
+			values.put(TableLineMid.IS_OUT_GLUE, (boolean) pointGlueLineMidParam.isOutGlue() ? 1 : 0);
+			values.put(TableLineMid.GLUE_PORT, Arrays.toString(pointGlueLineMidParam.getGluePort()));
+			rowID = db.insert(TableLineMid.LINE_MID_TABLE, TableLineMid._ID, values);
+			
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
-
 	}
 
 	/**
@@ -110,6 +154,7 @@ public class GlueLineMidDao {
 			db.beginTransaction();
 			if (cursor != null && cursor.getCount() > 0) {
 				while (cursor.moveToNext()) {
+					param.set_id(cursor.getInt(cursor.getColumnIndex(TableLineMid._ID)));
 					param.setMoveSpeed(cursor.getInt(cursor.getColumnIndex(TableLineMid.MOVE_SPEED)));
 					param.setRadius(cursor.getFloat(cursor.getColumnIndex(TableLineMid.RADIUS)));
 					param.setStopGlueDisPrev(cursor.getFloat(cursor.getColumnIndex(TableLineMid.STOP_GLUE_DIS_PREV)));

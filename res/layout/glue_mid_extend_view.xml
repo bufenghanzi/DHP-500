@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="800dp"
+        android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+        android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
+
+            <TextView
+                android:id="@+id/tv_moveSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:textColor="#000000"
+                android:text="@string/activity_glue_moveSpeed"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+            <EditText
+                android:id="@+id/et_linemid_moveSpeed"
+                android:layout_width="@dimen/edittext_input_width"
+                android:layout_height="@dimen/edittext_input_height"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/edittext_marginLeft"
+                android:layout_toRightOf="@id/tv_moveSpeed"
+                android:background="@drawable/task_edittext_bg"
+                android:gravity="right|center"
+                android:inputType="number"
+                android:textColor="#000000"
+                android:paddingLeft="@dimen/edittext_paddingLeft"
+                android:paddingRight="@dimen/edittext_paddingRight"
+                android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/et_linemid_moveSpeed"
+                android:text="@string/activity_mm_s"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+
+             <ToggleButton
+                android:id="@+id/switch_isOutGlue"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:button="@drawable/checkbox_iphone"
+                android:checked="true" />
+           <!--  <Switch
+                android:id="@+id/switch_isOutGlue"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:checked="true"
+                android:textOff="@string/activity_no"
+                android:textOn="@string/activity_yes"
+                android:thumbTextPadding="30dp" /> -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@id/switch_isOutGlue"
+                android:gravity="center_vertical"
+                android:textColor="#000000"
+                android:text="@string/activity_glue_alone_isOutGlue"
+                android:textSize="@dimen/activity_title_textsize_sub" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/tv_radius"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_radius"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <EditText
+                    android:id="@+id/et_radius"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/task_edittext_bg"
+                    android:gravity="right|center"
+                    android:inputType="numberDecimal"
+                    android:textColor="#000000"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toRightOf="@id/et_radius"
+                    android:textColor="#000000"
+                    android:text="@string/activity_mm"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/tv_stopDisPrev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_stopGlueDisPrev"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <EditText
+                    android:id="@+id/et_stopDisPrev"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/task_edittext_bg"
+                    android:gravity="right|center"
+                    android:textColor="#000000"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#000000"
+                    android:layout_toRightOf="@id/et_stopDisPrev"
+                    android:text="@string/activity_mm"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/tv_stopDisNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_stopGlueDisNext"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                <EditText
+                    android:id="@+id/et_stopDisNext"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/task_edittext_bg"
+                    android:gravity="right|center"
+                    android:textColor="#000000"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="@dimen/activity_glue_edittext_textsize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textColor="#000000"
+                    android:layout_toRightOf="@id/et_stopDisNext"
+                    android:text="@string/activity_mm"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_port1"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                 <ToggleButton
+                android:id="@+id/switch_glueport1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@drawable/checkbox_iphone"
+                android:checked="true" />
+               <!--  <Switch
+                    android:id="@+id/switch_glueport1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:checked="true"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" /> -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_port2"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                 <ToggleButton
+                android:id="@+id/switch_glueport2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@drawable/checkbox_iphone"
+                android:checked="false" />
+                <!-- <Switch
+                    android:id="@+id/switch_glueport2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" /> -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_port3"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                 <ToggleButton
+                android:id="@+id/switch_glueport3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@drawable/checkbox_iphone"
+                android:checked="false" />
+               <!--  <Switch
+                    android:id="@+id/switch_glueport3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" /> -->
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_port4"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                 <ToggleButton
+                android:id="@+id/switch_glueport4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@drawable/checkbox_iphone"
+                android:checked="false" />
+               <!--  <Switch
+                    android:id="@+id/switch_glueport4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" /> -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="#000000"
+                    android:text="@string/activity_glue_port5"
+                    android:textSize="@dimen/activity_title_textsize_sub" />
+
+                 <ToggleButton
+                android:id="@+id/switch_glueport5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:button="@drawable/checkbox_iphone"
+                android:checked="false" />
+               <!--  <Switch
+                    android:id="@+id/switch_glueport5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/activity_no"
+                    android:textOn="@string/activity_yes" /> -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+        android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:id="@+id/rl_moren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_add"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_add"
+                android:layout_toRightOf="@id/iv_add"
+                android:gravity="center"
+                android:text="@string/activity_glue_default"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
+            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
+            android:layout_weight="1"
+            android:background="@drawable/task_bottom_imagebutton"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/iv_moren"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_add" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/iv_moren"
+                android:layout_toRightOf="@id/iv_moren"
+                android:gravity="center"
+                android:text="@string/activity_glue_save"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/activity_task_bottom_text_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -53,7 +53,6 @@ import com.mingseal.utils.DateUtil;
 import com.mingseal.utils.FileDatabase;
 import com.mingseal.utils.MoveUtils;
 import com.mingseal.utils.ParamsSetting;
-import com.mingseal.utils.ParcelableMap;
 import com.mingseal.utils.PointCopyTools;
 import com.mingseal.utils.SharePreferenceUtils;
 import com.mingseal.utils.ToastUtil;
@@ -312,11 +311,6 @@ public class TaskActivity extends Activity implements OnClickListener {
 	 */
 	private int mFlag = 0;
 	
-	/**
-	 * 接收的待更新的map
-	 */
-	private ParcelableMap mPMap;
-
 	/**
 	 * 接收从TaskListActivity传过来的Intent
 	 */
@@ -1384,6 +1378,40 @@ public class TaskActivity extends Activity implements OnClickListener {
 				}
 			}
 			 
+			break;
+		case POINT_GLUE_LINE_START:
+			ArrayList<Map<Integer, PointGlueLineStartParam>> line_startList=(ArrayList<Map<Integer, PointGlueLineStartParam>>) list.get(0);
+			HashMap<Integer, PointGlueLineStartParam> gluestartmap=(HashMap<Integer, PointGlueLineStartParam>) line_startList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + gluestartmap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : gluestartmap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueLineStartParam param=(PointGlueLineStartParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
+			break;
+		case POINT_GLUE_LINE_MID:
+			ArrayList<Map<Integer, PointGlueLineMidParam>> line_midList=(ArrayList<Map<Integer, PointGlueLineMidParam>>) list.get(0);
+			HashMap<Integer, PointGlueLineMidParam> glueMidMap=(HashMap<Integer, PointGlueLineMidParam>) line_midList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + glueMidMap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : glueMidMap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueLineMidParam param=(PointGlueLineMidParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
 			break;
 
 		default:
