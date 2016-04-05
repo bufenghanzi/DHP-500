@@ -43,6 +43,10 @@ public class MyPopWindowClickListener implements OnClickListener {
 	 */
 	public final static String TYPE_KEY = "com.mingseal.listener.type.key";
 
+	/**
+	 * 代表发送过去的key
+	 */
+	public final static String TYPE_UPDATE = "com.mingseal.listener.update.key";
 	private PopupWindow popupWindow;
 	private TaskActivity mParent;
 	private final static String TAG = "MyPopWindowClickListener";

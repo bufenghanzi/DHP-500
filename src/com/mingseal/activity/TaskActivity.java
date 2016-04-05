@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import com.mingseal.adapter.TaskMainBaseAdapter;
@@ -52,6 +53,7 @@ import com.mingseal.utils.DateUtil;
 import com.mingseal.utils.FileDatabase;
 import com.mingseal.utils.MoveUtils;
 import com.mingseal.utils.ParamsSetting;
+import com.mingseal.utils.ParcelableMap;
 import com.mingseal.utils.PointCopyTools;
 import com.mingseal.utils.SharePreferenceUtils;
 import com.mingseal.utils.ToastUtil;
@@ -309,6 +311,11 @@ public class TaskActivity extends Activity implements OnClickListener {
 	 * 0代表是从TaskActivity中传值过去的，要加一条数据，1代表是从TaskMainBaseAdapter传值过去的，要更新数据
 	 */
 	private int mFlag = 0;
+	
+	/**
+	 * 接收的待更新的map
+	 */
+	private ParcelableMap mPMap;
 
 	/**
 	 * 接收从TaskListActivity传过来的Intent
@@ -1272,7 +1279,11 @@ public class TaskActivity extends Activity implements OnClickListener {
 				// _data.getSerializableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
 				mFlag = _data.getIntExtra(MyPopWindowClickListener.FLAG_KEY, 0);
 				point = (Point) _data.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
+				//准备更新的方案
+				ArrayList list= _data.getParcelableArrayListExtra(MyPopWindowClickListener.TYPE_UPDATE);
+				
 				Log.d(TAG + ":onActivityResult", "selectRadioID:" + selectRadioIDCur + " " + point.toString());
+//				Log.d(TAG + ":onActivityResult", "ParcelableMap:" + list.get(0));
 				if (mFlag == 0) {
 					if (mPointsCur.size() != 0) {
 						selectRadioIDCur = selectRadioIDCur + 1;
@@ -1287,7 +1298,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 				}
 				selectCheckboxCur.clear();
 				singleSwitch.setChecked(false);
-
+				startUpdatePointParam(point,list);
 				Log.d(TAG + ":onActivityResult-->", mPointsCur.toString());
 			} else if (_resultCode == resultViewCode) {
 				// 视图保存回来的点
@@ -1343,6 +1354,41 @@ public class TaskActivity extends Activity implements OnClickListener {
 		mAdapter.setData(mPointsCur);
 		mAdapter.notifyDataSetChanged();
 
+	}
+
+	
+
+	/**
+	 * @Title  startUpdatePointParam
+	 * @Description 更新所有使用该方案的点的参数方案
+	 * @author wj
+	 * @param point 
+	 * @param list 存放list<map<方案号，方案>>的list集合
+	 */
+	private void startUpdatePointParam(Point point, ArrayList list) {
+		
+		switch (point.getPointParam().getPointType()) {
+		case POINT_GLUE_ALONE:
+			 ArrayList<Map<Integer, PointGlueAloneParam>> maplist=(ArrayList<Map<Integer, PointGlueAloneParam>>) list.get(0);
+			 HashMap<Integer, PointGlueAloneParam> map=(HashMap<Integer, PointGlueAloneParam>) maplist.get(0);
+			 Log.d(TAG + ":onActivityResult", "ParcelableMap:" + map);
+			 for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : map.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueAloneParam param=(PointGlueAloneParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			 
+			break;
+
+		default:
+			break;
+		}	
 	}
 
 	@Override

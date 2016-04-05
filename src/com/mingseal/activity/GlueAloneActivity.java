@@ -1,7 +1,9 @@
 package com.mingseal.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mingseal.adapter.PointGlueAloneAdapter;
 import com.mingseal.communicate.Const;
@@ -19,6 +21,7 @@ import com.mingseal.ui.PopupListView;
 import com.mingseal.ui.PopupListView.OnClickPositionChanged;
 import com.mingseal.ui.PopupListView.OnZoomInChanged;
 import com.mingseal.ui.PopupView;
+import com.mingseal.utils.ParcelableMap;
 import com.mingseal.utils.SharePreferenceUtils;
 import com.mingseal.utils.ToastUtil;
 
@@ -120,6 +123,8 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 	private boolean isExist=false;//是否存在
 	private boolean firstExist=false;//是否存在
 	private int mIndex;//对应方案号
+	private HashMap<Integer, PointGlueAloneParam> update_id;//修改的方案号集合
+	private ParcelableMap mPMap;
 
 	// End Of Content View Elements
 
@@ -128,6 +133,9 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_glue_alone);
+		mPMap = new ParcelableMap();
+//		mPMap.map=new HashMap<Integer,PointGlueAloneParam>();
+		update_id=new HashMap<>();
 		intent = getIntent();
 		// point携带的参数方案[_id=1, pointType=POINT_GLUE_FACE_START]
 		point = intent
@@ -577,7 +585,9 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 					//更新数据
 					int rowid = glueAloneDao.upDateGlueAlone(upglueAlone);
 //					System.out.println("影响的行数"+rowid);
-//					System.out.println(upglueAlone.toString());
+					update_id.put(upglueAlone.get_id(), upglueAlone);
+//					mPMap.map.put(upglueAlone.get_id(), upglueAlone);
+					System.out.println("修改的方案号为："+upglueAlone.get_id());
 //					System.out.println(glueAloneDao.getPointGlueAloneParamById(currentTaskNum).toString());
 				}else {
 					//插入一条数据
@@ -769,14 +779,19 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 			}
 		}
 		 System.out.println("返回的方案号为================》"+mIndex);
-		 point.setPointParam( glueAloneDao.getPointGlueAloneParamById(mIndex));
+		 point.setPointParam(glueAloneDao.getPointGlueAloneParamById(mIndex));
 		 System.out.println("返回的Point为================》"+point);
 
+		 List<Map<Integer, PointGlueAloneParam>> list = new ArrayList<Map<Integer, PointGlueAloneParam>>();  
+		 list.add(update_id); 
 			Log.i(TAG, point.toString());
 			Bundle extras = new Bundle();
 			extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY, point);
 			extras.putInt(MyPopWindowClickListener.FLAG_KEY, mFlag);
-
+			//须定义一个list用于在budnle中传递需要传递的ArrayList<Object>,这个是必须要的 
+			ArrayList bundlelist = new ArrayList(); 
+			bundlelist.add(list);
+			extras.putParcelableArrayList(MyPopWindowClickListener.TYPE_UPDATE, bundlelist);
 			intent.putExtras(extras);
 
 			setResult(TaskActivity.resultCode, intent);
