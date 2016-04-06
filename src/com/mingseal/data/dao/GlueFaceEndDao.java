@@ -4,6 +4,7 @@
 package com.mingseal.data.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
@@ -34,23 +35,58 @@ public class GlueFaceEndDao {
 	}
 
 	/**
+	 * @Title  upDateGlueLineMid
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueFaceStartParam
+	 * @return  影响的行数，0表示错误
+	 */
+	public int upDateGlueFaceStart(PointGlueFaceEndParam pointGlueFaceEndParam){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableFaceEnd.STOP_GLUE_TIME, pointGlueFaceEndParam.getStopGlueTime());
+			values.put(TableFaceEnd.UP_HEIGHT, pointGlueFaceEndParam.getUpHeight());
+			values.put(TableFaceEnd.LINE_NUM, pointGlueFaceEndParam.getLineNum());
+			values.put(TableFaceEnd.IS_PAUSE, (boolean) pointGlueFaceEndParam.isPause() ? 1 : 0);
+			rowid = db.update(DBInfo.TableFaceEnd.FACE_END_TABLE, values,TableFaceEnd._ID +"=?", new String[]{String.valueOf(pointGlueFaceEndParam.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
+	/**
 	 * 插入一条面结束点的数据
 	 * 
 	 * @param pointGlueFaceEndParam
 	 * @return 刚插入结束点的id
 	 */
 	public long insertGlueFaceEnd(PointGlueFaceEndParam pointGlueFaceEndParam) {
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-		values = new ContentValues();
-
-		values.put(TableFaceEnd.STOP_GLUE_TIME, pointGlueFaceEndParam.getStopGlueTime());
-		values.put(TableFaceEnd.UP_HEIGHT, pointGlueFaceEndParam.getUpHeight());
-		values.put(TableFaceEnd.LINE_NUM, pointGlueFaceEndParam.getLineNum());
-		values.put(TableFaceEnd.IS_PAUSE, (boolean) pointGlueFaceEndParam.isPause() ? 1 : 0);
-
-		long rowID = db.insert(TableFaceEnd.FACE_END_TABLE, TableFaceEnd._ID, values);
-
-		db.close();
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableFaceEnd._ID, pointGlueFaceEndParam.get_id());
+			values.put(TableFaceEnd.STOP_GLUE_TIME, pointGlueFaceEndParam.getStopGlueTime());
+			values.put(TableFaceEnd.UP_HEIGHT, pointGlueFaceEndParam.getUpHeight());
+			values.put(TableFaceEnd.LINE_NUM, pointGlueFaceEndParam.getLineNum());
+			values.put(TableFaceEnd.IS_PAUSE, (boolean) pointGlueFaceEndParam.isPause() ? 1 : 0);
+			rowID = db.insert(TableFaceEnd.FACE_END_TABLE, TableFaceEnd._ID, values);
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
 	}
 
@@ -99,6 +135,7 @@ public class GlueFaceEndDao {
 			db.beginTransaction();
 			if (cursor != null && cursor.getCount() > 0) {
 				while (cursor.moveToNext()) {
+					param.set_id(cursor.getInt(cursor.getColumnIndex(TableFaceEnd._ID)));
 					param.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableFaceEnd.STOP_GLUE_TIME)));
 					param.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableFaceEnd.UP_HEIGHT)));
 					param.setLineNum(cursor.getInt(cursor.getColumnIndex(TableFaceEnd.LINE_NUM)));

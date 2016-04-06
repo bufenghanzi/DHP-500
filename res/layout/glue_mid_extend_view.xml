@@ -49,9 +49,7 @@
                 android:layout_toRightOf="@id/et_linemid_moveSpeed"
                 android:text="@string/activity_mm_s"
                 android:textColor="#000000"
-                android:textSize="@dimen/activity_title_textsize_sub" />
-
-             <ToggleButton
+                android:textSize="@dimen/activity_title_textsize_sub" /><ToggleButton
                 android:id="@+id/switch_isOutGlue"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -60,6 +58,7 @@
                 android:background="@android:color/transparent"
                 android:button="@drawable/checkbox_iphone"
                 android:checked="true" />
+
            <!--  <Switch
                 android:id="@+id/switch_isOutGlue"
                 android:layout_width="wrap_content"
@@ -457,5 +456,4 @@
                 android:textSize="@dimen/activity_task_bottom_text_size" />
         </RelativeLayout>
     </LinearLayout>
-
 </RelativeLayout>

@@ -592,7 +592,7 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 				}
 				if (flag) {
 					//更新数据
-					int rowid = glueStartDao.upDateGlueAlone(upglueStartParam);
+					int rowid = glueStartDao.upDateGlueLineStart(upglueStartParam);
 					update_id.put(upglueStartParam.get_id(), upglueStartParam);
 //					System.out.println("修改的方案号为："+upglueAlone.get_id());
 				}else {

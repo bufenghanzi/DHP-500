@@ -111,18 +111,7 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 	 * @Fields isNull: 判断编辑输入框是否为空,false表示为空,true表示不为空
 	 */
 	private boolean isNull = false;
-	private TextView tv_num;
-	private TextView tv_radius;
-	private TextView tv_stopPrev;
-	private TextView tv_stopNext;
-	private LinearLayout plan;
-	private Handler handler;
 	private boolean flag = false;// 可以与用户交互，初始化完成标志
-	// 下拉框依附组件宽度，也将作为下拉框的宽度
-	private int pwidth;
-	// PopupWindow对象
-	private PopupWindow selectPopupWindow = null;
-	private ListView listView;
 
 	/*=================== begin ===================*/
 	private HashMap<Integer, PointGlueLineMidParam> update_id;//修改的方案号集合
@@ -132,39 +121,39 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 	PopupListView popupListView;
 	int p = 0;
 	View extendView;
-	 private ToggleButton switch_isOutGlue;
-	 private TextView tv_moveSpeed;
-	    private EditText et_linemid_moveSpeed;
-	    private EditText et_radius;
-	    /**
-		 * 断胶前距离
-		 */
-	    private EditText et_stopDisPrev;
-	    /**
-		 * 断胶后距离
-		 */
-	    private EditText et_stopDisNext;
-	    private ToggleButton switch_glueport1;
-	    private ToggleButton switch_glueport2;
-	    private ToggleButton switch_glueport3;
-	    private ToggleButton switch_glueport4;
-	    private ToggleButton switch_glueport5;
-	    private RelativeLayout rl_moren;
-	    private ImageView iv_add;
-	    private ImageView iv_moren;
-	    /**
-		 * 点胶口
-		 */
-	 private ToggleButton[] isGluePort;
-		private boolean isOk;
-		private boolean isExist=false;//是否存在
-		private boolean firstExist=false;//是否存在
-		/**
-		 * 当前任务号
-		 */
-		private int currentTaskNum;
-		private int currentClickNum;// 当前点击的序号
-		private int mIndex;//对应方案号
+	private ToggleButton switch_isOutGlue;
+	private TextView tv_moveSpeed;
+	private EditText et_linemid_moveSpeed;
+	private EditText et_radius;
+	/**
+	 * 断胶前距离
+	 */
+	private EditText et_stopDisPrev;
+	/**
+	 * 断胶后距离
+	 */
+	private EditText et_stopDisNext;
+	private ToggleButton switch_glueport1;
+	private ToggleButton switch_glueport2;
+	private ToggleButton switch_glueport3;
+	private ToggleButton switch_glueport4;
+	private ToggleButton switch_glueport5;
+	private RelativeLayout rl_moren;
+	private ImageView iv_add;
+	private ImageView iv_moren;
+	/**
+	 * 点胶口
+	 */
+	private ToggleButton[] isGluePort;
+	private boolean isOk;
+	private boolean isExist = false;// 是否存在
+	private boolean firstExist = false;// 是否存在
+	/**
+	 * 当前任务号
+	 */
+	private int currentTaskNum;
+	private int currentClickNum;// 当前点击的序号
+	private int mIndex;//对应方案号
 	/*===================  end  ===================*/
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -191,64 +180,7 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 		glueBoolean = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 		popupViews = new ArrayList<>();
 		initPicker();
-
-//		TextEditWatcher teWatcher = new TextEditWatcher();
-//		stopDisPrevEdit.addTextChangedListener(teWatcher);
-//		stopDisNextEdit.addTextChangedListener(teWatcher);
-//		radiusEdit.addTextChangedListener(teWatcher);
-
 		Log.d(TAG, glueMidLists.toString());
-		// 初始化Handler,用来处理消息
-//		handler = new Handler(GlueLineMidActivity.this);
-//		if (mType == 1) {
-//			PointGlueLineMidParam glueLineMidParam = glueMidDao
-//					.getPointGlueLineMidParam(point.getPointParam().get_id());
-//			param_id = glueMidDao.getLineMidParamIDByParam(glueLineMidParam);// 传过来的方案的参数序列主键。
-//			SetDateAndRefreshUI(glueLineMidParam);
-//		} else {
-//			// 不为1的话，需要选定默认的第一个方案
-//			PointGlueLineMidParam defaultParam = glueMidLists.get(0);
-//			param_id = glueMidDao.getLineMidParamIDByParam(defaultParam);// 默认的参数序列主键。
-//			SetDateAndRefreshUI(defaultParam);
-//		}
-		// mMidAdapter = new PointGlueLineMidAdapter(GlueLineMidActivity.this);
-		// mMidAdapter.setGlueMidLists(glueMidLists);
-		// lineMidSpinner.setAdapter(mMidAdapter);
-		//
-		// // 如果为1的话，需要设置值
-		// if (mType == 1) {
-		// lineMidSpinner.setSelection(point.getPointParam().get_id() - 1);
-		// mMidAdapter.notifyDataSetChanged();
-		// }
-		
-		//
-		// lineMidSpinner.setOnItemSelectedListener(new OnItemSelectedListener()
-		// {
-		//
-		// @Override
-		// public void onItemSelected(AdapterView<?> parent, View view,
-		// int position, long id) {
-		// PointGlueLineMidParam point = mMidAdapter.getItem(position);
-		// et_mid_moveSpeed.setText(point.getMoveSpeed() + "");
-		// radiusEdit.setText(point.getRadius() + "");
-		// stopDisPrevEdit.setText(point.getStopGlueDisPrev() + "");
-		// stopDisNextEdit.setText(point.getStopGLueDisNext() + "");
-		// isOutGlueSwitch.setChecked(point.isOutGlue());
-		//
-		// isGluePort[0].setChecked(point.getGluePort()[0]);
-		// isGluePort[1].setChecked(point.getGluePort()[1]);
-		// isGluePort[2].setChecked(point.getGluePort()[2]);
-		// isGluePort[3].setChecked(point.getGluePort()[3]);
-		// isGluePort[4].setChecked(point.getGluePort()[4]);
-		//
-		// param_id = position + 1;
-		// }
-		//
-		// @Override
-		// public void onNothingSelected(AdapterView<?> parent) {
-		//
-		// }
-		// });
 	}
 
 
@@ -279,17 +211,6 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 			isGluePort[3].setChecked(glueLineMidParam.getGluePort()[3]);
 			isGluePort[4].setChecked(glueLineMidParam.getGluePort()[4]);
 		}
-//		et_mid_moveSpeed.setText(glueLineMidParam.getMoveSpeed() + "");
-//		radiusEdit.setText(glueLineMidParam.getRadius() + "");
-//		stopDisPrevEdit.setText(glueLineMidParam.getStopGlueDisPrev() + "");
-//		stopDisNextEdit.setText(glueLineMidParam.getStopGLueDisNext() + "");
-//		isOutGlueSwitch.setChecked(glueLineMidParam.isOutGlue());
-//
-//		isGluePort[0].setChecked(glueLineMidParam.getGluePort()[0]);
-//		isGluePort[1].setChecked(glueLineMidParam.getGluePort()[1]);
-//		isGluePort[2].setChecked(glueLineMidParam.getGluePort()[2]);
-//		isGluePort[3].setChecked(glueLineMidParam.getGluePort()[3]);
-//		isGluePort[4].setChecked(glueLineMidParam.getGluePort()[4]);
 	}
 	/**
 	 * 加载自定义组件并设置NumberPicker的最大最小值
@@ -487,6 +408,11 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 									GlueLineMid.MoveSpeedMax, GlueLineMid.GlueLineMidMin,
 									et_linemid_moveSpeed));
 					et_linemid_moveSpeed.setSelectAllOnFocus(true);
+					TextEditWatcher teWatcher = new TextEditWatcher();
+					et_stopDisPrev.addTextChangedListener(teWatcher);
+					et_stopDisNext.addTextChangedListener(teWatcher);
+					et_radius.addTextChangedListener(teWatcher);
+					
 					rl_moren = (RelativeLayout) extendView.findViewById(R.id.rl_moren);
 					iv_add = (ImageView) extendView.findViewById(R.id.iv_add);
 					rl_save = (RelativeLayout) extendView.findViewById(R.id.rl_save);// 保存按钮
@@ -561,50 +487,6 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 			}
 		});
 		rl_back.setOnClickListener(this);
-//		tv_title = (TextView) findViewById(R.id.tv_title);
-//		et_mid_moveSpeed = (EditText) findViewById(R.id.et_linemid_moveSpeed);
-//		radiusEdit = (EditText) findViewById(R.id.et_radius);
-//		stopDisPrevEdit = (EditText) findViewById(R.id.et_stopDisPrev);
-//		stopDisNextEdit = (EditText) findViewById(R.id.et_stopDisNext);
-//		isOutGlueSwitch = (Switch) findViewById(R.id.switch_isOutGlue);
-//
-//		/* =================== begin =================== */
-//		tv_num = (TextView) findViewById(R.id.item_num);
-//		tv_radius = (TextView) findViewById(R.id.item_mid_radius);
-//		tv_stopPrev = (TextView) findViewById(R.id.item_mid_stopDisPrev);
-//		tv_stopNext = (TextView) findViewById(R.id.item_mid_stopDisNext);
-//		// 初始化界面组件
-//		plan = (LinearLayout) findViewById(R.id.tv_plan);
-//		/* =================== end =================== */
-//
-//		isGluePort = new Switch[GWOutPort.USER_O_NO_ALL.ordinal()];
-//		isGluePort[0] = (Switch) findViewById(R.id.switch_glueport1);
-//		isGluePort[1] = (Switch) findViewById(R.id.switch_glueport2);
-//		isGluePort[2] = (Switch) findViewById(R.id.switch_glueport3);
-//		isGluePort[3] = (Switch) findViewById(R.id.switch_glueport4);
-//		isGluePort[4] = (Switch) findViewById(R.id.switch_glueport5);
-//
-//		rl_back = (RelativeLayout) findViewById(R.id.rl_back);
-//		rl_save = (RelativeLayout) findViewById(R.id.rl_save);
-//		rl_complete = (RelativeLayout) findViewById(R.id.rl_complete);
-//
-//		// 轨迹速度设置最大最小值
-//		et_mid_moveSpeed.addTextChangedListener(new MaxMinEditWatcher(
-//				GlueLineMid.MoveSpeedMax, GlueLineMid.GlueLineMidMin,
-//				et_mid_moveSpeed));
-//		et_mid_moveSpeed
-//				.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-//						GlueLineMid.MoveSpeedMax, GlueLineMid.GlueLineMidMin,
-//						et_mid_moveSpeed));
-//		et_mid_moveSpeed.setSelectAllOnFocus(true);
-//
-//		tv_title.setText(getResources().getString(
-//				R.string.activity_glue_line_mid));
-//		rl_back.setOnClickListener(this);
-//		rl_save.setOnClickListener(this);
-//		rl_complete.setOnClickListener(this);
-//
-		
 	}
 
 	/**
@@ -711,7 +593,6 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 	 * @author wj
 	 */
 	private void refreshTitle() {
-		// TODO Auto-generated method stub
 		glueMidLists= glueMidDao.findAllGlueLineMidParams();
 		//popupListView->pupupview->title
 		for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
@@ -775,7 +656,6 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 			isGluePort[4] = (ToggleButton) extendView.findViewById(R.id.switch_glueport5);
 	}
 
-
 	/**
 	 * 将页面上的数据保存到PointGlueLineMidParam对象中
 	 * @param extendView 
@@ -837,7 +717,6 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 		}
 	}
 	private void complete() {
-		// TODO Auto-generated method stub
 		 ArrayList<? extends PopupView> itemPopuViews = popupListView.getItemViews();
 		 for (PopupView popupView : itemPopuViews) {
 			 ImageView iv_selected= (ImageView) popupView.getPopupView().findViewById(R.id.iv_selected);
@@ -863,8 +742,6 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 
 			setResult(TaskActivity.resultCode, intent);
 	}
-
-
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {

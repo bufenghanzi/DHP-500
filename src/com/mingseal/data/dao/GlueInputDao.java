@@ -10,7 +10,9 @@ import java.util.List;
 import com.mingseal.data.db.DBHelper;
 import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableFaceEnd;
+import com.mingseal.data.db.DBInfo.TableFaceStart;
 import com.mingseal.data.db.DBInfo.TableInputIO;
+import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
 import com.mingseal.data.point.glueparam.PointGlueInputIOParam;
 import com.mingseal.utils.ArraysComprehension;
 
@@ -34,7 +36,32 @@ public class GlueInputDao {
 	public GlueInputDao(Context context) {
 		dbHelper = new DBHelper(context);
 	}
-
+	/**
+	 * @Title  upDateGlueLineMid
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueFaceStartParam
+	 * @return  影响的行数，0表示错误
+	 */
+	public int upDateGlueInput(PointGlueInputIOParam param){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableInputIO.GO_TIME_PREV, param.getGoTimePrev());
+			values.put(TableInputIO.GO_TIME_NEXT, param.getGoTimeNext());
+			values.put(TableInputIO.INPUT_PORT, Arrays.toString(param.getInputPort()));
+			rowid = db.update(DBInfo.TableInputIO.INPUT_IO_TABLE, values,TableInputIO._ID +"=?", new String[]{String.valueOf(param.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
 	/**
 	 * 增加一条输入IO的数据
 	 * 
@@ -42,17 +69,24 @@ public class GlueInputDao {
 	 * @return 刚增加的这条数据的主键
 	 */
 	public long insertGlueInput(PointGlueInputIOParam param) {
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-
-		values = new ContentValues();
-		values.put(TableInputIO.GO_TIME_PREV, param.getGoTimePrev());
-		values.put(TableInputIO.GO_TIME_NEXT, param.getGoTimeNext());
-		values.put(TableInputIO.INPUT_PORT, Arrays.toString(param.getInputPort()));
-
-		long rowID = db.insert(TableInputIO.INPUT_IO_TABLE, TableInputIO._ID, values);
-
-		db.close();
-
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableInputIO._ID, param.get_id());
+			values.put(TableInputIO.GO_TIME_PREV, param.getGoTimePrev());
+			values.put(TableInputIO.GO_TIME_NEXT, param.getGoTimeNext());
+			values.put(TableInputIO.INPUT_PORT, Arrays.toString(param.getInputPort()));
+			rowID = db.insert(TableInputIO.INPUT_IO_TABLE, TableInputIO._ID, values);
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
 	}
 

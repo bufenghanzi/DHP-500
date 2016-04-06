@@ -9,399 +9,44 @@
 
     <include layout="@layout/activity_task_title" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_title_layout_height"
-        android:gravity="center"
-        android:text="@string/activity_glue_alone_title"
-        android:textColor="@color/activity_title_textcolor"
-        android:textSize="@dimen/activity_title_textsize" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
-        android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
-        android:background="@drawable/task_bottom_linearlayout_bg"
-        android:orientation="vertical" >
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" >
 
         <TextView
+            android:id="@+id/fanganliebiao"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
-            android:text="@string/activity_glue_alone_liebiao"
-            android:textSize="@dimen/activity_title_textsize_sub" />
+            android:text="方案列表"
+            android:textSize="30dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/activity_task_listview_divider" />
+        <TextView
+            android:id="@+id/morenfangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:text="当前默认方案号(1)"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
-            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
-
-            <TextView
-                android:id="@+id/tv_goTimePrev"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:text="@string/activity_glue_goTimePrev"
-                android:textSize="@dimen/activity_title_textsize_sub" />
-
-            <EditText
-                android:id="@+id/et_input_goTimePrev"
-                android:layout_width="@dimen/edittext_input_width"
-                android:layout_height="@dimen/edittext_input_height"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/edittext_marginLeft"
-                android:layout_toRightOf="@id/tv_goTimePrev"
-                android:background="@drawable/task_edittext_bg"
-                android:gravity="right|center"
-                android:inputType="number"
-                android:paddingLeft="@dimen/edittext_paddingLeft"
-                android:paddingRight="@dimen/edittext_paddingRight"
-                android:textSize="@dimen/activity_glue_edittext_textsize" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toRightOf="@id/et_input_goTimePrev"
-                android:text="@string/activity_ms"
-                android:textSize="@dimen/activity_title_textsize_sub" />
-
-            <TextView
-                android:id="@+id/tv_goTimeNext_ms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:text="@string/activity_ms"
-                android:textSize="@dimen/activity_title_textsize_sub" />
-
-            <EditText
-                android:id="@+id/et_input_goTimeNext"
-                android:layout_width="@dimen/edittext_input_width"
-                android:layout_height="@dimen/edittext_input_height"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/edittext_marginLeft"
-                android:layout_toLeftOf="@id/tv_goTimeNext_ms"
-                android:background="@drawable/task_edittext_bg"
-                android:gravity="right|center"
-                android:inputType="number"
-                android:paddingLeft="@dimen/edittext_paddingLeft"
-                android:paddingRight="@dimen/edittext_paddingRight"
-                android:textSize="@dimen/activity_glue_edittext_textsize" />
-
-            <TextView
-                android:id="@+id/tv_goTimeNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toLeftOf="@id/et_input_goTimeNext"
-                android:text="@string/activity_glue_goTimeNext"
-                android:textSize="@dimen/activity_title_textsize_sub" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
-            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
-            android:orientation="horizontal" >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/activity_glue_io1"
-                    android:textSize="@dimen/activity_title_textsize_sub" />
-
-                <Switch
-                    android:id="@+id/switch_glueport1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:checked="false"
-                    android:textOff="@string/activity_no"
-                    android:textOn="@string/activity_yes" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/activity_glue_io2"
-                    android:textSize="@dimen/activity_title_textsize_sub" />
-
-                <Switch
-                    android:id="@+id/switch_glueport2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textOff="@string/activity_no"
-                    android:textOn="@string/activity_yes" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/activity_glue_io3"
-                    android:textSize="@dimen/activity_title_textsize_sub" />
-
-                <Switch
-                    android:id="@+id/switch_glueport3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textOff="@string/activity_no"
-                    android:textOn="@string/activity_yes" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
-            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
-            android:orientation="horizontal" >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/activity_glue_io4"
-                    android:textSize="@dimen/activity_title_textsize_sub" />
-
-                <Switch
-                    android:id="@+id/switch_glueport4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textOff="@string/activity_no"
-                    android:textOn="@string/activity_yes" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal" >
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="horizontal" >
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
-            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
-            android:orientation="horizontal" >
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="7"
-                android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/tv_fangan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="@string/activity_glue_fangan"
-                    android:textSize="@dimen/activity_title_textsize_sub" />
-
-                <!--
-                     <Spinner
-                    android:id="@+id/spinner_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical" />
-                -->
-
-                <LinearLayout
-                    android:id="@+id/tv_plan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center" >
-
-                    <TextView
-                        android:id="@+id/item_num"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/item_glue_marginLeft"
-                        android:layout_marginTop="@dimen/item_glue_marginTop"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:text="1"
-                        android:textSize="@dimen/item_glue_textsize" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/item_glue_marginLeft"
-                        android:layout_marginTop="@dimen/item_glue_marginTop"
-                        android:layout_weight="2"
-                        android:gravity="center_horizontal"
-                        android:text="@string/activity_glue_goTimePrev"
-                        android:textSize="@dimen/item_glue_textsize" />
-
-                    <TextView
-                        android:id="@+id/item_goTimePrev"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/item_glue_marginTop"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="500"
-                        android:textSize="@dimen/item_glue_textsize" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/item_glue_marginTop"
-                        android:text="@string/activity_ms"
-                        android:textSize="@dimen/item_glue_textsize" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/item_glue_marginLeft"
-                        android:layout_marginTop="@dimen/item_glue_marginTop"
-                        android:layout_weight="2"
-                        android:gravity="center_horizontal"
-                        android:text="@string/activity_glue_goTimeNext"
-                        android:textSize="@dimen/item_glue_textsize" />
-
-                    <TextView
-                        android:id="@+id/item_goTimeNext"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/item_glue_marginTop"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="1000"
-                        android:textSize="@dimen/item_glue_textsize" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/item_glue_marginTop"
-                        android:text="@string/activity_ms"
-                        android:textSize="@dimen/item_glue_textsize" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" >
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/rl_save"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
-                android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
-                android:layout_marginRight="@dimen/activity_bottom_tab_marginRight"
-                android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
-                android:layout_weight="1"
-                android:background="@drawable/task_bottom_imagebutton"
-                android:gravity="center" >
-
-                <ImageView
-                    android:id="@+id/iv_add"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/icon_add" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/iv_add"
-                    android:layout_toRightOf="@id/iv_add"
-                    android:gravity="center"
-                    android:text="@string/activity_glue_save"
-                    android:textColor="@color/color_white"
-                    android:textSize="@dimen/activity_task_bottom_text_size" />
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center" >
+        android:layout_height="2dp"
+        android:background="#C8C9C8" />
 
-        <RelativeLayout
-            android:id="@+id/rl_complete"
-            android:layout_width="150dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
-            android:layout_marginTop="@dimen/activity_bottom_tab_marginTop"
-            android:background="@drawable/task_bottom_imagebutton"
-            android:gravity="center" >
-
-            <ImageView
-                android:id="@+id/iv_complete"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/icon_complete" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/iv_complete"
-                android:layout_toRightOf="@id/iv_complete"
-                android:gravity="center"
-                android:text="@string/activity_glue_complete"
-                android:textColor="@color/color_white"
-                android:textSize="@dimen/activity_task_bottom_text_size" />
-        </RelativeLayout>
-    </LinearLayout>
+    <com.mingseal.ui.PopupListView
+        android:id="@+id/popupListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </com.mingseal.ui.PopupListView>
 
 </LinearLayout>

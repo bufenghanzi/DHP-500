@@ -37,6 +37,7 @@ import com.mingseal.data.point.PointTask;
 import com.mingseal.data.point.PointType;
 import com.mingseal.data.point.SMatrix1_4;
 import com.mingseal.data.point.glueparam.PointGlueAloneParam;
+import com.mingseal.data.point.glueparam.PointGlueClearParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceEndParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
 import com.mingseal.data.point.glueparam.PointGlueLineEndParam;
@@ -1405,6 +1406,74 @@ public class TaskActivity extends Activity implements OnClickListener {
 					for (Map.Entry entry : glueMidMap.entrySet()) {
 						int key_id=(int) entry.getKey();
 						PointGlueLineMidParam param=(PointGlueLineMidParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
+			break;
+		case POINT_GLUE_LINE_END:
+			ArrayList<Map<Integer, PointGlueLineEndParam>> line_endList=(ArrayList<Map<Integer, PointGlueLineEndParam>>) list.get(0);
+			HashMap<Integer, PointGlueLineEndParam> glueEndMap=(HashMap<Integer, PointGlueLineEndParam>) line_endList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + glueEndMap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : glueEndMap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueLineEndParam param=(PointGlueLineEndParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
+			break;
+		case POINT_GLUE_FACE_START:
+			ArrayList<Map<Integer, PointGlueFaceStartParam>> face_startList=(ArrayList<Map<Integer, PointGlueFaceStartParam>>) list.get(0);
+			HashMap<Integer, PointGlueFaceStartParam> face_startMap=(HashMap<Integer, PointGlueFaceStartParam>) face_startList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + face_startMap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : face_startMap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueFaceStartParam param=(PointGlueFaceStartParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
+			break;
+		case POINT_GLUE_FACE_END:
+			ArrayList<Map<Integer, PointGlueFaceEndParam>> face_endList=(ArrayList<Map<Integer, PointGlueFaceEndParam>>) list.get(0);
+			HashMap<Integer, PointGlueFaceEndParam> face_endMap=(HashMap<Integer, PointGlueFaceEndParam>) face_endList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + face_endMap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : face_endMap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueFaceEndParam param=(PointGlueFaceEndParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
+			break;
+		case POINT_GLUE_CLEAR:
+			ArrayList<Map<Integer, PointGlueClearParam>> clearlList=(ArrayList<Map<Integer, PointGlueClearParam>>) list.get(0);
+			HashMap<Integer, PointGlueClearParam> clearMap=(HashMap<Integer, PointGlueClearParam>) clearlList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + clearMap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : clearMap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueClearParam param=(PointGlueClearParam) entry.getValue();
 						if (pointCur.getPointParam().get_id()==key_id) {
 							pointCur.setPointParam(param);
 						}

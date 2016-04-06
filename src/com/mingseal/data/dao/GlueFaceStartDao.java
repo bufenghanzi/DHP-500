@@ -11,8 +11,10 @@ import com.mingseal.data.db.DBHelper;
 import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableAlone;
 import com.mingseal.data.db.DBInfo.TableFaceStart;
+import com.mingseal.data.db.DBInfo.TableLineEnd;
 import com.mingseal.data.point.glueparam.PointGlueAloneParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
+import com.mingseal.data.point.glueparam.PointGlueLineEndParam;
 import com.mingseal.utils.ArraysComprehension;
 
 import android.content.ContentValues;
@@ -36,7 +38,36 @@ public class GlueFaceStartDao {
 	public GlueFaceStartDao(Context context) {
 		dbHelper = new DBHelper(context);
 	}
-
+	/**
+	 * @Title  upDateGlueLineMid
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueFaceStartParam
+	 * @return  影响的行数，0表示错误
+	 */
+	public int upDateGlueFaceStart(PointGlueFaceStartParam pointGlueFaceStartParam){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableFaceStart.OUT_GLUE_TIME_PREV, pointGlueFaceStartParam.getOutGlueTimePrev());
+			values.put(TableFaceStart.OUT_GLUE_TIME, pointGlueFaceStartParam.getOutGlueTime());
+			values.put(TableFaceStart.MOVE_SPEED, pointGlueFaceStartParam.getMoveSpeed());
+			values.put(TableFaceStart.IS_OUT_GLUE, (boolean) pointGlueFaceStartParam.isOutGlue() ? 1 : 0);
+			values.put(TableFaceStart.STOP_GLUE_TIME, pointGlueFaceStartParam.getStopGlueTime());
+			values.put(TableFaceStart.START_DIR, (boolean) pointGlueFaceStartParam.isStartDir() ? 1 : 0);
+			values.put(TableFaceStart.GLUE_PORT, Arrays.toString(pointGlueFaceStartParam.getGluePort()));
+			rowid = db.update(DBInfo.TableFaceStart.FACE_START_TABLE, values,TableFaceStart._ID +"=?", new String[]{String.valueOf(pointGlueFaceStartParam.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
 	/**
 	 * 增加一条面起始点的数据
 	 * 
@@ -44,23 +75,28 @@ public class GlueFaceStartDao {
 	 * @return
 	 */
 	public long insertGlueFaceStart(PointGlueFaceStartParam pointGlueFaceStartParam) {
-
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-
-		values = new ContentValues();
-		values.put(TableFaceStart.OUT_GLUE_TIME_PREV, pointGlueFaceStartParam.getOutGlueTimePrev());
-		values.put(TableFaceStart.OUT_GLUE_TIME, pointGlueFaceStartParam.getOutGlueTime());
-		values.put(TableFaceStart.MOVE_SPEED, pointGlueFaceStartParam.getMoveSpeed());
-		values.put(TableFaceStart.IS_OUT_GLUE, (boolean) pointGlueFaceStartParam.isOutGlue() ? 1 : 0);
-		values.put(TableFaceStart.STOP_GLUE_TIME, pointGlueFaceStartParam.getStopGlueTime());
-		values.put(TableFaceStart.START_DIR, (boolean) pointGlueFaceStartParam.isStartDir() ? 1 : 0);
-		values.put(TableFaceStart.GLUE_PORT, Arrays.toString(pointGlueFaceStartParam.getGluePort()));
-
-		long rowID = db.insert(TableFaceStart.FACE_START_TABLE, TableFaceStart._ID, values);
-
-		// 释放资源
-		db.close();
-
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableFaceStart._ID, pointGlueFaceStartParam.get_id());
+			values.put(TableFaceStart.OUT_GLUE_TIME_PREV, pointGlueFaceStartParam.getOutGlueTimePrev());
+			values.put(TableFaceStart.OUT_GLUE_TIME, pointGlueFaceStartParam.getOutGlueTime());
+			values.put(TableFaceStart.MOVE_SPEED, pointGlueFaceStartParam.getMoveSpeed());
+			values.put(TableFaceStart.IS_OUT_GLUE, (boolean) pointGlueFaceStartParam.isOutGlue() ? 1 : 0);
+			values.put(TableFaceStart.STOP_GLUE_TIME, pointGlueFaceStartParam.getStopGlueTime());
+			values.put(TableFaceStart.START_DIR, (boolean) pointGlueFaceStartParam.isStartDir() ? 1 : 0);
+			values.put(TableFaceStart.GLUE_PORT, Arrays.toString(pointGlueFaceStartParam.getGluePort()));
+			rowID = db.insert(TableFaceStart.FACE_START_TABLE, TableFaceStart._ID, values);
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
 
 	}
@@ -114,6 +150,7 @@ public class GlueFaceStartDao {
 			db.beginTransaction();
 			if (cursor != null && cursor.getCount() > 0) {
 				while (cursor.moveToNext()) {
+					param.set_id(cursor.getInt(cursor.getColumnIndex(TableFaceStart._ID)));
 					param.setOutGlueTimePrev(cursor.getInt(cursor.getColumnIndex(TableFaceStart.OUT_GLUE_TIME_PREV)));
 					param.setOutGlueTime(cursor.getInt(cursor.getColumnIndex(TableFaceStart.OUT_GLUE_TIME)));
 					param.setMoveSpeed(cursor.getInt(cursor.getColumnIndex(TableFaceStart.MOVE_SPEED)));

@@ -4,6 +4,7 @@
 package com.mingseal.data.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
@@ -35,7 +36,30 @@ public class GlueClearDao {
 	public GlueClearDao(Context context) {
 		dbHelper = new DBHelper(context);
 	}
-
+	/**
+	 * @Title  upDateGlueLineMid
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueFaceStartParam
+	 * @return  影响的行数，0表示错误
+	 */
+	public int upDateGlueClear(PointGlueClearParam pointGlueClearParam){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableClear.CLEAR_GLUE_TIME, pointGlueClearParam.getClearGlueTime());
+			rowid = db.update(DBInfo.TableClear.CLEAR_TABLE, values,TableClear._ID +"=?", new String[]{String.valueOf(pointGlueClearParam.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
 	/**
 	 * 插入一条清胶点的数据
 	 * 
@@ -43,14 +67,22 @@ public class GlueClearDao {
 	 * @return 刚插入清胶点的id
 	 */
 	public long insertGlueClear(PointGlueClearParam pointGlueClearParam) {
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-		values = new ContentValues();
-
-		values.put(TableClear.CLEAR_GLUE_TIME, pointGlueClearParam.getClearGlueTime());
-
-		long rowID = db.insert(TableClear.CLEAR_TABLE, TableClear._ID, values);
-
-		db.close();
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableClear._ID, pointGlueClearParam.get_id());
+			values.put(TableClear.CLEAR_GLUE_TIME, pointGlueClearParam.getClearGlueTime());
+			rowID = db.insert(TableClear.CLEAR_TABLE, TableClear._ID, values);
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
 	}
 
@@ -136,6 +168,7 @@ public class GlueClearDao {
 			db.beginTransaction();
 			if (cursor != null && cursor.getCount() > 0) {
 				while (cursor.moveToNext()) {
+					param.set_id(cursor.getInt(cursor.getColumnIndex(TableClear._ID)));
 					param.setClearGlueTime(cursor.getInt(cursor.getColumnIndex(TableClear.CLEAR_GLUE_TIME)));
 				}
 			}

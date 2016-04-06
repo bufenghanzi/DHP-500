@@ -44,7 +44,7 @@ public class GlueLineStartDao {
 	 * @param pointGlueAloneParam
 	 * @return 影响的行数，0表示错误
 	 */
-	public int upDateGlueAlone(PointGlueLineStartParam pointGlueLineStartParam) {
+	public int upDateGlueLineStart(PointGlueLineStartParam pointGlueLineStartParam) {
 		int rowid = 0;
 		try {
 			db = dbHelper.getWritableDatabase();

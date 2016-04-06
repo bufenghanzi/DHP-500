@@ -4,13 +4,16 @@
 package com.mingseal.data.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.mingseal.data.db.DBHelper;
 import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableFaceEnd;
 import com.mingseal.data.db.DBInfo.TableLineEnd;
+import com.mingseal.data.db.DBInfo.TableLineMid;
 import com.mingseal.data.point.glueparam.PointGlueLineEndParam;
+import com.mingseal.data.point.glueparam.PointGlueLineMidParam;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -32,6 +35,36 @@ public class GlueLineEndDao {
 	public GlueLineEndDao(Context context) {
 		dbHelper = new DBHelper(context);
 	}
+	/**
+	 * @Title  upDateGlueAlone
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueAloneParam
+	 * @return  影响的行数，0表示错误
+	 */
+	public int upDateGlueLineEnd(PointGlueLineEndParam pointGlueLineEndParam){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableLineEnd.STOP_GLUE_TIME_PREV, pointGlueLineEndParam.getStopGlueTimePrev());
+			values.put(TableLineEnd.STOP_GLUE_TIME, pointGlueLineEndParam.getStopGlueTime());
+			values.put(TableLineEnd.UP_HEIGHT, pointGlueLineEndParam.getUpHeight());
+			values.put(TableLineEnd.BREAK_GLUE_LEN, pointGlueLineEndParam.getBreakGlueLen());
+			values.put(TableLineEnd.DRAW_DISTANCE, pointGlueLineEndParam.getDrawDistance());
+			values.put(TableLineEnd.DRAW_SPEED, pointGlueLineEndParam.getDrawSpeed());
+			values.put(TableLineEnd.IS_PAUSE, (boolean) pointGlueLineEndParam.isPause() ? 1 : 0);
+			rowid = db.update(DBInfo.TableLineEnd.LINE_END_TABLE, values,TableLineEnd._ID +"=?", new String[]{String.valueOf(pointGlueLineEndParam.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
 
 	/**
 	 * 增加一条线结束点的数据
@@ -40,20 +73,28 @@ public class GlueLineEndDao {
 	 * @return PointGlueLineEndParam
 	 */
 	public long insertGlueLineEnd(PointGlueLineEndParam pointGlueLineEndParam) {
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-
-		values = new ContentValues();
-		values.put(TableLineEnd.STOP_GLUE_TIME_PREV, pointGlueLineEndParam.getStopGlueTimePrev());
-		values.put(TableLineEnd.STOP_GLUE_TIME, pointGlueLineEndParam.getStopGlueTime());
-		values.put(TableLineEnd.UP_HEIGHT, pointGlueLineEndParam.getUpHeight());
-		values.put(TableLineEnd.BREAK_GLUE_LEN, pointGlueLineEndParam.getBreakGlueLen());
-		values.put(TableLineEnd.DRAW_DISTANCE, pointGlueLineEndParam.getDrawDistance());
-		values.put(TableLineEnd.DRAW_SPEED, pointGlueLineEndParam.getDrawSpeed());
-		values.put(TableLineEnd.IS_PAUSE, (boolean) pointGlueLineEndParam.isPause() ? 1 : 0);
-
-		long rowID = db.insert(TableLineEnd.LINE_END_TABLE, TableLineEnd._ID, values);
-
-		db.close();
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableLineEnd._ID, pointGlueLineEndParam.get_id());
+			values.put(TableLineEnd.STOP_GLUE_TIME_PREV, pointGlueLineEndParam.getStopGlueTimePrev());
+			values.put(TableLineEnd.STOP_GLUE_TIME, pointGlueLineEndParam.getStopGlueTime());
+			values.put(TableLineEnd.UP_HEIGHT, pointGlueLineEndParam.getUpHeight());
+			values.put(TableLineEnd.BREAK_GLUE_LEN, pointGlueLineEndParam.getBreakGlueLen());
+			values.put(TableLineEnd.DRAW_DISTANCE, pointGlueLineEndParam.getDrawDistance());
+			values.put(TableLineEnd.DRAW_SPEED, pointGlueLineEndParam.getDrawSpeed());
+			values.put(TableLineEnd.IS_PAUSE, (boolean) pointGlueLineEndParam.isPause() ? 1 : 0);
+			rowID = db.insert(TableLineEnd.LINE_END_TABLE, TableLineEnd._ID, values);
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
 
 	}
@@ -108,6 +149,7 @@ public class GlueLineEndDao {
 			db.beginTransaction();
 			if (cursor != null && cursor.getCount() > 0) {
 				while (cursor.moveToNext()) {
+					param.set_id(cursor.getInt(cursor.getColumnIndex(TableLineEnd._ID)));
 					param.setStopGlueTimePrev(cursor.getInt(cursor.getColumnIndex(TableLineEnd.STOP_GLUE_TIME_PREV)));
 					param.setStopGlueTime(cursor.getInt(cursor.getColumnIndex(TableLineEnd.STOP_GLUE_TIME)));
 					param.setUpHeight(cursor.getInt(cursor.getColumnIndex(TableLineEnd.UP_HEIGHT)));

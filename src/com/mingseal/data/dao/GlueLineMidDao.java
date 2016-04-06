@@ -56,12 +56,6 @@ public class GlueLineMidDao {
 			values.put(TableLineMid.STOP_GLUE_DIS_NEXT, pointGlueLineMidParam.getStopGLueDisNext());
 			values.put(TableLineMid.IS_OUT_GLUE, (boolean) pointGlueLineMidParam.isOutGlue() ? 1 : 0);
 			values.put(TableLineMid.GLUE_PORT, Arrays.toString(pointGlueLineMidParam.getGluePort()));
-//			values.put(TableAlone.DOT_GLUE_TIME, pointGlueAloneParam.getDotGlueTime());
-//			values.put(TableAlone.STOP_GLUE_TIME, pointGlueAloneParam.getStopGlueTime());
-//			values.put(TableAlone.UP_HEIGHT, pointGlueAloneParam.getUpHeight());
-//			values.put(TableAlone.IS_OUT_GLUE, (boolean) pointGlueAloneParam.isOutGlue() ? 1 : 0);
-//			values.put(TableAlone.IS_PAUSE, (boolean) pointGlueAloneParam.isPause() ? 1 : 0);
-//			values.put(TableAlone.GLUE_PORT, Arrays.toString(pointGlueAloneParam.getGluePort()));
 			rowid = db.update(DBInfo.TableLineMid.LINE_MID_TABLE, values,TableLineMid._ID +"=?", new String[]{String.valueOf(pointGlueLineMidParam.get_id())});
 			db.setTransactionSuccessful();
 		} catch (Exception e) {
