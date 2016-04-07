@@ -40,9 +40,11 @@ import com.mingseal.data.point.glueparam.PointGlueAloneParam;
 import com.mingseal.data.point.glueparam.PointGlueClearParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceEndParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
+import com.mingseal.data.point.glueparam.PointGlueInputIOParam;
 import com.mingseal.data.point.glueparam.PointGlueLineEndParam;
 import com.mingseal.data.point.glueparam.PointGlueLineMidParam;
 import com.mingseal.data.point.glueparam.PointGlueLineStartParam;
+import com.mingseal.data.point.glueparam.PointGlueOutputIOParam;
 import com.mingseal.data.protocol.Protocol_400_1;
 import com.mingseal.dhp.R;
 import com.mingseal.listener.MyPopWindowClickListener;
@@ -1474,6 +1476,40 @@ public class TaskActivity extends Activity implements OnClickListener {
 					for (Map.Entry entry : clearMap.entrySet()) {
 						int key_id=(int) entry.getKey();
 						PointGlueClearParam param=(PointGlueClearParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
+			break;
+		case POINT_GLUE_INPUT:
+			ArrayList<Map<Integer, PointGlueInputIOParam>> inputList=(ArrayList<Map<Integer, PointGlueInputIOParam>>) list.get(0);
+			HashMap<Integer, PointGlueInputIOParam> inputMap=(HashMap<Integer, PointGlueInputIOParam>) inputList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + inputMap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : inputMap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueInputIOParam param=(PointGlueInputIOParam) entry.getValue();
+						if (pointCur.getPointParam().get_id()==key_id) {
+							pointCur.setPointParam(param);
+						}
+					}
+				}
+			}
+			
+			break;
+		case POINT_GLUE_OUTPUT:
+			ArrayList<Map<Integer, PointGlueOutputIOParam>> outputlList=(ArrayList<Map<Integer, PointGlueOutputIOParam>>) list.get(0);
+			HashMap<Integer, PointGlueOutputIOParam> outputMap=(HashMap<Integer, PointGlueOutputIOParam>) outputlList.get(0);
+			Log.d(TAG + ":onActivityResult", "ParcelableMap:" + outputMap);
+			for (Point pointCur : mPointsCur) {
+				if (pointCur.getPointParam().getPointType().equals(point.getPointParam().getPointType())) {
+					for (Map.Entry entry : outputMap.entrySet()) {
+						int key_id=(int) entry.getKey();
+						PointGlueOutputIOParam param=(PointGlueOutputIOParam) entry.getValue();
 						if (pointCur.getPointParam().get_id()==key_id) {
 							pointCur.setPointParam(param);
 						}

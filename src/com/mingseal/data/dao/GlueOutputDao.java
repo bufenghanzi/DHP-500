@@ -10,7 +10,9 @@ import java.util.List;
 import com.mingseal.data.db.DBHelper;
 import com.mingseal.data.db.DBInfo;
 import com.mingseal.data.db.DBInfo.TableFaceEnd;
+import com.mingseal.data.db.DBInfo.TableInputIO;
 import com.mingseal.data.db.DBInfo.TableOutputIO;
+import com.mingseal.data.point.glueparam.PointGlueInputIOParam;
 import com.mingseal.data.point.glueparam.PointGlueOutputIOParam;
 import com.mingseal.utils.ArraysComprehension;
 
@@ -34,7 +36,35 @@ public class GlueOutputDao {
 	public GlueOutputDao(Context context) {
 		dbHelper = new DBHelper(context);
 	}
-
+	/**
+	 * @Title  upDateGlueLineMid
+	 * @Description 更新一条独立点数据
+	 * @author wj
+	 * @param pointGlueFaceStartParam
+	 * @return  影响的行数，0表示错误
+	 */
+	public int upDateGlueOutput(PointGlueOutputIOParam param){
+		int rowid = 0;
+		try {
+			db = dbHelper.getWritableDatabase();
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableOutputIO.GO_TIME_PREV, param.getGoTimePrev());
+			values.put(TableOutputIO.GO_TIME_NEXT, param.getGoTimeNext());
+			values.put(TableOutputIO.INPUT_PORT, Arrays.toString(param.getInputPort()));
+//			values.put(TableInputIO.GO_TIME_PREV, param.getGoTimePrev());
+//			values.put(TableInputIO.GO_TIME_NEXT, param.getGoTimeNext());
+//			values.put(TableInputIO.INPUT_PORT, Arrays.toString(param.getInputPort()));
+			rowid = db.update(DBInfo.TableOutputIO.OUTPUT_IO_TABLE, values,TableOutputIO._ID +"=?", new String[]{String.valueOf(param.get_id())});
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			db.endTransaction();
+			db.close();
+		}
+		return rowid; 
+	}
 	/**
 	 * 增加一条输出IO的数据
 	 * 
@@ -42,17 +72,24 @@ public class GlueOutputDao {
 	 * @return 刚增加的这条数据的主键
 	 */
 	public long insertGlueOutput(PointGlueOutputIOParam param) {
+		long rowID = 0;
 		db = dbHelper.getWritableDatabase();
-
-		values = new ContentValues();
-		values.put(TableOutputIO.GO_TIME_PREV, param.getGoTimePrev());
-		values.put(TableOutputIO.GO_TIME_NEXT, param.getGoTimeNext());
-		values.put(TableOutputIO.INPUT_PORT, Arrays.toString(param.getInputPort()));
-
-		long rowID = db.insert(TableOutputIO.OUTPUT_IO_TABLE, TableOutputIO._ID, values);
-
-		db.close();
-
+		try {
+			db.beginTransaction();
+			values = new ContentValues();
+			values.put(TableOutputIO._ID, param.get_id());
+			values.put(TableOutputIO.GO_TIME_PREV, param.getGoTimePrev());
+			values.put(TableOutputIO.GO_TIME_NEXT, param.getGoTimeNext());
+			values.put(TableOutputIO.INPUT_PORT, Arrays.toString(param.getInputPort()));
+			rowID = db.insert(TableOutputIO.OUTPUT_IO_TABLE, TableOutputIO._ID, values);
+			db.setTransactionSuccessful();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+			// 释放资源
+			db.close();
+		}
 		return rowID;
 	}
 

@@ -66,7 +66,7 @@ import static com.mingseal.data.param.PointConfigParam.GlueLineMid;
  * @author 商炎炳
  * 
  */
-public class GlueLineMidActivity extends Activity implements OnClickListener{
+public class GlueLineMidActivity extends Activity implements OnClickListener {
 
 	private final static String TAG = "GlueLineMidActivity";
 	/**
@@ -113,9 +113,9 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 	private boolean isNull = false;
 	private boolean flag = false;// 可以与用户交互，初始化完成标志
 
-	/*=================== begin ===================*/
-	private HashMap<Integer, PointGlueLineMidParam> update_id;//修改的方案号集合
-	private int defaultNum=1;//默认号 
+	/* =================== begin =================== */
+	private HashMap<Integer, PointGlueLineMidParam> update_id;// 修改的方案号集合
+	private int defaultNum = 1;// 默认号
 	ArrayList<PopupView> popupViews;
 	private TextView mMorenTextView;
 	PopupListView popupListView;
@@ -153,20 +153,24 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 	 */
 	private int currentTaskNum;
 	private int currentClickNum;// 当前点击的序号
-	private int mIndex;//对应方案号
-	/*===================  end  ===================*/
+	private int mIndex;// 对应方案号
+	String[] GluePort;
+
+	/* =================== end =================== */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_glue_line_mid);
-		update_id=new HashMap<>();
+		update_id = new HashMap<>();
 		intent = getIntent();
 		point = intent
 				.getParcelableExtra(MyPopWindowClickListener.POPWINDOW_KEY);
 		mFlag = intent.getIntExtra(MyPopWindowClickListener.FLAG_KEY, 0);
 		mType = intent.getIntExtra(MyPopWindowClickListener.TYPE_KEY, 0);
-		defaultNum = SharePreferenceUtils.getParamNumberFromPref(GlueLineMidActivity.this, SettingParam.DefaultNum.ParamGlueLineMidNumber);
+		defaultNum = SharePreferenceUtils.getParamNumberFromPref(
+				GlueLineMidActivity.this,
+				SettingParam.DefaultNum.ParamGlueLineMidNumber);
 		glueMidDao = new GlueLineMidDao(GlueLineMidActivity.this);
 		glueMidLists = glueMidDao.findAllGlueLineMidParams();
 		if (glueMidLists == null || glueMidLists.isEmpty()) {
@@ -179,32 +183,32 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 		// 初始化数组
 		glueBoolean = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 		popupViews = new ArrayList<>();
+		GluePort = new String[5];
 		initPicker();
 		Log.d(TAG, glueMidLists.toString());
 	}
 
-
 	/**
-	 * @Title  UpdateInfos
+	 * @Title UpdateInfos
 	 * @Description 更新extendView数据（保存的数据）
 	 * @author wj
 	 * @param pointGlueAloneParam
 	 */
 	private void UpdateInfos(PointGlueLineMidParam glueLineMidParam) {
-		if (glueLineMidParam==null) {
+		if (glueLineMidParam == null) {
 			et_linemid_moveSpeed.setText("");
 			et_radius.setText("");
 			et_stopDisPrev.setText("");
 			et_stopDisNext.setText("");
-			
-		}else {
+
+		} else {
 			et_linemid_moveSpeed.setText(glueLineMidParam.getMoveSpeed() + "");
 			et_radius.setText(glueLineMidParam.getRadius() + "");
 			et_stopDisPrev.setText(glueLineMidParam.getStopGlueDisPrev() + "");
 			et_stopDisNext.setText(glueLineMidParam.getStopGLueDisNext() + "");
-			
+
 			switch_isOutGlue.setChecked(glueLineMidParam.isOutGlue());
-			
+
 			isGluePort[0].setChecked(glueLineMidParam.getGluePort()[0]);
 			isGluePort[1].setChecked(glueLineMidParam.getGluePort()[1]);
 			isGluePort[2].setChecked(glueLineMidParam.getGluePort()[2]);
@@ -212,23 +216,24 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 			isGluePort[4].setChecked(glueLineMidParam.getGluePort()[4]);
 		}
 	}
+
 	/**
 	 * 加载自定义组件并设置NumberPicker的最大最小值
 	 */
 	private void initPicker() {
 		tv_title = (TextView) findViewById(R.id.tv_title);
-		tv_title.setText(getResources().getString(R.string.activity_glue_line_mid));
+		tv_title.setText(getResources().getString(
+				R.string.activity_glue_line_mid));
 		mMorenTextView = (TextView) findViewById(R.id.morenfangan);
 		rl_back = (RelativeLayout) findViewById(R.id.rl_back);
-		mMorenTextView.setText("当前默认方案号(" + defaultNum
-				+ ")");
+		mMorenTextView.setText("当前默认方案号(" + defaultNum + ")");
 		// 初始化popuplistview区域
 		popupListView = (PopupListView) findViewById(R.id.popupListView);
 		popupListView.init(null);
-		
+
 		// 初始化创建10个popupView
 		for (int i = 0; i < 10; i++) {
-			p = i+1;
+			p = i + 1;
 			PopupView popupView = new PopupView(this, R.layout.popup_view_item) {
 
 				@Override
@@ -236,143 +241,378 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 					TextView textView = (TextView) view
 							.findViewById(R.id.title);
 					glueMidLists = glueMidDao.findAllGlueLineMidParams();
-					textView.setTextSize(30);
-					if (p==1) {//方案列表第一位对应一号方案
+					textView.setTextSize(25);
+					ImageView title_num = (ImageView) view
+							.findViewById(R.id.title_num);
+					if (p == 1) {// 方案列表第一位对应一号方案
+						title_num.setImageResource(R.drawable.green1);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==2) {
+					} else if (p == 2) {
+						title_num.setImageResource(R.drawable.green2);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==3) {
+					} else if (p == 3) {
+						title_num.setImageResource(R.drawable.green3);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==4) {
+					} else if (p == 4) {
+						title_num.setImageResource(R.drawable.green4);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==5) {
+					} else if (p == 5) {
+						title_num.setImageResource(R.drawable.green5);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==6) {
+					} else if (p == 6) {
+						title_num.setImageResource(R.drawable.green6);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==7) {
+					} else if (p == 7) {
+						title_num.setImageResource(R.drawable.green7);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==8) {
+					} else if (p == 8) {
+						title_num.setImageResource(R.drawable.green8);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==9) {
+					} else if (p == 9) {
+						title_num.setImageResource(R.drawable.green9);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
-					}else if (p==10) {
+					} else if (p == 10) {
+						title_num.setImageResource(R.drawable.green10);
 						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p==pointGlueLineMidParam.get_id()) {
-								textView.setText(pointGlueLineMidParam.toString());
+							if (p == pointGlueLineMidParam.get_id()) {
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueLineMidParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("轨迹速度："
+										+ pointGlueLineMidParam.getMoveSpeed()
+										+ "mm/s,"
+										+ "圆角半径："
+										+ pointGlueLineMidParam.getRadius()
+										+ "mm,"
+										+ "断胶前距离："
+										+ pointGlueLineMidParam
+												.getStopGlueDisPrev()
+										+ "mm,"
+										+ "断胶后距离："
+										+ pointGlueLineMidParam
+												.getStopGLueDisNext() + "mm,"
+										+ "点胶口：" + GluePort[0] + GluePort[1]
+										+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 							}
 						}
 					}
 				}
+
 				@Override
 				public View setExtendView(View view) {
 					if (view == null) {
-						extendView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.glue_mid_extend_view, null);
-						int size=glueMidLists.size();
-						while(size>0){
+						extendView = LayoutInflater.from(
+								getApplicationContext()).inflate(
+								R.layout.glue_mid_extend_view, null);
+						int size = glueMidLists.size();
+						while (size > 0) {
 							size--;
-							if (p==1) {//方案列表第一位对应一号方案
+							if (p == 1) {// 方案列表第一位对应一号方案
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==2) {
+							} else if (p == 2) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==3) {
+							} else if (p == 3) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==4) {
+							} else if (p == 4) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==5) {
+							} else if (p == 5) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==6) {
+							} else if (p == 6) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==7) {
+							} else if (p == 7) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==8) {
+							} else if (p == 8) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==9) {
+							} else if (p == 9) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
-							}else if (p==10) {
+							} else if (p == 10) {
 								initView(extendView);
 								for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-									if (p==pointGlueLineMidParam.get_id()) {
+									if (p == pointGlueLineMidParam.get_id()) {
 										UpdateInfos(pointGlueLineMidParam);
 									}
 								}
@@ -387,36 +627,53 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 
 				@Override
 				public void initViewAndListener(View extendView) {
-					 et_linemid_moveSpeed = (EditText) extendView.findViewById(R.id.et_linemid_moveSpeed);
-				        switch_isOutGlue = (ToggleButton) extendView.findViewById(R.id.switch_isOutGlue);
-				        et_radius = (EditText) extendView.findViewById(R.id.et_radius);
-				        et_stopDisPrev = (EditText) extendView.findViewById(R.id.et_stopDisPrev);
-				        
-				        et_stopDisNext = (EditText) extendView.findViewById(R.id.et_stopDisNext);
-				        isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL.ordinal()];
-						isGluePort[0] = (ToggleButton) extendView.findViewById(R.id.switch_glueport1);
-						isGluePort[1] = (ToggleButton) extendView.findViewById(R.id.switch_glueport2);
-						isGluePort[2] = (ToggleButton) extendView.findViewById(R.id.switch_glueport3);
-						isGluePort[3] = (ToggleButton) extendView.findViewById(R.id.switch_glueport4);
-						isGluePort[4] = (ToggleButton) extendView.findViewById(R.id.switch_glueport5);
+					et_linemid_moveSpeed = (EditText) extendView
+							.findViewById(R.id.et_linemid_moveSpeed);
+					switch_isOutGlue = (ToggleButton) extendView
+							.findViewById(R.id.switch_isOutGlue);
+					et_radius = (EditText) extendView
+							.findViewById(R.id.et_radius);
+					et_stopDisPrev = (EditText) extendView
+							.findViewById(R.id.et_stopDisPrev);
+
+					et_stopDisNext = (EditText) extendView
+							.findViewById(R.id.et_stopDisNext);
+					isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL
+							.ordinal()];
+					isGluePort[0] = (ToggleButton) extendView
+							.findViewById(R.id.switch_glueport1);
+					isGluePort[1] = (ToggleButton) extendView
+							.findViewById(R.id.switch_glueport2);
+					isGluePort[2] = (ToggleButton) extendView
+							.findViewById(R.id.switch_glueport3);
+					isGluePort[3] = (ToggleButton) extendView
+							.findViewById(R.id.switch_glueport4);
+					isGluePort[4] = (ToggleButton) extendView
+							.findViewById(R.id.switch_glueport5);
 					// 轨迹速度设置最大最小值
-					et_linemid_moveSpeed.addTextChangedListener(new MaxMinEditWatcher(
-							GlueLineMid.MoveSpeedMax, GlueLineMid.GlueLineMidMin,
-							et_linemid_moveSpeed));
+					et_linemid_moveSpeed
+							.addTextChangedListener(new MaxMinEditWatcher(
+									GlueLineMid.MoveSpeedMax,
+									GlueLineMid.GlueLineMidMin,
+									et_linemid_moveSpeed));
 					et_linemid_moveSpeed
 							.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-									GlueLineMid.MoveSpeedMax, GlueLineMid.GlueLineMidMin,
+									GlueLineMid.MoveSpeedMax,
+									GlueLineMid.GlueLineMidMin,
 									et_linemid_moveSpeed));
 					et_linemid_moveSpeed.setSelectAllOnFocus(true);
 					TextEditWatcher teWatcher = new TextEditWatcher();
 					et_stopDisPrev.addTextChangedListener(teWatcher);
 					et_stopDisNext.addTextChangedListener(teWatcher);
 					et_radius.addTextChangedListener(teWatcher);
-					
-					rl_moren = (RelativeLayout) extendView.findViewById(R.id.rl_moren);
+
+					rl_moren = (RelativeLayout) extendView
+							.findViewById(R.id.rl_moren);
 					iv_add = (ImageView) extendView.findViewById(R.id.iv_add);
-					rl_save = (RelativeLayout) extendView.findViewById(R.id.rl_save);// 保存按钮
-					iv_moren = (ImageView) extendView.findViewById(R.id.iv_moren);// 默认按钮
+					rl_save = (RelativeLayout) extendView
+							.findViewById(R.id.rl_save);// 保存按钮
+					iv_moren = (ImageView) extendView
+							.findViewById(R.id.iv_moren);// 默认按钮
 					rl_moren.setOnClickListener(this);
 					rl_save.setOnClickListener(this);
 					// 点击全选
@@ -430,17 +687,21 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 				public void onClick(View v) {
 					switch (v.getId()) {
 					case R.id.rl_moren:// 设为默认
-						//判断界面
+						// 判断界面
 						save();
-						if ((isOk&&isExist)||firstExist) {//不为空且已经存在或者不存在且插入新的
+						if ((isOk && isExist) || firstExist) {// 不为空且已经存在或者不存在且插入新的
 							// 刷新ui
 							mMorenTextView.setText("当前默认方案号(" + currentTaskNum
 									+ ")");
-							//默认号存到sp
-							SharePreferenceUtils.saveParamNumberToPref(GlueLineMidActivity.this, SettingParam.DefaultNum.ParamGlueLineMidNumber, currentTaskNum);
+							// 默认号存到sp
+							SharePreferenceUtils
+									.saveParamNumberToPref(
+											GlueLineMidActivity.this,
+											SettingParam.DefaultNum.ParamGlueLineMidNumber,
+											currentTaskNum);
 						}
-						isExist=false;
-						firstExist=false;
+						isExist = false;
+						firstExist = false;
 						// 更新数据
 						break;
 					case R.id.rl_save:// 保存
@@ -456,13 +717,14 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 			popupViews.add(popupView);
 		}
 		popupListView.setItemViews(popupViews);
-		if (mType!=1) {
-			popupListView.setPosition(defaultNum-1);// 第一次默认选中第一个item，后面根据方案号(新建点)
-		}else {
-		//显示point的参数方案
-//			PointGlueAloneParam glueAloneParam= (PointGlueAloneParam) point.getPointParam();
-//			System.out.println("传进来的方案号为----------》"+glueAloneParam.get_id());
-			popupListView.setPosition(point.getPointParam().get_id()-1);
+		if (mType != 1) {
+			popupListView.setPosition(defaultNum - 1);// 第一次默认选中第一个item，后面根据方案号(新建点)
+		} else {
+			// 显示point的参数方案
+			// PointGlueAloneParam glueAloneParam= (PointGlueAloneParam)
+			// point.getPointParam();
+			// System.out.println("传进来的方案号为----------》"+glueAloneParam.get_id());
+			popupListView.setPosition(point.getPointParam().get_id() - 1);
 		}
 		ArrayList<Integer> list = new ArrayList<>();
 		for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
@@ -477,11 +739,11 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 			}
 		});
 		popupListView.setOnZoomInListener(new OnZoomInChanged() {
-			
+
 			@Override
 			public void getZoomState(Boolean isZoomIn) {
 				if (isZoomIn) {
-					//设置界面
+					// 设置界面
 					SetDateAndRefreshUI();
 				}
 			}
@@ -490,83 +752,87 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 	}
 
 	/**
-	 * @Title  SetDateAndRefreshUI
+	 * @Title SetDateAndRefreshUI
 	 * @Description 打开extendview的时候设置界面内容，显示最新的方案数据而不是没有保存的数据,没有得到保存的方案
 	 * @author wj
 	 */
 	protected void SetDateAndRefreshUI() {
-		glueMidLists= glueMidDao.findAllGlueLineMidParams();
+		glueMidLists = glueMidDao.findAllGlueLineMidParams();
 		ArrayList<Integer> list = new ArrayList<>();
 		for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
 			list.add(pointGlueLineMidParam.get_id());
 		}
-		System.out.println("存放主键id的集合---->"+list);
-		System.out.println("当前选择的方案号---->"+currentTaskNum);
-		System.out.println("list是否存在------------》"+list.contains(currentTaskNum));
+		System.out.println("存放主键id的集合---->" + list);
+		System.out.println("当前选择的方案号---->" + currentTaskNum);
+		System.out.println("list是否存在------------》"
+				+ list.contains(currentTaskNum));
 		if (list.contains(currentTaskNum)) {
-			//已经保存在数据库中的数据
+			// 已经保存在数据库中的数据
 			for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-				if (currentTaskNum==pointGlueLineMidParam.get_id()) {
-					View extendView = popupListView.getItemViews().get(currentClickNum).getExtendView();
+				if (currentTaskNum == pointGlueLineMidParam.get_id()) {
+					View extendView = popupListView.getItemViews()
+							.get(currentClickNum).getExtendView();
 					initView(extendView);
 					UpdateInfos(pointGlueLineMidParam);
 				}
 			}
-		}
-		else {
-			//对所有数据进行置空
-			View allextendView = popupListView.getItemViews().get(currentClickNum).getExtendView();
+		} else {
+			// 对所有数据进行置空
+			View allextendView = popupListView.getItemViews()
+					.get(currentClickNum).getExtendView();
 			initView(allextendView);
 			UpdateInfos(null);
 		}
 	}
 
-
 	protected void save() {
-		View extendView = popupListView.getItemViews().get(currentClickNum).getExtendView();
-		glueMidLists=glueMidDao.findAllGlueLineMidParams();
+		View extendView = popupListView.getItemViews().get(currentClickNum)
+				.getExtendView();
+		glueMidLists = glueMidDao.findAllGlueLineMidParams();
 		ArrayList<Integer> list = new ArrayList<>();
 		for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
 			list.add(pointGlueLineMidParam.get_id());
 		}
-		//判空
-		isOk=isEditClean(extendView);
+		// 判空
+		isOk = isEditClean(extendView);
 		if (isOk) {
-			
+
 			PointGlueLineMidParam upLineMidParam = getLineMid(extendView);
 			if (glueMidLists.contains(upLineMidParam)) {
-				//默认已经存在的方案但是不能创建方案只能改变默认方案号
+				// 默认已经存在的方案但是不能创建方案只能改变默认方案号
 				if (list.contains(currentTaskNum)) {
-					isExist=true;
+					isExist = true;
 				}
-				//保存的方案已经存在但不是当前编辑的方案
-				if (currentTaskNum!=glueMidLists.get(glueMidLists.indexOf(upLineMidParam)).get_id()) {
+				// 保存的方案已经存在但不是当前编辑的方案
+				if (currentTaskNum != glueMidLists.get(
+						glueMidLists.indexOf(upLineMidParam)).get_id()) {
 					ToastUtil.displayPromptInfo(GlueLineMidActivity.this,
 							getResources()
-							.getString(R.string.task_is_exist_yes));
+									.getString(R.string.task_is_exist_yes));
 				}
-			}else {
-				
+			} else {
+
 				for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-					if (currentTaskNum==pointGlueLineMidParam.get_id()) {//说明之前插入过
-						flag=true;
+					if (currentTaskNum == pointGlueLineMidParam.get_id()) {// 说明之前插入过
+						flag = true;
 					}
 				}
 				if (flag) {
-					//更新数据
+					// 更新数据
 					int rowid = glueMidDao.upDateGlueLineMid(upLineMidParam);
-//					System.out.println("影响的行数"+rowid);
+					// System.out.println("影响的行数"+rowid);
 					update_id.put(upLineMidParam.get_id(), upLineMidParam);
-//					mPMap.map.put(upglueAlone.get_id(), upglueAlone);
-					System.out.println("修改的方案号为："+upLineMidParam.get_id());
-//					System.out.println(glueAloneDao.getPointGlueAloneParamById(currentTaskNum).toString());
-				}else {
-					//插入一条数据
+					// mPMap.map.put(upglueAlone.get_id(), upglueAlone);
+					System.out.println("修改的方案号为：" + upLineMidParam.get_id());
+					// System.out.println(glueAloneDao.getPointGlueAloneParamById(currentTaskNum).toString());
+				} else {
+					// 插入一条数据
 					long rowid = glueMidDao.insertGlueLineMid(upLineMidParam);
-					firstExist=true;
-					glueMidLists=glueMidDao.findAllGlueLineMidParams();
+					firstExist = true;
+					glueMidLists = glueMidDao.findAllGlueLineMidParams();
 					Log.i(TAG, "保存之后新方案-->" + glueMidLists.toString());
-					ToastUtil.displayPromptInfo(GlueLineMidActivity.this,getResources().getString(R.string.save_success));
+					ToastUtil.displayPromptInfo(GlueLineMidActivity.this,
+							getResources().getString(R.string.save_success));
 					list.clear();
 					for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
 						list.add(pointGlueLineMidParam.get_id());
@@ -577,105 +843,167 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 			if (popupListView.isItemZoomIn()) {
 				popupListView.zoomOut();
 			}
-			//更新title
+			// 更新title
 			refreshTitle();
-			flag=false;
-		}else {
+			flag = false;
+		} else {
 			ToastUtil.displayPromptInfo(this,
 					getResources().getString(R.string.data_is_null));
 		}
 	}
 
-
 	/**
-	 * @Title  refreshTitle
+	 * @Title refreshTitle
 	 * @Description 按下保存之后刷新title
 	 * @author wj
 	 */
 	private void refreshTitle() {
-		glueMidLists= glueMidDao.findAllGlueLineMidParams();
-		//popupListView->pupupview->title
+		glueMidLists = glueMidDao.findAllGlueLineMidParams();
+		// popupListView->pupupview->title
 		for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-			
-			if (currentTaskNum==pointGlueLineMidParam.get_id()) {
-				//需要设置两个view，因为view内容相同但是parent不同
-				View titleViewItem = popupListView.getItemViews().get(currentClickNum).getPopupView();
-				View titleViewExtend = popupListView.getItemViews().get(currentClickNum).getExtendPopupView();
-				TextView textViewItem=(TextView) titleViewItem.findViewById(R.id.title);
-				TextView textViewExtend=(TextView) titleViewExtend.findViewById(R.id.title);
+
+			if (currentTaskNum == pointGlueLineMidParam.get_id()) {
+				// 需要设置两个view，因为view内容相同但是parent不同
+				View titleViewItem = popupListView.getItemViews()
+						.get(currentClickNum).getPopupView();
+				View titleViewExtend = popupListView.getItemViews()
+						.get(currentClickNum).getExtendPopupView();
+				TextView textViewItem = (TextView) titleViewItem
+						.findViewById(R.id.title);
+				TextView textViewExtend = (TextView) titleViewExtend
+						.findViewById(R.id.title);
 				textViewItem.setText(pointGlueLineMidParam.toString());
 				textViewExtend.setText(pointGlueLineMidParam.toString());
+				for (int j = 0; j < 5; j++) {
+					if (pointGlueLineMidParam.getGluePort()[j]) {
+						GluePort[j] = "开";
+					} else {
+						GluePort[j] = "关";
+					}
+				}
+				textViewItem.setText("轨迹速度："
+						+ pointGlueLineMidParam.getMoveSpeed()
+						+ "mm/s,"
+						+ "圆角半径："
+						+ pointGlueLineMidParam.getRadius()
+						+ "mm,"
+						+ "断胶前距离："
+						+ pointGlueLineMidParam
+								.getStopGlueDisPrev()
+						+ "mm,"
+						+ "断胶后距离："
+						+ pointGlueLineMidParam
+								.getStopGLueDisNext() + "mm,"
+						+ "点胶口：" + GluePort[0] + GluePort[1]
+						+ GluePort[2] + GluePort[3]
+						+ GluePort[4]);
+				textViewExtend.setText("轨迹速度："
+						+ pointGlueLineMidParam.getMoveSpeed()
+						+ "mm/s,"
+						+ "圆角半径："
+						+ pointGlueLineMidParam.getRadius()
+						+ "mm,"
+						+ "断胶前距离："
+						+ pointGlueLineMidParam
+						.getStopGlueDisPrev()
+						+ "mm,"
+						+ "断胶后距离："
+						+ pointGlueLineMidParam
+						.getStopGLueDisNext() + "mm,"
+						+ "点胶口：" + GluePort[0] + GluePort[1]
+								+ GluePort[2] + GluePort[3]
+										+ GluePort[4]);
 			}
 		}
 	}
 
-
 	/**
-	 * @Title  isEditClean
+	 * @Title isEditClean
 	 * @Description 判断输入框是否为空
 	 * @author wj
 	 * @param extendView
-	 * @return  false表示为空,true表示都有数据
+	 * @return false表示为空,true表示都有数据
 	 */
 	private boolean isEditClean(View extendView) {
-		 	et_linemid_moveSpeed = (EditText) extendView.findViewById(R.id.et_linemid_moveSpeed);
-	        et_radius = (EditText) extendView.findViewById(R.id.et_radius);
-	        et_stopDisPrev = (EditText) extendView.findViewById(R.id.et_stopDisPrev);
-	        et_stopDisNext = (EditText) extendView.findViewById(R.id.et_stopDisNext);
-	        if ("".equals(et_linemid_moveSpeed.getText().toString())) {
-				return false;
-			} else if ("".equals(et_radius.getText().toString())) {
-				return false;
-			} else if ("".equals(et_stopDisPrev.getText().toString())) {
-				return false;
-			}else if ("".equals(et_stopDisNext.getText().toString())) {
-				return false;
-			}
-			return true;
+		et_linemid_moveSpeed = (EditText) extendView
+				.findViewById(R.id.et_linemid_moveSpeed);
+		et_radius = (EditText) extendView.findViewById(R.id.et_radius);
+		et_stopDisPrev = (EditText) extendView
+				.findViewById(R.id.et_stopDisPrev);
+		et_stopDisNext = (EditText) extendView
+				.findViewById(R.id.et_stopDisNext);
+		if ("".equals(et_linemid_moveSpeed.getText().toString())) {
+			return false;
+		} else if ("".equals(et_radius.getText().toString())) {
+			return false;
+		} else if ("".equals(et_stopDisPrev.getText().toString())) {
+			return false;
+		} else if ("".equals(et_stopDisNext.getText().toString())) {
+			return false;
+		}
+		return true;
 	}
 
-
 	/**
-	 * @Title  initView
+	 * @Title initView
 	 * @Description 初始化当前extendView视图
 	 * @author wj
 	 * @param extendView
 	 */
 	protected void initView(View extendView) {
-	        et_linemid_moveSpeed = (EditText) extendView.findViewById(R.id.et_linemid_moveSpeed);
-	        switch_isOutGlue = (ToggleButton) extendView.findViewById(R.id.switch_isOutGlue);
-	        et_radius = (EditText) extendView.findViewById(R.id.et_radius);
-	        et_stopDisPrev = (EditText) extendView.findViewById(R.id.et_stopDisPrev);
-	        
-	        et_stopDisNext = (EditText) extendView.findViewById(R.id.et_stopDisNext);
-	        isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL.ordinal()];
-			isGluePort[0] = (ToggleButton) extendView.findViewById(R.id.switch_glueport1);
-			isGluePort[1] = (ToggleButton) extendView.findViewById(R.id.switch_glueport2);
-			isGluePort[2] = (ToggleButton) extendView.findViewById(R.id.switch_glueport3);
-			isGluePort[3] = (ToggleButton) extendView.findViewById(R.id.switch_glueport4);
-			isGluePort[4] = (ToggleButton) extendView.findViewById(R.id.switch_glueport5);
+		et_linemid_moveSpeed = (EditText) extendView
+				.findViewById(R.id.et_linemid_moveSpeed);
+		switch_isOutGlue = (ToggleButton) extendView
+				.findViewById(R.id.switch_isOutGlue);
+		et_radius = (EditText) extendView.findViewById(R.id.et_radius);
+		et_stopDisPrev = (EditText) extendView
+				.findViewById(R.id.et_stopDisPrev);
+
+		et_stopDisNext = (EditText) extendView
+				.findViewById(R.id.et_stopDisNext);
+		isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL.ordinal()];
+		isGluePort[0] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport1);
+		isGluePort[1] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport2);
+		isGluePort[2] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport3);
+		isGluePort[3] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport4);
+		isGluePort[4] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport5);
 	}
 
 	/**
 	 * 将页面上的数据保存到PointGlueLineMidParam对象中
-	 * @param extendView 
+	 * 
+	 * @param extendView
 	 * 
 	 * @return PointGlueLineMidParam
 	 */
 	private PointGlueLineMidParam getLineMid(View extendView) {
 		glueMid = new PointGlueLineMidParam();
-		 et_linemid_moveSpeed = (EditText) extendView.findViewById(R.id.et_linemid_moveSpeed);
-	        switch_isOutGlue = (ToggleButton) extendView.findViewById(R.id.switch_isOutGlue);
-	        et_radius = (EditText) extendView.findViewById(R.id.et_radius);
-	        et_stopDisPrev = (EditText) extendView.findViewById(R.id.et_stopDisPrev);
-	        
-	        et_stopDisNext = (EditText) extendView.findViewById(R.id.et_stopDisNext);
-	        isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL.ordinal()];
-			isGluePort[0] = (ToggleButton) extendView.findViewById(R.id.switch_glueport1);
-			isGluePort[1] = (ToggleButton) extendView.findViewById(R.id.switch_glueport2);
-			isGluePort[2] = (ToggleButton) extendView.findViewById(R.id.switch_glueport3);
-			isGluePort[3] = (ToggleButton) extendView.findViewById(R.id.switch_glueport4);
-			isGluePort[4] = (ToggleButton) extendView.findViewById(R.id.switch_glueport5);
+		et_linemid_moveSpeed = (EditText) extendView
+				.findViewById(R.id.et_linemid_moveSpeed);
+		switch_isOutGlue = (ToggleButton) extendView
+				.findViewById(R.id.switch_isOutGlue);
+		et_radius = (EditText) extendView.findViewById(R.id.et_radius);
+		et_stopDisPrev = (EditText) extendView
+				.findViewById(R.id.et_stopDisPrev);
+
+		et_stopDisNext = (EditText) extendView
+				.findViewById(R.id.et_stopDisNext);
+		isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL.ordinal()];
+		isGluePort[0] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport1);
+		isGluePort[1] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport2);
+		isGluePort[2] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport3);
+		isGluePort[3] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport4);
+		isGluePort[4] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport5);
 		try {
 			moveSpeedInt = Integer.parseInt(et_linemid_moveSpeed.getText()
 					.toString());
@@ -700,10 +1028,11 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 		glueBoolean[3] = isGluePort[3].isChecked();
 		glueBoolean[4] = isGluePort[4].isChecked();
 		glueMid.setGluePort(glueBoolean);
-		 glueMid.set_id(currentTaskNum);
+		glueMid.set_id(currentTaskNum);
 
 		return glueMid;
 	}
+
 	@Override
 	public void onBackPressed() {
 		// 不想保存只想回退，不保存数据
@@ -716,32 +1045,37 @@ public class GlueLineMidActivity extends Activity implements OnClickListener{
 					R.anim.out_from_right);
 		}
 	}
+
 	private void complete() {
-		 ArrayList<? extends PopupView> itemPopuViews = popupListView.getItemViews();
-		 for (PopupView popupView : itemPopuViews) {
-			 ImageView iv_selected= (ImageView) popupView.getPopupView().findViewById(R.id.iv_selected);
-			 if (iv_selected.getVisibility()==View.VISIBLE) {
-				mIndex = itemPopuViews.indexOf(popupView)+1;
+		ArrayList<? extends PopupView> itemPopuViews = popupListView
+				.getItemViews();
+		for (PopupView popupView : itemPopuViews) {
+			ImageView iv_selected = (ImageView) popupView.getPopupView()
+					.findViewById(R.id.iv_selected);
+			if (iv_selected.getVisibility() == View.VISIBLE) {
+				mIndex = itemPopuViews.indexOf(popupView) + 1;
 			}
 		}
-		 System.out.println("返回的方案号为================》"+mIndex);
-		 point.setPointParam(glueMidDao.getPointGlueLineMidParam(mIndex));
-		 System.out.println("返回的Point为================》"+point);
+		System.out.println("返回的方案号为================》" + mIndex);
+		point.setPointParam(glueMidDao.getPointGlueLineMidParam(mIndex));
+		System.out.println("返回的Point为================》" + point);
 
-		 List<Map<Integer, PointGlueLineMidParam>> list = new ArrayList<Map<Integer, PointGlueLineMidParam>>();  
-		 list.add(update_id); 
-			Log.i(TAG, point.toString());
-			Bundle extras = new Bundle();
-			extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY, point);
-			extras.putInt(MyPopWindowClickListener.FLAG_KEY, mFlag);
-			//须定义一个list用于在budnle中传递需要传递的ArrayList<Object>,这个是必须要的 
-			ArrayList bundlelist = new ArrayList(); 
-			bundlelist.add(list);
-			extras.putParcelableArrayList(MyPopWindowClickListener.TYPE_UPDATE, bundlelist);
-			intent.putExtras(extras);
+		List<Map<Integer, PointGlueLineMidParam>> list = new ArrayList<Map<Integer, PointGlueLineMidParam>>();
+		list.add(update_id);
+		Log.i(TAG, point.toString());
+		Bundle extras = new Bundle();
+		extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY, point);
+		extras.putInt(MyPopWindowClickListener.FLAG_KEY, mFlag);
+		// 须定义一个list用于在budnle中传递需要传递的ArrayList<Object>,这个是必须要的
+		ArrayList bundlelist = new ArrayList();
+		bundlelist.add(list);
+		extras.putParcelableArrayList(MyPopWindowClickListener.TYPE_UPDATE,
+				bundlelist);
+		intent.putExtras(extras);
 
-			setResult(TaskActivity.resultCode, intent);
+		setResult(TaskActivity.resultCode, intent);
 	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {

@@ -6,6 +6,7 @@ package com.mingseal.activity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mingseal.adapter.PointGlueClearAdapter;
 import com.mingseal.adapter.PointGlueInputAdapter;
@@ -39,6 +40,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -61,24 +63,16 @@ import android.widget.ToggleButton;
  * @author 商炎炳
  * 
  */
-public class GlueInputActivity extends Activity implements OnClickListener, Callback {
+public class GlueInputActivity extends Activity implements OnClickListener {
 	private final static String TAG = "GlueInputActivity";
 	/**
 	 * 标题栏的标题
 	 */
 	private TextView tv_title;
 	/**
-	 * @Fields et_input_goTimePrev: 动作前延时
-	 */
-	private EditText et_input_goTimePrev;
-	/**
-	 * @Fields et_input_goTimeNext: 动作后延时
-	 */
-	private EditText et_input_goTimeNext;
-	/**
 	 * IO口
 	 */
-	private Switch[] ioSwitch;
+	private ToggleButton[] ioSwitch;
 
 	/**
 	 * 输出IOSpinner
@@ -143,6 +137,18 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 	private RelativeLayout rl_moren;
 	private ImageView iv_add;
 	private ImageView iv_moren;
+	/**
+	 * @Fields et_input_goTimePrev: 动作前延时
+	 */
+	private EditText et_input_goTimePrev;
+	/**
+	 * @Fields et_input_goTimeNext: 动作后延时
+	 */
+	private EditText et_input_goTimeNext;
+	private ToggleButton switch_glueport1;
+	private ToggleButton switch_glueport2;
+	private ToggleButton switch_glueport3;
+	private ToggleButton switch_glueport4;
 
 	/* =================== end =================== */
 	@Override
@@ -173,77 +179,30 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 		ioBoolean = new boolean[IOPort.IO_NO_ALL.ordinal()];
 		popupViews = new ArrayList<>();
 		initPicker();
-//		// 初始化Handler,用来处理消息
-//		handler = new Handler(GlueInputActivity.this);
-//		if (mType == 1) {
-//			PointGlueInputIOParam glueInputIOParam = inputDao
-//					.getInputPointByID(point.getPointParam().get_id());
-//			param_id = inputDao.getInputParamIDByParam(glueInputIOParam);// 传过来的方案的参数序列主键。
-//			SetDateAndRefreshUI(glueInputIOParam);
-//		} else {
-//			// 不为1的话，需要选定默认的第一个方案
-//			PointGlueInputIOParam defaultParam = inputIOLists.get(0);
-//			param_id = inputDao.getInputParamIDByParam(defaultParam);// 默认的参数序列主键。
-//			SetDateAndRefreshUI(defaultParam);
-//		}
-//		mInputAdapter = new PointGlueInputAdapter(this);
-//		mInputAdapter.setInputIOParams(inputIOLists);
-//		inputSpinner.setAdapter(mInputAdapter);
-//		// 如果为1的话，需要设置值
-//		if (mType == 1) {
-//			inputSpinner.setSelection(point.getPointParam().get_id() - 1);
-//			mInputAdapter.notifyDataSetChanged();
-//		}
-
-//		inputSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-//
-//			@Override
-//			public void onItemSelected(AdapterView<?> parent, View view,
-//					int position, long id) {
-//				PointGlueInputIOParam param = mInputAdapter.getItem(position);
-//				et_input_goTimePrev.setText(param.getGoTimePrev() + "");
-//				et_input_goTimeNext.setText(param.getGoTimeNext() + "");
-//
-//				ioSwitch[0].setChecked(param.getInputPort()[0]);
-//				ioSwitch[1].setChecked(param.getInputPort()[1]);
-//				ioSwitch[2].setChecked(param.getInputPort()[2]);
-//				ioSwitch[3].setChecked(param.getInputPort()[3]);
-//
-//				param_id = position + 1;
-//			}
-//
-//			@Override
-//			public void onNothingSelected(AdapterView<?> parent) {
-//
-//			}
-//		});
-	}
-
-	private void SetDateAndRefreshUI(PointGlueInputIOParam glueInputIOParam) {
-
-		tv_num.setText(String.valueOf(inputIOLists.indexOf(glueInputIOParam) + 1) + "");
-		tv_goTimePrev.setText(glueInputIOParam.getGoTimePrev() + "");
-		tv_goTimeNext.setText(glueInputIOParam.getGoTimeNext() + "");
-		UpdateInfos(glueInputIOParam);
 	}
 
 	private void UpdateInfos(PointGlueInputIOParam glueInputIOParam) {
-		et_input_goTimePrev.setText(glueInputIOParam.getGoTimePrev() + "");
-		et_input_goTimeNext.setText(glueInputIOParam.getGoTimeNext() + "");
+		if (glueInputIOParam == null) {
+			et_input_goTimePrev.setText("");
+			et_input_goTimeNext.setText("");
 
-		ioSwitch[0].setChecked(glueInputIOParam.getInputPort()[0]);
-		ioSwitch[1].setChecked(glueInputIOParam.getInputPort()[1]);
-		ioSwitch[2].setChecked(glueInputIOParam.getInputPort()[2]);
-		ioSwitch[3].setChecked(glueInputIOParam.getInputPort()[3]);
-		
+		} else {
+			et_input_goTimePrev.setText(glueInputIOParam.getGoTimePrev() + "");
+			et_input_goTimeNext.setText(glueInputIOParam.getGoTimeNext() + "");
+
+			ioSwitch[0].setChecked(glueInputIOParam.getInputPort()[0]);
+			ioSwitch[1].setChecked(glueInputIOParam.getInputPort()[1]);
+			ioSwitch[2].setChecked(glueInputIOParam.getInputPort()[2]);
+			ioSwitch[3].setChecked(glueInputIOParam.getInputPort()[3]);
+		}
 	}
+
 	/**
 	 * 加载组件，并设置NumberPicker的最大最小值
 	 */
 	private void initPicker() {
 		tv_title = (TextView) findViewById(R.id.tv_title);
-		tv_title.setText(getResources().getString(
-				R.string.activity_glue_input));
+		tv_title.setText(getResources().getString(R.string.activity_glue_input));
 		mMorenTextView = (TextView) findViewById(R.id.morenfangan);
 		rl_back = (RelativeLayout) findViewById(R.id.rl_back);
 		mMorenTextView.setText("当前默认方案号(" + defaultNum + ")");
@@ -260,8 +219,7 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 				public void setViewsElements(View view) {
 					TextView textView = (TextView) view
 							.findViewById(R.id.title);
-					inputIOLists = inputDao
-							.findAllGlueInputParams();
+					inputIOLists = inputDao.findAllGlueInputParams();
 					textView.setTextSize(30);
 					if (p == 1) {// 方案列表第一位对应一号方案
 						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
@@ -341,78 +299,78 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 					if (view == null) {
 						extendView = LayoutInflater.from(
 								getApplicationContext()).inflate(
-								R.layout.glue_face_start_extend_view, null);
+								R.layout.glue_input_extend_view, null);
 						int size = inputIOLists.size();
 						while (size > 0) {
 							size--;
 							if (p == 1) {// 方案列表第一位对应一号方案
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 2) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 3) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 4) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 5) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 6) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 7) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 8) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 9) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							} else if (p == 10) {
 								initView(extendView);
-								for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-									if (p == pointGlueFaceStartParam.get_id()) {
-										UpdateInfos(pointGlueFaceStartParam);
+								for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+									if (p == pointGlueInputIOParam.get_id()) {
+										UpdateInfos(pointGlueInputIOParam);
 									}
 								}
 							}
@@ -426,83 +384,43 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 
 				@Override
 				public void initViewAndListener(View extendView) {
-					et_facestart_outGlueTimePrev = (EditText) extendView
-							.findViewById(R.id.et_facestart_outGlueTimePrev);
-					et_facestart_movespeed = (EditText) extendView
-							.findViewById(R.id.et_facestart_movespeed);
-					et_facestart_outGlueTime = (EditText) extendView
-							.findViewById(R.id.et_facestart_outGlueTime);
-					et_facestart_stopGlueTime = (EditText) extendView
-							.findViewById(R.id.et_facestart_stopGlueTime);
-					switch_isOutGlue = (ToggleButton) extendView
-							.findViewById(R.id.switch_isOutGlue);
-					switch_startDir = (ToggleButton) extendView
-							.findViewById(R.id.switch_startDir);
+					et_input_goTimePrev = (EditText) extendView
+							.findViewById(R.id.et_input_goTimePrev);
+					et_input_goTimeNext = (EditText) extendView
+							.findViewById(R.id.et_input_goTimeNext);
 
-					isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL
+					ioSwitch = new ToggleButton[GWOutPort.USER_O_NO_ALL
 							.ordinal()];
-					isGluePort[0] = (ToggleButton) extendView
+					ioSwitch[0] = (ToggleButton) extendView
 							.findViewById(R.id.switch_glueport1);
-					isGluePort[1] = (ToggleButton) extendView
+					ioSwitch[1] = (ToggleButton) extendView
 							.findViewById(R.id.switch_glueport2);
-					isGluePort[2] = (ToggleButton) extendView
+					ioSwitch[2] = (ToggleButton) extendView
 							.findViewById(R.id.switch_glueport3);
-					isGluePort[3] = (ToggleButton) extendView
+					ioSwitch[3] = (ToggleButton) extendView
 							.findViewById(R.id.switch_glueport4);
-					isGluePort[4] = (ToggleButton) extendView
-							.findViewById(R.id.switch_glueport5);
 
-					// 设置出胶前延时的默认值和最大最小值(要重新设置)
-					et_facestart_outGlueTimePrev
+					// 设置动作前延时的最大最小值
+					et_input_goTimePrev
 							.addTextChangedListener(new MaxMinEditWatcher(
-									GlueFaceStart.OutGlueTimePrevMax,
-									GlueFaceStart.GlueFaceStartMin,
-									et_facestart_outGlueTimePrev));
-					et_facestart_outGlueTimePrev
+									GlueInput.GoTimePrevMax,
+									GlueInput.GlueInputMin, et_input_goTimePrev));
+					et_input_goTimePrev
 							.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-									GlueFaceStart.OutGlueTimePrevMax,
-									GlueFaceStart.GlueFaceStartMin,
-									et_facestart_outGlueTimePrev));
-					et_facestart_outGlueTimePrev.setSelectAllOnFocus(true);
+									GlueInput.GoTimePrevMax,
+									GlueInput.GlueInputMin, et_input_goTimePrev));
+					et_input_goTimePrev.setSelectAllOnFocus(true);
 
-					// 设置出胶后延时的默认值和最大最小值(要重新设置)
-					et_facestart_outGlueTime
+					// 设置动作后延时的最大最小值
+					et_input_goTimeNext
 							.addTextChangedListener(new MaxMinEditWatcher(
-									GlueFaceStart.OutGlueTimeMax,
-									GlueFaceStart.GlueFaceStartMin,
-									et_facestart_outGlueTime));
-					et_facestart_outGlueTime
+									GlueInput.GoTimeNextMax,
+									GlueInput.GlueInputMin, et_input_goTimeNext));
+					et_input_goTimeNext
 							.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-									GlueFaceStart.OutGlueTimeMax,
-									GlueFaceStart.GlueFaceStartMin,
-									et_facestart_outGlueTime));
-					et_facestart_outGlueTime.setSelectAllOnFocus(true);
-
-					// 设置轨迹速度的默认值和最大最小值(要重新设置)
-					et_facestart_movespeed
-							.addTextChangedListener(new MaxMinEditWatcher(
-									GlueFaceStart.MoveSpeedMax,
-									GlueFaceStart.MoveSpeedMin,
-									et_facestart_movespeed));
-					et_facestart_movespeed
-							.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-									GlueFaceStart.MoveSpeedMax,
-									GlueFaceStart.MoveSpeedMin,
-									et_facestart_movespeed));
-					et_facestart_movespeed.setSelectAllOnFocus(true);
-
-					// 设置停胶延时的默认值和最大最小值(要重新设置)
-					et_facestart_stopGlueTime
-							.addTextChangedListener(new MaxMinEditWatcher(
-									GlueFaceStart.StopGlueTimeMax,
-									GlueFaceStart.GlueFaceStartMin,
-									et_facestart_stopGlueTime));
-					et_facestart_stopGlueTime
-							.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-									GlueFaceStart.StopGlueTimeMax,
-									GlueFaceStart.GlueFaceStartMin,
-									et_facestart_stopGlueTime));
-					et_facestart_stopGlueTime.setSelectAllOnFocus(true);
+									GlueInput.GoTimeNextMax,
+									GlueInput.GlueInputMin, et_input_goTimeNext));
+					et_input_goTimeNext.setSelectAllOnFocus(true);
 					rl_moren = (RelativeLayout) extendView
 							.findViewById(R.id.rl_moren);
 					iv_add = (ImageView) extendView.findViewById(R.id.iv_add);
@@ -527,8 +445,8 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 							// 默认号存到sp
 							SharePreferenceUtils
 									.saveParamNumberToPref(
-											GlueFaceStartActivity.this,
-											SettingParam.DefaultNum.ParamGlueFaceStartNumber,
+											GlueInputActivity.this,
+											SettingParam.DefaultNum.ParamGlueInputNumber,
 											currentTaskNum);
 						}
 						isExist = false;
@@ -558,8 +476,8 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 			popupListView.setPosition(point.getPointParam().get_id() - 1);
 		}
 		ArrayList<Integer> list = new ArrayList<>();
-		for (PointGlueFaceStartParam pointGlueFaceStartParam : inputIOLists) {
-			list.add(pointGlueFaceStartParam.get_id());
+		for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+			list.add(pointGlueInputIOParam.get_id());
 		}
 		popupListView.setSelectedEnable(list);
 		popupListView.setOnClickPositionChanged(new OnClickPositionChanged() {
@@ -580,63 +498,134 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 			}
 		});
 		rl_back.setOnClickListener(this);
-//		tv_title = (TextView) findViewById(R.id.tv_title);
-//
-//		et_input_goTimePrev = (EditText) findViewById(R.id.et_input_goTimePrev);
-//		et_input_goTimeNext = (EditText) findViewById(R.id.et_input_goTimeNext);
-//		ioSwitch = new Switch[IOPort.IO_NO_ALL.ordinal()];
-//		ioSwitch[0] = (Switch) findViewById(R.id.switch_glueport1);
-//		ioSwitch[1] = (Switch) findViewById(R.id.switch_glueport2);
-//		ioSwitch[2] = (Switch) findViewById(R.id.switch_glueport3);
-//		ioSwitch[3] = (Switch) findViewById(R.id.switch_glueport4);
-//		// inputSpinner = (Spinner) findViewById(R.id.spinner_input);
-//		/* =================== begin =================== */
-//		tv_num = (TextView) findViewById(R.id.item_num);
-//		tv_goTimePrev = (TextView) findViewById(R.id.item_goTimePrev);
-//		tv_goTimeNext = (TextView) findViewById(R.id.item_goTimeNext);
-//		// 初始化界面组件
-//		plan = (LinearLayout) findViewById(R.id.tv_plan);
-//		/* =================== end =================== */
-//
-//		rl_back = (RelativeLayout) findViewById(R.id.rl_back);
-//		rl_save = (RelativeLayout) findViewById(R.id.rl_save);
-//		rl_complete = (RelativeLayout) findViewById(R.id.rl_complete);
-//
-//		// 设置动作前延时的最大最小值
-//		et_input_goTimePrev.addTextChangedListener(new MaxMinEditWatcher(
-//				GlueInput.GoTimePrevMax, GlueInput.GlueInputMin,
-//				et_input_goTimePrev));
-//		et_input_goTimePrev
-//				.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-//						GlueInput.GoTimePrevMax, GlueInput.GlueInputMin,
-//						et_input_goTimePrev));
-//		et_input_goTimePrev.setSelectAllOnFocus(true);
-//
-//		// 设置动作后延时的最大最小值
-//		et_input_goTimeNext.addTextChangedListener(new MaxMinEditWatcher(
-//				GlueInput.GoTimeNextMax, GlueInput.GlueInputMin,
-//				et_input_goTimeNext));
-//		et_input_goTimeNext
-//				.setOnFocusChangeListener(new MaxMinFocusChangeListener(
-//						GlueInput.GoTimeNextMax, GlueInput.GlueInputMin,
-//						et_input_goTimeNext));
-//		et_input_goTimeNext.setSelectAllOnFocus(true);
-//
-//		tv_title.setText(getResources().getString(R.string.activity_glue_input));
-//		rl_back.setOnClickListener(this);
-//		rl_save.setOnClickListener(this);
-//		rl_complete.setOnClickListener(this);
 	}
-	protected void initView(View extendView) {
-		
+	/**
+	 * @Title SetDateAndRefreshUI
+	 * @Description 打开extendview的时候设置界面内容，显示最新的方案数据而不是没有保存的数据,没有得到保存的方案
+	 * @author wj
+	 */
+	protected void SetDateAndRefreshUI() {
+		inputIOLists = inputDao.findAllGlueInputParams();
+		ArrayList<Integer> list = new ArrayList<>();
+		for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+			list.add(pointGlueInputIOParam.get_id());
+		}
+		System.out.println("存放主键id的集合---->" + list);
+		System.out.println("当前选择的方案号---->" + currentTaskNum);
+		System.out.println("list是否存在------------》"
+				+ list.contains(currentTaskNum));
+		if (list.contains(currentTaskNum)) {
+			// 已经保存在数据库中的数据
+			for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+				if (currentTaskNum == pointGlueInputIOParam.get_id()) {
+					View extendView = popupListView.getItemViews()
+							.get(currentClickNum).getExtendView();
+					initView(extendView);
+					UpdateInfos(pointGlueInputIOParam);
+				}
+			}
+		} else {
+			// 对所有数据进行置空
+			View allextendView = popupListView.getItemViews()
+					.get(currentClickNum).getExtendView();
+			initView(allextendView);
+			UpdateInfos(null);
+		}
 	}
 
-	/**
-	 * @Title isEditNull
-	 * @Description 判断输入框是否为空
-	 * @return false表示为空,true表示都有数据
-	 */
-	private boolean isEditNull() {
+	protected void save() {
+		View extendView = popupListView.getItemViews().get(currentClickNum)
+				.getExtendView();
+		inputIOLists = inputDao.findAllGlueInputParams();
+		ArrayList<Integer> list = new ArrayList<>();
+		for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+			list.add(pointGlueInputIOParam.get_id());
+		}
+		// 判空
+		isOk = isEditClean(extendView);
+		if (isOk) {
+
+			PointGlueInputIOParam upInputIOParam = getInputIOParam(extendView);
+			if (inputIOLists.contains(upInputIOParam)) {
+				// 默认已经存在的方案但是不能创建方案只能改变默认方案号
+
+				if (list.contains(currentTaskNum)) {
+					isExist = true;
+				}
+				// 保存的方案已经存在但不是当前编辑的方案
+				if (currentTaskNum != inputIOLists.get(
+						inputIOLists.indexOf(upInputIOParam)).get_id()) {
+					ToastUtil.displayPromptInfo(GlueInputActivity.this,
+							getResources()
+									.getString(R.string.task_is_exist_yes));
+				}
+			} else {
+				for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+					if (currentTaskNum == pointGlueInputIOParam.get_id()) {// 说明之前插入过
+						flag = true;
+					}
+				}
+				if (flag) {
+					// 更新数据
+					int rowid = inputDao.upDateGlueInput(upInputIOParam);
+					// System.out.println("影响的行数"+rowid);
+					update_id.put(upInputIOParam.get_id(), upInputIOParam);
+					// mPMap.map.put(upglueAlone.get_id(), upglueAlone);
+					System.out.println("修改的方案号为：" + upInputIOParam.get_id());
+					// System.out.println(glueAloneDao.getPointGlueAloneParamById(currentTaskNum).toString());
+				} else {
+					// 插入一条数据
+					long rowid = inputDao.insertGlueInput(upInputIOParam);
+					firstExist = true;
+					inputIOLists = inputDao.findAllGlueInputParams();
+					Log.i(TAG, "保存之后新方案-->" + inputIOLists.toString());
+					ToastUtil.displayPromptInfo(GlueInputActivity.this,
+							getResources().getString(R.string.save_success));
+					list.clear();
+					for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+						list.add(pointGlueInputIOParam.get_id());
+					}
+					popupListView.setSelectedEnable(list);
+				}
+			}
+			if (popupListView.isItemZoomIn()) {
+				popupListView.zoomOut();
+			}
+			// 更新title
+			refreshTitle();
+			flag = false;
+		} else {
+			ToastUtil.displayPromptInfo(this,
+					getResources().getString(R.string.data_is_null));
+		}
+	}
+
+	private void refreshTitle() {
+		inputIOLists = inputDao.findAllGlueInputParams();
+		// popupListView->pupupview->title
+		for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+
+			if (currentTaskNum == pointGlueInputIOParam.get_id()) {
+				// 需要设置两个view，因为view内容相同但是parent不同
+				View titleViewItem = popupListView.getItemViews()
+						.get(currentClickNum).getPopupView();
+				View titleViewExtend = popupListView.getItemViews()
+						.get(currentClickNum).getExtendPopupView();
+				TextView textViewItem = (TextView) titleViewItem
+						.findViewById(R.id.title);
+				TextView textViewExtend = (TextView) titleViewExtend
+						.findViewById(R.id.title);
+				textViewItem.setText(pointGlueInputIOParam.toString());
+				textViewExtend.setText(pointGlueInputIOParam.toString());
+			}
+		}
+	}
+
+	private boolean isEditClean(View extendView) {
+		et_input_goTimePrev = (EditText) extendView
+				.findViewById(R.id.et_input_goTimePrev);
+		et_input_goTimeNext = (EditText) extendView
+				.findViewById(R.id.et_input_goTimeNext);
 		if ("".equals(et_input_goTimeNext.getText().toString())) {
 			return false;
 		} else if ("".equals(et_input_goTimePrev.getText().toString())) {
@@ -645,14 +634,49 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 		return true;
 	}
 
+	protected void initView(View extendView) {
+		et_input_goTimePrev = (EditText) extendView
+				.findViewById(R.id.et_input_goTimePrev);
+		et_input_goTimeNext = (EditText) extendView
+				.findViewById(R.id.et_input_goTimeNext);
+
+		ioSwitch = new ToggleButton[GWOutPort.USER_O_NO_ALL.ordinal()];
+		ioSwitch[0] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport1);
+		ioSwitch[1] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport2);
+		ioSwitch[2] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport3);
+		ioSwitch[3] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport4);
+		// rl_moren = (RelativeLayout) findViewById(R.id.rl_moren);
+		// iv_add = (ImageView) findViewById(R.id.iv_add);
+		// rl_save = (RelativeLayout) findViewById(R.id.rl_save);
+		// iv_moren = (ImageView) findViewById(R.id.iv_moren);
+	}
+
 	/**
 	 * 将页面上的数据保存到PointGlueOutputIOParam对象中
 	 * 
+	 * @param extendView
+	 * 
 	 * @return PointGlueInputIOParam
 	 */
-	private PointGlueInputIOParam getOutputParam() {
+	private PointGlueInputIOParam getInputIOParam(View extendView) {
 		inputIO = new PointGlueInputIOParam();
-
+		et_input_goTimePrev = (EditText) extendView
+				.findViewById(R.id.et_input_goTimePrev);
+		et_input_goTimeNext = (EditText) extendView
+				.findViewById(R.id.et_input_goTimeNext);
+		ioSwitch = new ToggleButton[GWOutPort.USER_O_NO_ALL.ordinal()];
+		ioSwitch[0] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport1);
+		ioSwitch[1] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport2);
+		ioSwitch[2] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport3);
+		ioSwitch[3] = (ToggleButton) extendView
+				.findViewById(R.id.switch_glueport4);
 		try {
 			goTimePrevInt = Integer.parseInt(et_input_goTimePrev.getText()
 					.toString());
@@ -672,162 +696,68 @@ public class GlueInputActivity extends Activity implements OnClickListener, Call
 		ioBoolean[2] = ioSwitch[2].isChecked();
 		ioBoolean[3] = ioSwitch[3].isChecked();
 		inputIO.setInputPort(ioBoolean);
-//		inputIO.set_id(param_id);
+		inputIO.set_id(currentTaskNum);
 
 		return inputIO;
+	}
+	@Override
+	public void onBackPressed() {
+		// 不想保存只想回退，不保存数据
+		if (popupListView.isItemZoomIn()) {
+			popupListView.zoomOut();
+		} else {
+			complete();
+			super.onBackPressed();
+			overridePendingTransition(R.anim.in_from_left,
+					R.anim.out_from_right);
+		}
+	}
+	private void complete() {
+		ArrayList<? extends PopupView> itemPopuViews = popupListView
+				.getItemViews();
+		for (PopupView popupView : itemPopuViews) {
+			ImageView iv_selected = (ImageView) popupView.getPopupView()
+					.findViewById(R.id.iv_selected);
+			if (iv_selected.getVisibility() == View.VISIBLE) {
+				mIndex = itemPopuViews.indexOf(popupView) + 1;
+			}
+		}
+		System.out.println("返回的方案号为================》" + mIndex);
+		point.setPointParam(inputDao.getInputPointByID(mIndex));
+		System.out.println("返回的Point为================》" + point);
+
+		List<Map<Integer, PointGlueInputIOParam>> list = new ArrayList<Map<Integer, PointGlueInputIOParam>>();
+		list.add(update_id);
+		Log.i(TAG, point.toString());
+		Bundle extras = new Bundle();
+		extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY, point);
+		extras.putInt(MyPopWindowClickListener.FLAG_KEY, mFlag);
+		// 须定义一个list用于在budnle中传递需要传递的ArrayList<Object>,这个是必须要的
+		ArrayList bundlelist = new ArrayList();
+		bundlelist.add(list);
+		extras.putParcelableArrayList(MyPopWindowClickListener.TYPE_UPDATE,
+				bundlelist);
+		intent.putExtras(extras);
+
+		setResult(TaskActivity.resultCode, intent);
 	}
 
 	@Override
 	public void onClick(View v) {
-
 		switch (v.getId()) {
 		case R.id.rl_back:// 返回按钮的响应事件
-			finish();
-			overridePendingTransition(R.anim.in_from_left,
-					R.anim.out_from_right);
-			break;
-		case R.id.rl_save:// 保存新方案
-			isNull = isEditNull();
-			if (isNull) {
-				inputIO = getOutputParam();
-				if (inputIOLists.contains(inputIO)) {
-					ToastUtil.displayPromptInfo(this,
-							getResources()
-									.getString(R.string.task_is_exist_yes));
-				} else {
-					long rowid = inputDao.insertGlueInput(inputIO);
-					inputIO.set_id((int)rowid);
-
-					inputIOLists = inputDao.findAllGlueInputParams();
-
-					mInputAdapter.setInputIOParams(inputIOLists);
-					mInputAdapter.notifyDataSetChanged();
-
-					ToastUtil.displayPromptInfo(this,
-							getResources().getString(R.string.save_success));
-				}
+			if (popupListView.isItemZoomIn()) {
+				popupListView.zoomOut();
 			} else {
-				ToastUtil.displayPromptInfo(this,
-						getResources().getString(R.string.data_is_null));
-			}
-			break;
-		case R.id.rl_complete:// 完成按钮的响应事件
-			isNull = isEditNull();
-			if (isNull) {
-				inputIO = getOutputParam();
-				if (!inputIOLists.contains(inputIO)) {
-					long rowID = inputDao.insertGlueInput(inputIO);
-					inputIO.set_id((int) rowID);
-				} else {
-					int id = inputIOLists.indexOf(inputIO);
-					// 如果方案里有的话,只需要设置一下id就行
-					param_id = inputDao.getInputParamIDByParam(inputIO);// 默认的参数序列主键。
-					inputIO.set_id(param_id);
-				}
-				point.setPointParam(inputIO);
-
-				Bundle extras = new Bundle();
-				extras.putParcelable(MyPopWindowClickListener.POPWINDOW_KEY,
-						point);
-				extras.putInt(MyPopWindowClickListener.FLAG_KEY, mFlag);
-
-				intent.putExtras(extras);
-				setResult(TaskActivity.resultCode, intent);
-
-				finish();
+				complete();
+				super.onBackPressed();
 				overridePendingTransition(R.anim.in_from_left,
 						R.anim.out_from_right);
-			} else {
-				ToastUtil.displayPromptInfo(this,
-						getResources().getString(R.string.data_is_null));
 			}
 			break;
-
-		}
-
-	}
-
-	@Override
-	public boolean handleMessage(Message msg) {
-		Bundle data = msg.getData();
-		switch (msg.what) {
-		case Const.POINTGLUEINPUT_CLICK:
-			inputIOLists = inputDao.findAllGlueInputParams();
-			// 选中下拉项，下拉框消失
-			int position = data.getInt("selIndex");
-			param_id = inputIOLists.get(position).get_id();// 参数序列id等于主键
-			System.out.println("点击的position:" + position);
-			System.out
-					.println("点击的主键:" + inputIOLists.get(position).get_id());
-			PointGlueInputIOParam glueInputIOParam = inputIOLists.get(position);
-			SetDateAndRefreshUI(glueInputIOParam);
-			dismiss();
-			// 更新界面
-//			UpdateInfos(glueFaceStartParam);
-			break;
-		case Const.POINTGLUEINPUT_TOP:
-			// 置顶
-			inputIOLists = inputDao.findAllGlueInputParams();
-			int top_position = data.getInt("top_Index");
-			// 清空数据库，准备重新排序
-			for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-				// 1为成功删除，0为未成功删除
-				int result = inputDao.deleteParam(pointGlueInputIOParam);
-				if (result == 0) {
-					// 未成功
-					System.out.println("删除未成功！");
-				} else {
-					System.out.println("删除成功！");
-				}
-			}
-			// 重新排序
-			PointGlueInputIOParam topParam = inputIOLists
-					.get(top_position);// 需要置顶的数据
-			inputIOLists.remove(top_position);// 移除该数据
-			inputIOLists.add(0, topParam);// 置顶
-			// 将重新排序的list插入数据库
-			for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-				// 因为重新排序了，所以要更改参数方案的参数序列。
-				long rowID = inputDao.insertGlueInput(pointGlueInputIOParam);
-				// 重新分配主键id
-				pointGlueInputIOParam.set_id((int) rowID);
-				System.out.println("插入成功！");
-			}
-			// 刷新ui
-			mInputAdapter.setInputIOParams(inputIOLists);
-			mInputAdapter.notifyDataSetChanged();
-			break;
-		case Const.POINTGLUEINPUT_DEL:// 删除方案
-			inputIOLists = inputDao.findAllGlueInputParams();
-			// 选中下拉项，下拉框消失
-			int del_position = data.getInt("del_Index");
-//			System.out.println("删除的主键param_id：" + param_id);
-//			System.out.println("删除的位置del_position：" + del_position);
-//			System.out.println("删除之前的glueAloneLists的大小："
-//					+ glueStartLists.size());
-//			System.out.println("删除之前的方案主键:"
-//					+ glueStartLists.get(del_position).get_id());
-
-			// 删除到最后一个
-			if (inputIOLists.size() == 1 && del_position == 0) {
-				PointGlueInputIOParam lastParam = new PointGlueInputIOParam();
-				inputDao.deleteParam(inputIOLists.get(0));// 删除当前方案
-				inputDao.insertGlueInput(lastParam);// 默认方案
-				lastParam.set_id(inputIOLists.get(0).get_id() + 1);// 设置主键
-				inputIOLists = inputDao.findAllGlueInputParams();
-				mInputAdapter.setInputIOParams(inputIOLists);
-				mInputAdapter.notifyDataSetChanged();
-				SetDateAndRefreshUI(lastParam);
-			} else {
-				inputDao.deleteParam(inputIOLists.get(del_position));
-				inputIOLists.remove(del_position);
-				mInputAdapter.setInputIOParams(inputIOLists);
-				mInputAdapter.notifyDataSetChanged();
-			}
-			// 删除后上半部分默认选中第一条方案
-			UpdateInfos(inputIOLists.get(0));
+		default:
 			break;
 		}
-		return false;
 	}
+
 }

@@ -174,6 +174,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 	private RelativeLayout rl_moren;
 	private ImageView iv_add;
 	private ImageView iv_moren;
+	String[] GluePort;
 
 	/* =================== end =================== */
 	@Override
@@ -200,6 +201,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 		}
 		glueEndLists = glueEndDao.findAllGlueLineEndParams();
 		popupViews = new ArrayList<>();
+		GluePort = new String[5];
 		initPicker();
 
 	}
@@ -258,8 +260,11 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 					TextView textView = (TextView) view
 							.findViewById(R.id.title);
 					glueEndLists = glueEndDao.findAllGlueLineEndParams();
-					textView.setTextSize(30);
+					textView.setTextSize(25);
+					ImageView title_num = (ImageView) view
+							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
+						title_num.setImageResource(R.drawable.green1);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -267,6 +272,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 2) {
+						title_num.setImageResource(R.drawable.green2);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -274,6 +280,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 3) {
+						title_num.setImageResource(R.drawable.green3);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -281,6 +288,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 4) {
+						title_num.setImageResource(R.drawable.green4);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -288,6 +296,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 5) {
+						title_num.setImageResource(R.drawable.green5);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -295,6 +304,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 6) {
+						title_num.setImageResource(R.drawable.green6);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -302,6 +312,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 7) {
+						title_num.setImageResource(R.drawable.green7);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -309,6 +320,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 8) {
+						title_num.setImageResource(R.drawable.green8);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -316,6 +328,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 9) {
+						title_num.setImageResource(R.drawable.green9);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
@@ -323,6 +336,7 @@ public class GlueLineEndActivity extends Activity implements OnClickListener {
 							}
 						}
 					} else if (p == 10) {
+						title_num.setImageResource(R.drawable.green10);
 						for (PointGlueLineEndParam pointGlueLineEndParam : glueEndLists) {
 							if (p == pointGlueLineEndParam.get_id()) {
 								textView.setText(pointGlueLineEndParam
