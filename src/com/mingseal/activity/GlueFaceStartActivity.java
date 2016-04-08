@@ -164,6 +164,7 @@ public class GlueFaceStartActivity extends Activity implements OnClickListener {
 	 */
 	private ToggleButton switch_startDir;
 	private RelativeLayout rl_save;
+	String[] GluePort;
 
 	/* =================== end =================== */
 	@Override
@@ -180,7 +181,7 @@ public class GlueFaceStartActivity extends Activity implements OnClickListener {
 		defaultNum = SharePreferenceUtils.getParamNumberFromPref(
 				GlueFaceStartActivity.this,
 				SettingParam.DefaultNum.ParamGlueFaceStartNumber);
-//		Log.d(TAG, point.toString());
+		// Log.d(TAG, point.toString());
 		glueFaceStartDao = new GlueFaceStartDao(GlueFaceStartActivity.this);
 		glueStartLists = glueFaceStartDao.findAllGlueFaceStartParams();
 		if (glueStartLists == null || glueStartLists.isEmpty()) {
@@ -194,6 +195,7 @@ public class GlueFaceStartActivity extends Activity implements OnClickListener {
 		// 初始化数组
 		glueBoolean = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
 		popupViews = new ArrayList<>();
+		GluePort = new String[5];
 		initPicker();
 		// // 初始化Handler,用来处理消息
 		// handler = new Handler(GlueFaceStartActivity.this);
@@ -292,75 +294,357 @@ public class GlueFaceStartActivity extends Activity implements OnClickListener {
 							.findViewById(R.id.title);
 					glueStartLists = glueFaceStartDao
 							.findAllGlueFaceStartParams();
-					textView.setTextSize(30);
+					textView.setTextSize(22);
+					ImageView title_num = (ImageView) view
+							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
+						title_num.setImageResource(R.drawable.green1);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 2) {
+						title_num.setImageResource(R.drawable.green2);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 3) {
+						title_num.setImageResource(R.drawable.green3);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 4) {
+						title_num.setImageResource(R.drawable.green4);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 5) {
+						title_num.setImageResource(R.drawable.green5);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 6) {
+						title_num.setImageResource(R.drawable.green6);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 7) {
+						title_num.setImageResource(R.drawable.green7);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 8) {
+						title_num.setImageResource(R.drawable.green8);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 9) {
+						title_num.setImageResource(R.drawable.green9);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					} else if (p == 10) {
+						title_num.setImageResource(R.drawable.green10);
 						for (PointGlueFaceStartParam pointGlueFaceStartParam : glueStartLists) {
 							if (p == pointGlueFaceStartParam.get_id()) {
-								textView.setText(pointGlueFaceStartParam
-										.toString());
+								for (int j = 0; j < 5; j++) {
+									if (pointGlueFaceStartParam.getGluePort()[j]) {
+										GluePort[j] = "开";
+									} else {
+										GluePort[j] = "关";
+									}
+								}
+								textView.setText("提前出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTimePrev()
+										+ "ms,"
+										+ "轨迹速度："
+										+ pointGlueFaceStartParam
+												.getMoveSpeed()
+										+ "mm/s,"
+										+ "滞后出胶时间："
+										+ pointGlueFaceStartParam
+												.getOutGlueTime()
+										+ "ms,"
+										+ "停胶延时："
+										+ pointGlueFaceStartParam
+												.getStopGlueTime() + "ms,"
+										+ "是否出胶："
+										+ pointGlueFaceStartParam.isOutGlue()
+										+ "," + "起始方向："
+										+ pointGlueFaceStartParam.isStartDir()
+										+ "," + "点胶口：" + GluePort[0]
+										+ GluePort[1] + GluePort[2]
+										+ GluePort[3] + GluePort[4]);
 							}
 						}
 					}
@@ -704,6 +988,33 @@ public class GlueFaceStartActivity extends Activity implements OnClickListener {
 						.findViewById(R.id.title);
 				textViewItem.setText(pointGlueFaceStartParam.toString());
 				textViewExtend.setText(pointGlueFaceStartParam.toString());
+				for (int j = 0; j < 5; j++) {
+					if (pointGlueFaceStartParam.getGluePort()[j]) {
+						GluePort[j] = "开";
+					} else {
+						GluePort[j] = "关";
+					}
+				}
+				textViewItem.setText("提前出胶时间："
+						+ pointGlueFaceStartParam.getOutGlueTimePrev() + "ms,"
+						+ "轨迹速度：" + pointGlueFaceStartParam.getMoveSpeed()
+						+ "mm/s," + "滞后出胶时间："
+						+ pointGlueFaceStartParam.getOutGlueTime() + "ms,"
+						+ "停胶延时：" + pointGlueFaceStartParam.getStopGlueTime()
+						+ "ms," + "是否出胶：" + pointGlueFaceStartParam.isOutGlue()
+						+ "," + "起始方向：" + pointGlueFaceStartParam.isStartDir()
+						+ "," + "点胶口：" + GluePort[0] + GluePort[1]
+						+ GluePort[2] + GluePort[3] + GluePort[4]);
+				textViewExtend.setText("提前出胶时间："
+						+ pointGlueFaceStartParam.getOutGlueTimePrev() + "ms,"
+						+ "轨迹速度：" + pointGlueFaceStartParam.getMoveSpeed()
+						+ "mm/s," + "滞后出胶时间："
+						+ pointGlueFaceStartParam.getOutGlueTime() + "ms,"
+						+ "停胶延时：" + pointGlueFaceStartParam.getStopGlueTime()
+						+ "ms," + "是否出胶：" + pointGlueFaceStartParam.isOutGlue()
+						+ "," + "起始方向：" + pointGlueFaceStartParam.isStartDir()
+						+ "," + "点胶口：" + GluePort[0] + GluePort[1]
+						+ GluePort[2] + GluePort[3] + GluePort[4]);
 			}
 		}
 	}
@@ -828,7 +1139,7 @@ public class GlueFaceStartActivity extends Activity implements OnClickListener {
 			moveSpeedInt = 1;
 		}
 		try {
-			stopGlueTimePrevInt = Integer.parseInt(et_facestart_outGlueTimePrev
+			stopGlueTimePrevInt = Integer.parseInt(et_facestart_stopGlueTime
 					.getText().toString());
 		} catch (NumberFormatException e) {
 			stopGlueTimePrevInt = 0;

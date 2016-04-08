@@ -62,7 +62,7 @@ import static com.mingseal.data.param.PointConfigParam.GlueFaceEnd;
  * @author 商炎炳
  * @description 面终点
  */
-public class GlueFaceEndActivity extends Activity implements OnClickListener{
+public class GlueFaceEndActivity extends Activity implements OnClickListener {
 
 	private final static String TAG = "GlueFaceEndActivity";
 	/**
@@ -193,50 +193,6 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 		pointEndLists = glueFaceEndDao.findAllGlueFaceEndParams();
 		popupViews = new ArrayList<>();
 		initPicker();
-		// 初始化Handler,用来处理消息
-		// handler = new Handler(GlueFaceEndActivity.this);
-		// mFaceEndAdapter = new
-		// PointGlueFaceEndAdapter(GlueFaceEndActivity.this);
-		// mFaceEndAdapter.setGlueStartLists(pointEndLists);
-		// faceEndSpinner.setAdapter(mFaceEndAdapter);
-		// 如果为1的话，需要设置值
-		// if (mType == 1) {
-		// PointGlueFaceEndParam glueFaceEndParam =
-		// glueFaceEndDao.getPointFaceEndParamByID(point.getPointParam().get_id());
-		// param_id = glueFaceEndDao
-		// .getFaceEndParamIDByParam(glueFaceEndParam);// 传过来的方案的参数序列主键。
-		// SetDateAndRefreshUI(glueFaceEndParam);
-		// // faceEndSpinner.setSelection(point.getPointParam().get_id() - 1);
-		// // mFaceEndAdapter.notifyDataSetChanged();
-		// } else {
-		// // 不为1的话，需要选定默认的第一个方案
-		// PointGlueFaceEndParam defaultParam = pointEndLists.get(0);
-		// param_id = glueFaceEndDao.getFaceEndParamIDByParam(defaultParam);//
-		// 默认的参数序列主键。
-		// SetDateAndRefreshUI(defaultParam);
-		// }
-		// faceEndSpinner.setOnItemSelectedListener(new OnItemSelectedListener()
-		// {
-		//
-		// @Override
-		// public void onItemSelected(AdapterView<?> parent, View view,
-		// int position, long id) {
-		// PointGlueFaceEndParam point = mFaceEndAdapter.getItem(position);
-		//
-		// et_end_stopGlueTime.setText(point.getStopGlueTime() + "");
-		// et_end_upHeight.setText(point.getUpHeight() + "");
-		// et_end_lineNum.setText(point.getLineNum() + "");
-		//
-		// isPauseSwitch.setChecked(point.isPause());
-		//
-		// param_id = position + 1;
-		// }
-		//
-		// @Override
-		// public void onNothingSelected(AdapterView<?> parent) {
-		//
-		// }
-		// });
 
 	}
 
@@ -287,74 +243,156 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 							.findViewById(R.id.title);
 					pointEndLists = glueFaceEndDao.findAllGlueFaceEndParams();
 					textView.setTextSize(30);
+					ImageView title_num = (ImageView) view
+							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
+						title_num.setImageResource(R.drawable.green1);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 2) {
+						title_num.setImageResource(R.drawable.green2);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 3) {
+						title_num.setImageResource(R.drawable.green3);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 4) {
+						title_num.setImageResource(R.drawable.green4);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 5) {
+						title_num.setImageResource(R.drawable.green5);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 6) {
+						title_num.setImageResource(R.drawable.green6);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 7) {
+						title_num.setImageResource(R.drawable.green7);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 8) {
+						title_num.setImageResource(R.drawable.green8);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 9) {
+						title_num.setImageResource(R.drawable.green9);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					} else if (p == 10) {
+						title_num.setImageResource(R.drawable.green10);
 						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
 							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText(pointGlueFaceEndParam
-										.toString());
+								textView.setText("停胶延时："
+										+ pointGlueFaceEndParam
+												.getStopGlueTime() + "ms,"
+										+ "抬起高度："
+										+ pointGlueFaceEndParam.getUpHeight()
+										+ "mm," + "直线条数："
+										+ pointGlueFaceEndParam.getLineNum()
+										+ "," + "是否暂停："
+										+ pointGlueFaceEndParam.isPause());
 							}
 						}
 					}
@@ -494,83 +532,6 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 									GlueFaceEnd.GlueFaceEndMin,
 									et_faceend_lineNum));
 					et_faceend_lineNum.setSelectAllOnFocus(true);
-					// et_facestart_outGlueTimePrev = (EditText) extendView
-					// .findViewById(R.id.et_facestart_outGlueTimePrev);
-					// et_facestart_movespeed = (EditText) extendView
-					// .findViewById(R.id.et_facestart_movespeed);
-					// et_facestart_outGlueTime = (EditText) extendView
-					// .findViewById(R.id.et_facestart_outGlueTime);
-					// et_facestart_stopGlueTime = (EditText) extendView
-					// .findViewById(R.id.et_facestart_stopGlueTime);
-					// switch_isOutGlue = (ToggleButton) extendView
-					// .findViewById(R.id.switch_isOutGlue);
-					// switch_startDir = (ToggleButton) extendView
-					// .findViewById(R.id.switch_startDir);
-					//
-					// isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL
-					// .ordinal()];
-					// isGluePort[0] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport1);
-					// isGluePort[1] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport2);
-					// isGluePort[2] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport3);
-					// isGluePort[3] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport4);
-					// isGluePort[4] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport5);
-					//
-					// // 设置出胶前延时的默认值和最大最小值(要重新设置)
-					// et_facestart_outGlueTimePrev
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.OutGlueTimePrevMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTimePrev));
-					// et_facestart_outGlueTimePrev
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.OutGlueTimePrevMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTimePrev));
-					// et_facestart_outGlueTimePrev.setSelectAllOnFocus(true);
-					//
-					// // 设置出胶后延时的默认值和最大最小值(要重新设置)
-					// et_facestart_outGlueTime
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.OutGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTime));
-					// et_facestart_outGlueTime
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.OutGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTime));
-					// et_facestart_outGlueTime.setSelectAllOnFocus(true);
-					//
-					// // 设置轨迹速度的默认值和最大最小值(要重新设置)
-					// et_facestart_movespeed
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.MoveSpeedMax,
-					// GlueFaceStart.MoveSpeedMin,
-					// et_facestart_movespeed));
-					// et_facestart_movespeed
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.MoveSpeedMax,
-					// GlueFaceStart.MoveSpeedMin,
-					// et_facestart_movespeed));
-					// et_facestart_movespeed.setSelectAllOnFocus(true);
-					//
-					// // 设置停胶延时的默认值和最大最小值(要重新设置)
-					// et_facestart_stopGlueTime
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.StopGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_stopGlueTime));
-					// et_facestart_stopGlueTime
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.StopGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_stopGlueTime));
-					// et_facestart_stopGlueTime.setSelectAllOnFocus(true);
 					rl_moren = (RelativeLayout) extendView
 							.findViewById(R.id.rl_moren);
 					iv_add = (ImageView) extendView.findViewById(R.id.iv_add);
@@ -648,58 +609,6 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 			}
 		});
 		rl_back.setOnClickListener(this);
-		// tv_title = (TextView) findViewById(R.id.tv_title);
-		// et_end_stopGlueTime = (EditText)
-		// findViewById(R.id.et_faceend_stopGlueTime);
-		// et_end_upHeight = (EditText) findViewById(R.id.et_faceend_upheight);
-		// et_end_lineNum = (EditText) findViewById(R.id.et_faceend_lineNum);
-		// isPauseSwitch = (Switch) findViewById(R.id.switch_isPause);
-		//
-		// rl_back = (RelativeLayout) findViewById(R.id.rl_back);
-		// rl_save = (RelativeLayout) findViewById(R.id.rl_save);
-		// rl_complete = (RelativeLayout) findViewById(R.id.rl_complete);
-		//
-		// /* =================== begin =================== */
-		// tv_num = (TextView) findViewById(R.id.item_num);
-		// tv_lineNum = (TextView) findViewById(R.id.item_end_lineNum);
-		// tv_stopGlue = (TextView) findViewById(R.id.item_end_stopGlueTime);
-		// tv_upHeight = (TextView)findViewById(R.id.item_end_upHeight);
-		// // 初始化界面组件
-		// plan = (LinearLayout) findViewById(R.id.tv_plan);
-		// /* =================== end =================== */
-		// // 设置最大最小值
-		// et_end_stopGlueTime.addTextChangedListener(new MaxMinEditWatcher(
-		// GlueFaceEnd.StopGlueTimeMax, GlueFaceEnd.GlueFaceEndMin,
-		// et_end_stopGlueTime));
-		// et_end_stopGlueTime
-		// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-		// GlueFaceEnd.StopGlueTimeMax,
-		// GlueFaceEnd.GlueFaceEndMin, et_end_stopGlueTime));
-		// et_end_stopGlueTime.setSelectAllOnFocus(true);
-		//
-		// et_end_upHeight.addTextChangedListener(new MaxMinEditWatcher(
-		// GlueFaceEnd.UpHeightMax, GlueFaceEnd.GlueFaceEndMin,
-		// et_end_upHeight));
-		// et_end_upHeight.setOnFocusChangeListener(new
-		// MaxMinFocusChangeListener(
-		// GlueFaceEnd.UpHeightMax, GlueFaceEnd.GlueFaceEndMin,
-		// et_end_upHeight));
-		// et_end_upHeight.setSelectAllOnFocus(true);
-		//
-		// et_end_lineNum.addTextChangedListener(new MaxMinEditWatcher(
-		// GlueFaceEnd.LineNumMax, GlueFaceEnd.GlueFaceEndMin,
-		// et_end_lineNum));
-		// et_end_lineNum.setOnFocusChangeListener(new
-		// MaxMinFocusChangeListener(
-		// GlueFaceEnd.LineNumMax, GlueFaceEnd.GlueFaceEndMin,
-		// et_end_lineNum));
-		// et_end_lineNum.setSelectAllOnFocus(true);
-		//
-		// tv_title.setText(getResources().getString(
-		// R.string.activity_glue_face_end));
-		// rl_back.setOnClickListener(this);
-		// rl_save.setOnClickListener(this);
-		// rl_complete.setOnClickListener(this);
 	}
 
 	/**
@@ -826,6 +735,16 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 						.findViewById(R.id.title);
 				textViewItem.setText(pointGlueFaceEndParam.toString());
 				textViewExtend.setText(pointGlueFaceEndParam.toString());
+				textViewItem.setText("停胶延时："
+						+ pointGlueFaceEndParam.getStopGlueTime() + "ms,"
+						+ "抬起高度：" + pointGlueFaceEndParam.getUpHeight() + "mm,"
+						+ "直线条数：" + pointGlueFaceEndParam.getLineNum() + ","
+						+ "是否暂停：" + pointGlueFaceEndParam.isPause());
+				textViewExtend.setText("停胶延时："
+						+ pointGlueFaceEndParam.getStopGlueTime() + "ms,"
+						+ "抬起高度：" + pointGlueFaceEndParam.getUpHeight() + "mm,"
+						+ "直线条数：" + pointGlueFaceEndParam.getLineNum() + ","
+						+ "是否暂停：" + pointGlueFaceEndParam.isPause());
 			}
 		}
 	}
@@ -934,6 +853,7 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 
 		return pointEnd;
 	}
+
 	@Override
 	public void onBackPressed() {
 		// 不想保存只想回退，不保存数据
@@ -946,6 +866,7 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 					R.anim.out_from_right);
 		}
 	}
+
 	private void complete() {
 		ArrayList<? extends PopupView> itemPopuViews = popupListView
 				.getItemViews();
@@ -975,6 +896,7 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener{
 
 		setResult(TaskActivity.resultCode, intent);
 	}
+
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {

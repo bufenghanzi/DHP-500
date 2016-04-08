@@ -153,46 +153,6 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 		pointClearLists = glueClearDao.findAllGlueClearParams();
 		popupViews = new ArrayList<>();
 		initPicker();
-		// // 初始化Handler,用来处理消息
-		// handler = new Handler(GlueClearActivity.this);
-		// if (mType == 1) {
-		// PointGlueClearParam glueClearParam = glueClearDao
-		// .getPointGlueClearParamByID(point.getPointParam().get_id());
-		// param_id = glueClearDao.getGlueClearParamIDByParam(glueClearParam);//
-		// 传过来的方案的参数序列主键。
-		// SetDateAndRefreshUI(glueClearParam);
-		// } else {
-		// // 不为1的话，需要选定默认的第一个方案
-		// PointGlueClearParam defaultParam = pointClearLists.get(0);
-		// param_id = glueClearDao.getGlueClearParamIDByParam(defaultParam);//
-		// 默认的参数序列主键。
-		// SetDateAndRefreshUI(defaultParam);
-		// }
-		// mClearAdapter = new PointGlueClearAdapter(GlueClearActivity.this);
-		// mClearAdapter.setGlueClearLists(pointClearLists);
-		// clearSpinner.setAdapter(mClearAdapter);
-		// // 如果为1的话，需要设置值
-		// if (mType == 1) {
-		// clearSpinner.setSelection(point.getPointParam().get_id() - 1);
-		// mClearAdapter.notifyDataSetChanged();
-		// }
-		// clearSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-		//
-		// @Override
-		// public void onItemSelected(AdapterView<?> parent, View view,
-		// int position, long id) {
-		// PointGlueClearParam point = mClearAdapter.getItem(position);
-		//
-		// et_clear_clearGlue.setText(point.getClearGlueTime() + "");
-		//
-		// param_id = position + 1;
-		// }
-		//
-		// @Override
-		// public void onNothingSelected(AdapterView<?> parent) {
-		//
-		// }
-		// });
 
 	}
 
@@ -235,64 +195,76 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 							.findViewById(R.id.title);
 					pointClearLists = glueClearDao.findAllGlueClearParams();
 					textView.setTextSize(30);
+					ImageView title_num = (ImageView) view
+							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
+						title_num.setImageResource(R.drawable.green1);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 2) {
+						title_num.setImageResource(R.drawable.green2);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 3) {
+						title_num.setImageResource(R.drawable.green3);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 4) {
+						title_num.setImageResource(R.drawable.green4);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 5) {
+						title_num.setImageResource(R.drawable.green5);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 6) {
+						title_num.setImageResource(R.drawable.green6);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 7) {
+						title_num.setImageResource(R.drawable.green7);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 8) {
+						title_num.setImageResource(R.drawable.green8);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 9) {
+						title_num.setImageResource(R.drawable.green9);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					} else if (p == 10) {
+						title_num.setImageResource(R.drawable.green10);
 						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
 							if (p == pointGlueClearParam.get_id()) {
-								textView.setText(pointGlueClearParam.toString());
+								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 							}
 						}
 					}
@@ -704,6 +676,8 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 						.findViewById(R.id.title);
 				textViewItem.setText(pointGlueClearParam.toString());
 				textViewExtend.setText(pointGlueClearParam.toString());
+				textViewItem.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
+				textViewExtend.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
 			}
 		}
 	}
