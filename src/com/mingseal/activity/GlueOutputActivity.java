@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueInputAdapter;
-import com.mingseal.adapter.PointGlueOutputAdapter;
 import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueOutputDao;
 import com.mingseal.data.param.SettingParam;
@@ -100,7 +98,6 @@ public class GlueOutputActivity extends Activity implements OnClickListener {
 	private GlueOutputDao outputDao;
 	private List<PointGlueOutputIOParam> outputIOLists;
 	private PointGlueOutputIOParam outputIO;
-	private PointGlueOutputAdapter mOutputAdapter;
 	private boolean[] ioBoolean;
 	private int param_id = 1;// / 选取的是几号方案
 	/**

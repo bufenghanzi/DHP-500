@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueClearAdapter;
-import com.mingseal.adapter.PointGlueFaceStartAdapter;
 import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueClearDao;
 import com.mingseal.data.param.SettingParam;
@@ -91,7 +89,6 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 	private List<PointGlueClearParam> pointClearLists = null;
 	private PointGlueClearParam pointClear = null;
 
-	private PointGlueClearAdapter mClearAdapter;
 	/**
 	 * @Fields clearGlueint: 清胶延时取得值
 	 */

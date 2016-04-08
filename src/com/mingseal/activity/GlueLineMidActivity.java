@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueLineMidAdapter;
-import com.mingseal.adapter.PointGlueLineStartAdapter;
 import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueLineMidDao;
 import com.mingseal.data.param.SettingParam;
@@ -98,7 +96,6 @@ public class GlueLineMidActivity extends Activity implements OnClickListener {
 	private int mType;// 1表示要更新数据
 
 	private GlueLineMidDao glueMidDao;
-	private PointGlueLineMidAdapter mMidAdapter;// 线中间点的适配器
 	private List<PointGlueLineMidParam> glueMidLists;
 	private PointGlueLineMidParam glueMid;
 	private boolean[] glueBoolean;

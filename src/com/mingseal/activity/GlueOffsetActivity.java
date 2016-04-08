@@ -120,6 +120,11 @@ public class GlueOffsetActivity extends Activity implements OnClickListener {
 	private double position_y;
 	private double position_z;
 	private double position_u;
+	//临时保存页面初始化坐标
+	private double tem_position_x;
+	private double tem_position_y;
+	private double tem_position_z;
+	private double tem_position_u;
 
 	private int number = 1;// 按下相对/绝对的次数
 
@@ -208,9 +213,11 @@ public class GlueOffsetActivity extends Activity implements OnClickListener {
 		// 线程管理单例初始化
 		SocketThreadManager.sharedInstance().setInputThreadHandler(handler);
 		NetManager.instance().init(this);
-		point = new Point(PointType.POINT_NULL);
-		// 进入偏移界面，先定位到坐标圆点
-		MoveUtils.locationCoord(point);
+		Log.d(TAG, "收到的Points：" + points.toString());
+//		point = new Point(PointType.POINT_NULL);
+		// 进入偏移界面，先定位到坐标圆点?
+		//应该改为基准点或者第一个点
+		MoveUtils.locationCoord(points.get(0));
 		m_nAxisNum = RobotParam.INSTANCE.getM_nAxisNum();
 		if(m_nAxisNum == 3){
 			et_offset_u.setEnabled(false);
@@ -293,6 +300,15 @@ public class GlueOffsetActivity extends Activity implements OnClickListener {
 		et_offset_z.setOnFocusChangeListener(new OnKeyFocusChangeListener(et_offset_z, KEY_Z));
 		et_offset_u.setOnFocusChangeListener(new OnKeyFocusChangeListener(et_offset_u, KEY_U));
 
+		//初始化x/y/z/u
+		et_offset_x.setText(FloatUtil.getFloatToString(RobotParam.INSTANCE.XPulse2Journey(points.get(0).getX())));
+		tem_position_x = Double.parseDouble(et_offset_x.getText().toString());
+		et_offset_y.setText(FloatUtil.getFloatToString(RobotParam.INSTANCE.YPulse2Journey(points.get(0).getY())));
+		tem_position_y = Double.parseDouble(et_offset_y.getText().toString());
+		et_offset_z.setText(FloatUtil.getFloatToString(RobotParam.INSTANCE.ZPulse2Journey(points.get(0).getZ())));
+		tem_position_z = Double.parseDouble(et_offset_z.getText().toString());
+		et_offset_u.setText(FloatUtil.getFloatToString(RobotParam.INSTANCE.UPulse2Journey(points.get(0).getU())));
+		tem_position_u = Double.parseDouble(et_offset_u.getText().toString());
 		speed = settingParam.getHighSpeed();
 		speedXYZ = new int[3];
 		speedXYZ[0] = 4 * settingParam.getxStepDistance();
@@ -509,15 +525,17 @@ public class GlueOffsetActivity extends Activity implements OnClickListener {
 	 */
 	private void saveBackActivity() {
 		if (checkAllComponents()) {
-			position_x = Double.parseDouble(et_offset_x.getText().toString());
-			position_y = Double.parseDouble(et_offset_y.getText().toString());
-			position_z = Double.parseDouble(et_offset_z.getText().toString());
-			position_u = Double.parseDouble(et_offset_u.getText().toString());
+			
+			position_x = Double.parseDouble(et_offset_x.getText().toString())-tem_position_x;
+			position_y = Double.parseDouble(et_offset_y.getText().toString())-tem_position_y;
+			position_z = Double.parseDouble(et_offset_z.getText().toString())-tem_position_z;
+			position_u = Double.parseDouble(et_offset_u.getText().toString())-tem_position_u;
 			if (tv_exchange.getText().toString().equals(getResources().getString(R.string.relative))) {
-				// 相对偏移
+				// 相对偏移,点坐标=基准点偏移后位置-基准点原位置+点的原位置
 				for (Point point : points) {
+					Log.d(TAG, "相对偏移（没偏移之前）：" + point.toString());
 					point.setX(RobotParam.INSTANCE
-							.XJourney2Pulse(RobotParam.INSTANCE.XPulse2Journey(point.getX()) + position_x));
+							.XJourney2Pulse(RobotParam.INSTANCE.XPulse2Journey(point.getX()) +position_x));
 					point.setY(RobotParam.INSTANCE
 							.YJourney2Pulse(RobotParam.INSTANCE.YPulse2Journey(point.getY()) + position_y));
 					point.setZ(RobotParam.INSTANCE
@@ -630,7 +648,7 @@ public class GlueOffsetActivity extends Activity implements OnClickListener {
 				et_offset_y.setText(FloatUtil.getFloatToString(RobotParam.INSTANCE.YPulse2Journey(coordPoint.getY())));
 				et_offset_z.setText(FloatUtil.getFloatToString(RobotParam.INSTANCE.ZPulse2Journey(coordPoint.getZ())));
 				et_offset_u.setText(FloatUtil.getFloatToString(RobotParam.INSTANCE.UPulse2Journey(coordPoint.getU())));
-
+				
 			}
 		}
 			break;

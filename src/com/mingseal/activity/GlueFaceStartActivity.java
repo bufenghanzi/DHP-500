@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueAloneAdapter;
-import com.mingseal.adapter.PointGlueFaceStartAdapter;
 import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueFaceStartDao;
 import com.mingseal.data.param.SettingParam;
@@ -91,7 +89,6 @@ public class GlueFaceStartActivity extends Activity implements OnClickListener {
 	private GlueFaceStartDao glueFaceStartDao;
 	private List<PointGlueFaceStartParam> glueStartLists;
 	private PointGlueFaceStartParam glueStart;
-	private PointGlueFaceStartAdapter mStartAdapter;
 	private boolean[] glueBoolean;
 	private int param_id = 1;// / 选取的是几号方案
 	private int mFlag;// 0代表增加数据，1代表更新数据

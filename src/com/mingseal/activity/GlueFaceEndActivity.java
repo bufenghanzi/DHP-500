@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueFaceEndAdapter;
-import com.mingseal.adapter.PointGlueFaceStartAdapter;
 import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueFaceEndDao;
 import com.mingseal.data.param.SettingParam;
@@ -87,11 +85,6 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener {
 	 * 面结束点Spinner
 	 */
 	private Spinner faceEndSpinner;
-
-	/**
-	 * 装载任务方案的适配器
-	 */
-	private PointGlueFaceEndAdapter mFaceEndAdapter;
 
 	/**
 	 * PointGlueFaceEndParam List集合

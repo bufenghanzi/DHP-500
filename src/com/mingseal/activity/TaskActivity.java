@@ -33,6 +33,7 @@ import com.mingseal.data.param.SettingParam;
 import com.mingseal.data.param.TaskParam;
 import com.mingseal.data.param.robot.RobotParam;
 import com.mingseal.data.point.Point;
+import com.mingseal.data.point.PointParam;
 import com.mingseal.data.point.PointTask;
 import com.mingseal.data.point.PointType;
 import com.mingseal.data.point.SMatrix1_4;
@@ -1332,7 +1333,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 					mPointsCur.add((int) offsetCheckBox.get(i), pLists.get(i));
 				}
 				offsetCheckBox.clear();
-
+				Log.d(TAG, "偏移保存回来的点:" + pLists.toString());
 			} else if (_resultCode == resultSettingCode) {
 				// 任务参数设置
 				settingParam = SharePreferenceUtils.readFromSharedPreference(this);
@@ -1664,6 +1665,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 			Log.d(TAG, "--------->偏移" + selectCheckboxCur.toString());
 			if (selectCheckboxCur.size() != 0 && selectCheckboxCur != null) {
 				List<Point> pointArrays = new ArrayList<Point>();
+				
 				for (int i = 0; i < selectCheckboxCur.size(); i++) {
 					point = mPointsCur.get((int) selectCheckboxCur.get(i));
 					pointArrays.add(point);// 要偏移的先加到一个List里

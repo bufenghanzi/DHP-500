@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueFaceEndAdapter;
-import com.mingseal.adapter.PointGlueLineStartAdapter;
 import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueLineStartDao;
 import com.mingseal.data.param.SettingParam;
@@ -97,7 +95,6 @@ public class GlueLineStartActivity extends Activity implements OnClickListener {
 	private GlueLineStartDao glueStartDao;
 	private List<PointGlueLineStartParam> glueStartLists;// 保存的方案,用来维护从数据库中读出来的方案列表的编号
 	private PointGlueLineStartParam glueStart;
-	private PointGlueLineStartAdapter mStartAdapter;
 	private boolean[] glueBoolean;
 	private int param_id = 1;// / 选取的是几号方案
 	/**

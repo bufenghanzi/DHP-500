@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mingseal.adapter.PointGlueLineEndAdapter;
-import com.mingseal.adapter.PointGlueLineStartAdapter;
 import com.mingseal.communicate.Const;
 import com.mingseal.data.dao.GlueLineEndDao;
 import com.mingseal.data.param.SettingParam;
