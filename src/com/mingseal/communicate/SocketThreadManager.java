@@ -12,6 +12,7 @@ public class SocketThreadManager
 	
 	private SocketOutputThread mOutThread = null;
 	
+	 private SocketHeartThread mHeartThread = null;
 //	private Handler handler;
 
 	
@@ -31,6 +32,7 @@ public class SocketThreadManager
 	{
 		mInputThread = new SocketInputThread();
 		mOutThread = new SocketOutputThread();
+		mHeartThread=new SocketHeartThread();
 	}
 	
 	/**
@@ -43,6 +45,8 @@ public class SocketThreadManager
 		mInputThread.setStart(true);
 		mOutThread.start();
 		mOutThread.setStart(true);
+		mHeartThread.start();
+		mHeartThread.setStart(true);
 //		TCPClient.instance().reConnect();
 	}
 	
@@ -55,6 +59,7 @@ public class SocketThreadManager
 	 */
 	public void stopThreads()
 	{
+		mHeartThread.setStart(false);
 		mInputThread.setStart(false);
 		mOutThread.setStart(false);
 		

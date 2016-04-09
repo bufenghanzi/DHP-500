@@ -13,7 +13,12 @@ import java.nio.channels.ClosedChannelException;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import com.mingseal.application.UserApplication;
+
+import android.os.Handler;
 import android.util.Log;
 
 /**
@@ -38,17 +43,20 @@ public class TCPClient {
 
 	public boolean isInitialized = false;
 
+	private Handler handler;
+
 	/**
-	 * @Title  instance
+	 * @Title instance
 	 * @Description dcl
 	 * @author wj
 	 * @return
 	 */
 	public static TCPClient instance() {
 		if (s_Tcp == null) {
-			synchronized(TCPClient.class){
-				if (s_Tcp==null) {
-					s_Tcp = new TCPClient(Const.SOCKET_SERVER, Const.SOCKET_PORT);
+			synchronized (TCPClient.class) {
+				if (s_Tcp == null) {
+					s_Tcp = new TCPClient(UserApplication.getHandler(),
+							Const.SOCKET_SERVER, Const.SOCKET_PORT);
 				}
 			}
 		}
@@ -58,21 +66,19 @@ public class TCPClient {
 	/**
 	 * 构造函数
 	 * 
+	 * @param handler
+	 * 
 	 * @param HostIp
 	 * @param HostListenningPort
 	 * @throws IOException
 	 */
-	public TCPClient(String HostIp, int HostListenningPort) {
+	public TCPClient(Handler handler, String HostIp, int HostListenningPort) {
 		this.hostIp = HostIp;
 		this.hostListenningPort = HostListenningPort;
-
+		this.handler = handler;
 		try {
 			initialize();
 			this.isInitialized = true;
-		} catch (IOException e) {
-			this.isInitialized = false;
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
 			this.isInitialized = false;
 			e.printStackTrace();
@@ -84,17 +90,18 @@ public class TCPClient {
 	 * 
 	 * @throws IOException
 	 */
-	public void initialize() throws IOException {
+	public void initialize() {
 		boolean done = false;
 
 		try {
-
+//			new Timer().schedule(tt, 10000);
 			// 打开监听信道并设置为非阻塞模式,将该通道的serversocket绑定到port端口
-			socketChannel = SocketChannel.open(new InetSocketAddress(hostIp, hostListenningPort));
+			socketChannel = SocketChannel.open(new InetSocketAddress(hostIp,
+					hostListenningPort));
 			if (socketChannel != null) {
 				socketChannel.socket().setTcpNoDelay(false);
 				socketChannel.socket().setKeepAlive(true);
-				// 设置 读socket的timeout时间
+				// 设置 读socket的timeout时间,60s，传输大文件需要设置得大一些
 				socketChannel.socket().setSoTimeout(Const.SOCKET_READ_TIMOUT);
 				socketChannel.configureBlocking(false);
 
@@ -102,18 +109,48 @@ public class TCPClient {
 				selector = Selector.open();
 				if (selector != null) {
 					socketChannel.register(selector, SelectionKey.OP_READ);
+					// 连接成功
+					handler.sendEmptyMessage(-1);
 					done = true;
 				}
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (!done && selector != null) {
-				selector.close();
+				try {
+					selector.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			if (!done) {
-				socketChannel.close();
+				try {
+					socketChannel.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
+
+	TimerTask tt = new TimerTask() {
+		@Override
+		public void run() {
+			if (socketChannel == null || !socketChannel.isConnected()) {
+				try {
+					throw new SocketTimeoutException("连接超时");
+				} catch (SocketTimeoutException e) {
+					e.printStackTrace();
+					 handler.sendEmptyMessage(-6); // 连接超时
+				}
+			}
+		}
+
+	};
 
 	static void blockUntil(SelectionKey key, long timeout) throws IOException {
 
@@ -193,9 +230,6 @@ public class TCPClient {
 		try {
 			initialize();
 			isInitialized = true;
-		} catch (IOException e) {
-			isInitialized = false;
-			e.printStackTrace();
 		} catch (Exception e) {
 			isInitialized = false;
 			e.printStackTrace();
@@ -216,9 +250,11 @@ public class TCPClient {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Log.d(TAG, "========>心跳停止！");
 			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
+			Log.d(TAG, "========>心跳停止！");
 			return false;
 		}
 		return true;

@@ -20,6 +20,7 @@ import com.mingseal.data.point.glueparam.PointGlueOutputIOParam;
 import com.mingseal.data.user.User;
 
 import android.app.Application;
+import android.os.Handler;
 
 /**
  * @author 商炎炳
@@ -40,6 +41,11 @@ public class UserApplication extends Application {
 	private HashMap<Integer, PointGlueInputIOParam> inputParamMaps;// 输入IO点Map集合
 	private HashMap<Integer, PointGlueOutputIOParam> outputParamMaps;// 输出IO点Map集合
 	private boolean isWifiConnecting = false;// wifi连接情况
+	private static Handler mHandler;
+
+	public static Handler getHandler() {
+		return mHandler;
+	}
 
 	/**
 	 * @return 全局User对象
@@ -104,7 +110,8 @@ public class UserApplication extends Application {
 	 * @param aloneParamMaps
 	 *            独立点参数Map
 	 */
-	public void setAloneParamMaps(HashMap<Integer, PointGlueAloneParam> aloneParamMaps) {
+	public void setAloneParamMaps(
+			HashMap<Integer, PointGlueAloneParam> aloneParamMaps) {
 		this.aloneParamMaps = aloneParamMaps;
 	}
 
@@ -121,7 +128,8 @@ public class UserApplication extends Application {
 	 * @param lineEndParamMaps
 	 *            线结束点参数的Map
 	 */
-	public void setLineEndParamMaps(HashMap<Integer, PointGlueLineEndParam> lineEndParamMaps) {
+	public void setLineEndParamMaps(
+			HashMap<Integer, PointGlueLineEndParam> lineEndParamMaps) {
 		this.lineEndParamMaps = lineEndParamMaps;
 	}
 
@@ -138,7 +146,8 @@ public class UserApplication extends Application {
 	 * @param faceEndParamMaps
 	 *            面结束点参数的Map集合
 	 */
-	public void setFaceEndParamMaps(HashMap<Integer, PointGlueFaceEndParam> faceEndParamMaps) {
+	public void setFaceEndParamMaps(
+			HashMap<Integer, PointGlueFaceEndParam> faceEndParamMaps) {
 		this.faceEndParamMaps = faceEndParamMaps;
 	}
 
@@ -156,7 +165,8 @@ public class UserApplication extends Application {
 	 * @param lineStartParamMaps
 	 *            线起始点参数的Map集合
 	 */
-	public void setLineStartParamMaps(HashMap<Integer, PointGlueLineStartParam> lineStartParamMaps) {
+	public void setLineStartParamMaps(
+			HashMap<Integer, PointGlueLineStartParam> lineStartParamMaps) {
 		this.lineStartParamMaps = lineStartParamMaps;
 	}
 
@@ -173,7 +183,8 @@ public class UserApplication extends Application {
 	 * @param lineMidParamMaps
 	 *            线中间点参数的Map集合
 	 */
-	public void setLineMidParamMaps(HashMap<Integer, PointGlueLineMidParam> lineMidParamMaps) {
+	public void setLineMidParamMaps(
+			HashMap<Integer, PointGlueLineMidParam> lineMidParamMaps) {
 		this.lineMidParamMaps = lineMidParamMaps;
 	}
 
@@ -190,7 +201,8 @@ public class UserApplication extends Application {
 	 * @param faceStartParamMaps
 	 *            面起始点参数的Map集合
 	 */
-	public void setFaceStartParamMaps(HashMap<Integer, PointGlueFaceStartParam> faceStartParamMaps) {
+	public void setFaceStartParamMaps(
+			HashMap<Integer, PointGlueFaceStartParam> faceStartParamMaps) {
 		this.faceStartParamMaps = faceStartParamMaps;
 	}
 
@@ -207,7 +219,8 @@ public class UserApplication extends Application {
 	 * @param clearParamMaps
 	 *            清胶点参数的Map集合
 	 */
-	public void setClearParamMaps(HashMap<Integer, PointGlueClearParam> clearParamMaps) {
+	public void setClearParamMaps(
+			HashMap<Integer, PointGlueClearParam> clearParamMaps) {
 		this.clearParamMaps = clearParamMaps;
 	}
 
@@ -224,7 +237,8 @@ public class UserApplication extends Application {
 	 * @param inputParamMaps
 	 *            输入IO点参数的Map集合
 	 */
-	public void setInputParamMaps(HashMap<Integer, PointGlueInputIOParam> inputParamMaps) {
+	public void setInputParamMaps(
+			HashMap<Integer, PointGlueInputIOParam> inputParamMaps) {
 		this.inputParamMaps = inputParamMaps;
 	}
 
@@ -241,7 +255,8 @@ public class UserApplication extends Application {
 	 * @param outputParamMaps
 	 *            输出IO点参数的Map集合
 	 */
-	public void setOutputParamMaps(HashMap<Integer, PointGlueOutputIOParam> outputParamMaps) {
+	public void setOutputParamMaps(
+			HashMap<Integer, PointGlueOutputIOParam> outputParamMaps) {
 		this.outputParamMaps = outputParamMaps;
 	}
 
@@ -267,7 +282,8 @@ public class UserApplication extends Application {
 	 * @param outputParamMaps
 	 *            输出IO点参数方案
 	 */
-	public void setParamMaps(HashMap<Integer, PointGlueAloneParam> aloneParamMaps,
+	public void setParamMaps(
+			HashMap<Integer, PointGlueAloneParam> aloneParamMaps,
 			HashMap<Integer, PointGlueLineStartParam> lineStartParamMaps,
 			HashMap<Integer, PointGlueLineMidParam> lineMidParamMaps,
 			HashMap<Integer, PointGlueLineEndParam> lineEndParamMaps,
@@ -308,6 +324,8 @@ public class UserApplication extends Application {
 
 	@Override
 	public void onCreate() {
+		// 定义一个handler
+		mHandler = new Handler();
 		super.onCreate();
 	}
 
