@@ -94,7 +94,10 @@ public class TaskMainBaseAdapter extends BaseAdapter {
 	 * @Fields openStr: 开和关的状态
 	 */
 	private String openCloseStr;
-
+	/**
+	 * 方案号
+	 */
+	private int _id; 
 	public TaskMainBaseAdapter(Context context, TaskActivity activity) {
 		this.context = context;
 		this.mInflater = LayoutInflater.from(context);
@@ -200,6 +203,7 @@ public class TaskMainBaseAdapter extends BaseAdapter {
 			convertView = mInflater.inflate(R.layout.activity_task_main_listview_item, null);
 			holder.tv_num = (TextView) convertView.findViewById(R.id.tv_num);
 			holder.tv_type = (TextView) convertView.findViewById(R.id.tv_type);
+			holder.tv_fangan = (TextView) convertView.findViewById(R.id.tv_fangan);
 			holder.tv_x = (EditText) convertView.findViewById(R.id.edit_x);
 			holder.tv_y = (EditText) convertView.findViewById(R.id.edit_y);
 			holder.tv_z = (EditText) convertView.findViewById(R.id.edit_z);
@@ -252,7 +256,9 @@ public class TaskMainBaseAdapter extends BaseAdapter {
 
 			holder.tv_num.setText(String.valueOf(position + 1));
 			type_value = point.getPointParam().getPointType().getValue();
+			_id = point.getPointParam().get_id();
 			holder.tv_type.setText(PointType.getTypeName(type_value));
+			holder.tv_fangan.setText(String.valueOf(_id)+"#");
 //			holder.tv_x.setText(String.valueOf(RobotParam.INSTANCE.XPulse2Journey(point.getX())));
 //			holder.tv_y.setText(String.valueOf(RobotParam.INSTANCE.YPulse2Journey(point.getY())));
 //			holder.tv_z.setText(String.valueOf(RobotParam.INSTANCE.ZPulse2Journey(point.getZ())));
@@ -664,6 +670,7 @@ public class TaskMainBaseAdapter extends BaseAdapter {
 	private static class ViewHolder {
 		private TextView tv_num;// 第几个数据
 		private TextView tv_type;// 什么类型的数据
+		private TextView tv_fangan;// 对应的方案号
 		private EditText tv_x;// X轴的数据
 		private EditText tv_y;// Y轴的数据
 		private EditText tv_z;// Z轴的数据

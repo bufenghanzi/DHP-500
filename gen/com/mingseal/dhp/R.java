@@ -30,6 +30,145 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
+        public static final int kswAnimationDuration=0x7f010017;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int kswBackColor=0x7f010014;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int kswBackDrawable=0x7f010013;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int kswBackMeasureRatio=0x7f010016;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswBackRadius=0x7f010012;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int kswFadeBack=0x7f010015;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int kswTextMarginH=0x7f01001b;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int kswTextOff=0x7f01001a;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int kswTextOn=0x7f010019;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int kswThumbColor=0x7f010009;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int kswThumbDrawable=0x7f010008;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbHeight=0x7f010010;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbMargin=0x7f01000a;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbMarginBottom=0x7f01000c;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbMarginLeft=0x7f01000d;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbMarginRight=0x7f01000e;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbMarginTop=0x7f01000b;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbRadius=0x7f010011;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int kswThumbWidth=0x7f01000f;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int kswTintColor=0x7f010018;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
         public static final int max=0x7f010005;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
@@ -109,6 +248,14 @@ containing a value of this type.
         public static final int button_pressed=0x7f060003;
         public static final int color_white=0x7f060005;
         public static final int dialog_loading_color=0x7f060009;
+        public static final int ksw_md_back_color=0x7f060013;
+        public static final int ksw_md_ripple_checked=0x7f06000d;
+        public static final int ksw_md_ripple_normal=0x7f06000c;
+        public static final int ksw_md_solid_checked=0x7f060010;
+        public static final int ksw_md_solid_checked_disable=0x7f060012;
+        public static final int ksw_md_solid_disable=0x7f060011;
+        public static final int ksw_md_solid_normal=0x7f06000f;
+        public static final int ksw_md_solid_shadow=0x7f06000e;
         public static final int listview_selected=0x7f06000a;
         /**  导航栏x,y,z,u的字体颜色 
          */
@@ -154,7 +301,7 @@ containing a value of this type.
         public static final int activity_upload_textsize=0x7f070023;
         public static final int activity_vertical_margin=0x7f070001;
         public static final int edittext_input_height=0x7f07002a;
-        /** Edittext的宽和高  
+        /**  Edittext的宽和高 
          */
         public static final int edittext_input_width=0x7f070029;
         public static final int edittext_marginLeft=0x7f07002d;
@@ -168,6 +315,14 @@ containing a value of this type.
         public static final int item_glue_marginRight=0x7f07001e;
         public static final int item_glue_marginTop=0x7f07001f;
         public static final int item_glue_textsize=0x7f07001c;
+        public static final int ksw_md_thumb_ripple_size=0x7f070031;
+        public static final int ksw_md_thumb_shadow_inset=0x7f070033;
+        public static final int ksw_md_thumb_shadow_inset_bottom=0x7f070035;
+        public static final int ksw_md_thumb_shadow_inset_top=0x7f070034;
+        public static final int ksw_md_thumb_shadow_offset=0x7f070038;
+        public static final int ksw_md_thumb_shadow_size=0x7f070037;
+        public static final int ksw_md_thumb_solid_inset=0x7f070032;
+        public static final int ksw_md_thumb_solid_size=0x7f070036;
         public static final int navigation_direct_marginBottom=0x7f070027;
         public static final int navigation_direct_marginTop=0x7f070026;
         public static final int navigation_direct_marginleft=0x7f070024;
@@ -179,105 +334,109 @@ containing a value of this type.
         public static final int administrator=0x7f020001;
         public static final int arrow_left=0x7f020002;
         public static final int arrow_right=0x7f020003;
-        public static final int checkbox_iphone=0x7f020004;
-        public static final int checkbox_off=0x7f020005;
-        public static final int checkbox_on=0x7f020006;
-        public static final int custom_progress_bg=0x7f020007;
-        public static final int export=0x7f020008;
-        public static final int green1=0x7f020009;
-        public static final int green10=0x7f02000a;
-        public static final int green2=0x7f02000b;
-        public static final int green3=0x7f02000c;
-        public static final int green4=0x7f02000d;
-        public static final int green5=0x7f02000e;
-        public static final int green6=0x7f02000f;
-        public static final int green7=0x7f020010;
-        public static final int green8=0x7f020011;
-        public static final int green9=0x7f020012;
-        public static final int hide=0x7f020013;
-        public static final int ic_delete=0x7f020014;
-        public static final int ic_launcher=0x7f020015;
-        public static final int icon_add=0x7f020016;
-        public static final int icon_back=0x7f020017;
-        public static final int icon_complete=0x7f020018;
-        public static final int icon_dingwei=0x7f020019;
-        public static final int icon_exchange=0x7f02001a;
-        public static final int icon_fangan=0x7f02001b;
-        public static final int icon_fuwei=0x7f02001c;
-        public static final int icon_logo=0x7f02001d;
-        public static final int icon_moni=0x7f02001e;
-        public static final int icon_moshi=0x7f02001f;
-        public static final int icon_open=0x7f020020;
-        public static final int icon_photo_normal=0x7f020021;
-        public static final int icon_photo_pressed=0x7f020022;
-        public static final int icon_pianyi=0x7f020023;
-        public static final int icon_shanchu=0x7f020024;
-        public static final int icon_shezhi=0x7f020025;
-        public static final int icon_shijue=0x7f020026;
-        public static final int icon_shitu=0x7f020027;
-        public static final int icon_speed_high=0x7f020028;
-        public static final int icon_speed_low=0x7f020029;
-        public static final int icon_speed_medium=0x7f02002a;
-        public static final int icon_step_serious=0x7f02002b;
-        public static final int icon_step_single=0x7f02002c;
-        public static final int icon_sudu=0x7f02002d;
-        public static final int icon_wifi_connect=0x7f02002e;
-        public static final int icon_wifi_disconnect=0x7f02002f;
-        public static final int icon_xiazai=0x7f020030;
-        public static final int icon_xiugai=0x7f020031;
-        public static final int icon_zhantie=0x7f020032;
-        public static final int icon_zhenlie=0x7f020033;
-        public static final int image_button_press_bg=0x7f020034;
-        public static final int login_edittext_bg=0x7f020035;
-        public static final int login_edittext_normal_bg=0x7f020036;
-        public static final int login_edittext_pressed_bg=0x7f020037;
-        public static final int login_image_bg=0x7f020038;
-        public static final int logo=0x7f020039;
-        public static final int nav_btnshape_bg=0x7f02003a;
-        public static final int nav_btnshape_enabled=0x7f02003b;
-        public static final int nav_btnshape_normal=0x7f02003c;
-        public static final int nav_btnshape_pressed=0x7f02003d;
-        public static final int ok=0x7f02003e;
-        public static final int password=0x7f02003f;
-        public static final int plus=0x7f020040;
-        public static final int popup_view_item_bg=0x7f020041;
-        public static final int relativelayout_back_bg=0x7f020042;
-        public static final int search=0x7f020043;
-        public static final int setting_relative_bg=0x7f020044;
-        public static final int setting_relative_normal=0x7f020045;
-        public static final int setting_relative_pressed=0x7f020046;
-        public static final int show=0x7f020047;
-        public static final int task_bottom_imagebutton=0x7f020048;
-        public static final int task_bottom_linearlayout_bg=0x7f020049;
-        public static final int task_bottom_pop_button=0x7f02004a;
-        public static final int task_button_enabled=0x7f02004b;
-        public static final int task_button_normal=0x7f02004c;
-        public static final int task_button_pressed=0x7f02004d;
-        public static final int task_button_xuhao_bg=0x7f02004e;
-        public static final int task_edittext_bg=0x7f02004f;
-        public static final int task_edittext_border_normal=0x7f020050;
-        public static final int task_edittext_border_pressed=0x7f020051;
-        public static final int task_linearlayout_bg=0x7f020052;
-        public static final int task_linearlayout_pressed_bg=0x7f020053;
-        public static final int task_list_bg=0x7f020054;
-        public static final int task_list_normal_bg=0x7f020055;
-        public static final int task_list_pressed_bg=0x7f020056;
-        public static final int textview_radius_border=0x7f020057;
-        public static final int toast_bg=0x7f020058;
-        public static final int transport=0x7f020059;
-        public static final int uploading=0x7f02005a;
-        public static final int user=0x7f02005b;
+        public static final int bg_table_header=0x7f020004;
+        public static final int checkbox_iphone=0x7f020005;
+        public static final int checkbox_off=0x7f020006;
+        public static final int checkbox_on=0x7f020007;
+        public static final int custom_progress_bg=0x7f020008;
+        public static final int export=0x7f020009;
+        public static final int green1=0x7f02000a;
+        public static final int green10=0x7f02000b;
+        public static final int green2=0x7f02000c;
+        public static final int green3=0x7f02000d;
+        public static final int green4=0x7f02000e;
+        public static final int green5=0x7f02000f;
+        public static final int green6=0x7f020010;
+        public static final int green7=0x7f020011;
+        public static final int green8=0x7f020012;
+        public static final int green9=0x7f020013;
+        public static final int hide=0x7f020014;
+        public static final int ic_action_navigation_close=0x7f020015;
+        public static final int ic_delete=0x7f020016;
+        public static final int ic_launcher=0x7f020017;
+        public static final int icon_add=0x7f020018;
+        public static final int icon_back=0x7f020019;
+        public static final int icon_complete=0x7f02001a;
+        public static final int icon_dingwei=0x7f02001b;
+        public static final int icon_exchange=0x7f02001c;
+        public static final int icon_fangan=0x7f02001d;
+        public static final int icon_fuwei=0x7f02001e;
+        public static final int icon_logo=0x7f02001f;
+        public static final int icon_moni=0x7f020020;
+        public static final int icon_moshi=0x7f020021;
+        public static final int icon_open=0x7f020022;
+        public static final int icon_photo_normal=0x7f020023;
+        public static final int icon_photo_pressed=0x7f020024;
+        public static final int icon_pianyi=0x7f020025;
+        public static final int icon_shanchu=0x7f020026;
+        public static final int icon_shezhi=0x7f020027;
+        public static final int icon_shijue=0x7f020028;
+        public static final int icon_shitu=0x7f020029;
+        public static final int icon_speed_high=0x7f02002a;
+        public static final int icon_speed_low=0x7f02002b;
+        public static final int icon_speed_medium=0x7f02002c;
+        public static final int icon_step_serious=0x7f02002d;
+        public static final int icon_step_single=0x7f02002e;
+        public static final int icon_sudu=0x7f02002f;
+        public static final int icon_wifi_connect=0x7f020030;
+        public static final int icon_wifi_disconnect=0x7f020031;
+        public static final int icon_xiazai=0x7f020032;
+        public static final int icon_xiugai=0x7f020033;
+        public static final int icon_zhantie=0x7f020034;
+        public static final int icon_zhenlie=0x7f020035;
+        public static final int image_button_press_bg=0x7f020036;
+        public static final int ksw_md_thumb=0x7f020037;
+        public static final int login_edittext_bg=0x7f020038;
+        public static final int login_edittext_normal_bg=0x7f020039;
+        public static final int login_edittext_pressed_bg=0x7f02003a;
+        public static final int login_image_bg=0x7f02003b;
+        public static final int logo=0x7f02003c;
+        public static final int nav_btnshape_bg=0x7f02003d;
+        public static final int nav_btnshape_enabled=0x7f02003e;
+        public static final int nav_btnshape_normal=0x7f02003f;
+        public static final int nav_btnshape_pressed=0x7f020040;
+        public static final int ok=0x7f020041;
+        public static final int password=0x7f020042;
+        public static final int plus=0x7f020043;
+        public static final int popup_view_item_bg=0x7f020044;
+        public static final int relativelayout_back_bg=0x7f020045;
+        public static final int search=0x7f020046;
+        public static final int setting_relative_bg=0x7f020047;
+        public static final int setting_relative_normal=0x7f020048;
+        public static final int setting_relative_pressed=0x7f020049;
+        public static final int show=0x7f02004a;
+        public static final int task_bottom_imagebutton=0x7f02004b;
+        public static final int task_bottom_linearlayout_bg=0x7f02004c;
+        public static final int task_bottom_pop_button=0x7f02004d;
+        public static final int task_button_enabled=0x7f02004e;
+        public static final int task_button_normal=0x7f02004f;
+        public static final int task_button_pressed=0x7f020050;
+        public static final int task_button_xuhao_bg=0x7f020051;
+        public static final int task_edittext_bg=0x7f020052;
+        public static final int task_edittext_border_normal=0x7f020053;
+        public static final int task_edittext_border_pressed=0x7f020054;
+        public static final int task_linearlayout_bg=0x7f020055;
+        public static final int task_linearlayout_pressed_bg=0x7f020056;
+        public static final int task_list_bg=0x7f020057;
+        public static final int task_list_normal_bg=0x7f020058;
+        public static final int task_list_pressed_bg=0x7f020059;
+        public static final int textview_radius_border=0x7f02005a;
+        public static final int toast_bg=0x7f02005b;
+        public static final int transport=0x7f02005c;
+        public static final int uploading=0x7f02005d;
+        public static final int user=0x7f02005e;
     }
     public static final class id {
         public static final int FILL=0x7f0b0000;
         public static final int STROKE=0x7f0b0001;
-        public static final int action_settings=0x7f0b016a;
+        public static final int action_empty_btn=0x7f0b00ce;
+        public static final int action_settings=0x7f0b016b;
         public static final int array_lin_e=0x7f0b0039;
         public static final int array_lin_x=0x7f0b002b;
         public static final int array_lin_y=0x7f0b0032;
-        public static final int bt_delete=0x7f0b014e;
+        public static final int bt_delete=0x7f0b014f;
         public static final int bt_getNumber=0x7f0b0081;
-        public static final int bt_top=0x7f0b014d;
+        public static final int bt_top=0x7f0b014e;
         public static final int but_duli=0x7f0b00d1;
         public static final int but_inputio=0x7f0b00da;
         public static final int but_jieshu=0x7f0b00d5;
@@ -288,25 +447,24 @@ containing a value of this type.
         public static final int but_qingjiao=0x7f0b00d9;
         public static final int but_qingjiaodian=0x7f0b00d8;
         public static final int but_qishi=0x7f0b00d2;
-        public static final int but_xuhao=0x7f0b00ce;
         public static final int but_yuanhu=0x7f0b00d4;
         public static final int but_zhongjian=0x7f0b00d3;
         public static final int button_reset=0x7f0b0072;
         public static final int camera=0x7f0b0059;
         public static final int camera_preview=0x7f0b0058;
         public static final int cb1=0x7f0b00df;
-        public static final int customView=0x7f0b00ee;
+        public static final int customView=0x7f0b00ef;
         public static final int download=0x7f0b0076;
         public static final int editText1=0x7f0b0082;
-        public static final int edit_u=0x7f0b00e4;
-        public static final int edit_x=0x7f0b00e1;
-        public static final int edit_y=0x7f0b00e2;
-        public static final int edit_z=0x7f0b00e3;
+        public static final int edit_u=0x7f0b00e5;
+        public static final int edit_x=0x7f0b00e2;
+        public static final int edit_y=0x7f0b00e3;
+        public static final int edit_z=0x7f0b00e4;
         public static final int et_Search=0x7f0b00c6;
-        public static final int et_alone_dianjiao=0x7f0b00f8;
-        public static final int et_alone_tingjiao=0x7f0b00fb;
-        public static final int et_alone_upheight=0x7f0b00fe;
-        public static final int et_clear_clearGlue=0x7f0b0108;
+        public static final int et_alone_dianjiao=0x7f0b00f9;
+        public static final int et_alone_tingjiao=0x7f0b00fc;
+        public static final int et_alone_upheight=0x7f0b00ff;
+        public static final int et_clear_clearGlue=0x7f0b0109;
         public static final int et_column=0x7f0b0027;
         public static final int et_download_accelerate_time=0x7f0b0047;
         public static final int et_download_decelerate_time=0x7f0b004b;
@@ -318,26 +476,26 @@ containing a value of this type.
         public static final int et_end_x=0x7f0b003b;
         public static final int et_end_y=0x7f0b003d;
         public static final int et_end_z=0x7f0b003f;
-        public static final int et_faceend_lineNum=0x7f0b011d;
-        public static final int et_faceend_stopGlueTime=0x7f0b0119;
-        public static final int et_faceend_upheight=0x7f0b011b;
-        public static final int et_facestart_movespeed=0x7f0b0121;
-        public static final int et_facestart_outGlueTime=0x7f0b0124;
-        public static final int et_facestart_outGlueTimePrev=0x7f0b011f;
-        public static final int et_facestart_stopGlueTime=0x7f0b0126;
+        public static final int et_faceend_lineNum=0x7f0b011e;
+        public static final int et_faceend_stopGlueTime=0x7f0b011a;
+        public static final int et_faceend_upheight=0x7f0b011c;
+        public static final int et_facestart_movespeed=0x7f0b0122;
+        public static final int et_facestart_outGlueTime=0x7f0b0125;
+        public static final int et_facestart_outGlueTimePrev=0x7f0b0120;
+        public static final int et_facestart_stopGlueTime=0x7f0b0127;
         public static final int et_getNumber=0x7f0b0080;
-        public static final int et_input_goTimeNext=0x7f0b0131;
-        public static final int et_input_goTimePrev=0x7f0b012f;
-        public static final int et_lineend_breakGlueLen=0x7f0b0111;
-        public static final int et_lineend_drawDistance=0x7f0b0114;
-        public static final int et_lineend_drawSpeed=0x7f0b0116;
-        public static final int et_lineend_stopGlueTime=0x7f0b010c;
-        public static final int et_lineend_stopGlueTimePrev=0x7f0b010a;
-        public static final int et_lineend_upHeight=0x7f0b010f;
-        public static final int et_linemid_moveSpeed=0x7f0b0133;
-        public static final int et_linestart_moveSpeed=0x7f0b0145;
-        public static final int et_linestart_outGlueTime=0x7f0b0144;
-        public static final int et_linestart_outGlueTimePrev=0x7f0b0143;
+        public static final int et_input_goTimeNext=0x7f0b0132;
+        public static final int et_input_goTimePrev=0x7f0b0130;
+        public static final int et_lineend_breakGlueLen=0x7f0b0112;
+        public static final int et_lineend_drawDistance=0x7f0b0115;
+        public static final int et_lineend_drawSpeed=0x7f0b0117;
+        public static final int et_lineend_stopGlueTime=0x7f0b010d;
+        public static final int et_lineend_stopGlueTimePrev=0x7f0b010b;
+        public static final int et_lineend_upHeight=0x7f0b0110;
+        public static final int et_linemid_moveSpeed=0x7f0b0134;
+        public static final int et_linestart_moveSpeed=0x7f0b0146;
+        public static final int et_linestart_outGlueTime=0x7f0b0145;
+        public static final int et_linestart_outGlueTimePrev=0x7f0b0144;
         public static final int et_new_password=0x7f0b00aa;
         public static final int et_new_password_again=0x7f0b00ad;
         public static final int et_num=0x7f0b0002;
@@ -347,15 +505,15 @@ containing a value of this type.
         public static final int et_offset_y=0x7f0b008c;
         public static final int et_offset_z=0x7f0b008e;
         public static final int et_old_password=0x7f0b00a7;
-        public static final int et_output_goTimeNext=0x7f0b013b;
-        public static final int et_output_goTimePrev=0x7f0b013a;
+        public static final int et_output_goTimeNext=0x7f0b013c;
+        public static final int et_output_goTimePrev=0x7f0b013b;
         public static final int et_password=0x7f0b006e;
         public static final int et_password_again=0x7f0b0085;
-        public static final int et_radius=0x7f0b0135;
+        public static final int et_radius=0x7f0b0136;
         public static final int et_row=0x7f0b0026;
-        public static final int et_stopDisNext=0x7f0b0139;
-        public static final int et_stopDisPrev=0x7f0b0137;
-        public static final int et_title=0x7f0b00f1;
+        public static final int et_stopDisNext=0x7f0b013a;
+        public static final int et_stopDisPrev=0x7f0b0138;
+        public static final int et_title=0x7f0b00f2;
         public static final int et_u=0x7f0b0062;
         public static final int et_username=0x7f0b006b;
         public static final int et_x=0x7f0b005d;
@@ -368,28 +526,28 @@ containing a value of this type.
         public static final int et_y_offset_z=0x7f0b0038;
         public static final int et_z=0x7f0b0060;
         public static final int fanganliebiao=0x7f0b0055;
-        public static final int front=0x7f0b0148;
+        public static final int front=0x7f0b0149;
         public static final int get_param=0x7f0b0074;
         public static final int imageButtonTake=0x7f0b005b;
-        public static final int item_admin=0x7f0b015c;
-        public static final int item_alone_dotglue=0x7f0b014a;
-        public static final int item_alone_stopglue=0x7f0b014b;
-        public static final int item_alone_upheight=0x7f0b014c;
-        public static final int item_clear=0x7f0b014f;
-        public static final int item_end_lineNum=0x7f0b0152;
-        public static final int item_end_stopGlueTime=0x7f0b0150;
-        public static final int item_end_upHeight=0x7f0b0151;
-        public static final int item_goTimeNext=0x7f0b0154;
-        public static final int item_goTimePrev=0x7f0b0153;
-        public static final int item_line_movespeed=0x7f0b015b;
-        public static final int item_line_outglue=0x7f0b015a;
-        public static final int item_line_stopGlueTime=0x7f0b0156;
-        public static final int item_line_stopGlueTimePrev=0x7f0b0155;
-        public static final int item_mid_radius=0x7f0b0157;
-        public static final int item_mid_stopDisNext=0x7f0b0159;
-        public static final int item_mid_stopDisPrev=0x7f0b0158;
-        public static final int item_num=0x7f0b0149;
-        public static final int item_task=0x7f0b015d;
+        public static final int item_admin=0x7f0b015d;
+        public static final int item_alone_dotglue=0x7f0b014b;
+        public static final int item_alone_stopglue=0x7f0b014c;
+        public static final int item_alone_upheight=0x7f0b014d;
+        public static final int item_clear=0x7f0b0150;
+        public static final int item_end_lineNum=0x7f0b0153;
+        public static final int item_end_stopGlueTime=0x7f0b0151;
+        public static final int item_end_upHeight=0x7f0b0152;
+        public static final int item_goTimeNext=0x7f0b0155;
+        public static final int item_goTimePrev=0x7f0b0154;
+        public static final int item_line_movespeed=0x7f0b015c;
+        public static final int item_line_outglue=0x7f0b015b;
+        public static final int item_line_stopGlueTime=0x7f0b0157;
+        public static final int item_line_stopGlueTimePrev=0x7f0b0156;
+        public static final int item_mid_radius=0x7f0b0158;
+        public static final int item_mid_stopDisNext=0x7f0b015a;
+        public static final int item_mid_stopDisPrev=0x7f0b0159;
+        public static final int item_num=0x7f0b014a;
+        public static final int item_task=0x7f0b015e;
         public static final int iv_add=0x7f0b00bd;
         public static final int iv_admin=0x7f0b0067;
         public static final int iv_cancel=0x7f0b0054;
@@ -402,11 +560,11 @@ containing a value of this type.
         public static final int iv_fuwei=0x7f0b0013;
         public static final int iv_logo=0x7f0b0065;
         public static final int iv_moni=0x7f0b000c;
-        public static final int iv_moren=0x7f0b0106;
+        public static final int iv_moren=0x7f0b0107;
         public static final int iv_moshi=0x7f0b0010;
         public static final int iv_password=0x7f0b006d;
         public static final int iv_pianyi=0x7f0b000a;
-        public static final int iv_selected=0x7f0b0169;
+        public static final int iv_selected=0x7f0b016a;
         public static final int iv_shanchu=0x7f0b001d;
         public static final int iv_shangchuan=0x7f0b00c4;
         public static final int iv_shezhi=0x7f0b0022;
@@ -420,9 +578,9 @@ containing a value of this type.
         public static final int iv_show_password_again=0x7f0b0086;
         public static final int iv_sudu=0x7f0b0005;
         public static final int iv_task_paste=0x7f0b00c0;
-        public static final int iv_title_moshi=0x7f0b00ec;
-        public static final int iv_title_speed=0x7f0b00ea;
-        public static final int iv_title_wifi_connecting=0x7f0b00e8;
+        public static final int iv_title_moshi=0x7f0b00ed;
+        public static final int iv_title_speed=0x7f0b00eb;
+        public static final int iv_title_wifi_connecting=0x7f0b00e9;
         public static final int iv_username=0x7f0b006a;
         public static final int iv_xiazai=0x7f0b001b;
         public static final int iv_xiugai=0x7f0b001f;
@@ -432,19 +590,19 @@ containing a value of this type.
         public static final int lin_listview=0x7f0b00dc;
         public static final int lin_pop=0x7f0b00ca;
         public static final int lin_popwindow=0x7f0b00cf;
-        public static final int list=0x7f0b0166;
+        public static final int list=0x7f0b0167;
         public static final int locate=0x7f0b0075;
         public static final int lv_show=0x7f0b00c9;
         public static final int lv_task=0x7f0b00c7;
         public static final int morenfangan=0x7f0b0056;
-        public static final int nav_u_minus=0x7f0b015e;
-        public static final int nav_u_plus=0x7f0b0163;
-        public static final int nav_x_minus=0x7f0b0161;
-        public static final int nav_x_plus=0x7f0b0162;
-        public static final int nav_y_minus=0x7f0b0164;
-        public static final int nav_y_plus=0x7f0b015f;
-        public static final int nav_z_minus=0x7f0b0160;
-        public static final int nav_z_plus=0x7f0b0165;
+        public static final int nav_u_minus=0x7f0b015f;
+        public static final int nav_u_plus=0x7f0b0164;
+        public static final int nav_x_minus=0x7f0b0162;
+        public static final int nav_x_plus=0x7f0b0163;
+        public static final int nav_y_minus=0x7f0b0165;
+        public static final int nav_y_plus=0x7f0b0160;
+        public static final int nav_z_minus=0x7f0b0161;
+        public static final int nav_z_plus=0x7f0b0166;
         public static final int num_highSpeed=0x7f0b009d;
         public static final int num_lowSpeed=0x7f0b00a1;
         public static final int num_mediumSpeed=0x7f0b009f;
@@ -458,7 +616,7 @@ containing a value of this type.
         public static final int rl_add=0x7f0b00bc;
         public static final int rl_add_new=0x7f0b00af;
         public static final int rl_admin=0x7f0b0066;
-        public static final int rl_back=0x7f0b00e5;
+        public static final int rl_back=0x7f0b00e6;
         public static final int rl_cancel=0x7f0b0053;
         public static final int rl_complete=0x7f0b0042;
         public static final int rl_contactus=0x7f0b00b3;
@@ -472,7 +630,7 @@ containing a value of this type.
         public static final int rl_fuwei=0x7f0b0012;
         public static final int rl_login=0x7f0b0070;
         public static final int rl_moni=0x7f0b000b;
-        public static final int rl_moren=0x7f0b0104;
+        public static final int rl_moren=0x7f0b0105;
         public static final int rl_moshi=0x7f0b000f;
         public static final int rl_nav=0x7f0b00c8;
         public static final int rl_new_password=0x7f0b00a9;
@@ -484,7 +642,7 @@ containing a value of this type.
         public static final int rl_password_again=0x7f0b0084;
         public static final int rl_pianyi=0x7f0b0009;
         public static final int rl_reset=0x7f0b00b1;
-        public static final int rl_save=0x7f0b0105;
+        public static final int rl_save=0x7f0b0106;
         public static final int rl_shanchu=0x7f0b001c;
         public static final int rl_shangchuan=0x7f0b00c3;
         public static final int rl_shezhi=0x7f0b0021;
@@ -492,85 +650,86 @@ containing a value of this type.
         public static final int rl_shitu=0x7f0b0018;
         public static final int rl_sudu=0x7f0b0004;
         public static final int rl_task_paste=0x7f0b00bf;
-        public static final int rl_title_moshi=0x7f0b00eb;
-        public static final int rl_title_speed=0x7f0b00e9;
-        public static final int rl_title_wifi_connecting=0x7f0b00e7;
+        public static final int rl_title_moshi=0x7f0b00ec;
+        public static final int rl_title_speed=0x7f0b00ea;
+        public static final int rl_title_wifi_connecting=0x7f0b00e8;
         public static final int rl_username=0x7f0b0069;
         public static final int rl_xiazai=0x7f0b001a;
         public static final int rl_xiugai=0x7f0b001e;
         public static final int rl_xuhao=0x7f0b00cd;
         public static final int rl_zhantie=0x7f0b0016;
         public static final int rl_zhenlie=0x7f0b0014;
-        public static final int roundProgressBar=0x7f0b00f4;
+        public static final int roundProgressBar=0x7f0b00f5;
         public static final int sp_admin=0x7f0b0068;
         public static final int sp_array=0x7f0b002a;
         public static final int speed=0x7f0b0073;
         public static final int speedBar=0x7f0b007d;
         public static final int sw_single=0x7f0b00cc;
-        public static final int swipelayout=0x7f0b0147;
-        public static final int switch_chujiao=0x7f0b00f9;
-        public static final int switch_dianjiaokou1=0x7f0b00ff;
-        public static final int switch_dianjiaokou2=0x7f0b0100;
-        public static final int switch_dianjiaokou3=0x7f0b0101;
-        public static final int switch_dianjiaokou4=0x7f0b0102;
-        public static final int switch_dianjiaokou5=0x7f0b0103;
-        public static final int switch_glueport1=0x7f0b0129;
-        public static final int switch_glueport10=0x7f0b0140;
-        public static final int switch_glueport11=0x7f0b0141;
-        public static final int switch_glueport12=0x7f0b0142;
-        public static final int switch_glueport2=0x7f0b012a;
-        public static final int switch_glueport3=0x7f0b012b;
-        public static final int switch_glueport4=0x7f0b012c;
-        public static final int switch_glueport5=0x7f0b012d;
-        public static final int switch_glueport6=0x7f0b013c;
-        public static final int switch_glueport7=0x7f0b013d;
-        public static final int switch_glueport8=0x7f0b013e;
-        public static final int switch_glueport9=0x7f0b013f;
-        public static final int switch_isOutGlue=0x7f0b0127;
-        public static final int switch_isPause=0x7f0b0118;
-        public static final int switch_startDir=0x7f0b0128;
-        public static final int switch_timeMode=0x7f0b0146;
-        public static final int switch_tingjiao=0x7f0b00fc;
+        public static final int swipelayout=0x7f0b0148;
+        public static final int switch_chujiao=0x7f0b00fa;
+        public static final int switch_dianjiaokou1=0x7f0b0100;
+        public static final int switch_dianjiaokou2=0x7f0b0101;
+        public static final int switch_dianjiaokou3=0x7f0b0102;
+        public static final int switch_dianjiaokou4=0x7f0b0103;
+        public static final int switch_dianjiaokou5=0x7f0b0104;
+        public static final int switch_glueport1=0x7f0b012a;
+        public static final int switch_glueport10=0x7f0b0141;
+        public static final int switch_glueport11=0x7f0b0142;
+        public static final int switch_glueport12=0x7f0b0143;
+        public static final int switch_glueport2=0x7f0b012b;
+        public static final int switch_glueport3=0x7f0b012c;
+        public static final int switch_glueport4=0x7f0b012d;
+        public static final int switch_glueport5=0x7f0b012e;
+        public static final int switch_glueport6=0x7f0b013d;
+        public static final int switch_glueport7=0x7f0b013e;
+        public static final int switch_glueport8=0x7f0b013f;
+        public static final int switch_glueport9=0x7f0b0140;
+        public static final int switch_isOutGlue=0x7f0b0128;
+        public static final int switch_isPause=0x7f0b0119;
+        public static final int switch_startDir=0x7f0b0129;
+        public static final int switch_timeMode=0x7f0b0147;
+        public static final int switch_tingjiao=0x7f0b00fd;
         public static final int switch_trackLocation=0x7f0b00a3;
         public static final int text_machine_model=0x7f0b00b5;
         public static final int text_software_version=0x7f0b00b7;
-        public static final int title=0x7f0b0168;
-        public static final int title_num=0x7f0b0167;
+        public static final int title=0x7f0b0169;
+        public static final int title_num=0x7f0b0168;
         public static final int tv_absolute=0x7f0b0088;
         public static final int tv_accelerate_time=0x7f0b0046;
         public static final int tv_array=0x7f0b0029;
         public static final int tv_array_moshi=0x7f0b0041;
         public static final int tv_array_speed=0x7f0b0040;
-        public static final int tv_breakGlueLen=0x7f0b0112;
-        public static final int tv_breakGlueLen_ms=0x7f0b0110;
+        public static final int tv_breakGlueLen=0x7f0b0113;
+        public static final int tv_breakGlueLen_ms=0x7f0b0111;
         public static final int tv_camera_moshi=0x7f0b0064;
         public static final int tv_camera_speed=0x7f0b0063;
-        public static final int tv_clearGlue=0x7f0b0107;
+        public static final int tv_clearGlue=0x7f0b0108;
         public static final int tv_column=0x7f0b0028;
         public static final int tv_contact=0x7f0b00b4;
         public static final int tv_decelerate_time=0x7f0b004a;
-        public static final int tv_dianjiao=0x7f0b00f7;
-        public static final int tv_drawDistance=0x7f0b0113;
-        public static final int tv_drawSpeed=0x7f0b0117;
-        public static final int tv_drawSpeed_mm=0x7f0b0115;
+        public static final int tv_dianjiao=0x7f0b00f8;
+        public static final int tv_drawDistance=0x7f0b0114;
+        public static final int tv_drawSpeed=0x7f0b0118;
+        public static final int tv_drawSpeed_mm=0x7f0b0116;
         public static final int tv_end_x=0x7f0b003a;
         public static final int tv_end_y=0x7f0b003c;
         public static final int tv_end_z=0x7f0b003e;
         public static final int tv_exchange=0x7f0b0095;
-        public static final int tv_facestart_mm_s=0x7f0b0120;
-        public static final int tv_goTimeNext=0x7f0b0132;
-        public static final int tv_goTimeNext_ms=0x7f0b0130;
-        public static final int tv_goTimePrev=0x7f0b012e;
+        public static final int tv_facestart_mm_s=0x7f0b0121;
+        public static final int tv_fangan=0x7f0b00e1;
+        public static final int tv_goTimeNext=0x7f0b0133;
+        public static final int tv_goTimeNext_ms=0x7f0b0131;
+        public static final int tv_goTimePrev=0x7f0b012f;
         public static final int tv_highSpeed=0x7f0b009c;
         public static final int tv_inflexion_time=0x7f0b004e;
-        public static final int tv_lineNum=0x7f0b011c;
-        public static final int tv_loadingmsg=0x7f0b00f5;
+        public static final int tv_lineNum=0x7f0b011d;
+        public static final int tv_loadingmsg=0x7f0b00f6;
         public static final int tv_lowSpeed=0x7f0b00a0;
         public static final int tv_machine_model=0x7f0b00b6;
         public static final int tv_max=0x7f0b0050;
         public static final int tv_mediumSpeed=0x7f0b009e;
         public static final int tv_moshi=0x7f0b0011;
-        public static final int tv_moveSpeed=0x7f0b0122;
+        public static final int tv_moveSpeed=0x7f0b0123;
         public static final int tv_num=0x7f0b00dd;
         public static final int tv_offset_moshi=0x7f0b0092;
         public static final int tv_offset_speed=0x7f0b0091;
@@ -578,33 +737,33 @@ containing a value of this type.
         public static final int tv_offset_x=0x7f0b0089;
         public static final int tv_offset_y=0x7f0b008b;
         public static final int tv_offset_z=0x7f0b008d;
-        public static final int tv_outGlueTime=0x7f0b0123;
-        public static final int tv_outGlueTimePrev=0x7f0b011e;
-        public static final int tv_outGlueTime_ms=0x7f0b0125;
-        public static final int tv_radius=0x7f0b0134;
+        public static final int tv_outGlueTime=0x7f0b0124;
+        public static final int tv_outGlueTimePrev=0x7f0b011f;
+        public static final int tv_outGlueTime_ms=0x7f0b0126;
+        public static final int tv_radius=0x7f0b0135;
         public static final int tv_row=0x7f0b0025;
         public static final int tv_selectall=0x7f0b0020;
         public static final int tv_software_version=0x7f0b00b8;
         public static final int tv_speed=0x7f0b0006;
-        public static final int tv_stopDisNext=0x7f0b0138;
-        public static final int tv_stopDisPrev=0x7f0b0136;
-        public static final int tv_stopGlueTime=0x7f0b010d;
-        public static final int tv_stopGlueTimePrev=0x7f0b0109;
-        public static final int tv_stopGlueTime_ms=0x7f0b010b;
-        public static final int tv_taiqidaodu=0x7f0b00fd;
+        public static final int tv_stopDisNext=0x7f0b0139;
+        public static final int tv_stopDisPrev=0x7f0b0137;
+        public static final int tv_stopGlueTime=0x7f0b010e;
+        public static final int tv_stopGlueTimePrev=0x7f0b010a;
+        public static final int tv_stopGlueTime_ms=0x7f0b010c;
+        public static final int tv_taiqidaodu=0x7f0b00fe;
         public static final int tv_task_number=0x7f0b0044;
-        public static final int tv_tingjiao=0x7f0b00fa;
-        public static final int tv_title=0x7f0b00e6;
-        public static final int tv_toast=0x7f0b00ed;
+        public static final int tv_tingjiao=0x7f0b00fb;
+        public static final int tv_title=0x7f0b00e7;
+        public static final int tv_toast=0x7f0b00ee;
         public static final int tv_totaltime=0x7f0b00bb;
         public static final int tv_trackLocation=0x7f0b00a2;
         public static final int tv_trackSpeed=0x7f0b00a4;
         public static final int tv_type=0x7f0b00de;
         public static final int tv_u=0x7f0b0061;
-        public static final int tv_upHeight=0x7f0b010e;
-        public static final int tv_upheight_mm=0x7f0b011a;
-        public static final int tv_view_moshi=0x7f0b00f0;
-        public static final int tv_view_speed=0x7f0b00ef;
+        public static final int tv_upHeight=0x7f0b010f;
+        public static final int tv_upheight_mm=0x7f0b011b;
+        public static final int tv_view_moshi=0x7f0b00f1;
+        public static final int tv_view_speed=0x7f0b00f0;
         public static final int tv_x=0x7f0b005c;
         public static final int tv_xDistance=0x7f0b0096;
         public static final int tv_x_offset_x=0x7f0b002c;
@@ -620,10 +779,10 @@ containing a value of this type.
         public static final int tv_zDistance=0x7f0b009a;
         public static final int txt_test=0x7f0b0071;
         public static final int txt_uploadInfo=0x7f0b007f;
-        public static final int upLoadProgressBar=0x7f0b00f6;
+        public static final int upLoadProgressBar=0x7f0b00f7;
         public static final int uploadTask=0x7f0b007e;
-        public static final int upload_task_name=0x7f0b00f3;
-        public static final int upload_task_number=0x7f0b00f2;
+        public static final int upload_task_name=0x7f0b00f4;
+        public static final int upload_task_number=0x7f0b00f3;
         public static final int vertical_bar=0x7f0b005a;
         public static final int view_track=0x7f0b00ba;
         public static final int x_left=0x7f0b0077;
@@ -923,6 +1082,10 @@ containing a value of this type.
         /**  自定义Toast动画 
          */
         public static final int Lite_Animation_Toast=0x7f090005;
+        public static final int SwitchButtonMD=0x7f090007;
+        /**  自定义开关 
+         */
+        public static final int SwitchButtonStyle=0x7f090006;
         /**  popwindow显示消失动画 
          */
         public static final int mypopwindow_anim_style=0x7f090002;
@@ -1078,5 +1241,319 @@ containing a value of this type.
           @attr name com.mingseal.dhp:textSize
         */
         public static final int RoundProgressBar_textSize = 4;
+        /** Attributes that can be used with a SwitchButton.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SwitchButton_kswAnimationDuration com.mingseal.dhp:kswAnimationDuration}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswBackColor com.mingseal.dhp:kswBackColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswBackDrawable com.mingseal.dhp:kswBackDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswBackMeasureRatio com.mingseal.dhp:kswBackMeasureRatio}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswBackRadius com.mingseal.dhp:kswBackRadius}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswFadeBack com.mingseal.dhp:kswFadeBack}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswTextMarginH com.mingseal.dhp:kswTextMarginH}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswTextOff com.mingseal.dhp:kswTextOff}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswTextOn com.mingseal.dhp:kswTextOn}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbColor com.mingseal.dhp:kswThumbColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbDrawable com.mingseal.dhp:kswThumbDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbHeight com.mingseal.dhp:kswThumbHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbMargin com.mingseal.dhp:kswThumbMargin}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbMarginBottom com.mingseal.dhp:kswThumbMarginBottom}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbMarginLeft com.mingseal.dhp:kswThumbMarginLeft}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbMarginRight com.mingseal.dhp:kswThumbMarginRight}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbMarginTop com.mingseal.dhp:kswThumbMarginTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbRadius com.mingseal.dhp:kswThumbRadius}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswThumbWidth com.mingseal.dhp:kswThumbWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwitchButton_kswTintColor com.mingseal.dhp:kswTintColor}</code></td><td></td></tr>
+           </table>
+           @see #SwitchButton_kswAnimationDuration
+           @see #SwitchButton_kswBackColor
+           @see #SwitchButton_kswBackDrawable
+           @see #SwitchButton_kswBackMeasureRatio
+           @see #SwitchButton_kswBackRadius
+           @see #SwitchButton_kswFadeBack
+           @see #SwitchButton_kswTextMarginH
+           @see #SwitchButton_kswTextOff
+           @see #SwitchButton_kswTextOn
+           @see #SwitchButton_kswThumbColor
+           @see #SwitchButton_kswThumbDrawable
+           @see #SwitchButton_kswThumbHeight
+           @see #SwitchButton_kswThumbMargin
+           @see #SwitchButton_kswThumbMarginBottom
+           @see #SwitchButton_kswThumbMarginLeft
+           @see #SwitchButton_kswThumbMarginRight
+           @see #SwitchButton_kswThumbMarginTop
+           @see #SwitchButton_kswThumbRadius
+           @see #SwitchButton_kswThumbWidth
+           @see #SwitchButton_kswTintColor
+         */
+        public static final int[] SwitchButton = {
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f,
+            0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013,
+            0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017,
+            0x7f010018, 0x7f010019, 0x7f01001a, 0x7f01001b
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswAnimationDuration}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.mingseal.dhp:kswAnimationDuration
+        */
+        public static final int SwitchButton_kswAnimationDuration = 15;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswBackColor}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.mingseal.dhp:kswBackColor
+        */
+        public static final int SwitchButton_kswBackColor = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswBackDrawable}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.mingseal.dhp:kswBackDrawable
+        */
+        public static final int SwitchButton_kswBackDrawable = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswBackMeasureRatio}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.mingseal.dhp:kswBackMeasureRatio
+        */
+        public static final int SwitchButton_kswBackMeasureRatio = 14;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswBackRadius}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswBackRadius
+        */
+        public static final int SwitchButton_kswBackRadius = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswFadeBack}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.mingseal.dhp:kswFadeBack
+        */
+        public static final int SwitchButton_kswFadeBack = 13;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswTextMarginH}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.mingseal.dhp:kswTextMarginH
+        */
+        public static final int SwitchButton_kswTextMarginH = 19;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswTextOff}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.mingseal.dhp:kswTextOff
+        */
+        public static final int SwitchButton_kswTextOff = 18;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswTextOn}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.mingseal.dhp:kswTextOn
+        */
+        public static final int SwitchButton_kswTextOn = 17;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbColor}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.mingseal.dhp:kswThumbColor
+        */
+        public static final int SwitchButton_kswThumbColor = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbDrawable}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.mingseal.dhp:kswThumbDrawable
+        */
+        public static final int SwitchButton_kswThumbDrawable = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbHeight}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbHeight
+        */
+        public static final int SwitchButton_kswThumbHeight = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbMargin}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbMargin
+        */
+        public static final int SwitchButton_kswThumbMargin = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbMarginBottom}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbMarginBottom
+        */
+        public static final int SwitchButton_kswThumbMarginBottom = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbMarginLeft}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbMarginLeft
+        */
+        public static final int SwitchButton_kswThumbMarginLeft = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbMarginRight}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbMarginRight
+        */
+        public static final int SwitchButton_kswThumbMarginRight = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbMarginTop}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbMarginTop
+        */
+        public static final int SwitchButton_kswThumbMarginTop = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbRadius}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbRadius
+        */
+        public static final int SwitchButton_kswThumbRadius = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswThumbWidth}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name com.mingseal.dhp:kswThumbWidth
+        */
+        public static final int SwitchButton_kswThumbWidth = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.mingseal.dhp.R.attr#kswTintColor}
+          attribute's value can be found in the {@link #SwitchButton} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name com.mingseal.dhp:kswTintColor
+        */
+        public static final int SwitchButton_kswTintColor = 16;
     };
 }

@@ -49,6 +49,7 @@ import com.mingseal.data.point.glueparam.PointGlueOutputIOParam;
 import com.mingseal.data.protocol.Protocol_400_1;
 import com.mingseal.dhp.R;
 import com.mingseal.listener.MyPopWindowClickListener;
+import com.mingseal.ui.SwitchButton;
 import com.mingseal.utils.AsyncConnection;
 import com.mingseal.utils.CommonArithmetic;
 import com.mingseal.utils.CustomProgressDialog;
@@ -77,6 +78,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -90,6 +93,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -207,7 +211,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 
 	private TextView tv_speed;// 速度按钮对应的文本
 	private TextView tv_moshi;// 速度按钮对应的文本
-	private Switch singleSwitch;// switch按钮
+	private SwitchButton singleSwitch;// switch按钮
 	private Button but_xuhao;// 序号按钮
 	
 	/************************ add begin ************************/
@@ -385,6 +389,9 @@ public class TaskActivity extends Activity implements OnClickListener {
 	 */
 	private boolean isChange = true;
 	private  boolean prepareReset=false;//判断是否是按下复位按键
+	private RelativeLayout rl_xuhao;
+	private EditText et_Search;
+	private ImageView empty_btn;
 
 	/**
 	 * 判断是否是第一次打开popwindow
@@ -516,6 +523,35 @@ public class TaskActivity extends Activity implements OnClickListener {
 				mAdapter.notifyDataSetChanged();
 			}
 		});
+		
+		et_Search.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				if (s == null || s.length() == 0) {
+					mList.smoothScrollToPosition(selectRadioIDCur-1);
+					mAdapter.notifyDataSetChanged();
+				}else {
+					int selectID=Integer.parseInt(s.toString());
+					selectRadioIDCur = selectID;
+					mList.smoothScrollToPosition(selectRadioIDCur-1);
+					mAdapter.setSelectID(selectID-1);
+					mAdapter.notifyDataSetChanged();
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+			}
+		});
 
 	}
 
@@ -614,9 +650,12 @@ public class TaskActivity extends Activity implements OnClickListener {
 		rl_zhantie.setEnabled(false);
 		rl_quanxuan.setEnabled(false);
 
-		but_xuhao = (Button) findViewById(R.id.but_xuhao);
+		//搜索框
+		rl_xuhao = (RelativeLayout) findViewById(R.id.rl_xuhao);
+		et_Search = (EditText) findViewById(R.id.et_Search);
+		empty_btn = (ImageView) findViewById(R.id.action_empty_btn);
 
-		singleSwitch = (Switch) findViewById(R.id.sw_single);
+		singleSwitch = (SwitchButton) findViewById(R.id.sw_single);
 		
 		but_x_plus = (Button) findViewById(R.id.nav_x_plus);
 		but_x_minus = (Button) findViewById(R.id.nav_x_minus);
@@ -642,6 +681,8 @@ public class TaskActivity extends Activity implements OnClickListener {
 		speedXYZ[0] = 4 * settingParam.getxStepDistance();
 		speedXYZ[1] = 4 * settingParam.getyStepDistance();
 		speedXYZ[2] = 4 * settingParam.getzStepDistance();
+		
+		
 	}
 
 	/**
@@ -837,7 +878,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 
 			if (isChecked) {
 				// 选中为多，要把序号隐藏
-				but_xuhao.setVisibility(View.GONE);
+				rl_xuhao.setVisibility(View.GONE);
 				rl_shanchu.setEnabled(true);
 				rl_zhenlie.setEnabled(true);
 				rl_pianyi.setEnabled(true);
@@ -847,7 +888,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 				rl_shijue.setEnabled(false);
 				rl_fangan.setEnabled(false);
 			} else {
-				but_xuhao.setVisibility(View.VISIBLE);
+				rl_xuhao.setVisibility(View.VISIBLE);
 				rl_shanchu.setEnabled(false);
 				rl_zhenlie.setEnabled(false);
 				rl_pianyi.setEnabled(false);

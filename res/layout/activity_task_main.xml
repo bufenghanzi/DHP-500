@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 任务主界面 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -18,7 +19,7 @@
         <ListView
             android:id="@+id/lv_show"
             android:layout_width="match_parent"
-            android:layout_height="650dp"
+            android:layout_height="665dp"
             android:layout_below="@id/rl_nav"
             android:divider="@color/activity_task_listview_divider"
             android:dividerHeight="2dp" >
@@ -28,14 +29,13 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/lv_show"
-            android:layout_marginTop="25dp"
             android:background="@color/activity_task_listview_divider" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/lv_show"
-            android:layout_marginTop="65dp"
+            android:layout_marginTop="63dp"
             android:background="@color/activity_task_listview_divider" />
 
         <LinearLayout
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/lv_show"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -60,16 +60,21 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:layout_width="100dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp" >
 
-                <Switch
+                <com.mingseal.ui.SwitchButton
                     android:id="@+id/sw_single"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:textOff="@string/activity_single"
-                    android:textOn="@string/activity_multify" />
+                    style="@style/SwitchButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22dp"
+                    app:kswTextOff="@string/activity_single"
+                    app:kswTextOn="@string/activity_multify"
+                    app:kswThumbHeight="33dp"
+                    app:kswThumbWidth="56dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -77,18 +82,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp" >
 
-                <Button
-                    android:id="@+id/but_xuhao"
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/task_button_xuhao_bg"
-                    android:text="@string/number"
-                    android:textColor="@color/button_gray"
-                    android:textSize="@dimen/activity_task_listview_text_size" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical" >
+
+                    <EditText
+                        android:id="@+id/et_Search"
+                        android:layout_width="180dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="40dp"
+                        android:background="@drawable/textview_radius_border"
+                        android:hint="@string/edittext_search"
+                        android:paddingLeft="38dp"
+                        android:numeric="integer"
+                        android:singleLine="true"
+                        android:textColor="#7A7A7A"
+                        android:textSize="25sp" />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignBottom="@id/et_Search"
+                        android:layout_alignLeft="@id/et_Search"
+                        android:layout_alignTop="@id/et_Search"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/search" />
+
+                    <ImageView
+                        android:id="@+id/action_empty_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:layout_marginRight="25dp"
+                        android:src="@drawable/ic_action_navigation_close"
+                        android:visibility="visible" />
+                </RelativeLayout>
+
             </RelativeLayout>
         </LinearLayout>
 
