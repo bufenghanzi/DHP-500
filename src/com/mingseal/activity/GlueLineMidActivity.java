@@ -32,6 +32,7 @@ import com.mingseal.utils.ToastUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -152,7 +153,24 @@ public class GlueLineMidActivity extends Activity implements OnClickListener {
 	private int currentClickNum;// 当前点击的序号
 	private int mIndex;// 对应方案号
 	String[] GluePort;
-
+	  private TextView title_moveSpeed;
+	    private TextView title_et_linemid_moveSpeed;
+	    private TextView activity_mm_s;
+	    private TextView activity_fenghao;
+	    private TextView title_activity_glue_radius;
+	    private TextView title_et_radius;
+	    private TextView activity_mm;
+	    private TextView activity_second_fenghao;
+	    private TextView title_stopDisPrev;
+	    private TextView title_et_stopDisPrev;
+	    private TextView activity_second_mm;
+	    private TextView activity_third_fenghao;
+	    private TextView title_stopDisNext;
+	    private TextView title_et_stopDisNext;
+	    private TextView activity_third_mm;
+	    private TextView activity_four_fenghao;
+	    private TextView title_activity_glue_port;
+	    private TextView title_et_activity_glue_port;
 	/* =================== end =================== */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -231,306 +249,45 @@ public class GlueLineMidActivity extends Activity implements OnClickListener {
 		// 初始化创建10个popupView
 		for (int i = 0; i < 10; i++) {
 			p = i + 1;
-			PopupView popupView = new PopupView(this, R.layout.popup_view_item) {
+			PopupView popupView = new PopupView(this, R.layout.popup_view_item_glue_mid) {
 
 				@Override
 				public void setViewsElements(View view) {
-					TextView textView = (TextView) view
-							.findViewById(R.id.title);
+//					TextView textView = (TextView) view
+//							.findViewById(R.id.title);
 					glueMidLists = glueMidDao.findAllGlueLineMidParams();
-					textView.setTextSize(25);
 					ImageView title_num = (ImageView) view
 							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
 						title_num.setImageResource(R.drawable.green1);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 2) {
 						title_num.setImageResource(R.drawable.green2);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 3) {
 						title_num.setImageResource(R.drawable.green3);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 4) {
 						title_num.setImageResource(R.drawable.green4);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 5) {
 						title_num.setImageResource(R.drawable.green5);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 6) {
 						title_num.setImageResource(R.drawable.green6);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 7) {
 						title_num.setImageResource(R.drawable.green7);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 8) {
 						title_num.setImageResource(R.drawable.green8);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 9) {
 						title_num.setImageResource(R.drawable.green9);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					} else if (p == 10) {
 						title_num.setImageResource(R.drawable.green10);
-						for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
-							if (p == pointGlueLineMidParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueLineMidParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("轨迹速度："
-										+ pointGlueLineMidParam.getMoveSpeed()
-										+ "mm/s,"
-										+ "圆角半径："
-										+ pointGlueLineMidParam.getRadius()
-										+ "mm,"
-										+ "断胶前距离："
-										+ pointGlueLineMidParam
-												.getStopGlueDisPrev()
-										+ "mm,"
-										+ "断胶后距离："
-										+ pointGlueLineMidParam
-												.getStopGLueDisNext() + "mm,"
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueMidLists, view, p);
 					}
 				}
 
@@ -748,6 +505,106 @@ public class GlueLineMidActivity extends Activity implements OnClickListener {
 		rl_back.setOnClickListener(this);
 	}
 
+	protected void setTitleInfos(List<PointGlueLineMidParam> glueMidLists,
+			View view, int p) {
+		 title_moveSpeed = (TextView) view.findViewById(R.id.title_moveSpeed);
+	        title_et_linemid_moveSpeed = (TextView) view.findViewById(R.id.title_et_linemid_moveSpeed);
+	        activity_mm_s = (TextView) view.findViewById(R.id.activity_mm_s);
+	        activity_fenghao = (TextView) view.findViewById(R.id.activity_fenghao);
+	        title_activity_glue_radius = (TextView) view.findViewById(R.id.title_activity_glue_radius);
+	        title_et_radius = (TextView) view.findViewById(R.id.title_et_radius);
+	        activity_mm = (TextView) view.findViewById(R.id.activity_mm);
+	        activity_second_fenghao = (TextView) view.findViewById(R.id.activity_second_fenghao);
+	        title_stopDisPrev = (TextView) view.findViewById(R.id.title_stopDisPrev);
+	        title_et_stopDisPrev = (TextView) view.findViewById(R.id.title_et_stopDisPrev);
+	        activity_second_mm = (TextView) view.findViewById(R.id.activity_second_mm);
+	        activity_third_fenghao = (TextView) view.findViewById(R.id.activity_third_fenghao);
+	        title_stopDisNext = (TextView) view.findViewById(R.id.title_stopDisNext);
+	        title_et_stopDisNext = (TextView) view.findViewById(R.id.title_et_stopDisNext);
+	        activity_third_mm = (TextView) view.findViewById(R.id.activity_third_mm);
+	        activity_four_fenghao = (TextView) view.findViewById(R.id.activity_four_fenghao);
+	        title_activity_glue_port = (TextView) view.findViewById(R.id.title_activity_glue_port);
+	        title_et_activity_glue_port = (TextView) view.findViewById(R.id.title_et_activity_glue_port);
+	        for (PointGlueLineMidParam pointGlueLineMidParam : glueMidLists) {
+				if (p == pointGlueLineMidParam.get_id()) {
+					title_moveSpeed.setText(getResources().getString(
+							R.string.activity_glue_moveSpeed)
+							+ " ");
+					activity_mm_s.setText(getResources().getString(
+							R.string.activity_mm_s));
+					activity_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					title_activity_glue_radius.setText(getResources().getString(
+							R.string.activity_glue_radius)
+							+ " ");
+					activity_mm.setText(getResources().getString(
+							R.string.activity_mm));
+					activity_second_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					title_stopDisPrev.setText(getResources().getString(
+							R.string.activity_glue_stopGlueDisPrev)
+							+ " ");
+					activity_second_mm.setText(getResources().getString(
+							R.string.activity_mm));
+					activity_third_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					title_stopDisNext.setText(getResources()
+							.getString(R.string.activity_glue_stopGlueDisNext)
+							+ " ");
+					activity_third_mm.setText(getResources().getString(R.string.activity_mm));
+					activity_four_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					title_activity_glue_port.setText(getResources().getString(
+							R.string.activity_glue_port)
+							+ " ");
+					activity_four_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					
+					for (int j = 0; j < 5; j++) {
+						if (pointGlueLineMidParam.getGluePort()[j]) {
+							GluePort[j] = "开";
+						} else {
+							GluePort[j] = "关";
+						}
+					}
+
+					title_et_linemid_moveSpeed.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_linemid_moveSpeed.getPaint()
+							.setAntiAlias(true); // 抗锯齿
+					title_et_radius.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_radius.getPaint().setAntiAlias(true); // 抗锯齿
+					title_et_stopDisPrev.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_stopDisPrev.getPaint().setAntiAlias(true); // 抗锯齿
+					title_et_stopDisNext.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_stopDisNext.getPaint().setAntiAlias(true); // 抗锯齿
+					title_et_activity_glue_port.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_activity_glue_port.getPaint().setAntiAlias(true); // 抗锯齿
+					
+					title_et_linemid_moveSpeed.setText(pointGlueLineMidParam.getMoveSpeed()+"");
+					title_et_radius.setText(pointGlueLineMidParam.getRadius()+"");
+					title_et_stopDisPrev.setText(pointGlueLineMidParam.getStopGlueDisPrev()+"");
+					title_et_stopDisNext.setText(pointGlueLineMidParam.getStopGLueDisNext()+"");
+//					if (pointGlueLineMidParam.isOutGlue()) {
+//						title_et_stopDisNext.setText("是");
+//					} else {
+//						title_et_stopDisNext.setText("否");
+//					}
+					title_et_activity_glue_port.setText(GluePort[0] + GluePort[1]
+							+ GluePort[2] + GluePort[3] + GluePort[4]);
+				}
+			}
+	}
+
 	/**
 	 * @Title SetDateAndRefreshUI
 	 * @Description 打开extendview的时候设置界面内容，显示最新的方案数据而不是没有保存的数据,没有得到保存的方案
@@ -865,51 +722,8 @@ public class GlueLineMidActivity extends Activity implements OnClickListener {
 						.get(currentClickNum).getPopupView();
 				View titleViewExtend = popupListView.getItemViews()
 						.get(currentClickNum).getExtendPopupView();
-				TextView textViewItem = (TextView) titleViewItem
-						.findViewById(R.id.title);
-				TextView textViewExtend = (TextView) titleViewExtend
-						.findViewById(R.id.title);
-				textViewItem.setText(pointGlueLineMidParam.toString());
-				textViewExtend.setText(pointGlueLineMidParam.toString());
-				for (int j = 0; j < 5; j++) {
-					if (pointGlueLineMidParam.getGluePort()[j]) {
-						GluePort[j] = "开";
-					} else {
-						GluePort[j] = "关";
-					}
-				}
-				textViewItem.setText("轨迹速度："
-						+ pointGlueLineMidParam.getMoveSpeed()
-						+ "mm/s,"
-						+ "圆角半径："
-						+ pointGlueLineMidParam.getRadius()
-						+ "mm,"
-						+ "断胶前距离："
-						+ pointGlueLineMidParam
-								.getStopGlueDisPrev()
-						+ "mm,"
-						+ "断胶后距离："
-						+ pointGlueLineMidParam
-								.getStopGLueDisNext() + "mm,"
-						+ "点胶口：" + GluePort[0] + GluePort[1]
-						+ GluePort[2] + GluePort[3]
-						+ GluePort[4]);
-				textViewExtend.setText("轨迹速度："
-						+ pointGlueLineMidParam.getMoveSpeed()
-						+ "mm/s,"
-						+ "圆角半径："
-						+ pointGlueLineMidParam.getRadius()
-						+ "mm,"
-						+ "断胶前距离："
-						+ pointGlueLineMidParam
-						.getStopGlueDisPrev()
-						+ "mm,"
-						+ "断胶后距离："
-						+ pointGlueLineMidParam
-						.getStopGLueDisNext() + "mm,"
-						+ "点胶口：" + GluePort[0] + GluePort[1]
-								+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
+				setTitleInfos(glueMidLists, titleViewItem, currentTaskNum);
+				setTitleInfos(glueMidLists, titleViewExtend, currentTaskNum);
 			}
 		}
 	}

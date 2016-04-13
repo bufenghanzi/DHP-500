@@ -30,6 +30,7 @@ import com.mingseal.utils.ToastUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -158,7 +159,19 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener {
 	 * 是否暂停
 	 */
 	private ToggleButton switch_isPause;
-
+	  private TextView title_stopGlueTime;
+	    private TextView title_et_stopGlueTime;
+	    private TextView activity_ms;
+	    private TextView activity_fenghao;
+	    private TextView title_activity_glue_alone_upHeight;
+	    private TextView title_et_activity_glue_alone_upHeight;
+	    private TextView title_upheight_mm;
+	    private TextView activity_second_fenghao;
+	    private TextView title_lineNum;
+	    private TextView title_et_lineNum;
+	    private TextView activity_four_fenghao;
+	    private TextView title_activity_glue_alone_isPause;
+	    private TextView title_et_activity_glue_alone_isPause;
 	/* =================== end =================== */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -228,166 +241,45 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener {
 		// 初始化创建10个popupView
 		for (int i = 0; i < 10; i++) {
 			p = i + 1;
-			PopupView popupView = new PopupView(this, R.layout.popup_view_item) {
+			PopupView popupView = new PopupView(this, R.layout.popup_view_item_face_end) {
 
 				@Override
 				public void setViewsElements(View view) {
-					TextView textView = (TextView) view
-							.findViewById(R.id.title);
+//					TextView textView = (TextView) view
+//							.findViewById(R.id.title);
 					pointEndLists = glueFaceEndDao.findAllGlueFaceEndParams();
-					textView.setTextSize(30);
 					ImageView title_num = (ImageView) view
 							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
 						title_num.setImageResource(R.drawable.green1);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 2) {
 						title_num.setImageResource(R.drawable.green2);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 3) {
 						title_num.setImageResource(R.drawable.green3);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 4) {
 						title_num.setImageResource(R.drawable.green4);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 5) {
 						title_num.setImageResource(R.drawable.green5);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 6) {
 						title_num.setImageResource(R.drawable.green6);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 7) {
 						title_num.setImageResource(R.drawable.green7);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 8) {
 						title_num.setImageResource(R.drawable.green8);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 9) {
 						title_num.setImageResource(R.drawable.green9);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					} else if (p == 10) {
 						title_num.setImageResource(R.drawable.green10);
-						for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
-							if (p == pointGlueFaceEndParam.get_id()) {
-								textView.setText("停胶延时："
-										+ pointGlueFaceEndParam
-												.getStopGlueTime() + "ms,"
-										+ "抬起高度："
-										+ pointGlueFaceEndParam.getUpHeight()
-										+ "mm," + "直线条数："
-										+ pointGlueFaceEndParam.getLineNum()
-										+ "," + "是否暂停："
-										+ pointGlueFaceEndParam.isPause());
-							}
-						}
+						setTitleInfos(pointEndLists, view, p);
 					}
 				}
 
@@ -604,6 +496,76 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener {
 		rl_back.setOnClickListener(this);
 	}
 
+	protected void setTitleInfos(List<PointGlueFaceEndParam> pointEndLists,
+			View view, int p) {
+			title_stopGlueTime = (TextView) view.findViewById(R.id.title_stopGlueTime);
+	        title_et_stopGlueTime = (TextView) view.findViewById(R.id.title_et_stopGlueTime);
+	        activity_ms = (TextView) view.findViewById(R.id.activity_ms);
+	        activity_fenghao = (TextView) view.findViewById(R.id.activity_fenghao);
+	        title_activity_glue_alone_upHeight = (TextView) view.findViewById(R.id.title_activity_glue_alone_upHeight);
+	        title_et_activity_glue_alone_upHeight = (TextView) view.findViewById(R.id.title_et_activity_glue_alone_upHeight);
+	        title_upheight_mm = (TextView) view.findViewById(R.id.title_upheight_mm);
+	        activity_second_fenghao = (TextView) view.findViewById(R.id.activity_second_fenghao);
+	        title_lineNum = (TextView) view.findViewById(R.id.title_lineNum);
+	        title_et_lineNum = (TextView) view.findViewById(R.id.title_et_lineNum);
+	        activity_four_fenghao = (TextView) view.findViewById(R.id.activity_four_fenghao);
+	        title_activity_glue_alone_isPause = (TextView) view.findViewById(R.id.title_activity_glue_alone_isPause);
+	        title_et_activity_glue_alone_isPause = (TextView) view.findViewById(R.id.title_et_activity_glue_alone_isPause);
+	        for (PointGlueFaceEndParam pointGlueFaceEndParam : pointEndLists) {
+				if (p == pointGlueFaceEndParam.get_id()) {
+					activity_ms.setText(getResources().getString(
+							R.string.activity_ms));
+					activity_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					activity_second_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					title_stopGlueTime.setText(getResources().getString(
+							R.string.activity_glue_alone_stopGlueTime)
+							+ " ");
+					activity_four_fenghao.setText(getResources().getString(
+							R.string.activity_fenghao)
+							+ " ");
+					title_activity_glue_alone_upHeight.setText(getResources().getString(
+							R.string.activity_glue_alone_upHeight)
+							+ " ");
+					title_upheight_mm.setText(getResources().getString(
+							R.string.activity_mm));
+					title_lineNum.setText(getResources().getString(
+							R.string.activity_glue_lineNum));
+					title_activity_glue_alone_isPause.setText(getResources().getString(
+							R.string.activity_glue_alone_isPause));
+					
+					title_et_stopGlueTime.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_stopGlueTime.getPaint()
+							.setAntiAlias(true); // 抗锯齿
+					title_et_activity_glue_alone_upHeight.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_activity_glue_alone_upHeight.getPaint().setAntiAlias(true); // 抗锯齿
+					title_et_lineNum.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_lineNum.getPaint().setAntiAlias(true); // 抗锯齿
+					title_et_activity_glue_alone_isPause.getPaint().setFlags(
+							Paint.UNDERLINE_TEXT_FLAG); // 下划线
+					title_et_activity_glue_alone_isPause.getPaint().setAntiAlias(true); // 抗锯齿
+
+					title_et_stopGlueTime.setText(pointGlueFaceEndParam
+							.getStopGlueTime() + "");
+					title_et_activity_glue_alone_upHeight.setText(pointGlueFaceEndParam
+							.getUpHeight() + "");
+					title_et_lineNum.setText(pointGlueFaceEndParam.getLineNum()
+							+ "");
+					if (pointGlueFaceEndParam.isPause()) {
+						title_et_activity_glue_alone_isPause.setText("是");
+					} else {
+						title_et_activity_glue_alone_isPause.setText("否");
+					}
+				}
+			}
+	}
+
 	/**
 	 * @Title SetDateAndRefreshUI
 	 * @Description 打开extendview的时候设置界面内容，显示最新的方案数据而不是没有保存的数据,没有得到保存的方案
@@ -722,22 +684,8 @@ public class GlueFaceEndActivity extends Activity implements OnClickListener {
 						.get(currentClickNum).getPopupView();
 				View titleViewExtend = popupListView.getItemViews()
 						.get(currentClickNum).getExtendPopupView();
-				TextView textViewItem = (TextView) titleViewItem
-						.findViewById(R.id.title);
-				TextView textViewExtend = (TextView) titleViewExtend
-						.findViewById(R.id.title);
-				textViewItem.setText(pointGlueFaceEndParam.toString());
-				textViewExtend.setText(pointGlueFaceEndParam.toString());
-				textViewItem.setText("停胶延时："
-						+ pointGlueFaceEndParam.getStopGlueTime() + "ms,"
-						+ "抬起高度：" + pointGlueFaceEndParam.getUpHeight() + "mm,"
-						+ "直线条数：" + pointGlueFaceEndParam.getLineNum() + ","
-						+ "是否暂停：" + pointGlueFaceEndParam.isPause());
-				textViewExtend.setText("停胶延时："
-						+ pointGlueFaceEndParam.getStopGlueTime() + "ms,"
-						+ "抬起高度：" + pointGlueFaceEndParam.getUpHeight() + "mm,"
-						+ "直线条数：" + pointGlueFaceEndParam.getLineNum() + ","
-						+ "是否暂停：" + pointGlueFaceEndParam.isPause());
+				setTitleInfos(pointEndLists, titleViewItem, currentTaskNum);
+				setTitleInfos(pointEndLists, titleViewExtend, currentTaskNum);
 			}
 		}
 	}

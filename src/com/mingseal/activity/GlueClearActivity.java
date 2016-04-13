@@ -13,6 +13,7 @@ import com.mingseal.data.param.PointConfigParam.GlueFaceStart;
 import com.mingseal.data.point.GWOutPort;
 import com.mingseal.data.point.Point;
 import com.mingseal.data.point.glueparam.PointGlueClearParam;
+import com.mingseal.data.point.glueparam.PointGlueFaceEndParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
 import com.mingseal.dhp.R;
 import com.mingseal.listener.MaxMinEditWatcher;
@@ -28,6 +29,7 @@ import com.mingseal.utils.ToastUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -122,7 +124,10 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 	private ImageView iv_add;
 	private RelativeLayout rl_save;
 	private ImageView iv_moren;
-
+	private TextView title_clearGlue;
+    private TextView title_et_clear_clearGlue;
+    private TextView activity_ms;
+    private TextView activity_fenghao;
 	/* =================== end =================== */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -184,86 +189,43 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 		// 初始化创建10个popupView
 		for (int i = 0; i < 10; i++) {
 			p = i + 1;
-			PopupView popupView = new PopupView(this, R.layout.popup_view_item) {
+			PopupView popupView = new PopupView(this, R.layout.popup_view_item_glue_clear) {
 
 				@Override
 				public void setViewsElements(View view) {
-					TextView textView = (TextView) view
-							.findViewById(R.id.title);
 					pointClearLists = glueClearDao.findAllGlueClearParams();
-					textView.setTextSize(30);
 					ImageView title_num = (ImageView) view
 							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
 						title_num.setImageResource(R.drawable.green1);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 2) {
 						title_num.setImageResource(R.drawable.green2);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 3) {
 						title_num.setImageResource(R.drawable.green3);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 4) {
 						title_num.setImageResource(R.drawable.green4);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 5) {
 						title_num.setImageResource(R.drawable.green5);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 6) {
 						title_num.setImageResource(R.drawable.green6);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 7) {
 						title_num.setImageResource(R.drawable.green7);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 8) {
 						title_num.setImageResource(R.drawable.green8);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 9) {
 						title_num.setImageResource(R.drawable.green9);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					} else if (p == 10) {
 						title_num.setImageResource(R.drawable.green10);
-						for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
-							if (p == pointGlueClearParam.get_id()) {
-								textView.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-							}
-						}
+						setTitleInfos(pointClearLists, view, p);
 					}
 				}
 
@@ -369,83 +331,6 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 									GlueClear.ClearGlueTimeMax,
 									GlueClear.GlueClearMin, et_clear_clearGlue));
 					et_clear_clearGlue.setSelectAllOnFocus(true);
-					// et_facestart_outGlueTimePrev = (EditText) extendView
-					// .findViewById(R.id.et_facestart_outGlueTimePrev);
-					// et_facestart_movespeed = (EditText) extendView
-					// .findViewById(R.id.et_facestart_movespeed);
-					// et_facestart_outGlueTime = (EditText) extendView
-					// .findViewById(R.id.et_facestart_outGlueTime);
-					// et_facestart_stopGlueTime = (EditText) extendView
-					// .findViewById(R.id.et_facestart_stopGlueTime);
-					// switch_isOutGlue = (ToggleButton) extendView
-					// .findViewById(R.id.switch_isOutGlue);
-					// switch_startDir = (ToggleButton) extendView
-					// .findViewById(R.id.switch_startDir);
-					//
-					// isGluePort = new ToggleButton[GWOutPort.USER_O_NO_ALL
-					// .ordinal()];
-					// isGluePort[0] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport1);
-					// isGluePort[1] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport2);
-					// isGluePort[2] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport3);
-					// isGluePort[3] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport4);
-					// isGluePort[4] = (ToggleButton) extendView
-					// .findViewById(R.id.switch_glueport5);
-					//
-					// // 设置出胶前延时的默认值和最大最小值(要重新设置)
-					// et_facestart_outGlueTimePrev
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.OutGlueTimePrevMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTimePrev));
-					// et_facestart_outGlueTimePrev
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.OutGlueTimePrevMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTimePrev));
-					// et_facestart_outGlueTimePrev.setSelectAllOnFocus(true);
-					//
-					// // 设置出胶后延时的默认值和最大最小值(要重新设置)
-					// et_facestart_outGlueTime
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.OutGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTime));
-					// et_facestart_outGlueTime
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.OutGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_outGlueTime));
-					// et_facestart_outGlueTime.setSelectAllOnFocus(true);
-					//
-					// // 设置轨迹速度的默认值和最大最小值(要重新设置)
-					// et_facestart_movespeed
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.MoveSpeedMax,
-					// GlueFaceStart.MoveSpeedMin,
-					// et_facestart_movespeed));
-					// et_facestart_movespeed
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.MoveSpeedMax,
-					// GlueFaceStart.MoveSpeedMin,
-					// et_facestart_movespeed));
-					// et_facestart_movespeed.setSelectAllOnFocus(true);
-					//
-					// // 设置停胶延时的默认值和最大最小值(要重新设置)
-					// et_facestart_stopGlueTime
-					// .addTextChangedListener(new MaxMinEditWatcher(
-					// GlueFaceStart.StopGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_stopGlueTime));
-					// et_facestart_stopGlueTime
-					// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-					// GlueFaceStart.StopGlueTimeMax,
-					// GlueFaceStart.GlueFaceStartMin,
-					// et_facestart_stopGlueTime));
-					// et_facestart_stopGlueTime.setSelectAllOnFocus(true);
 					rl_moren = (RelativeLayout) extendView
 							.findViewById(R.id.rl_moren);
 					iv_add = (ImageView) extendView.findViewById(R.id.iv_add);
@@ -523,36 +408,37 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 			}
 		});
 		rl_back.setOnClickListener(this);
-		// tv_title = (TextView) findViewById(R.id.tv_title);
-		// et_clear_clearGlue = (EditText)
-		// findViewById(R.id.et_clear_clearGlue);
-		// /* =================== begin =================== */
-		// tv_num = (TextView) findViewById(R.id.item_num);
-		// tv_clearTime = (TextView) findViewById(R.id.item_clear);
-		// // 初始化界面组件
-		// plan = (LinearLayout) findViewById(R.id.tv_plan);
-		// /* =================== end =================== */
-		// rl_back = (RelativeLayout) findViewById(R.id.rl_back);
-		// rl_save = (RelativeLayout) findViewById(R.id.rl_save);
-		// rl_complete = (RelativeLayout) findViewById(R.id.rl_complete);
-		//
-		// // 设置清胶延时的最大最小值
-		// et_clear_clearGlue.addTextChangedListener(new MaxMinEditWatcher(
-		// GlueClear.ClearGlueTimeMax, GlueClear.GlueClearMin,
-		// et_clear_clearGlue));
-		// et_clear_clearGlue
-		// .setOnFocusChangeListener(new MaxMinFocusChangeListener(
-		// GlueClear.ClearGlueTimeMax, GlueClear.GlueClearMin,
-		// et_clear_clearGlue));
-		// et_clear_clearGlue.setSelectAllOnFocus(true);
-		//
-		// tv_title.setText(getResources().getString(
-		// R.string.activity_glue_cleario));
-		// rl_back.setOnClickListener(this);
-		// rl_save.setOnClickListener(this);
-		// rl_complete.setOnClickListener(this);
 
 	}
+	protected void setTitleInfos(List<PointGlueClearParam> pointClearLists,
+			View view, int p) {
+		title_clearGlue = (TextView) view.findViewById(R.id.title_clearGlue);
+        title_et_clear_clearGlue = (TextView) view.findViewById(R.id.title_et_clear_clearGlue);
+        activity_ms = (TextView) view.findViewById(R.id.activity_ms);
+        activity_fenghao = (TextView) view.findViewById(R.id.activity_fenghao);
+        
+        for (PointGlueClearParam pointGlueClearParam : pointClearLists) {
+			if (p == pointGlueClearParam.get_id()) {
+				activity_ms.setText(getResources().getString(
+						R.string.activity_ms));
+				activity_fenghao.setText(getResources().getString(
+						R.string.activity_fenghao)
+						+ " ");
+				title_clearGlue.setText(getResources().getString(
+						R.string.activity_glue_clearGlueTime)
+						+ " ");
+				
+				title_et_clear_clearGlue.getPaint().setFlags(
+						Paint.UNDERLINE_TEXT_FLAG); // 下划线
+				title_et_clear_clearGlue.getPaint()
+						.setAntiAlias(true); // 抗锯齿
+
+				title_et_clear_clearGlue.setText(pointGlueClearParam
+						.getClearGlueTime() + "");
+			}
+		}
+	}
+
 	/**
 	 * @Title SetDateAndRefreshUI
 	 * @Description 打开extendview的时候设置界面内容，显示最新的方案数据而不是没有保存的数据,没有得到保存的方案
@@ -667,14 +553,8 @@ public class GlueClearActivity extends Activity implements OnClickListener{
 						.get(currentClickNum).getPopupView();
 				View titleViewExtend = popupListView.getItemViews()
 						.get(currentClickNum).getExtendPopupView();
-				TextView textViewItem = (TextView) titleViewItem
-						.findViewById(R.id.title);
-				TextView textViewExtend = (TextView) titleViewExtend
-						.findViewById(R.id.title);
-				textViewItem.setText(pointGlueClearParam.toString());
-				textViewExtend.setText(pointGlueClearParam.toString());
-				textViewItem.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
-				textViewExtend.setText("清胶延时："+pointGlueClearParam.getClearGlueTime()+"ms");
+				setTitleInfos(pointClearLists, titleViewItem, currentTaskNum);
+				setTitleInfos(pointClearLists, titleViewExtend, currentTaskNum);
 			}
 		}
 	}

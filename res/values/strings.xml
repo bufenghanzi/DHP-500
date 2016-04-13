@@ -43,12 +43,14 @@
     <string name="activity_glue_array_y">Y轴方向偏移</string>
     <string name="activity_glue_array_end">终点坐标</string>
     
+    <string name="activity_glue_port">点胶口:</string>
     <string name="activity_glue_port1">点胶口1:</string>
     <string name="activity_glue_port2">点胶口2:</string>
     <string name="activity_glue_port3">点胶口3:</string>
     <string name="activity_glue_port4">点胶口4:</string>
     <string name="activity_glue_port5">点胶口5:</string>
     
+    <string name="activity_glue_io">IO口:</string>
     <string name="activity_glue_io1">IO口1:</string>
     <string name="activity_glue_io2">IO口2:</string>
     <string name="activity_glue_io3">IO口3:</string>
@@ -130,6 +132,7 @@
     
     <string name="activity_mm">mm</string>
     <string name="activity_ms">ms</string>
+    <string name="activity_fenghao">;</string>
     <string name="activity_mm_s">mm/s</string>
     
     <string name="absolute">绝对</string>

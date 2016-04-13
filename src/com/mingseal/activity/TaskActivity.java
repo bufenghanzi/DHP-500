@@ -14,6 +14,7 @@ import com.mingseal.adapter.TaskMainBaseAdapter;
 import com.mingseal.adapter.TaskMainBaseAdapter.onMyCheckboxChangedListener;
 import com.mingseal.adapter.TaskMainBaseAdapter.onMyRadioButtonChangedListener;
 import com.mingseal.application.UserApplication;
+import com.mingseal.communicate.Const;
 import com.mingseal.communicate.NetManager;
 import com.mingseal.communicate.SocketInputThread;
 import com.mingseal.communicate.SocketThreadManager;
@@ -48,6 +49,7 @@ import com.mingseal.data.point.glueparam.PointGlueLineStartParam;
 import com.mingseal.data.point.glueparam.PointGlueOutputIOParam;
 import com.mingseal.data.protocol.Protocol_400_1;
 import com.mingseal.dhp.R;
+import com.mingseal.listener.MaxMinEditWatcher;
 import com.mingseal.listener.MyPopWindowClickListener;
 import com.mingseal.ui.SwitchButton;
 import com.mingseal.utils.AsyncConnection;
@@ -86,10 +88,13 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.accessibility.AccessibilityManager.TouchExplorationStateChangeListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -392,6 +397,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 	private RelativeLayout rl_xuhao;
 	private EditText et_Search;
 	private ImageView empty_btn;
+	private ImageView action_search;
 
 	/**
 	 * 判断是否是第一次打开popwindow
@@ -457,7 +463,6 @@ public class TaskActivity extends Activity implements OnClickListener {
 				null);
 		headUTv = (TextView) mHeaderView.findViewById(R.id.tv_u);
 		mList.addHeaderView(mHeaderView);
-
 		pointDao = new PointDao(TaskActivity.this);
 		mAdapter = new TaskMainBaseAdapter(this, TaskActivity.this);
 		new GetPointsAsynctask().execute(task.getPointids());
@@ -511,7 +516,6 @@ public class TaskActivity extends Activity implements OnClickListener {
 				}
 			}
 		});
-
 		// 监听radiobutton的选中事件
 		mAdapter.setOnRadioButtonChanged(new onMyRadioButtonChangedListener() {
 
@@ -524,34 +528,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 			}
 		});
 		
-		et_Search.addTextChangedListener(new TextWatcher() {
-
-			@Override
-			public void onTextChanged(CharSequence s, int start, int before,
-					int count) {
-				if (s == null || s.length() == 0) {
-					mList.smoothScrollToPosition(selectRadioIDCur-1);
-					mAdapter.notifyDataSetChanged();
-				}else {
-					int selectID=Integer.parseInt(s.toString());
-					selectRadioIDCur = selectID;
-					mList.smoothScrollToPosition(selectRadioIDCur-1);
-					mAdapter.setSelectID(selectID-1);
-					mAdapter.notifyDataSetChanged();
-				}
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int start, int count,
-					int after) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable s) {
-				
-			}
-		});
+		
 
 	}
 
@@ -582,6 +559,13 @@ public class TaskActivity extends Activity implements OnClickListener {
 	 * 加载组件
 	 */
 	private void initComponent() {
+		//搜索框
+		rl_xuhao = (RelativeLayout) findViewById(R.id.rl_xuhao);
+		et_Search = (EditText) findViewById(R.id.et_Search);
+		empty_btn = (ImageView) findViewById(R.id.action_empty_btn);
+		action_search = (ImageView) findViewById(R.id.ic_action_action_search);
+		
+		
 		tv_title = (TextView) findViewById(R.id.tv_title);
 		rl_title_speed = (RelativeLayout) findViewById(R.id.rl_title_speed);
 		rl_title_moshi = (RelativeLayout) findViewById(R.id.rl_title_moshi);
@@ -650,10 +634,7 @@ public class TaskActivity extends Activity implements OnClickListener {
 		rl_zhantie.setEnabled(false);
 		rl_quanxuan.setEnabled(false);
 
-		//搜索框
-		rl_xuhao = (RelativeLayout) findViewById(R.id.rl_xuhao);
-		et_Search = (EditText) findViewById(R.id.et_Search);
-		empty_btn = (ImageView) findViewById(R.id.action_empty_btn);
+	
 
 		singleSwitch = (SwitchButton) findViewById(R.id.sw_single);
 		
@@ -681,8 +662,72 @@ public class TaskActivity extends Activity implements OnClickListener {
 		speedXYZ[0] = 4 * settingParam.getxStepDistance();
 		speedXYZ[1] = 4 * settingParam.getyStepDistance();
 		speedXYZ[2] = 4 * settingParam.getzStepDistance();
-		
-		
+		et_Search.addTextChangedListener(new TextWatcher() {
+
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				if (start > 1) {
+					int num = Integer.parseInt(s.toString());
+					if (num > Const.SEARCH_MAX) {
+						s = String.valueOf(Const.SEARCH_MAX);
+						et_Search.setText(s);
+					} else if (num < Const.SEARCH_MIN) {
+						s = String.valueOf(Const.SEARCH_MIN);
+					}
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s == null || s.equals("")) {
+					mList.smoothScrollToPosition(selectRadioIDCur-1);
+					mAdapter.notifyDataSetChanged();
+				}else {
+					int selectID=Const.SEARCH_MIN;
+					try {
+						selectID=Integer.parseInt(s.toString());
+					} catch (NumberFormatException e) {
+						selectID = Const.SEARCH_MIN;
+					}
+					if (selectID > Const.SEARCH_MAX) {
+						et_Search.setText(String.valueOf(Const.SEARCH_MAX));
+					}
+					selectRadioIDCur = selectID;
+					mList.setFastScrollEnabled(true);
+					mList.setSelection(selectRadioIDCur-1);
+					mAdapter.setSelectID(selectID-1);
+					mAdapter.notifyDataSetInvalidated();
+				}
+			}
+		});
+		action_search.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				et_Search.setVisibility(View.VISIBLE);
+				empty_btn.setVisibility(View.VISIBLE);
+				action_search.setVisibility(View.GONE);
+			}
+		});
+		empty_btn.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				System.out.println("隐藏搜索框");
+				et_Search.setVisibility(View.GONE);
+				empty_btn.setVisibility(View.GONE);
+				action_search.setVisibility(View.VISIBLE);
+			}
+		});
 	}
 
 	/**
@@ -1832,7 +1877,9 @@ public class TaskActivity extends Activity implements OnClickListener {
 				selectCheckboxCur.clear();
 				mAdapter.setData(mPointsCur);
 				singleSwitch.setChecked(false);// 有错的话设置为单选框显示
-				mList.smoothScrollToPosition(selectRadioIDCur);// Listview滚动到指定地方
+//				mList.smoothScrollToPosition(selectRadioIDCur);// Listview滚动到指定地方
+//				mList.setFastScrollEnabled(true);
+				mList.setSelection(selectRadioIDCur);
 				mAdapter.setSelectID(selectRadioIDCur);// 选中位置
 				mAdapter.notifyDataSetChanged();
 			}
@@ -2677,9 +2724,10 @@ public class TaskActivity extends Activity implements OnClickListener {
 				selectCheckboxCur.clear();
 				mAdapter.setData(mPointsCur);
 				singleSwitch.setChecked(false);// 有错的话设置为单选框显示
-				mList.smoothScrollToPosition(selectRadioIDCur);// Listview滚动到指定地方
+//				mList.smoothScrollToPosition(selectRadioIDCur);// Listview滚动到指定地方
+				mList.setSelection(selectRadioIDCur);//改为快速定位
 				mAdapter.setSelectID(selectRadioIDCur);// 选中位置
-				mAdapter.notifyDataSetChanged();
+				mAdapter.notifyDataSetInvalidated();//
 			}
 		}
 

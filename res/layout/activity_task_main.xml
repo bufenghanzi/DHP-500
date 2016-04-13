@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 任务主界面 -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+     android:focusable="true"
+    android:focusableInTouchMode="true"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +22,7 @@
         <ListView
             android:id="@+id/lv_show"
             android:layout_width="match_parent"
-            android:layout_height="665dp"
+            android:layout_height="673dp"
             android:layout_below="@id/rl_nav"
             android:divider="@color/activity_task_listview_divider"
             android:dividerHeight="2dp" >
@@ -29,13 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/lv_show"
+            android:layout_marginTop="8dp"
             android:background="@color/activity_task_listview_divider" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/lv_show"
-            android:layout_marginTop="63dp"
+            android:layout_marginTop="57dp"
             android:background="@color/activity_task_listview_divider" />
 
         <LinearLayout
@@ -43,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@id/lv_show"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal" >
 
             <LinearLayout
@@ -62,7 +66,8 @@
             <RelativeLayout
                 android:layout_width="120dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="50dp" >
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="3dp" >
 
                 <com.mingseal.ui.SwitchButton
                     android:id="@+id/sw_single"
@@ -86,7 +91,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_centerVertical="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:gravity="center_vertical" >
+                    <requestFocus />
 
                     <EditText
                         android:id="@+id/et_Search"
@@ -96,13 +104,14 @@
                         android:layout_marginRight="40dp"
                         android:background="@drawable/textview_radius_border"
                         android:hint="@string/edittext_search"
-                        android:paddingLeft="38dp"
                         android:numeric="integer"
+                        android:paddingLeft="38dp"
                         android:singleLine="true"
                         android:textColor="#7A7A7A"
-                        android:textSize="25sp" />
+                        android:textSize="25sp"
+                        android:visibility="gone" /> 
 
-                    <ImageView
+                   <!--  <ImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_alignBottom="@id/et_Search"
@@ -110,25 +119,37 @@
                         android:layout_alignTop="@id/et_Search"
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="10dp"
-                        android:src="@drawable/search" />
+                        android:src="@drawable/search" 
+                        
+                        /> -->
 
                     <ImageView
                         android:id="@+id/action_empty_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
+                        android:layout_marginRight="25dp"
                         android:background="?android:attr/selectableItemBackground"
                         android:paddingLeft="12dp"
                         android:paddingRight="12dp"
-                        android:layout_marginRight="25dp"
                         android:src="@drawable/ic_action_navigation_close"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
+                    <ImageView 
+                         android:id="@+id/ic_action_action_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                         android:layout_alignParentRight="true"
+                        android:layout_marginRight="25dp"
+                         android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:src="@drawable/search"
+                        android:visibility="visible"
+                        />
                 </RelativeLayout>
-
             </RelativeLayout>
         </LinearLayout>
 
         <include layout="@layout/activity_task_main_bottom" />
     </RelativeLayout>
 
-</ScrollView>
+</LinearLayout>

@@ -28,6 +28,9 @@
     <dimen name="activity_title_layout_height">80dp</dimen>
     <dimen name="activity_title_textsize">40sp</dimen>
     <dimen name="activity_title_textsize_sub">30sp</dimen>
+    <dimen name="activity_title_item_textsize">25sp</dimen>
+    <dimen name="activity_title_item_mid_textsize">22sp</dimen>
+    <dimen name="activity_title_item_small_textsize">20sp</dimen>
     <dimen name="activity_download_textsize_sub">25sp</dimen>
     <dimen name="item_glue_textsize">18sp</dimen>
     <dimen name="item_glue_marginLeft">0dp</dimen>

@@ -17,6 +17,7 @@ import com.mingseal.data.point.GWOutPort;
 import com.mingseal.data.point.IOPort;
 import com.mingseal.data.point.Point;
 import com.mingseal.data.point.glueparam.PointGlueClearParam;
+import com.mingseal.data.point.glueparam.PointGlueFaceEndParam;
 import com.mingseal.data.point.glueparam.PointGlueFaceStartParam;
 import com.mingseal.data.point.glueparam.PointGlueInputIOParam;
 import com.mingseal.dhp.R;
@@ -33,6 +34,7 @@ import com.mingseal.utils.ToastUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -147,7 +149,16 @@ public class GlueInputActivity extends Activity implements OnClickListener {
 	private ToggleButton switch_glueport3;
 	private ToggleButton switch_glueport4;
 	String[] GluePort;
-
+	 private TextView title_goTimePrev;
+	    private TextView title_et_input_goTimePrev;
+	    private TextView activity_ms;
+	    private TextView activity_fenghao;
+	    private TextView title_goTimeNext;
+	    private TextView title_et_input_goTimeNext;
+	    private TextView activity_second_ms;
+	    private TextView activity_second_fenghao;
+	    private TextView activity_glue_io;
+	    private TextView title_et_activity_glue_io;
 	/* =================== end =================== */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -212,216 +223,43 @@ public class GlueInputActivity extends Activity implements OnClickListener {
 		// 初始化创建10个popupView
 		for (int i = 0; i < 10; i++) {
 			p = i + 1;
-			PopupView popupView = new PopupView(this, R.layout.popup_view_item) {
+			PopupView popupView = new PopupView(this, R.layout.popup_view_item_input) {
 
 				@Override
 				public void setViewsElements(View view) {
-					TextView textView = (TextView) view
-							.findViewById(R.id.title);
 					inputIOLists = inputDao.findAllGlueInputParams();
-					textView.setTextSize(30);
 					ImageView title_num = (ImageView) view
 							.findViewById(R.id.title_num);
 					if (p == 1) {// 方案列表第一位对应一号方案
 						title_num.setImageResource(R.drawable.green1);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 2) {
 						title_num.setImageResource(R.drawable.green2);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 3) {
 						title_num.setImageResource(R.drawable.green3);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 4) {
 						title_num.setImageResource(R.drawable.green4);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 5) {
 						title_num.setImageResource(R.drawable.green5);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 6) {
 						title_num.setImageResource(R.drawable.green6);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 7) {
 						title_num.setImageResource(R.drawable.green7);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 8) {
 						title_num.setImageResource(R.drawable.green8);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 9) {
 						title_num.setImageResource(R.drawable.green9);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					} else if (p == 10) {
 						title_num.setImageResource(R.drawable.green10);
-						for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
-							if (p == pointGlueInputIOParam.get_id()) {
-								for (int j = 0; j < 4; j++) {
-									if (pointGlueInputIOParam.getInputPort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("动作前延时："
-										+ pointGlueInputIOParam.getGoTimePrev()
-										+ "ms," + "动作后延时："
-										+ pointGlueInputIOParam.getGoTimeNext()
-										+ "ms," + "IO口：" + GluePort[0]
-										+ GluePort[1] + GluePort[2]
-										+ GluePort[3]);
-							}
-						}
+						setTitleInfos(inputIOLists, view, p);
 					}
 				}
 
@@ -631,6 +469,69 @@ public class GlueInputActivity extends Activity implements OnClickListener {
 		rl_back.setOnClickListener(this);
 	}
 
+	protected void setTitleInfos(List<PointGlueInputIOParam> inputIOLists,
+			View view, int p) {
+		title_goTimePrev = (TextView) view.findViewById(R.id.title_goTimePrev);
+        title_et_input_goTimePrev = (TextView) view.findViewById(R.id.title_et_input_goTimePrev);
+        activity_ms = (TextView) view.findViewById(R.id.activity_ms);
+        activity_fenghao = (TextView) view.findViewById(R.id.activity_fenghao);
+        title_goTimeNext = (TextView) view.findViewById(R.id.title_goTimeNext);
+        title_et_input_goTimeNext = (TextView) view.findViewById(R.id.title_et_input_goTimeNext);
+        activity_second_ms = (TextView) view.findViewById(R.id.activity_second_ms);
+        activity_second_fenghao = (TextView) view.findViewById(R.id.activity_second_fenghao);
+        activity_glue_io = (TextView) view.findViewById(R.id.activity_glue_io);
+        title_et_activity_glue_io = (TextView) view.findViewById(R.id.title_et_activity_glue_io);
+        
+        for (PointGlueInputIOParam pointGlueInputIOParam : inputIOLists) {
+			if (p == pointGlueInputIOParam.get_id()) {
+				activity_ms.setText(getResources().getString(
+						R.string.activity_ms));
+				activity_second_ms.setText(getResources().getString(
+						R.string.activity_ms));
+				activity_fenghao.setText(getResources().getString(
+						R.string.activity_fenghao)
+						+ " ");
+				activity_second_fenghao.setText(getResources().getString(
+						R.string.activity_fenghao)
+						+ " ");
+				title_goTimePrev.setText(getResources().getString(
+						R.string.activity_glue_goTimePrev)
+						+ " ");
+				title_goTimeNext.setText(getResources().getString(
+						R.string.activity_glue_goTimeNext)
+						+ " ");
+				activity_glue_io.setText(getResources().getString(
+						R.string.activity_glue_io)
+						+ " ");
+				
+				title_et_input_goTimePrev.getPaint().setFlags(
+						Paint.UNDERLINE_TEXT_FLAG); // 下划线
+				title_et_input_goTimePrev.getPaint()
+						.setAntiAlias(true); // 抗锯齿
+				title_et_input_goTimeNext.getPaint().setFlags(
+						Paint.UNDERLINE_TEXT_FLAG); // 下划线
+				title_et_input_goTimeNext.getPaint().setAntiAlias(true); // 抗锯齿
+				title_et_activity_glue_io.getPaint().setFlags(
+						Paint.UNDERLINE_TEXT_FLAG); // 下划线
+				title_et_activity_glue_io.getPaint().setAntiAlias(true); // 抗锯齿
+
+				title_et_input_goTimePrev.setText(pointGlueInputIOParam
+						.getGoTimePrev() + "");
+				title_et_input_goTimeNext.setText(pointGlueInputIOParam
+						.getGoTimeNext() + "");
+				for (int j = 0; j < 4; j++) {
+					if (pointGlueInputIOParam.getInputPort()[j]) {
+						GluePort[j] = "开";
+					} else {
+						GluePort[j] = "关";
+					}
+				}
+				title_et_activity_glue_io.setText(GluePort[0] + GluePort[1]
+						+ GluePort[2] + GluePort[3]);
+			}
+		}
+	}
+
 	/**
 	 * @Title SetDateAndRefreshUI
 	 * @Description 打开extendview的时候设置界面内容，显示最新的方案数据而不是没有保存的数据,没有得到保存的方案
@@ -743,29 +644,8 @@ public class GlueInputActivity extends Activity implements OnClickListener {
 						.get(currentClickNum).getPopupView();
 				View titleViewExtend = popupListView.getItemViews()
 						.get(currentClickNum).getExtendPopupView();
-				TextView textViewItem = (TextView) titleViewItem
-						.findViewById(R.id.title);
-				TextView textViewExtend = (TextView) titleViewExtend
-						.findViewById(R.id.title);
-				textViewItem.setText(pointGlueInputIOParam.toString());
-				textViewExtend.setText(pointGlueInputIOParam.toString());
-				for (int j = 0; j < 4; j++) {
-					if (pointGlueInputIOParam.getInputPort()[j]) {
-						GluePort[j] = "开";
-					} else {
-						GluePort[j] = "关";
-					}
-				}
-				textViewItem.setText("动作前延时："
-						+ pointGlueInputIOParam.getGoTimePrev() + "ms,"
-						+ "动作后延时：" + pointGlueInputIOParam.getGoTimeNext()
-						+ "ms," + "IO口：" + GluePort[0] + GluePort[1]
-						+ GluePort[2] + GluePort[3]);
-				textViewExtend.setText("动作前延时："
-						+ pointGlueInputIOParam.getGoTimePrev() + "ms,"
-						+ "动作后延时：" + pointGlueInputIOParam.getGoTimeNext()
-						+ "ms," + "IO口：" + GluePort[0] + GluePort[1]
-						+ GluePort[2] + GluePort[3]);
+				setTitleInfos(inputIOLists, titleViewItem,currentTaskNum);
+				setTitleInfos(inputIOLists, titleViewExtend,currentTaskNum);
 			}
 		}
 	}

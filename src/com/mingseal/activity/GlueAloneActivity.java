@@ -24,11 +24,13 @@ import com.mingseal.utils.ToastUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,7 +123,26 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 	private int mIndex;// 对应方案号
 	private HashMap<Integer, PointGlueAloneParam> update_id;// 修改的方案号集合
 	String[] GluePort;
-
+	private TextView title_et_dianjiao;
+	private TextView title_et_tingjiao;
+	private TextView title_et_upHeight;
+	private TextView title_et_isOutGlue;
+	private TextView title_et_isPause;
+	private TextView title_et_glue_port;
+	    private TextView title_dianjiao;
+	    private TextView activity_ms;
+	    private TextView activity_fenghao;
+	    private TextView title_alone_stopGlueTime;
+	    private TextView activity_second_ms;
+	    private TextView activity_second_fenghao;
+	    private TextView title_alone_upHeight;
+	    private TextView activity_mm;
+	    private TextView activity_third_fenghao;
+	    private TextView title_activity_glue_alone_isOutGlue;
+	    private TextView activity_four_fenghao;
+	    private TextView title_activity_glue_alone_isPause;
+	    private TextView activity_five_fenghao;
+	    private TextView activity_glue_port;
 	// End Of Content View Elements
 
 	@Override
@@ -148,7 +169,6 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 			glueAlone.set_id(param_id);
 			glueAloneDao.insertGlueAlone(glueAlone);
 		}
-
 		glueAloneLists = glueAloneDao.findAllGlueAloneParams();
 		// 初始化
 		gluePortBoolean = new boolean[GWOutPort.USER_O_NO_ALL.ordinal()];
@@ -177,273 +197,49 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 			p = i + 1;
 			PopupView popupView = new PopupView(this, R.layout.popup_view_item) {
 
+				private int mDotGlueTime;
+
 				@Override
 				public void setViewsElements(View view) {
-					TextView textView = (TextView) view
-							.findViewById(R.id.title);
+					// TextView textView = (TextView) view
+					// .findViewById(R.id.title);
 					ImageView title_num = (ImageView) view
 							.findViewById(R.id.title_num);
-					textView.setTextSize(25);
+
 					glueAloneLists = glueAloneDao.findAllGlueAloneParams();
 					if (p == 1) {// 方案列表第一位对应一号方案
 						title_num.setImageResource(R.drawable.green1);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							for (int j = 0; j < 5; j++) {
-								if (pointGlueAloneParam.getGluePort()[j]) {
-									GluePort[j] = "开";
-								} else {
-									GluePort[j] = "关";
-								}
-							}
-							textView.setText("点胶延时："
-									+ pointGlueAloneParam.getDotGlueTime()
-									+ "ms," + "停胶延时："
-									+ pointGlueAloneParam.getStopGlueTime()
-									+ "ms," + "抬起高度："
-									+ pointGlueAloneParam.getUpHeight() + "mm,"
-									+ "是否出胶：" + pointGlueAloneParam.isOutGlue()
-									+ "," + "是否暂停："
-									+ pointGlueAloneParam.isPause() + ","
-									+ "点胶口：" + GluePort[0] + GluePort[1]
-									+ GluePort[2] + GluePort[3] + GluePort[4]);
-						}
+						setTitleInfos(glueAloneLists, view, p);
+
 					} else if (p == 2) {
 						title_num.setImageResource(R.drawable.green2);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 3) {
 						title_num.setImageResource(R.drawable.green3);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 4) {
 						title_num.setImageResource(R.drawable.green4);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 5) {
 						title_num.setImageResource(R.drawable.green5);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 6) {
 						title_num.setImageResource(R.drawable.green6);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 7) {
 						title_num.setImageResource(R.drawable.green7);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 8) {
 						title_num.setImageResource(R.drawable.green8);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 9) {
 						title_num.setImageResource(R.drawable.green9);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					} else if (p == 10) {
 						title_num.setImageResource(R.drawable.green10);
-						for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
-							if (p == pointGlueAloneParam.get_id()) {
-								for (int j = 0; j < 5; j++) {
-									if (pointGlueAloneParam.getGluePort()[j]) {
-										GluePort[j] = "开";
-									} else {
-										GluePort[j] = "关";
-									}
-								}
-								textView.setText("点胶延时："
-										+ pointGlueAloneParam.getDotGlueTime()
-										+ "ms," + "停胶延时："
-										+ pointGlueAloneParam.getStopGlueTime()
-										+ "ms," + "抬起高度："
-										+ pointGlueAloneParam.getUpHeight()
-										+ "mm," + "是否出胶："
-										+ pointGlueAloneParam.isOutGlue() + ","
-										+ "是否暂停："
-										+ pointGlueAloneParam.isPause() + ","
-										+ "点胶口：" + GluePort[0] + GluePort[1]
-										+ GluePort[2] + GluePort[3]
-										+ GluePort[4]);
-							}
-						}
+						setTitleInfos(glueAloneLists, view, p);
 					}
 				}
-
 				@Override
 				public View setExtendView(View view) {
 					if (view == null) {
@@ -668,6 +464,94 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 		rl_back.setOnClickListener(this);
 	}
 
+	protected void setTitleInfos(List<PointGlueAloneParam> glueAloneLists,
+			View view, int p) {
+		// TODO Auto-generated method stub
+		title_et_dianjiao = (TextView) view
+				.findViewById(R.id.title_et_dianjiao);
+		title_et_tingjiao = (TextView) view
+				.findViewById(R.id.title_et_tingjiao);
+		title_et_upHeight = (TextView) view
+				.findViewById(R.id.title_et_upHeight);
+		title_et_isOutGlue = (TextView) view
+				.findViewById(R.id.title_et_isOutGlue);
+		title_et_isPause = (TextView) view.findViewById(R.id.title_et_isPause);
+		title_et_glue_port = (TextView) view
+				.findViewById(R.id.title_et_glue_port);
+		/*=================== begin ===================*/
+		title_dianjiao = (TextView) view.findViewById(R.id.title_dianjiao);
+        activity_ms = (TextView) view.findViewById(R.id.activity_ms);
+        activity_fenghao = (TextView) view.findViewById(R.id.activity_fenghao);
+        title_alone_stopGlueTime = (TextView) view.findViewById(R.id.title_alone_stopGlueTime);
+        activity_second_ms = (TextView) view.findViewById(R.id.activity_second_ms);
+        activity_second_fenghao = (TextView) view.findViewById(R.id.activity_second_fenghao);
+        title_alone_upHeight = (TextView) view.findViewById(R.id.title_alone_upHeight);
+        activity_mm = (TextView) view.findViewById(R.id.activity_mm);
+        activity_third_fenghao = (TextView) view.findViewById(R.id.activity_third_fenghao);
+        title_activity_glue_alone_isOutGlue = (TextView) view.findViewById(R.id.title_activity_glue_alone_isOutGlue);
+        activity_four_fenghao = (TextView) view.findViewById(R.id.activity_four_fenghao);
+        title_activity_glue_alone_isPause = (TextView) view.findViewById(R.id.title_activity_glue_alone_isPause);
+        activity_five_fenghao = (TextView) view.findViewById(R.id.activity_five_fenghao);
+        activity_glue_port = (TextView) view.findViewById(R.id.activity_glue_port);
+		/*===================  end  ===================*/
+		for (PointGlueAloneParam pointGlueAloneParam : glueAloneLists) {
+			if (p == pointGlueAloneParam.get_id()) {
+				title_dianjiao.setText(getResources().getString(R.string.activity_glue_alone_dianjiaoyanshi)+" ");
+				activity_ms.setText(getResources().getString(R.string.activity_ms));
+				activity_fenghao.setText(getResources().getString(R.string.activity_fenghao)+" ");
+				title_alone_stopGlueTime.setText(getResources().getString(R.string.activity_glue_alone_stopGlueTime)+" ");
+				activity_second_ms.setText(getResources().getString(R.string.activity_ms));
+				activity_second_fenghao.setText(getResources().getString(R.string.activity_fenghao)+" ");
+				title_alone_upHeight.setText(getResources().getString(R.string.activity_glue_alone_upHeight)+" ");
+				activity_mm.setText(getResources().getString(R.string.activity_mm));
+				activity_third_fenghao.setText(getResources().getString(R.string.activity_fenghao)+" ");
+				title_activity_glue_alone_isOutGlue.setText(getResources().getString(R.string.activity_glue_alone_isOutGlue)+" ");
+				activity_four_fenghao.setText(getResources().getString(R.string.activity_fenghao)+" ");
+				title_activity_glue_alone_isPause.setText(getResources().getString(R.string.activity_glue_alone_isPause)+" ");
+				activity_five_fenghao.setText(getResources().getString(R.string.activity_fenghao)+" ");
+				activity_glue_port.setText(getResources().getString(R.string.activity_glue_port)+" ");
+				for (int j = 0; j < 5; j++) {
+					if (pointGlueAloneParam.getGluePort()[j]) {
+						GluePort[j] = "开";
+					} else {
+						GluePort[j] = "关";
+					}
+				}
+			
+			title_et_dianjiao.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); // 下划线
+			title_et_dianjiao.getPaint().setAntiAlias(true); // 抗锯齿
+			title_et_tingjiao.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); // 下划线
+			title_et_tingjiao.getPaint().setAntiAlias(true); // 抗锯齿
+			title_et_upHeight.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); // 下划线
+			title_et_upHeight.getPaint().setAntiAlias(true); // 抗锯齿
+			title_et_isOutGlue.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); // 下划线
+			title_et_isOutGlue.getPaint().setAntiAlias(true); // 抗锯齿
+			title_et_isPause.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); // 下划线
+			title_et_isPause.getPaint().setAntiAlias(true); // 抗锯齿
+			title_et_glue_port.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); // 下划线
+			title_et_glue_port.getPaint().setAntiAlias(true); // 抗锯齿
+
+			title_et_dianjiao
+					.setText(pointGlueAloneParam.getDotGlueTime() + "");
+			title_et_tingjiao.setText(pointGlueAloneParam.getStopGlueTime()
+					+ "");
+			title_et_upHeight.setText(pointGlueAloneParam.getUpHeight() + "");
+			if (pointGlueAloneParam.isOutGlue()) {
+				title_et_isOutGlue.setText("是");
+			} else {
+				title_et_isOutGlue.setText("否");
+			}
+			if (pointGlueAloneParam.isPause()) {
+				title_et_isPause.setText("是");
+			} else {
+				title_et_isPause.setText("否");
+			}
+			title_et_glue_port.setText(GluePort[0] + GluePort[1] + GluePort[2]
+					+ GluePort[3] + GluePort[4]);
+			}
+		}
+	}
+
 	/**
 	 * @Title SetDateAndRefreshUI
 	 * @Description 打开extendview的时候设置界面内容，显示最新的方案数据而不是没有保存的数据,没有得到保存的方案
@@ -851,34 +735,36 @@ public class GlueAloneActivity extends Activity implements OnClickListener {
 						.get(currentClickNum).getPopupView();
 				View titleViewExtend = popupListView.getItemViews()
 						.get(currentClickNum).getExtendPopupView();
-				TextView textViewItem = (TextView) titleViewItem
-						.findViewById(R.id.title);
-				TextView textViewExtend = (TextView) titleViewExtend
-						.findViewById(R.id.title);
-				textViewExtend.setText(pointGlueAloneParam.toString());
-				for (int j = 0; j < 5; j++) {
-					if (pointGlueAloneParam.getGluePort()[j]) {
-						GluePort[j] = "开";
-					} else {
-						GluePort[j] = "关";
-					}
-				}
-				textViewItem.setText("点胶延时："
-						+ pointGlueAloneParam.getDotGlueTime() + "ms,"
-						+ "停胶延时：" + pointGlueAloneParam.getStopGlueTime()
-						+ "ms," + "抬起高度：" + pointGlueAloneParam.getUpHeight()
-						+ "mm," + "是否出胶：" + pointGlueAloneParam.isOutGlue()
-						+ "," + "是否暂停：" + pointGlueAloneParam.isPause() + ","
-						+ "点胶口：" + GluePort[0] + GluePort[1] + GluePort[2]
-						+ GluePort[3] + GluePort[4]);
-				textViewExtend.setText("点胶延时："
-						+ pointGlueAloneParam.getDotGlueTime() + "ms,"
-						+ "停胶延时：" + pointGlueAloneParam.getStopGlueTime()
-						+ "ms," + "抬起高度：" + pointGlueAloneParam.getUpHeight()
-						+ "mm," + "是否出胶：" + pointGlueAloneParam.isOutGlue()
-						+ "," + "是否暂停：" + pointGlueAloneParam.isPause() + ","
-						+ "点胶口：" + GluePort[0] + GluePort[1] + GluePort[2]
-						+ GluePort[3] + GluePort[4]);
+				setTitleInfos(glueAloneLists, titleViewItem,currentTaskNum);
+				setTitleInfos(glueAloneLists, titleViewExtend,currentTaskNum);
+				// TextView textViewItem = (TextView) titleViewItem
+				// .findViewById(R.id.title);
+				// TextView textViewExtend = (TextView) titleViewExtend
+				// .findViewById(R.id.title);
+				// textViewExtend.setText(pointGlueAloneParam.toString());
+				// for (int j = 0; j < 5; j++) {
+				// if (pointGlueAloneParam.getGluePort()[j]) {
+				// GluePort[j] = "开";
+				// } else {
+				// GluePort[j] = "关";
+				// }
+				// }
+				// textViewItem.setText("点胶延时："
+				// + pointGlueAloneParam.getDotGlueTime() + "ms,"
+				// + "停胶延时：" + pointGlueAloneParam.getStopGlueTime()
+				// + "ms," + "抬起高度：" + pointGlueAloneParam.getUpHeight()
+				// + "mm," + "是否出胶：" + pointGlueAloneParam.isOutGlue()
+				// + "," + "是否暂停：" + pointGlueAloneParam.isPause() + ","
+				// + "点胶口：" + GluePort[0] + GluePort[1] + GluePort[2]
+				// + GluePort[3] + GluePort[4]);
+				// textViewExtend.setText("点胶延时："
+				// + pointGlueAloneParam.getDotGlueTime() + "ms,"
+				// + "停胶延时：" + pointGlueAloneParam.getStopGlueTime()
+				// + "ms," + "抬起高度：" + pointGlueAloneParam.getUpHeight()
+				// + "mm," + "是否出胶：" + pointGlueAloneParam.isOutGlue()
+				// + "," + "是否暂停：" + pointGlueAloneParam.isPause() + ","
+				// + "点胶口：" + GluePort[0] + GluePort[1] + GluePort[2]
+				// + GluePort[3] + GluePort[4]);
 			}
 		}
 	}

@@ -18,6 +18,10 @@ public class Const {
 
 	 //心跳包发送间隔时间
 	 public final static int SOCKET_HEART_SECOND =3 ;
+	 //搜索框最大值
+	 public final static int SEARCH_MAX=11000;
+	 //搜索框最小值
+	 public final static int SEARCH_MIN=1;
 	//
 	// public final static String BC = "BC";
 	/*=================== begin ===================*/

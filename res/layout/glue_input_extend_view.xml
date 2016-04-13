@@ -249,37 +249,49 @@
         android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
         android:orientation="horizontal" >
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/rl_moren"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@drawable/task_bottom_imagebutton"
             android:gravity="center" >
 
             <ImageView
-                android:id="@+id/iv_add"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/iv_moren"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_add" />
+                android:src="@drawable/ic_playlist_add_check_white_48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/iv_add"
-                android:layout_toRightOf="@id/iv_add"
+                android:layout_alignBottom="@id/iv_moren"
+                android:layout_toRightOf="@id/iv_moren"
                 android:gravity="center"
                 android:text="@string/activity_glue_default"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/activity_task_bottom_text_size" />
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/rl_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/activity_bottom_tab_marginBottom"
             android:layout_marginLeft="@dimen/activity_bottom_tab_marginLeft"
@@ -290,22 +302,28 @@
             android:gravity="center" >
 
             <ImageView
-                android:id="@+id/iv_moren"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:id="@+id/iv_save"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_add" />
+                android:src="@drawable/save" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/iv_moren"
-                android:layout_toRightOf="@id/iv_moren"
+                android:layout_alignBottom="@id/iv_save"
+                android:layout_toRightOf="@id/iv_save"
                 android:gravity="center"
                 android:text="@string/activity_glue_save"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/activity_task_bottom_text_size" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+        </LinearLayout>
     </LinearLayout>
 
 </RelativeLayout>

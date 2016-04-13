@@ -10,26 +10,224 @@
         android:layout_height="50dp"
         android:layout_centerVertical="true"
         android:paddingLeft="10dp" />
-    <TextView
-        android:id="@+id/title"
-        android:layout_toRightOf="@id/title_num"
+
+    <LinearLayout
+        android:id="@+id/ll_title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
+        android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+        android:layout_marginRight="@dimen/activity_bottom_tab_marginTop"
+        android:layout_toRightOf="@id/title_num"
         android:background="@drawable/popup_view_item_bg"
-        android:gravity="center_vertical"
-        android:paddingLeft="10dp" />
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
+
+            <TextView
+                android:id="@+id/title_dianjiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_et_dianjiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_dianjiao"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_ms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_et_dianjiao"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_fenghao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_ms"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_alone_stopGlueTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_fenghao"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_et_tingjiao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_alone_stopGlueTime"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_second_ms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_et_tingjiao"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_second_fenghao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_second_ms"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_alone_upHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_second_fenghao"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_et_upHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_alone_upHeight"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_mm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_et_upHeight"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_third_fenghao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_mm"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="@dimen/activity_bottom_tab_marginTop"
+            android:layout_marginRight="@dimen/activity_bottom_tab_marginTop" >
+
+            <TextView
+                android:id="@+id/title_activity_glue_alone_isOutGlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_et_isOutGlue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_activity_glue_alone_isOutGlue"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_four_fenghao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_et_isOutGlue"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_activity_glue_alone_isPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_four_fenghao"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_et_isPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_activity_glue_alone_isPause"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_five_fenghao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/title_et_isPause"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/activity_glue_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_five_fenghao"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+
+            <TextView
+                android:id="@+id/title_et_glue_port"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/activity_glue_port"
+                android:textColor="#000000"
+                android:textSize="@dimen/activity_title_item_textsize" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/iv_selected"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/title"
-        android:layout_alignTop="@+id/title"
+        android:layout_alignRight="@+id/ll_title"
+        android:layout_alignTop="@+id/ll_title"
         android:layout_marginRight="24dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/ok" 
-        android:visibility="gone"
-        />
+        android:src="@drawable/ok"
+        android:visibility="gone" />
 
 </RelativeLayout>
